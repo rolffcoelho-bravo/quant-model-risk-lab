@@ -4,7 +4,8 @@
 
 **Curve date:** 2026-07-06  
 **Inflation date:** 2026-07-07  
-**Decision flags:** +100bp valuation loss above 4 percent
+**Decision flags:** +100bp valuation loss above 4 percent  
+**Validation pressure score:** 49.7 / 100
 
 ![Curve and inflation decision map](figures/curve_inflation_decision_map.png)
 
@@ -23,6 +24,9 @@
 | 10Y breakeven inflation | 2.250% |
 | 10Y yield 60D shift | 0.190 pp |
 | Breakeven inflation 60D shift | -0.110 pp |
+| 10Y yield percentile, 252D | 93.3 |
+| 2s10s percentile, 252D | 4.8 |
+| Breakeven percentile, 252D | 14.7 |
 | Validation bond price | 99.8286 |
 | DV01 | 0.045517 |
 | +50bp valuation impact | -2.252% |
@@ -37,7 +41,7 @@
 
 ## Bank implication
 
-Prioritize review of curve construction, input lineage, interpolation assumptions, discounting convention, DV01 behavior, shock design and inflation-linked valuation inputs. The validation question is whether pricing outputs remain stable, explainable and reproducible under rate and inflation stress.
+Prioritize review of curve construction, input lineage, interpolation assumptions, discounting convention, DV01 behavior, shock design and inflation-linked valuation inputs.
 
 ## Investor implication
 

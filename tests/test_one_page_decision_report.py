@@ -36,6 +36,10 @@ def test_one_page_decision_metrics_have_core_risk_fields():
         "breakeven_10y",
         "dgs10_60d_shift",
         "breakeven_60d_shift",
+        "dgs10_percentile_252d",
+        "slope_2s10_percentile_252d",
+        "breakeven_percentile_252d",
+        "validation_pressure_score",
         "dv01",
         "loss_50bp_percent",
         "loss_100bp_percent",
@@ -51,3 +55,11 @@ def test_decision_shock_surface_exists_and_has_multiple_tenors():
     assert not surface.empty
     assert set(surface["tenor_years"]) == {2.0, 5.0, 10.0, 30.0}
     assert set(surface["parallel_shift_bp"]) == {-150.0, -100.0, -50.0, 0.0, 50.0, 100.0, 150.0}
+
+
+def test_validation_pressure_score_is_bounded():
+    path = ROOT / "data" / "official" / "processed" / "one_page_curve_inflation_decision_metrics.csv"
+    metrics = pd.read_csv(path)
+
+    score = float(metrics.iloc[0]["validation_pressure_score"])
+    assert 0.0 <= score <= 100.0

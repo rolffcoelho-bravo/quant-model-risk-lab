@@ -1,9 +1,9 @@
 ﻿"""Generate one-page curve and inflation decision report.
 
-This script creates a bank-facing model-risk decision artifact from real public
-data already stored in the repository.
+Bank-facing model-risk dashboard using real official rates and inflation data
+already stored in the repository.
 
-The report is not a trading signal. It is a validation and monitoring object:
+This is not a trading signal. It is a validation and monitoring artifact:
 curve context, inflation pressure, valuation sensitivity, shock surface and
 decision escalation.
 """
@@ -17,6 +17,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from matplotlib.gridspec import GridSpec
+from matplotlib.patches import Rectangle
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
@@ -57,15 +58,6 @@ def load_pricing_summary() -> pd.Series:
     return summary.tail(1).iloc[0]
 
 
-def load_shock_table() -> pd.DataFrame:
-    shocks = pd.read_csv(PROCESSED / "curve_pricing_parallel_shocks.csv")
-    required = {"parallel_shift_bp", "bond_price", "price_change", "price_change_percent"}
-    missing = required.difference(set(shocks.columns))
-    if missing:
-        raise ValueError(f"Shock table missing columns: {missing}")
-    return shocks.sort_values("parallel_shift_bp")
-
-
 def get_shock_metric(shocks: pd.DataFrame, shock_bp: float, column: str) -> float:
     row = shocks.loc[shocks["parallel_shift_bp"] == shock_bp]
     if row.empty:
@@ -92,6 +84,13 @@ def classify_decision_state(slope_2s10: float, breakeven_10y: float, loss_100bp:
         return "Watch", flags
 
     return "Standard review", ["no major threshold breach"]
+
+
+def percentile_rank(values: pd.Series, value: float) -> float:
+    clean = values.dropna()
+    if clean.empty:
+        return float("nan")
+    return float((clean <= value).mean() * 100.0)
 
 
 def build_validation_shock_surface(yields: list[float]) -> pd.DataFrame:
@@ -140,7 +139,6 @@ def build_decision_metrics() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, 
     curve = load_curve_panel()
     inflation = load_inflation_panel()
     pricing = load_pricing_summary()
-    shocks = load_shock_table()
 
     latest_curve = curve.tail(1).iloc[0]
     latest_inflation = inflation.tail(1).iloc[0]
@@ -149,6 +147,9 @@ def build_decision_metrics() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, 
     recent_inflation = inflation.tail(252).copy()
 
     yields = [float(latest_curve[column]) for column in RATE_COLUMNS]
+    surface = build_validation_shock_surface(yields)
+
+    validation_5y = surface.loc[surface["tenor_years"] == 5.0].copy()
 
     slope_2s10 = float(latest_curve["DGS10"] - latest_curve["DGS2"])
     slope_5s30 = float(latest_curve["DGS30"] - latest_curve["DGS5"])
@@ -158,8 +159,8 @@ def build_decision_metrics() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, 
     breakeven_10y = float(latest_inflation["T10YIE"])
     bond_price = float(pricing["price"])
     dv01 = float(pricing["dv01"])
-    loss_50bp = get_shock_metric(shocks, 50.0, "price_change_percent")
-    loss_100bp = get_shock_metric(shocks, 100.0, "price_change_percent")
+    loss_50bp = get_shock_metric(validation_5y, 50.0, "price_change_percent")
+    loss_100bp = get_shock_metric(validation_5y, 100.0, "price_change_percent")
 
     decision_state, flags = classify_decision_state(
         slope_2s10=slope_2s10,
@@ -167,15 +168,20 @@ def build_decision_metrics() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, 
         loss_100bp=loss_100bp,
     )
 
-    if len(recent_curve) >= 60:
-        dgs10_60d_shift = float(latest_curve["DGS10"] - recent_curve.iloc[-60]["DGS10"])
-    else:
-        dgs10_60d_shift = np.nan
+    dgs10_60d_shift = float(latest_curve["DGS10"] - recent_curve.iloc[-60]["DGS10"]) if len(recent_curve) >= 60 else np.nan
+    breakeven_60d_shift = float(latest_inflation["T10YIE"] - recent_inflation.iloc[-60]["T10YIE"]) if len(recent_inflation) >= 60 else np.nan
 
-    if len(recent_inflation) >= 60:
-        breakeven_60d_shift = float(latest_inflation["T10YIE"] - recent_inflation.iloc[-60]["T10YIE"])
-    else:
-        breakeven_60d_shift = np.nan
+    recent_curve["slope_2s10"] = recent_curve["DGS10"] - recent_curve["DGS2"]
+
+    dgs10_percentile_252d = percentile_rank(recent_curve["DGS10"], float(latest_curve["DGS10"]))
+    slope_2s10_percentile_252d = percentile_rank(recent_curve["slope_2s10"], slope_2s10)
+    breakeven_percentile_252d = percentile_rank(recent_inflation["T10YIE"], breakeven_10y)
+
+    loss_score = min(40.0, abs(loss_100bp) / 6.0 * 40.0)
+    inflation_score = min(25.0, max(0.0, (breakeven_10y - 2.00) / 0.75 * 25.0))
+    slope_score = 20.0 if slope_2s10 < 0 else max(0.0, min(20.0, (0.50 - slope_2s10) / 0.50 * 20.0))
+    move_score = 0.0 if np.isnan(dgs10_60d_shift) else min(15.0, abs(dgs10_60d_shift) / 0.50 * 15.0)
+    validation_pressure_score = round(loss_score + inflation_score + slope_score + move_score, 1)
 
     metrics = pd.DataFrame(
         [
@@ -194,6 +200,10 @@ def build_decision_metrics() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, 
                 "dgs10_60d_shift": dgs10_60d_shift,
                 "breakeven_10y": breakeven_10y,
                 "breakeven_60d_shift": breakeven_60d_shift,
+                "dgs10_percentile_252d": dgs10_percentile_252d,
+                "slope_2s10_percentile_252d": slope_2s10_percentile_252d,
+                "breakeven_percentile_252d": breakeven_percentile_252d,
+                "validation_pressure_score": validation_pressure_score,
                 "bond_price": bond_price,
                 "dv01": dv01,
                 "loss_50bp_percent": loss_50bp,
@@ -205,8 +215,6 @@ def build_decision_metrics() -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, 
     )
 
     metrics.to_csv(PROCESSED / "one_page_curve_inflation_decision_metrics.csv", index=False)
-
-    surface = build_validation_shock_surface(yields)
     return metrics, recent_curve, recent_inflation, surface
 
 
@@ -232,25 +240,18 @@ def write_decision_figure(
         values="price_change_percent",
     ).sort_index()
 
-    fig = plt.figure(figsize=(16, 9.5))
-    gs = GridSpec(2, 2, figure=fig, height_ratios=[1.05, 1.0], width_ratios=[1.18, 1.0])
+    fig = plt.figure(figsize=(16.2, 10.4))
+    gs = GridSpec(2, 2, figure=fig, height_ratios=[1.05, 1.0], width_ratios=[1.12, 1.08])
+    fig.patch.set_facecolor("#f7f8fa")
 
     ax_curve = fig.add_subplot(gs[0, 0])
     ax_surface = fig.add_subplot(gs[0, 1])
     ax_macro = fig.add_subplot(gs[1, 0])
     ax_decision = fig.add_subplot(gs[1, 1])
 
-    fig.patch.set_facecolor("#f7f8fa")
-
-    ax_curve.fill_between(
-        MATURITIES,
-        p10,
-        p90,
-        alpha=0.18,
-        label="252D 10-90% range",
-    )
-    ax_curve.plot(MATURITIES, median, linewidth=1.8, linestyle="--", label="252D median")
-    ax_curve.plot(MATURITIES, latest_yields, marker="o", linewidth=2.8, label="Latest curve")
+    ax_curve.fill_between(MATURITIES, p10, p90, alpha=0.18, color="#1f77b4", label="252D 10-90% range")
+    ax_curve.plot(MATURITIES, median, linewidth=1.8, linestyle="--", color="#1f77b4", label="252D median")
+    ax_curve.plot(MATURITIES, latest_yields, marker="o", linewidth=2.8, color="#ff7f0e", label="Latest curve")
     ax_curve.set_title("Treasury Curve Context", fontweight="bold")
     ax_curve.set_xlabel("Maturity")
     ax_curve.set_ylabel("Yield (%)")
@@ -260,20 +261,21 @@ def write_decision_figure(
     ax_curve.legend(frameon=False, loc="upper left")
 
     ax_curve.annotate(
-        f"2s10s: {row['slope_2s10']:.2f} pp\n5s30s: {row['slope_5s30']:.2f} pp\nCurve level: {row['curve_level']:.2f}%",
+        f"2s10s: {row['slope_2s10']:.2f} pp\n5s30s: {row['slope_5s30']:.2f} pp\n10Y pctile: {row['dgs10_percentile_252d']:.0f}",
         xy=(10, float(row["DGS10"])),
-        xytext=(11.5, max(latest_yields) - 0.25),
+        xytext=(11.5, max(latest_yields) - 0.28),
         arrowprops={"arrowstyle": "->", "lw": 1.2},
         fontsize=9,
         bbox={"boxstyle": "round,pad=0.35", "fc": "white", "ec": "#c9ced6", "alpha": 0.95},
     )
 
+    limit = max(abs(surface_pivot.min().min()), abs(surface_pivot.max().max()))
     heatmap = ax_surface.imshow(
         surface_pivot.values,
         aspect="auto",
         cmap="RdYlGn",
-        vmin=-max(abs(surface_pivot.min().min()), abs(surface_pivot.max().max())),
-        vmax=max(abs(surface_pivot.min().min()), abs(surface_pivot.max().max())),
+        vmin=-limit,
+        vmax=limit,
     )
     ax_surface.set_title("Rate-Shock Loss Surface", fontweight="bold")
     ax_surface.set_xlabel("Parallel curve shock (bp)")
@@ -286,40 +288,61 @@ def write_decision_figure(
     for i in range(surface_pivot.shape[0]):
         for j in range(surface_pivot.shape[1]):
             value = surface_pivot.values[i, j]
-            ax_surface.text(
-                j,
-                i,
-                f"{value:.1f}",
-                ha="center",
-                va="center",
-                fontsize=8,
-                color="black",
+            ax_surface.text(j, i, f"{value:.1f}", ha="center", va="center", fontsize=8.2, color="black")
+
+    try:
+        trigger_row = list(surface_pivot.index).index(5.0)
+        trigger_col = list(surface_pivot.columns).index(100.0)
+        ax_surface.add_patch(
+            Rectangle(
+                (trigger_col - 0.5, trigger_row - 0.5),
+                1,
+                1,
+                fill=False,
+                edgecolor="black",
+                linewidth=2.2,
             )
+        )
+    except ValueError:
+        pass
 
     cbar = fig.colorbar(heatmap, ax=ax_surface, fraction=0.046, pad=0.04)
     cbar.set_label("Price change (%)")
 
     macro = recent_curve[["date", "DGS2", "DGS10"]].copy()
     macro["slope_2s10"] = macro["DGS10"] - macro["DGS2"]
-    macro = macro.merge(
-        recent_inflation[["date", "T10YIE"]],
-        on="date",
-        how="inner",
-    )
+    macro = macro.merge(recent_inflation[["date", "T10YIE"]], on="date", how="inner")
 
-    ax_macro.plot(macro["date"], macro["slope_2s10"], linewidth=2.0, label="2s10s slope")
-    ax_macro.axhline(0.0, linewidth=1.0)
+    line_slope = ax_macro.plot(
+        macro["date"],
+        macro["slope_2s10"],
+        linewidth=2.1,
+        color="#1f77b4",
+        label="2s10s slope",
+    )[0]
+    ax_macro.scatter(macro["date"].iloc[-1], macro["slope_2s10"].iloc[-1], color="#1f77b4", s=34)
+    ax_macro.axhline(0.0, linewidth=1.0, color="#667085")
     ax_macro.set_title("Curve Slope and Inflation Compensation Monitor", fontweight="bold")
     ax_macro.set_ylabel("2s10s slope (pp)")
     ax_macro.grid(True, alpha=0.25)
 
     ax_macro_2 = ax_macro.twinx()
-    ax_macro_2.plot(macro["date"], macro["T10YIE"], linewidth=2.0, linestyle="--", label="10Y breakeven inflation")
+    line_bei = ax_macro_2.plot(
+        macro["date"],
+        macro["T10YIE"],
+        linewidth=2.0,
+        linestyle="--",
+        color="#ff7f0e",
+        label="10Y breakeven inflation",
+    )[0]
+    ax_macro_2.scatter(macro["date"].iloc[-1], macro["T10YIE"].iloc[-1], color="#ff7f0e", s=34)
     ax_macro_2.set_ylabel("10Y breakeven inflation (%)")
+
+    ax_macro.legend([line_slope, line_bei], ["2s10s slope", "10Y breakeven inflation"], frameon=False, loc="lower center", bbox_to_anchor=(0.5, 0.02), ncol=2)
 
     ax_macro.text(
         0.01,
-        0.92,
+        0.86,
         f"10Y 60D shift: {row['dgs10_60d_shift']:.2f} pp\nBEI 60D shift: {row['breakeven_60d_shift']:.2f} pp",
         transform=ax_macro.transAxes,
         fontsize=9,
@@ -328,30 +351,33 @@ def write_decision_figure(
 
     ax_decision.axis("off")
     decision_text = (
-        f"Decision state: {row['decision_state']}\n\n"
-        f"Primary trigger:\n{row['decision_flags']}\n\n"
-        f"Validation bond price: {row['bond_price']:.4f}\n"
-        f"DV01: {row['dv01']:.5f}\n"
-        f"+50bp impact: {row['loss_50bp_percent']:.2f}%\n"
-        f"+100bp impact: {row['loss_100bp_percent']:.2f}%\n\n"
-        "Bank action:\n"
-        "Review curve lineage, interpolation, discounting convention,\n"
-        "DV01 behavior, shock design and inflation-linked inputs.\n\n"
-        "Investor read-through:\n"
-        "Duration exposure is the dominant loss channel. Inflation\n"
-        "compensation defines the second validation route."
+        "MODEL-RISK STATE\n"
+        f"{row['decision_state']} | Pressure {row['validation_pressure_score']:.0f}/100\n\n"
+        "Trigger\n"
+        f"{row['decision_flags']}\n\n"
+        "Valuation evidence\n"
+        f"Price: {row['bond_price']:.4f} | DV01: {row['dv01']:.5f}\n"
+        f"+50bp: {row['loss_50bp_percent']:.2f}% | +100bp: {row['loss_100bp_percent']:.2f}%\n\n"
+        "Distribution context\n"
+        f"10Y yield pctile: {row['dgs10_percentile_252d']:.0f} | "
+        f"2s10s pctile: {row['slope_2s10_percentile_252d']:.0f} | "
+        f"BEI pctile: {row['breakeven_percentile_252d']:.0f}\n\n"
+        "Bank action\n"
+        "Review curve lineage, interpolation, discounting, DV01, shock design and inflation-linked inputs.\n\n"
+        "Investor read-through\n"
+        "Duration loss is the primary route. Inflation compensation is the second validation route."
     )
 
     ax_decision.text(
-        0.03,
-        0.95,
+        0.04,
+        0.96,
         decision_text,
         va="top",
         ha="left",
-        fontsize=10.5,
-        linespacing=1.35,
+        fontsize=9.25,
+        linespacing=1.18,
         bbox={
-            "boxstyle": "round,pad=0.65",
+            "boxstyle": "round,pad=0.55",
             "fc": "white",
             "ec": "#8892a0",
             "lw": 1.1,
@@ -363,7 +389,34 @@ def write_decision_figure(
         f"Curve and Inflation Model-Risk Decision Dashboard | State: {row['decision_state']} | Curve: {row['curve_date']}",
         fontsize=15,
         fontweight="bold",
+        y=0.982,
     )
+
+    kpi_items = [
+        ("STATE", str(row["decision_state"])),
+        ("2s10s", f"{row['slope_2s10']:.2f} pp"),
+        ("10Y BEI", f"{row['breakeven_10y']:.2f}%"),
+        ("+100bp LOSS", f"{row['loss_100bp_percent']:.2f}%"),
+        ("PRESSURE", f"{row['validation_pressure_score']:.0f}/100"),
+    ]
+
+    for index, (label, value) in enumerate(kpi_items):
+        fig.text(
+            0.16 + index * 0.17,
+            0.925,
+            f"{label}\n{value}",
+            ha="center",
+            va="center",
+            fontsize=9.2,
+            fontweight="bold",
+            bbox={
+                "boxstyle": "round,pad=0.38",
+                "fc": "white",
+                "ec": "#9aa4b2",
+                "lw": 1.0,
+                "alpha": 0.98,
+            },
+        )
 
     fig.text(
         0.012,
@@ -372,7 +425,7 @@ def write_decision_figure(
         fontsize=8.5,
     )
 
-    fig.tight_layout(rect=[0, 0.035, 1, 0.94])
+    fig.tight_layout(rect=[0, 0.04, 1, 0.885])
     fig.savefig(FIGURES / "curve_inflation_decision_map.png", dpi=240)
     plt.close(fig)
 
@@ -387,7 +440,8 @@ def write_report(metrics: pd.DataFrame) -> None:
 
 **Curve date:** {row['curve_date']}  
 **Inflation date:** {row['inflation_date']}  
-**Decision flags:** {row['decision_flags']}
+**Decision flags:** {row['decision_flags']}  
+**Validation pressure score:** {row['validation_pressure_score']:.1f} / 100
 
 ![Curve and inflation decision map](figures/curve_inflation_decision_map.png)
 
@@ -406,6 +460,9 @@ def write_report(metrics: pd.DataFrame) -> None:
 | 10Y breakeven inflation | {row['breakeven_10y']:.3f}% |
 | 10Y yield 60D shift | {row['dgs10_60d_shift']:.3f} pp |
 | Breakeven inflation 60D shift | {row['breakeven_60d_shift']:.3f} pp |
+| 10Y yield percentile, 252D | {row['dgs10_percentile_252d']:.1f} |
+| 2s10s percentile, 252D | {row['slope_2s10_percentile_252d']:.1f} |
+| Breakeven percentile, 252D | {row['breakeven_percentile_252d']:.1f} |
 | Validation bond price | {row['bond_price']:.4f} |
 | DV01 | {row['dv01']:.6f} |
 | +50bp valuation impact | {row['loss_50bp_percent']:.3f}% |
@@ -420,7 +477,7 @@ def write_report(metrics: pd.DataFrame) -> None:
 
 ## Bank implication
 
-Prioritize review of curve construction, input lineage, interpolation assumptions, discounting convention, DV01 behavior, shock design and inflation-linked valuation inputs. The validation question is whether pricing outputs remain stable, explainable and reproducible under rate and inflation stress.
+Prioritize review of curve construction, input lineage, interpolation assumptions, discounting convention, DV01 behavior, shock design and inflation-linked valuation inputs.
 
 ## Investor implication
 
