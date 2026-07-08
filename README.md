@@ -8,10 +8,11 @@
 ![Use](https://img.shields.io/badge/Use-Research%20Only-lightgrey)
 
 **Publisher:** ShockBridge Pulse Research  
+**Research site:** https://www.shockbridgepulse.com  
 **Author:** Rodolfo Pereira  
 **Repository type:** Public model-risk evidence package  
-**Current release:** v0.5.4 institutional README upgrade  
-**Latest analytical artifact:** v0.5.3 curve and inflation decision dashboard  
+**Current release:** v0.6 inflation derivatives validation layer  
+**Latest analytical artifacts:** v0.5.3 curve and inflation decision dashboard; v0.6 inflation derivatives validation dashboard  
 
 ---
 
@@ -341,3 +342,4 @@ Pereira, Rodolfo. (2026). *Quant Model Risk Lab: Open Model Validation, Monitori
   url = {https://github.com/rolffcoelho-bravo/quant-model-risk-lab}
 }
 ```
+
