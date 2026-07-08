@@ -1,0 +1,2 @@
+curve_date,inflation_date,DGS1,DGS2,DGS5,DGS10,DGS30,curve_level,slope_2s10,slope_5s30,curvature_2_5_10,breakeven_10y,bond_price,dv01,loss_50bp_percent,loss_100bp_percent,decision_state,decision_flags
+2026-07-06,2026-07-07,3.95,4.13,4.21,4.48,4.99,4.352,0.35000000000000053,0.7800000000000002,0.1900000000000004,2.25,99.82861395426376,0.0455171461858583,-2.2524726111378124,-4.4512462493279,Watch,+100bp valuation loss above 4 percent
