@@ -1,0 +1,7 @@
+validation_question,primary_tool,challenger_tool,implemented_in_v07,rationale
+Is the current input move abnormal in one variable?,Rolling z-score,Rolling percentile rank,True,Useful for direct input-level breaches and easy validation audit trails.
+"Is the joint rates, FX and inflation state abnormal?",Shrinkage Mahalanobis distance,Robust covariance / Elliptic Envelope,True,Captures covariance-adjusted multivariate abnormality with stabilized covariance estimates.
+Has the input factor structure drifted?,PCA reconstruction error,Kernel PCA,True,Detects whether current inputs are poorly explained by the recent factor structure.
+Which static monitoring regime is active?,KMeans regime clustering,Gaussian Mixture Model,True,Provides a transparent static input-regime classification for monitoring reports.
+Is there nonlinear anomaly behavior beyond distance metrics?,Isolation Forest,Local Outlier Factor,False,Planned challenger for nonlinear anomaly detection once dependency policy is expanded.
+Is the system switching dynamically between latent regimes?,Gaussian Hidden Markov Model,Kalman/state-space model,False,Reserved for the dynamic regime layer after static monitoring is validated.
