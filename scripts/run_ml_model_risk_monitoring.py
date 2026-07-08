@@ -118,30 +118,52 @@ def write_figure(signals: pd.DataFrame, score_table: pd.DataFrame, feature_panel
 
     ax_decision.axis("off")
 
+    max_z = float(row["max_abs_zscore"])
+    mahala_pctile = float(row["mahalanobis_percentile"])
+    pca_pctile = float(row["pca_error_percentile"])
+
+    if pca_pctile >= 90 and mahala_pctile < 95 and max_z < 3:
+        gate = "AMBER REVIEW"
+        active_warning = "Factor-structure drift"
+        blocked_action = "New exposure signoff, limit change, auto recalibration"
+        allowed_action = "Monitoring, validation note, manual reviewer context"
+    elif mahala_pctile >= 95 or max_z >= 3:
+        gate = "RED REVIEW"
+        active_warning = "Hard input abnormality"
+        blocked_action = "Model-use signoff until formal review"
+        allowed_action = "Exception reporting only"
+    else:
+        gate = "GREEN WATCH"
+        active_warning = "No major breach"
+        blocked_action = "None from this ML layer"
+        allowed_action = "Normal monitoring"
+
     decision_lines = [
-        "ML MODEL-RISK DECISION GATE",
-        f"AMBER REVIEW | Pressure {row['ml_pressure_score']:.0f}/100",
+        "ML DECISION INTELLIGENCE",
+        f"{gate} | Pressure {row['ml_pressure_score']:.0f}/100",
         "",
-        "Decision",
-        "Use ML output as a monitoring control only.",
-        "No new exposure approval, no limit change, no automatic recalibration.",
+        "Current read",
+        f"Active warning: {active_warning}.",
+        f"Max z {max_z:.2f}: no hard single-input breach.",
+        f"Mahalanobis pctile {mahala_pctile:.0f}: elevated, below 95 stop level.",
+        f"PCA drift pctile {pca_pctile:.0f}: main decision driver.",
+        f"Regime: {row['kmeans_regime']}.",
         "",
-        "Why",
-        f"Max z {row['max_abs_zscore']:.2f}: below hard single-input breach.",
-        f"Mahalanobis pctile {row['mahalanobis_percentile']:.0f}: elevated, below 95 stop-review level.",
-        f"PCA drift pctile {row['pca_error_percentile']:.0f}: main warning, factor structure changed.",
-        f"Regime: {row['kmeans_regime']}; not a full stress-state failure.",
+        "Decision matrix",
+        f"Allowed now: {allowed_action}.",
+        f"Blocked now: {blocked_action}.",
+        "Model stop: no, unless Mahalanobis >=95 or max z >=3.",
         "",
-        "Bank action",
-        "1. Keep reporting active. Freeze threshold changes.",
-        "2. Decompose PCA drift by rates, BEI, real-rate proxy and FX.",
-        "3. Rerun 126D and 252D monitoring windows.",
-        "4. Escalate if PCA drift persists or Mahalanobis crosses 95.",
+        "Bank next action",
+        "1. Write validation note: PCA drift active, no hard input breach.",
+        "2. Decompose drift by rates, BEI, real-rate proxy and FX.",
+        "3. Rerun 126D and 252D windows before signoff changes.",
+        "4. Escalate only if drift persists or stop thresholds breach.",
         "",
-        "Investor action",
-        "1. Do not increase exposure from this ML signal.",
-        "2. Use curve and inflation dashboards for exposure direction.",
-        "3. If confirmation is weak, reduce sizing, widen risk bands or delay.",
+        "Investor next action",
+        "1. Do not add risk from this ML layer.",
+        "2. Add exposure only if curve and inflation dashboards agree.",
+        "3. If dashboards conflict, reduce size, widen bands or delay.",
     ]
 
     decision_text = chr(10).join(decision_lines)
@@ -152,8 +174,8 @@ def write_figure(signals: pd.DataFrame, score_table: pd.DataFrame, feature_panel
         decision_text,
         va="top",
         ha="left",
-        fontsize=7.90,
-        linespacing=1.00,
+        fontsize=7.45,
+        linespacing=0.96,
         bbox={
             "boxstyle": "round,pad=0.60",
             "fc": "white",
@@ -237,18 +259,22 @@ def write_report(signals: pd.DataFrame, selected_records: list[dict[str, object]
 
 ## Direct interpretation
 
-This layer does not forecast markets. It creates a model-risk decision gate.
+This layer does not forecast markets. It creates a model-risk decision gate from official rates, FX and inflation inputs.
 
 **Decision gate: AMBER REVIEW.**
 
-Use the ML output as a monitoring control only. Do not use it to approve new exposure, change limits or recalibrate thresholds automatically.
+The active warning is input-structure drift, not a hard single-variable shock. The latest maximum z-score is below the hard breach threshold, and the Mahalanobis percentile is elevated but below the stop-review level. PCA drift is the main issue because the recent factor structure is less stable than usual.
 
-Why this is Amber:
+Decision consequence:
 
-- The maximum z-score is below a hard single-input breach.
-- Mahalanobis distance is elevated, but below the 95th-percentile stop-review level.
-- PCA drift is the main warning because the recent input factor structure changed.
-- The static regime remains normal, so this is not a full stress-state failure.
+| Action | Decision |
+|---|---|
+| Use model output for monitoring | Allowed |
+| New exposure signoff from this ML layer | Blocked |
+| Automatic threshold recalibration | Blocked |
+| Limit change | Blocked |
+| Formal model stop | Not triggered |
+| Escalation trigger | PCA drift persistence, Mahalanobis >= 95, or max z >= 3 |
 
 ## Latest signals
 
@@ -270,11 +296,11 @@ Why this is Amber:
 
 ## Bank implication
 
-Keep reporting active, but freeze automatic threshold changes, production recalibration and new limit-use signoff from this ML layer. Decompose the PCA drift into rates, BEI, real-rate proxy and FX drivers, then rerun the stack under 126D and 252D windows. Escalate only if PCA drift persists across refreshes, Mahalanobis distance crosses the 95th percentile, or the maximum z-score breaches the hard single-input threshold.
+The bank decision is an Amber Review gate. Keep the model available for monitoring and reviewer context, but block new exposure signoff, automatic threshold recalibration and limit changes from this ML layer. The validation note should state: PCA drift is active, no hard single-input breach is present, and the joint input state is elevated but below the stop-review threshold. The next task is to decompose the drift into rates, BEI, real-rate proxy and FX drivers, then rerun the monitoring stack under 126D and 252D windows. Escalate only if PCA drift persists across refreshes, Mahalanobis distance crosses the 95th percentile, or the maximum z-score breaches 3.
 
 ## Investor implication
 
-Do not increase exposure from this ML signal. Use the curve dashboard and the inflation-derivatives dashboard to decide exposure direction. If those dashboards confirm the exposure direction, keep sizing disciplined because the ML layer shows reduced model confidence. If confirmation is weak or contradictory, reduce sizing, widen risk bands or delay the trade.
+The investor decision is to avoid adding risk from this ML layer alone. The ML layer is warning that the input structure is unstable, not giving an exposure direction. Exposure can be increased only if the curve dashboard and the inflation-derivatives dashboard confirm the same direction. If those dashboards disagree, reduce sizing, widen risk bands or delay the trade.
 
 ## Validator challenge
 

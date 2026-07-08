@@ -11,18 +11,22 @@
 
 ## Direct interpretation
 
-This layer does not forecast markets. It creates a model-risk decision gate.
+This layer does not forecast markets. It creates a model-risk decision gate from official rates, FX and inflation inputs.
 
 **Decision gate: AMBER REVIEW.**
 
-Use the ML output as a monitoring control only. Do not use it to approve new exposure, change limits or recalibrate thresholds automatically.
+The active warning is input-structure drift, not a hard single-variable shock. The latest maximum z-score is below the hard breach threshold, and the Mahalanobis percentile is elevated but below the stop-review level. PCA drift is the main issue because the recent factor structure is less stable than usual.
 
-Why this is Amber:
+Decision consequence:
 
-- The maximum z-score is below a hard single-input breach.
-- Mahalanobis distance is elevated, but below the 95th-percentile stop-review level.
-- PCA drift is the main warning because the recent input factor structure changed.
-- The static regime remains normal, so this is not a full stress-state failure.
+| Action | Decision |
+|---|---|
+| Use model output for monitoring | Allowed |
+| New exposure signoff from this ML layer | Blocked |
+| Automatic threshold recalibration | Blocked |
+| Limit change | Blocked |
+| Formal model stop | Not triggered |
+| Escalation trigger | PCA drift persistence, Mahalanobis >= 95, or max z >= 3 |
 
 ## Latest signals
 
@@ -49,11 +53,11 @@ Why this is Amber:
 
 ## Bank implication
 
-Keep reporting active, but freeze automatic threshold changes, production recalibration and new limit-use signoff from this ML layer. Decompose the PCA drift into rates, BEI, real-rate proxy and FX drivers, then rerun the stack under 126D and 252D windows. Escalate only if PCA drift persists across refreshes, Mahalanobis distance crosses the 95th percentile, or the maximum z-score breaches the hard single-input threshold.
+The bank decision is an Amber Review gate. Keep the model available for monitoring and reviewer context, but block new exposure signoff, automatic threshold recalibration and limit changes from this ML layer. The validation note should state: PCA drift is active, no hard single-input breach is present, and the joint input state is elevated but below the stop-review threshold. The next task is to decompose the drift into rates, BEI, real-rate proxy and FX drivers, then rerun the monitoring stack under 126D and 252D windows. Escalate only if PCA drift persists across refreshes, Mahalanobis distance crosses the 95th percentile, or the maximum z-score breaches 3.
 
 ## Investor implication
 
-Do not increase exposure from this ML signal. Use the curve dashboard and the inflation-derivatives dashboard to decide exposure direction. If those dashboards confirm the exposure direction, keep sizing disciplined because the ML layer shows reduced model confidence. If confirmation is weak or contradictory, reduce sizing, widen risk bands or delay the trade.
+The investor decision is to avoid adding risk from this ML layer alone. The ML layer is warning that the input structure is unstable, not giving an exposure direction. Exposure can be increased only if the curve dashboard and the inflation-derivatives dashboard confirm the same direction. If those dashboards disagree, reduce sizing, widen risk bands or delay the trade.
 
 ## Validator challenge
 
