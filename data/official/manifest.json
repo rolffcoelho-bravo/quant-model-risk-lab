@@ -1,0 +1,56 @@
+{
+  "generated_at_utc": "2026-07-08T16:53:28.081378+00:00",
+  "sources": {
+    "fred_rates_inflation": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS1,DGS2,DGS5,DGS10,DGS30,T10YIE",
+    "ecb_fx_rates": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.zip"
+  },
+  "raw_files": {
+    "fred_us_rates_inflation": {
+      "path": "data/official/raw/fred_us_rates_inflation.csv",
+      "sha256": "81143def85fa58ef624f5c0818dde3e1172f5bd10caddf3706e70a64c537ce15"
+    },
+    "ecb_eurofxref_hist_zip": {
+      "path": "data/official/raw/ecb_eurofxref_hist.zip",
+      "sha256": "f3b7b2294ffe42cd5854d311e53ef1b835d829e1860bec27116bef8072261b55"
+    },
+    "ecb_eurofxref_hist_csv": {
+      "path": "data/official/raw/ecb_eurofxref_hist.csv",
+      "sha256": "706a2cab67cd602337b11d1b0444fa49f64d43c7b123278a49994386049beb78"
+    }
+  },
+  "processed_files": {
+    "usd_treasury_curve_nodes": {
+      "path": "data/official/processed/usd_treasury_curve_nodes.csv",
+      "rows": 16111,
+      "sha256": "ff9f8d7f7e70630b70d9356a67158f2e3aa9d418e4e81cdcc190618ee3e88785"
+    },
+    "breakeven_inflation_panel": {
+      "path": "data/official/processed/breakeven_inflation_panel.csv",
+      "rows": 5881,
+      "sha256": "f3db6f408b36b614ef15c6171e28fadaa43c19fc6099741d79c02e83370ca0c2"
+    },
+    "ecb_fx_panel": {
+      "path": "data/official/processed/ecb_fx_panel.csv",
+      "rows": 7044,
+      "sha256": "706a2cab67cd602337b11d1b0444fa49f64d43c7b123278a49994386049beb78"
+    },
+    "official_rates_fx_inflation_panel": {
+      "path": "data/official/processed/official_rates_fx_inflation_panel.csv",
+      "rows": 6809,
+      "sha256": "a2ac8b0fa3d2cd0ddedd9a935ec19b0663e69c79b47a36321255ddd4d3e2f5cf"
+    },
+    "fx_daily_returns": {
+      "path": "data/official/processed/fx_daily_returns.csv",
+      "rows": 7043,
+      "sha256": "d292e3c8ec411347a655d48865ba6055da7188cdc90504216396b1a1424815cd"
+    },
+    "curve_validation_summary": {
+      "path": "data/official/processed/curve_validation_summary.csv",
+      "sha256": "e89a1c3cf4c019559bf4fb0c15befeac745e1ef5610c11df23656fb896a06952"
+    },
+    "fx_risk_summary": {
+      "path": "data/official/processed/fx_risk_summary.csv",
+      "sha256": "61762292636a19fc4f109e6dbd722ebe0c2157c166b3fa844afdff77f7d7617a"
+    }
+  }
+}
