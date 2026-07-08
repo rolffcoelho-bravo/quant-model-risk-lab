@@ -3,7 +3,7 @@
 **Open Model Validation, Official Rates, FX, Inflation and Risk Analytics Lab**
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
-![Tests](https://img.shields.io/badge/Tests-32%20passing-brightgreen)
+![Tests](https://img.shields.io/badge/Tests-57%20passing-brightgreen)
 ![Status](https://img.shields.io/badge/Status-Model%20Risk%20Evidence%20Lab-blue)
 ![Use](https://img.shields.io/badge/Use-Research%20Only-lightgrey)
 
@@ -11,8 +11,8 @@
 **Research site:** https://www.shockbridgepulse.com  
 **Author:** Rodolfo Pereira  
 **Repository type:** Public model-risk evidence package  
-**Current release:** v0.6 inflation derivatives validation layer  
-**Latest analytical artifacts:** v0.5.3 curve and inflation decision dashboard; v0.6 inflation derivatives validation dashboard  
+**Current release:** v0.7.1 ML decision intelligence upgrade
+**Latest analytical artifacts:** v0.6 inflation derivatives validation dashboard; v0.7.1 ML model-risk decision intelligence dashboard
 
 ---
 
@@ -43,6 +43,21 @@ For a fast review, inspect these files first:
 | Tests | `tests/` | Automated validation checks |
 
 ---
+
+## Current release evidence
+
+The current public release is **v0.7.1 ML decision intelligence upgrade**.
+
+| Layer | Evidence |
+|---|---|
+| Official-data layer | Rates, FX and inflation public-data pipeline |
+| Curve validation | Discount factors, bond pricing, DV01 and shock table |
+| Inflation derivatives | BEI input mapping, inflation DV01, shock-value range and validation report |
+| ML model-risk monitoring | z-score, shrinkage Mahalanobis distance, PCA drift and static regime classification |
+| Decision intelligence | Allowed actions, blocked actions, escalation triggers, bank next action and investor next action |
+| Test suite | 57 automated tests passing |
+
+The ML layer is not a forecasting engine. It is a model-risk decision layer. It asks whether official rates, FX and inflation inputs are stable enough for model use, whether the current state requires enhanced review, and which decisions should be allowed or blocked.
 
 ## Current decision artifact
 
@@ -170,7 +185,14 @@ This repository does not use ETF proxies as the main evidence layer. The analyti
 | Historical VaR backtesting | Implemented |
 | Stress testing | Implemented |
 | Monitoring module | Implemented |
-| Automated tests | 32 tests passing |
+| Inflation derivatives validation dashboard | Implemented |
+| Inflation DV01 and BEI shock table | Implemented |
+| ML model-risk feature layer | Implemented |
+| Shrinkage Mahalanobis abnormality monitor | Implemented |
+| PCA reconstruction-error drift monitor | Implemented |
+| Static regime clustering | Implemented |
+| ML decision intelligence gate | Implemented |
+| Automated tests | 57 tests passing |
 
 ---
 
@@ -304,13 +326,27 @@ python -m pip install -r requirements.txt
 python scripts\run_official_rates_fx_inflation_pipeline.py
 python scripts\run_curve_pricing_validation_harness.py
 python scripts\run_one_page_curve_inflation_decision_report.py
+python scripts\run_inflation_derivatives_validation.py
+python scripts\run_ml_model_risk_monitoring.py
 python scripts\generate_model_risk_evidence.py
 python -m pytest
 ```
 
-Current validation state: **32 tests passing**.
+Current validation state: **57 tests passing**.
 
 ---
+
+## Next roadmap
+
+Planned next layer:
+
+| Version | Focus |
+|---|---|
+| v0.8 | Gaussian Mixture / Gaussian HMM challenger roadmap implementation |
+| v0.9 | High-dimensional shrinkage, covariance drift and nonlinear monitoring |
+| v1.0 | Consolidated model-risk evidence pack for interview review |
+
+The next technical step should not replace the current transparent monitoring stack. It should add challenger evidence and explain when Gaussian regimes, hidden states or nonlinear anomaly tools are justified by the validation question.
 
 ## What this project does not claim
 
