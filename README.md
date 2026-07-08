@@ -44,6 +44,13 @@ For a fast review, inspect these files first:
 
 ---
 
+## First-review ML artifacts
+
+| Artifact | File | Purpose |
+|---|---|---|
+| ML decision dashboard | `reports/figures/ml_model_risk_monitoring_map.png` | ML model-risk monitoring, PCA drift, Mahalanobis abnormality and decision gate |
+| ML monitoring report | `reports/ml_model_risk_monitoring_report.md` | Decision intelligence, model-use gate, bank action and investor action |
+
 ## Current release evidence
 
 The current public release is **v0.7.1 ML decision intelligence upgrade**.
