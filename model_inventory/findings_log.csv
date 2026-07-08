@@ -1,0 +1,4 @@
+﻿finding_id,model_id,severity,status,finding,owner,target_date
+F001,MRM001,Medium,Open,Black-Scholes assumes constant volatility and does not represent volatility-smile dynamics,Research,2027-01-08
+F002,MRM002,High,Open,Historical VaR can underestimate risk during regime shifts and volatility clustering,Research,2027-01-08
+F003,MRM003,Medium,Open,Stress scenarios are simplified and require stronger scenario calibration before production use,Research,2027-01-08

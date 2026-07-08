@@ -1,0 +1,11 @@
+{
+  "black_scholes_call_price": 10.450584,
+  "black_scholes_delta": 0.636831,
+  "black_scholes_vega": 37.524035,
+  "historical_var_95": 0.0273,
+  "var_exceptions": 1,
+  "var_exception_rate": 0.05,
+  "stress_loss_8pct": 80000.0,
+  "monitoring_status": "pass",
+  "validation_decision": "Pass"
+}
