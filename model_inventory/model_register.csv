@@ -1,0 +1,4 @@
+﻿model_id,model_name,asset_class,model_type,owner,status,last_validation,next_review,risk_rating
+MRM001,Black-Scholes Option Model,Equity Options,Valuation,Research,Pass with limitations,2026-07-08,2027-01-08,Medium
+MRM002,Historical VaR Model,Market Risk,Risk Model,Research,Under review,2026-07-08,2027-01-08,High
+MRM003,Stress Testing Module,Market Risk,Scenario Model,Research,Draft,2026-07-08,2027-01-08,Medium

@@ -1,0 +1,5 @@
+﻿model_id,validation_area,check_name,result,comment
+MRM001,Implementation,Call price positive,Pass,Price output is positive for standard inputs
+MRM001,Sensitivity,Higher volatility increases call value,Pass,Expected option-pricing behaviour
+MRM002,Backtesting,VaR exceptions counted,Pass,Exception count generated from return series
+MRM003,Stress,Negative shock reduces portfolio value,Pass,Stress logic behaves as expected
