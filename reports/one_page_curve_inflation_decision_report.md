@@ -8,7 +8,7 @@
 
 ![Curve and inflation decision map](figures/curve_inflation_decision_map.png)
 
-## Core metrics
+## Decision metrics
 
 | Metric | Value |
 |---|---:|
@@ -17,29 +17,32 @@
 | 5Y Treasury | 4.210% |
 | 10Y Treasury | 4.480% |
 | 30Y Treasury | 4.990% |
+| Curve level | 4.352% |
 | 2s10s slope | 0.350 pp |
 | 5s30s slope | 0.780 pp |
 | 10Y breakeven inflation | 2.250% |
+| 10Y yield 60D shift | 0.190 pp |
+| Breakeven inflation 60D shift | -0.110 pp |
 | Validation bond price | 99.8286 |
 | DV01 | 0.045517 |
 | +50bp valuation impact | -2.252% |
 | +100bp valuation impact | -4.451% |
 
-## Model-risk interpretation
+## Direct interpretation
 
-- **Curve input risk:** The term-structure shape defines the valuation environment. A negative or unstable 2s10s slope raises the need to challenge interpolation, extrapolation and rate-sensitivity assumptions.
-- **Inflation input risk:** The 10Y breakeven rate is a direct public inflation-compensation input. Elevated inflation compensation increases the importance of inflation-linked valuation review and scenario testing.
-- **Valuation sensitivity:** The +50bp and +100bp shock losses convert curve movement into pricing impact. This is the cleanest validation bridge between market data and model-output review.
-- **Decision use:** The report is not a forecast. It is an evidence object for model validation, revalidation prioritization, sensitivity review and monitoring escalation.
+- **Primary validation trigger:** +100bp valuation loss above 4 percent.
+- **Curve channel:** valuation loss is driven by duration exposure to parallel curve shocks. The 2s10s and 5s30s slopes define the term-structure context that a validator must challenge.
+- **Inflation channel:** 10Y breakeven inflation is the public inflation-compensation input. It anchors the next layer of inflation-linked valuation review.
+- **Decision use:** this is not a market call. It is a reproducible evidence object for model validation, revalidation prioritization, sensitivity review and monitoring escalation.
 
 ## Bank implication
 
-Prioritize review of curve construction, input lineage, interpolation assumptions, DV01 behavior, shock sensitivity and inflation-linked valuation inputs. The validation question is whether pricing outputs remain stable and explainable under rate and inflation stress.
+Prioritize review of curve construction, input lineage, interpolation assumptions, discounting convention, DV01 behavior, shock design and inflation-linked valuation inputs. The validation question is whether pricing outputs remain stable, explainable and reproducible under rate and inflation stress.
 
 ## Investor implication
 
-The risk profile is dominated by curve sensitivity and inflation compensation. The key question is not direction alone, but whether valuation loss under rate shocks is consistent with duration, curve shape and inflation-pressure assumptions.
+The risk profile is dominated by duration sensitivity and inflation compensation. The relevant question is whether shock losses are consistent with duration, curve shape and inflation-pressure assumptions.
 
 ## Validator challenge
 
-Challenge the curve source, missing-data treatment, interpolation method, discounting convention, shock design, inflation proxy, sensitivity stability and whether the current environment sits outside the model-development distribution.
+Challenge the curve source, missing-data treatment, interpolation method, discounting convention, shock design, inflation proxy, sensitivity stability and whether the current input environment sits outside the model-development distribution.
