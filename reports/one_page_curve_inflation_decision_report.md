@@ -41,11 +41,11 @@
 
 ## Bank implication
 
-Prioritize review of curve construction, input lineage, interpolation assumptions, discounting convention, DV01 behavior, shock design and inflation-linked valuation inputs.
+Treat this as a curve-validation watch item. Rebuild the 5Y curve point from source data, reprice the +50bp and +100bp shocks independently, and verify that DV01 explains the shocked valuation loss. Keep the inflation-linked review open, but current evidence points first to duration sensitivity, not inflation compensation.
 
 ## Investor implication
 
-The risk profile is dominated by duration sensitivity and inflation compensation. The relevant question is whether shock losses are consistent with duration, curve shape and inflation-pressure assumptions.
+The investor decision is duration-first. A +100bp rate shock creates a material loss on the validation instrument, so adding duration requires enough risk budget to absorb that loss. BEI is subdued versus recent history, so inflation compensation should be monitored, but it is not the active loss driver in the current state. The next watch points are the 10Y yield percentile, DV01 stability and whether the +100bp shock loss remains above the review threshold.
 
 ## Validator challenge
 

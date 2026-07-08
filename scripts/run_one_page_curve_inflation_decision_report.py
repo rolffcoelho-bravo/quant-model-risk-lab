@@ -353,19 +353,26 @@ def write_decision_figure(
     decision_text = (
         "MODEL-RISK STATE\n"
         f"{row['decision_state']} | Pressure {row['validation_pressure_score']:.0f}/100\n\n"
-        "Trigger\n"
-        f"{row['decision_flags']}\n\n"
-        "Valuation evidence\n"
-        f"Price: {row['bond_price']:.4f} | DV01: {row['dv01']:.5f}\n"
-        f"+50bp: {row['loss_50bp_percent']:.2f}% | +100bp: {row['loss_100bp_percent']:.2f}%\n\n"
-        "Distribution context\n"
-        f"10Y yield pctile: {row['dgs10_percentile_252d']:.0f} | "
-        f"2s10s pctile: {row['slope_2s10_percentile_252d']:.0f} | "
-        f"BEI pctile: {row['breakeven_percentile_252d']:.0f}\n\n"
-        "Bank action\n"
-        "Review curve lineage, interpolation, discounting, DV01, shock design and inflation-linked inputs.\n\n"
-        "Investor read-through\n"
-        "Duration loss is the primary route. Inflation compensation is the second validation route."
+        "Why it matters\n"
+        f"+100bp curve shock = {row['loss_100bp_percent']:.2f}% price loss on 5Y validation bond.\n"
+        "Active risk channel: duration. Inflation is secondary monitor.\n\n"
+        "Read the numbers\n"
+        f"DV01 {row['dv01']:.5f}: price change for 1bp rate move.\n"
+        f"BEI {row['breakeven_10y']:.2f}%: 10Y breakeven inflation input.\n"
+        f"Pctile: 10Y yield {row['dgs10_percentile_252d']:.0f} high | "
+        f"2s10s {row['slope_2s10_percentile_252d']:.0f} flat | "
+        f"BEI {row['breakeven_percentile_252d']:.0f} subdued.\n\n"
+        "Bank decision\n"
+        "1. Rebuild the 5Y curve point from source data.\n"
+        "2. Reprice +50bp and +100bp shocks independently.\n"
+        "3. Confirm DV01 explains the shocked loss.\n"
+        "4. Keep inflation-linked review open; BEI is not main trigger.\n"
+        "5. Escalate if loss or DV01 mismatch exceeds tolerance.\n\n"
+        "Investor decision\n"
+        "1. Treat duration as the active risk, not inflation.\n"
+        "2. Do not add duration unless the risk budget absorbs ~4.5% shock loss.\n"
+        "3. Use BEI as a monitor only; current loss route is rates.\n"
+        "4. Watch 10Y percentile, DV01 stability and +100bp loss threshold."
     )
 
     ax_decision.text(
@@ -374,8 +381,8 @@ def write_decision_figure(
         decision_text,
         va="top",
         ha="left",
-        fontsize=9.25,
-        linespacing=1.18,
+        fontsize=8.45,
+        linespacing=1.08,
         bbox={
             "boxstyle": "round,pad=0.55",
             "fc": "white",
@@ -477,11 +484,11 @@ def write_report(metrics: pd.DataFrame) -> None:
 
 ## Bank implication
 
-Prioritize review of curve construction, input lineage, interpolation assumptions, discounting convention, DV01 behavior, shock design and inflation-linked valuation inputs.
+Treat this as a curve-validation watch item. Rebuild the 5Y curve point from source data, reprice the +50bp and +100bp shocks independently, and verify that DV01 explains the shocked valuation loss. Keep the inflation-linked review open, but current evidence points first to duration sensitivity, not inflation compensation.
 
 ## Investor implication
 
-The risk profile is dominated by duration sensitivity and inflation compensation. The relevant question is whether shock losses are consistent with duration, curve shape and inflation-pressure assumptions.
+The investor decision is duration-first. A +100bp rate shock creates a material loss on the validation instrument, so adding duration requires enough risk budget to absorb that loss. BEI is subdued versus recent history, so inflation compensation should be monitored, but it is not the active loss driver in the current state. The next watch points are the 10Y yield percentile, DV01 stability and whether the +100bp shock loss remains above the review threshold.
 
 ## Validator challenge
 
