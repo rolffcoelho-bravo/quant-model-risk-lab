@@ -3,7 +3,7 @@
 **Open Model Validation, Official Rates, FX, Inflation and Risk Analytics Lab**
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
-![Tests](https://img.shields.io/badge/Tests-57%20passing-brightgreen)
+![Tests](https://img.shields.io/badge/Tests-69%20passing-brightgreen)
 ![Status](https://img.shields.io/badge/Status-Model%20Risk%20Evidence%20Lab-blue)
 ![Use](https://img.shields.io/badge/Use-Research%20Only-lightgrey)
 
@@ -11,8 +11,8 @@
 **Research site:** https://www.shockbridgepulse.com  
 **Author:** Rodolfo Pereira  
 **Repository type:** Public model-risk evidence package  
-**Current release:** v0.7.1 ML decision intelligence upgrade
-**Latest analytical artifacts:** v0.6 inflation derivatives validation dashboard; v0.7.1 ML model-risk decision intelligence dashboard
+**Current release:** v0.8 interest-rate derivatives pricing validation
+**Latest analytical artifacts:** v0.8 IR derivatives pricing validation dashboard; v0.7.1 ML model-risk decision intelligence dashboard; v0.6 inflation derivatives validation dashboard
 
 ---
 
@@ -48,12 +48,32 @@ For a fast review, inspect these files first:
 
 | Artifact | File | Purpose |
 |---|---|---|
+| IR derivatives pricing dashboard | `reports/figures/ir_derivatives_pricing_validation_map.png` | Fixed-for-floating swap valuation, par rate, NPV, DV01 and curve-shock sensitivity |
 | ML decision dashboard | `reports/figures/ml_model_risk_monitoring_map.png` | ML model-risk monitoring, PCA drift, Mahalanobis abnormality and decision gate |
+| IR derivatives pricing report | `reports/ir_derivatives_pricing_validation_report.md` | Swap pricing validation, bank decision, DV01, shock table and model lifecycle decision |
+| IR model lifecycle register | `data/official/processed/ir_derivatives_model_lifecycle_register.csv` | Archer/MRM-style model lifecycle fields, monitoring trigger and next validation gate |
 | ML monitoring report | `reports/ml_model_risk_monitoring_report.md` | Decision intelligence, model-use gate, bank action and investor action |
+
+## v0.8 interest-rate derivatives pricing validation
+
+The v0.8 layer makes derivatives pricing explicit. It validates a plain-vanilla fixed-for-floating interest-rate swap using official curve inputs from the repository data layer.
+
+| Validation item | Evidence |
+|---|---|
+| Instrument | Fixed-for-floating interest-rate swap |
+| Pricing output | Par swap rate, fixed-leg PV, floating-leg PV, payer NPV and receiver NPV |
+| Sensitivity output | Payer DV01, receiver DV01 and parallel curve-shock table |
+| Decision output | Allowed use, blocked use and validation boundary |
+| Main script | `scripts/run_ir_derivatives_pricing_validation.py` |
+| Main source module | `src/qmrl/ir_derivatives.py` |
+| Main report | `reports/ir_derivatives_pricing_validation_report.md` |
+| Main figure | `reports/figures/ir_derivatives_pricing_validation_map.png` |
+
+This layer does not delete or replace the curve, inflation or ML layers. It extends the repository with an explicit derivatives-pricing validation control.
 
 ## Current release evidence
 
-The current public release is **v0.7.1 ML decision intelligence upgrade**.
+The current public release is **v0.8 interest-rate derivatives pricing validation**.
 
 | Layer | Evidence |
 |---|---|
@@ -199,7 +219,7 @@ This repository does not use ETF proxies as the main evidence layer. The analyti
 | PCA reconstruction-error drift monitor | Implemented |
 | Static regime clustering | Implemented |
 | ML decision intelligence gate | Implemented |
-| Automated tests | 57 tests passing |
+| Automated tests | 69 tests passing |
 
 ---
 
@@ -339,7 +359,7 @@ python scripts\generate_model_risk_evidence.py
 python -m pytest
 ```
 
-Current validation state: **57 tests passing**.
+Current validation state: **69 tests passing**.
 
 ---
 
