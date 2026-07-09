@@ -1,0 +1,15 @@
+field,value,type,decision_meaning
+Model ID,QMRL-IR-SWAP-001,identifier,Archer/MRM model record reference
+Product,Fixed-for-floating interest-rate swap,scope,Vanilla IR derivative
+Valuation date,2026-07-06 00:00:00,input,Official valuation date
+Par rate,0.042502,input,Base fair fixed rate
+Test fixed rate,0.045002,input,Off-market test fixed rate
+Payer NPV,"-111,654.037996",output,Payer fixed swap value
+Receiver NPV,"111,654.037996",output,Receiver fixed swap value
+PV symmetry error,0.000000,control,Must be close to zero
+Payer DV01,"4,586.145360",risk,Expected positive
+Receiver DV01,"-4,586.145360",risk,Expected negative
++100bp payer P&L,"447,746.337072",shock,Expected positive
+-100bp payer P&L,"-469,844.127468",shock,Expected negative
+XVA coverage,NOT COVERED,model boundary,Requires v0.9 XVA layer
+Model-use status,BASE USE ONLY,decision,Use for clean pricing and first-order rate-risk checks only

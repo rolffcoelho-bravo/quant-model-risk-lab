@@ -406,3 +406,19 @@ Pereira, Rodolfo. (2026). *Quant Model Risk Lab: Open Model Validation, Monitori
 }
 ```
 
+## v0.8.1 Excel/VBA Revalidation Bridge
+
+This layer demonstrates how the Python IR derivatives validation engine can be consumed by Excel/VBA review workflows.
+
+Evidence added:
+- excel_vba/vba/Revalidate_IR_Swap.bas
+- excel_vba/exports/ir_swap_revalidation_control_panel.csv
+- excel_vba/exports/ir_swap_revalidation_shock_table.csv
+- excel_vba/exports/ir_swap_revalidation_lifecycle_record.csv
+- excel_vba/templates/ir_swap_revalidation_template.xlsx
+- scripts/export_ir_swap_excel_pack.py
+- reports/excel_vba_revalidation_bridge.md
+- tests/test_excel_vba_bridge.py
+
+The bridge validates PV symmetry, DV01 sign, rate-shock direction and the model-use boundary. Python remains the pricing engine. Excel/VBA is the reviewer and legacy workflow interface.
+
