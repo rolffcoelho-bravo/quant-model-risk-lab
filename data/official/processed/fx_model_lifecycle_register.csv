@@ -1,0 +1,2 @@
+model_id,product,stage,validation_status,monitoring_trigger,archer_mrm_action,next_gate
+QMRL-FX-FWD-001,USD/BRL FX forward,Base FX forward pricing and spot-risk validation,"Forward parity, PV sign, FX delta and shock direction available","USD/BRL spot change, BRL rate change, USD rate change, contract forward change",Create or update FX derivatives model record and attach validation outputs,FX options and cross-currency basis validation

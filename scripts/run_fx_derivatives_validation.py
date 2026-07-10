@@ -60,41 +60,138 @@ def latest_numeric_value(frame: pd.DataFrame, column: str) -> float:
 
 
 def find_fx_spot_column(frame: pd.DataFrame) -> str:
+    """Locate the USD/BRL spot column without assuming one exact name.
+
+    The official panel has changed names across pipeline versions. This detector
+    first uses semantic column names, then falls back to a numerical profile:
+    USD/BRL spot is usually a positive series around 3 to 8 in the Brazil sample,
+    while SELIC/IPCA/rates are excluded by name.
+    """
+
     columns = list(frame.columns)
-    lower = {col: col.lower() for col in columns}
+    lower = {col: col.lower().replace(" ", "_").replace("-", "_").replace("/", "_") for col in columns}
 
-    candidates = [
-        col for col in columns
-        if ("usd" in lower[col] and ("brl" in lower[col] or "real" in lower[col]))
-        or "usd_brl" in lower[col]
-        or "usdbrl" in lower[col]
+    strong_terms = [
+        "usd_brl",
+        "usdbrl",
+        "brl_usd",
+        "usdb_rl",
+        "dollar_brl",
+        "dolar_brl",
+        "dolar",
+        "dollar",
+        "cambio",
+        "exchange",
+        "fx",
+        "ptax",
+        "venda",
+        "sell",
     ]
-    if candidates:
-        return candidates[0]
 
-    candidates = [col for col in columns if "exchange" in lower[col] or "fx" in lower[col]]
-    if candidates:
-        return candidates[0]
+    exclusions = [
+        "selic",
+        "ipca",
+        "inflation",
+        "cpi",
+        "rate",
+        "interest",
+        "yield",
+        "treasury",
+        "real_rate",
+    ]
 
-    raise KeyError("Could not locate USD/BRL or FX spot column in official panel.")
+    semantic_candidates = []
+    for col in columns:
+        name = lower[col]
+        if any(term in name for term in strong_terms) and not any(term in name for term in exclusions):
+            values = pd.to_numeric(frame[col], errors="coerce").dropna()
+            if not values.empty and values.median() > 1.0:
+                semantic_candidates.append(col)
+
+    if semantic_candidates:
+        return semantic_candidates[0]
+
+    numeric_candidates = []
+    for col in columns:
+        name = lower[col]
+        if "date" in name or any(term in name for term in exclusions):
+            continue
+
+        values = pd.to_numeric(frame[col], errors="coerce").dropna()
+        if values.empty:
+            continue
+
+        median = float(values.median())
+        min_value = float(values.min())
+        max_value = float(values.max())
+
+        if min_value > 0.0 and 2.0 <= median <= 10.0 and max_value <= 20.0:
+            numeric_candidates.append((col, median, values.notna().sum()))
+
+    if numeric_candidates:
+        numeric_candidates.sort(key=lambda item: (-item[2], abs(item[1] - 5.0)))
+        return numeric_candidates[0][0]
+
+    diagnostic = ", ".join(columns)
+    raise KeyError(f"Could not locate USD/BRL or FX spot column in official panel. Available columns: {diagnostic}")
 
 
 def find_brl_rate_column(frame: pd.DataFrame) -> str:
+    """Locate the BRL domestic rate column.
+
+    Prefer SELIC or policy-rate naming. If names are not explicit, use the
+    highest plausible positive rate-like numerical column after excluding FX,
+    inflation and date fields.
+    """
+
     columns = list(frame.columns)
-    lower = {col: col.lower() for col in columns}
+    lower = {col: col.lower().replace(" ", "_").replace("-", "_").replace("/", "_") for col in columns}
 
-    candidates = [
-        col for col in columns
-        if "selic" in lower[col] or "brl_rate" in lower[col] or "policy" in lower[col]
+    preferred_terms = ["selic", "policy", "brl_rate", "domestic_rate", "interest_rate"]
+    for col in columns:
+        name = lower[col]
+        if any(term in name for term in preferred_terms):
+            values = pd.to_numeric(frame[col], errors="coerce").dropna()
+            if not values.empty:
+                return col
+
+    exclusions = [
+        "date",
+        "usd",
+        "brl_usd",
+        "usd_brl",
+        "usdbrl",
+        "dolar",
+        "dollar",
+        "cambio",
+        "exchange",
+        "fx",
+        "ipca",
+        "inflation",
+        "cpi",
+        "treasury",
     ]
-    if candidates:
-        return candidates[0]
 
-    candidates = [col for col in columns if "interest" in lower[col] and "rate" in lower[col]]
-    if candidates:
-        return candidates[0]
+    numeric_candidates = []
+    for col in columns:
+        name = lower[col]
+        if any(term in name for term in exclusions):
+            continue
 
-    raise KeyError("Could not locate BRL domestic interest-rate column in official panel.")
+        values = pd.to_numeric(frame[col], errors="coerce").dropna()
+        if values.empty:
+            continue
+
+        median = float(values.median())
+        if median > 0.0:
+            numeric_candidates.append((col, median, values.notna().sum()))
+
+    if numeric_candidates:
+        numeric_candidates.sort(key=lambda item: (-item[1], -item[2]))
+        return numeric_candidates[0][0]
+
+    diagnostic = ", ".join(columns)
+    raise KeyError(f"Could not locate BRL domestic interest-rate column in official panel. Available columns: {diagnostic}")
 
 
 def read_usd_rate() -> float:
