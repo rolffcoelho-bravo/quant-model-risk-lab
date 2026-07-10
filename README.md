@@ -422,3 +422,20 @@ Evidence added:
 
 The bridge validates PV symmetry, DV01 sign, rate-shock direction and the model-use boundary. Python remains the pricing engine. Excel/VBA is the reviewer and legacy workflow interface.
 
+## v0.9 XVA Validation Layer
+
+This layer extends the clean IR swap validation engine into a transparent XVA review layer.
+
+Evidence added:
+- src/qmrl/xva.py
+- scripts/run_xva_validation.py
+- data/official/processed/xva_exposure_profile.csv
+- data/official/processed/xva_summary.csv
+- data/official/processed/xva_sensitivity_table.csv
+- reports/xva_validation_report.md
+- reports/figures/xva_validation_map.png
+- tests/test_xva.py
+- tests/test_xva_outputs.py
+
+The layer computes scenario exposure, expected exposure, PFE, CVA, DVA, FVA and XVA sensitivities. It does not overclaim production XVA coverage. The next validation gate is time-grid exposure simulation with counterparty-specific calibration.
+
