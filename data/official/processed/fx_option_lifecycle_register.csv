@@ -1,0 +1,2 @@
+model_id,product,stage,validation_status,monitoring_trigger,archer_mrm_action,next_gate
+QMRL-FX-OPT-001,USD/BRL European FX option,Vanilla FX option validation,"Garman-Kohlhagen price, Greeks, put-call parity, spot and volatility shocks available","spot move, realised volatility change, rate change, parity gap, delta/vega sign change",Create FX option model record linked to FX forward model and attach validation outputs,SABR smile and path-dependent FX option validation

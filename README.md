@@ -456,3 +456,21 @@ Evidence added:
 
 The layer validates covered-interest-parity forward pricing, FX delta, long/short symmetry, spot-shock behaviour and the Archer/MRM lifecycle action. FX options, volatility surfaces and cross-currency basis remain the next validation gates.
 
+## v1.1 FX Options Validation Layer
+
+This layer adds vanilla Foreign Exchange option validation on top of the USD/BRL FX forward layer.
+
+Evidence added:
+- src/qmrl/fx_options.py
+- scripts/run_fx_options_validation.py
+- data/official/processed/fx_option_validation_summary.csv
+- data/official/processed/fx_option_spot_vol_surface.csv
+- data/official/processed/fx_option_put_call_parity_table.csv
+- data/official/processed/fx_option_lifecycle_register.csv
+- reports/fx_option_validation_report.md
+- reports/figures/fx_option_validation_map.png
+- tests/test_fx_options.py
+- tests/test_fx_options_outputs.py
+
+The layer validates Garman-Kohlhagen FX option pricing, Greeks, put-call parity, realised-volatility input, spot shocks, volatility shocks and Archer/MRM lifecycle action. SABR, volatility smile calibration, barrier options and path-dependent FX options remain the next validation gates.
+
