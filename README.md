@@ -439,3 +439,20 @@ Evidence added:
 
 The layer computes scenario exposure, expected exposure, PFE, CVA, DVA, FVA and XVA sensitivities. It does not overclaim production XVA coverage. The next validation gate is time-grid exposure simulation with counterparty-specific calibration.
 
+## v1.0 FX Derivatives Validation Layer
+
+This layer adds a base Foreign Exchange derivatives validation layer using official USD/BRL and interest-rate inputs.
+
+Evidence added:
+- src/qmrl/fx_derivatives.py
+- scripts/run_fx_derivatives_validation.py
+- data/official/processed/fx_forward_validation_summary.csv
+- data/official/processed/fx_forward_shock_table.csv
+- data/official/processed/fx_model_lifecycle_register.csv
+- reports/fx_forward_validation_report.md
+- reports/figures/fx_forward_validation_map.png
+- tests/test_fx_derivatives.py
+- tests/test_fx_derivatives_outputs.py
+
+The layer validates covered-interest-parity forward pricing, FX delta, long/short symmetry, spot-shock behaviour and the Archer/MRM lifecycle action. FX options, volatility surfaces and cross-currency basis remain the next validation gates.
+
