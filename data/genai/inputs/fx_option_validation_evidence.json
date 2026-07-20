@@ -1,0 +1,82 @@
+{
+  "created_at_utc": "2026-07-20T20:30:05.243769+00:00",
+  "decision_boundary": {
+    "allowed": "GenAI may identify findings, missing evidence and model-use restrictions.",
+    "human_review_required": true,
+    "prohibited": "GenAI may not change pricing results, approve the model, or create unsupported evidence."
+  },
+  "evidence_package_id": "QMRL-GENAI-FXOPTION-001",
+  "sources": [
+    {
+      "content": "# FX Options Validation Report\n\n## Purpose\n\nThis layer adds vanilla FX option validation on top of the USD/BRL FX forward layer.\n\nThe pricing engine uses the Garman-Kohlhagen lognormal FX option model. The validation evidence covers call and put values, Greeks, put-call parity, spot shocks, volatility shocks and model lifecycle controls.\n\n## Acronyms\n\n| Acronym | Meaning | Use in this layer |\n|---|---|---|\n| FX | Foreign Exchange | USD/BRL option exposure |\n| GK | Garman-Kohlhagen | Lognormal FX option pricing model |\n| PV | Present Value | Discounted option premium |\n| Delta | Spot sensitivity | First-order FX risk |\n| Gamma | Delta convexity | Second-order spot risk |\n| Vega | Volatility sensitivity | Volatility-risk control |\n| SABR | Stochastic Alpha Beta Rho | Next smile-calibration gate |\n| MRM | Model Risk Management | Lifecycle governance record |\n\n## Base valuation\n\n| Metric | Value |\n|---|---:|\n| Spot USD/BRL | 4.990000 |\n| Strike | 30.533850 |\n| Model forward | 30.533850 |\n| BRL domestic rate | 185.0900% |\n| USD foreign rate | 3.9500% |\n| Realised volatility input | 12.2241% |\n| Call value, BRL | 233,777 |\n| Put value, BRL | 233,777 |\n| Call delta | 504,060 |\n| Put delta | -457,210 |\n| Call gamma | 627,520 |\n| Call vega | 1,910,050 |\n| Put-call parity gap | 0.000000 |\n\n## Put-call parity control\n\n| Check | Status | Gap |\n|---|---|---:|\n| Put-call parity | PASS | 0.000000 |\n\n## Model-use decision\n\nThe layer is valid for vanilla European USD/BRL FX option pricing, Greeks, put-call parity and first-order scenario review.\n\nIt is not a smile-calibrated volatility-surface model, SABR model, barrier-option model or path-dependent option engine. Those remain the next validation gates.\n\n## Archer / MRM action\n\n| Field | Record |\n|---|---|\n| Model ID | QMRL-FX-OPT-001 |\n| Product | USD/BRL European FX option |\n| Stage | Vanilla FX option validation |\n| Validation status | Garman-Kohlhagen price, Greeks, put-call parity, spot and volatility shocks available |\n| Monitoring trigger | spot move, realised volatility change, rate change, parity gap, delta/vega sign change |\n| Next gate | SABR smile and path-dependent FX option validation |\n\n## Spot and volatility shock surface\n\n|   spot_shock_pct |   vol_shock_abs |   shocked_spot_rate |   volatility |   call_value_domestic |   put_value_domestic |   call_delta |   put_delta |        call_vega |         put_vega |   put_call_parity_gap |\n|-----------------:|----------------:|--------------------:|-------------:|----------------------:|---------------------:|-------------:|------------:|-----------------:|-----------------:|----------------------:|\n|              -10 |           -0.05 |              4.491  |    0.0722408 |               10579   |             490253   |      74463.2 |   -886807   | 626321           | 626321           |           1.16415e-10 |\n|              -10 |            0    |              4.491  |    0.122241  |               59807.5 |             539481   |     203430   |   -757839   |      1.24983e+06 |      1.24983e+06 |          -2.91038e-10 |\n|              -10 |            0.05 |              4.491  |    0.172241  |              129447   |             609120   |     287985   |   -673285   |      1.50008e+06 |      1.50008e+06 |          -4.65661e-10 |\n|               -5 |           -0.05 |              4.7405 |    0.0722408 |               47424.8 |             287262   |     240494   |   -720776   |      1.44864e+06 |      1.44864e+06 |          -2.91038e-11 |\n|               -5 |            0    |              4.7405 |    0.122241  |              127761   |             367598   |     346047   |   -615223   |      1.7048e+06  |      1.7048e+06  |          -2.32831e-10 |\n|               -5 |            0.05 |              4.7405 |    0.172241  |              215138   |             454975   |     400060   |   -561210   |      1.77766e+06 |      1.77766e+06 |          -4.07454e-10 |\n|                0 |           -0.05 |              4.99   |    0.0722408 |              138211   |             138211   |     494484   |   -466786   |      1.91237e+06 |      1.91237e+06 |           4.50598e-10 |\n|                0 |            0    |              4.99   |    0.122241  |              233777   |             233777   |     504060   |   -457210   |      1.91005e+06 |      1.91005e+06 |           4.50598e-10 |\n|                0 |            0.05 |              4.99   |    0.172241  |              329197   |             329197   |     513621   |   -447649   |      1.90654e+06 |      1.90654e+06 |           4.31442e-11 |\n|                5 |           -0.05 |              5.2395 |    0.0722408 |              292700   |              52862.8 |     732116   |   -229154   |      1.55997e+06 |      1.55997e+06 |           2.32831e-10 |\n|                5 |            0    |              5.2395 |    0.122241  |              378349   |             138512   |     651099   |   -310171   |      1.80737e+06 |      1.80737e+06 |          -4.65661e-10 |\n|                5 |            0.05 |              5.2395 |    0.172241  |              470756   |             230919   |     619135   |   -342135   |      1.87679e+06 |      1.87679e+06 |          -2.91038e-11 |\n|               10 |           -0.05 |              5.489  |    0.0722408 |              495544   |              15870.3 |     877029   |    -84241.2 | 840020           | 840020           |           1.16415e-09 |\n|               10 |            0    |              5.489  |    0.122241  |              556197   |              76523.7 |     768798   |   -192472   |      1.4782e+06  |      1.4782e+06  |          -2.91038e-10 |\n|               10 |            0.05 |              5.489  |    0.172241  |              636927   |             157254   |     710131   |   -251139   |      1.71574e+06 |      1.71574e+06 |           4.07454e-10 |\n",
+      "content_type": "markdown",
+      "path": "reports/fx_option_validation_report.md",
+      "sha256": "be7e6c2d3da8fb02fc57c0f76327b19c499e201c76f714507c18a8af8450097e"
+    },
+    {
+      "content_type": "csv_records",
+      "path": "data/official/processed/fx_option_validation_summary.csv",
+      "records": [
+        {
+          "call_delta": 504059.5224922796,
+          "call_gamma": 627520.0754789915,
+          "call_value_brl": 233776.9640598668,
+          "call_vega": 1910050.2028255383,
+          "domestic_rate_brl": 1.8509,
+          "foreign_rate_usd": 0.0395,
+          "maturity_years": 1.0,
+          "model_forward_rate": 30.53385016785183,
+          "model_id": "QMRL-FX-OPT-001",
+          "model_use_decision": "Vanilla European FX option pricing, Greeks and parity checks available for model validation review.",
+          "next_validation_gate": "volatility smile, SABR calibration, barrier/path-dependent options and cross-currency basis",
+          "notional_usd": 1000000.0,
+          "pricing_model": "Garman-Kohlhagen lognormal FX option model",
+          "product": "USD/BRL European FX option",
+          "put_call_parity_gap": 4.505977813096251e-10,
+          "put_delta": -457210.43149831856,
+          "put_gamma": 627520.0754789915,
+          "put_value_brl": 233776.96405986548,
+          "put_vega": 1910050.2028255383,
+          "realised_volatility_input": 0.1222407671372263,
+          "source_model": "QMRL-FX-FWD-001",
+          "spot_rate_brl_per_usd": 4.99,
+          "strike_rate": 30.53385016785183
+        }
+      ],
+      "sha256": "580b3893435e6e135b28184fda52ce6c37187f5ad1ea5cc163b5b543265fca5d"
+    },
+    {
+      "content_type": "csv_records",
+      "path": "data/official/processed/fx_option_put_call_parity_table.csv",
+      "records": [
+        {
+          "call_value_domestic": 233776.9640598668,
+          "check": "put_call_parity",
+          "discounted_spot_leg": 4796737.070413085,
+          "discounted_strike_leg": 4796737.070413085,
+          "parity_gap": 4.505977813096251e-10,
+          "put_value_domestic": 233776.96405986548,
+          "status": "PASS"
+        }
+      ],
+      "sha256": "f0f4e0738664390ea3365fa716d23566ac1327671d57d58a2f20bf0ee3cfb1fc"
+    },
+    {
+      "content_type": "csv_records",
+      "path": "data/official/processed/fx_option_lifecycle_register.csv",
+      "records": [
+        {
+          "archer_mrm_action": "Create FX option model record linked to FX forward model and attach validation outputs",
+          "model_id": "QMRL-FX-OPT-001",
+          "monitoring_trigger": "spot move, realised volatility change, rate change, parity gap, delta/vega sign change",
+          "next_gate": "SABR smile and path-dependent FX option validation",
+          "product": "USD/BRL European FX option",
+          "stage": "Vanilla FX option validation",
+          "validation_status": "Garman-Kohlhagen price, Greeks, put-call parity, spot and volatility shocks available"
+        }
+      ],
+      "sha256": "0d244e1832e3dfb55d1689c17fe4c007af8ffb1b1474a1ce0efe39a370ca53d1"
+    }
+  ],
+  "use_case": "Independent GenAI challenge of the existing public FX option validation evidence."
+}
