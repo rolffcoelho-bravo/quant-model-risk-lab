@@ -1,0 +1,100 @@
+{
+    "review_id":  "QMRL-GENAI-HUMAN-REVIEW-001",
+    "reviewed_at_utc":  "2026-07-21T23:03:32.8545780Z",
+    "reviewer":  "Rodolfo Pereira",
+    "evidence_package_id":  "QMRL-GENAI-FXOPTION-002",
+    "provider":  "openai",
+    "api":  "responses",
+    "model":  "gpt-5-mini-2025-08-07",
+    "provider_response_id":  "resp_0e938f48f7e92763006a5fea403b6081a1b56a366c4382babc",
+    "output_sha256":  "df2688e192b30fc976b05b25e21afb10929132fc378e43da03fbd5b01b9160a7",
+    "grounding_gate":  "PASS",
+    "genai_decision":  "CONDITIONAL",
+    "human_review_decision":  "ACCEPT_CHALLENGER_EVIDENCE",
+    "human_review_completed":  true,
+    "production_approval":  false,
+    "model_result_changed":  false,
+    "findings_retained":  true,
+    "finding_count":  7,
+    "missing_evidence_count":  5,
+    "findings":  [
+                     {
+                         "finding_id":  "GENAI-001",
+                         "title":  "Put call parity pass tolerance is implemented but rationale is undocumented",
+                         "severity":  "medium",
+                         "category":  "governance",
+                         "disposition":  "OPEN",
+                         "human_review_status":  "ACCEPTED_FOR_REMEDIATION",
+                         "required_action":  "Record the tolerance rationale in validation documentation and map the tolerance to risk appetite and numerical precision tests.",
+                         "source_path":  "scripts/run_fx_options_validation.py"
+                     },
+                     {
+                         "finding_id":  "GENAI-002",
+                         "title":  "Realised volatility estimator uses hard coded fallbacks and bounds",
+                         "severity":  "medium",
+                         "category":  "methodology",
+                         "disposition":  "OPEN",
+                         "human_review_status":  "ACCEPTED_FOR_REMEDIATION",
+                         "required_action":  "Provide documented rationale for the fallback and bound choices and add sensitivity tests that show how outputs change when these defaults are varied.",
+                         "source_path":  "scripts/run_fx_options_validation.py"
+                     },
+                     {
+                         "finding_id":  "GENAI-003",
+                         "title":  "Volatility floor applied in surface generation is hard coded",
+                         "severity":  "low",
+                         "category":  "implementation",
+                         "disposition":  "OPEN",
+                         "human_review_status":  "ACCEPTED_FOR_REMEDIATION",
+                         "required_action":  "Document why the volatility floor was chosen and include tests that demonstrate behaviour when the floor is reached.",
+                         "source_path":  "src/qmrl/fx_options.py"
+                     },
+                     {
+                         "finding_id":  "GENAI-004",
+                         "title":  "No market benchmark or challenger comparison for option prices and smile",
+                         "severity":  "high",
+                         "category":  "validation",
+                         "disposition":  "OPEN",
+                         "human_review_status":  "ACCEPTED_FOR_REMEDIATION",
+                         "required_action":  "Include market price benchmarking and challenger model comparisons before using outputs for pricing decisions beyond exploratory validation.",
+                         "source_path":  "reports/fx_option_validation_report.md"
+                     },
+                     {
+                         "finding_id":  "GENAI-005",
+                         "title":  "Apparent unit or strike inconsistency between spot and strike values",
+                         "severity":  "medium",
+                         "category":  "data",
+                         "disposition":  "OPEN",
+                         "human_review_status":  "ACCEPTED_FOR_REMEDIATION",
+                         "required_action":  "Clarify units and notional mapping for strike and spot in documentation and confirm that strike inputs align with pricing code expectations.",
+                         "source_path":  "reports/fx_option_validation_report.md"
+                     },
+                     {
+                         "finding_id":  "GENAI-006",
+                         "title":  "Automated tests focus on artifact creation and basic sanity checks but do not enforce numerical reproducibility",
+                         "severity":  "medium",
+                         "category":  "implementation",
+                         "disposition":  "OPEN",
+                         "human_review_status":  "ACCEPTED_FOR_REMEDIATION",
+                         "required_action":  "Add unit tests that verify numerical reproducibility, edge cases and regression tolerances for key Greeks and prices.",
+                         "source_path":  "tests/test_fx_options_outputs.py"
+                     },
+                     {
+                         "finding_id":  "GENAI-007",
+                         "title":  "Lifecycle record lists monitoring triggers but no automated monitoring implementation is provided",
+                         "severity":  "low",
+                         "category":  "monitoring",
+                         "disposition":  "OPEN",
+                         "human_review_status":  "ACCEPTED_FOR_REMEDIATION",
+                         "required_action":  "Provide monitoring automation or an operational plan that connects lifecycle triggers to alerting and revalidation workflows.",
+                         "source_path":  "data/official/processed/fx_option_lifecycle_register.csv"
+                     }
+                 ],
+    "conditions":  [
+                       "The GenAI response is retained as independent challenger evidence.",
+                       "All findings remain open until supported remediation evidence is produced.",
+                       "The high-severity validation finding must be addressed before broader model use.",
+                       "The reported strike and spot scale question requires deterministic investigation.",
+                       "This review does not constitute production approval.",
+                       "Human model-risk judgment remains the final authority."
+                   ]
+}

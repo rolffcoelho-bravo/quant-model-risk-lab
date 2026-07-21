@@ -1,11 +1,25 @@
 {
-  "created_at_utc": "2026-07-20T20:30:05.243769+00:00",
+  "created_at_utc": "2026-07-21T15:34:18.212576+00:00",
   "decision_boundary": {
-    "allowed": "GenAI may identify findings, missing evidence and model-use restrictions.",
+    "allowed": "GenAI may identify supported findings, missing evidence and model-use restrictions.",
     "human_review_required": true,
     "prohibited": "GenAI may not change pricing results, approve the model, or create unsupported evidence."
   },
-  "evidence_package_id": "QMRL-GENAI-FXOPTION-001",
+  "evidence_package_id": "QMRL-GENAI-FXOPTION-002",
+  "evidence_scope": {
+    "automated_tests": true,
+    "data_lineage_manifest": true,
+    "environment_dependencies": true,
+    "execution_script": true,
+    "implementation_code": true,
+    "lifecycle_record": true,
+    "model_risk_policy": true,
+    "put_call_parity": true,
+    "stress_outputs": true,
+    "upstream_fx_forward_code": true,
+    "valuation_outputs": true
+  },
+  "review_instruction": "Assess the complete supplied package. Do not state that implementation, scripts, tests, policies or lineage are missing when their source paths are present.",
   "sources": [
     {
       "content": "# FX Options Validation Report\n\n## Purpose\n\nThis layer adds vanilla FX option validation on top of the USD/BRL FX forward layer.\n\nThe pricing engine uses the Garman-Kohlhagen lognormal FX option model. The validation evidence covers call and put values, Greeks, put-call parity, spot shocks, volatility shocks and model lifecycle controls.\n\n## Acronyms\n\n| Acronym | Meaning | Use in this layer |\n|---|---|---|\n| FX | Foreign Exchange | USD/BRL option exposure |\n| GK | Garman-Kohlhagen | Lognormal FX option pricing model |\n| PV | Present Value | Discounted option premium |\n| Delta | Spot sensitivity | First-order FX risk |\n| Gamma | Delta convexity | Second-order spot risk |\n| Vega | Volatility sensitivity | Volatility-risk control |\n| SABR | Stochastic Alpha Beta Rho | Next smile-calibration gate |\n| MRM | Model Risk Management | Lifecycle governance record |\n\n## Base valuation\n\n| Metric | Value |\n|---|---:|\n| Spot USD/BRL | 4.990000 |\n| Strike | 30.533850 |\n| Model forward | 30.533850 |\n| BRL domestic rate | 185.0900% |\n| USD foreign rate | 3.9500% |\n| Realised volatility input | 12.2241% |\n| Call value, BRL | 233,777 |\n| Put value, BRL | 233,777 |\n| Call delta | 504,060 |\n| Put delta | -457,210 |\n| Call gamma | 627,520 |\n| Call vega | 1,910,050 |\n| Put-call parity gap | 0.000000 |\n\n## Put-call parity control\n\n| Check | Status | Gap |\n|---|---|---:|\n| Put-call parity | PASS | 0.000000 |\n\n## Model-use decision\n\nThe layer is valid for vanilla European USD/BRL FX option pricing, Greeks, put-call parity and first-order scenario review.\n\nIt is not a smile-calibrated volatility-surface model, SABR model, barrier-option model or path-dependent option engine. Those remain the next validation gates.\n\n## Archer / MRM action\n\n| Field | Record |\n|---|---|\n| Model ID | QMRL-FX-OPT-001 |\n| Product | USD/BRL European FX option |\n| Stage | Vanilla FX option validation |\n| Validation status | Garman-Kohlhagen price, Greeks, put-call parity, spot and volatility shocks available |\n| Monitoring trigger | spot move, realised volatility change, rate change, parity gap, delta/vega sign change |\n| Next gate | SABR smile and path-dependent FX option validation |\n\n## Spot and volatility shock surface\n\n|   spot_shock_pct |   vol_shock_abs |   shocked_spot_rate |   volatility |   call_value_domestic |   put_value_domestic |   call_delta |   put_delta |        call_vega |         put_vega |   put_call_parity_gap |\n|-----------------:|----------------:|--------------------:|-------------:|----------------------:|---------------------:|-------------:|------------:|-----------------:|-----------------:|----------------------:|\n|              -10 |           -0.05 |              4.491  |    0.0722408 |               10579   |             490253   |      74463.2 |   -886807   | 626321           | 626321           |           1.16415e-10 |\n|              -10 |            0    |              4.491  |    0.122241  |               59807.5 |             539481   |     203430   |   -757839   |      1.24983e+06 |      1.24983e+06 |          -2.91038e-10 |\n|              -10 |            0.05 |              4.491  |    0.172241  |              129447   |             609120   |     287985   |   -673285   |      1.50008e+06 |      1.50008e+06 |          -4.65661e-10 |\n|               -5 |           -0.05 |              4.7405 |    0.0722408 |               47424.8 |             287262   |     240494   |   -720776   |      1.44864e+06 |      1.44864e+06 |          -2.91038e-11 |\n|               -5 |            0    |              4.7405 |    0.122241  |              127761   |             367598   |     346047   |   -615223   |      1.7048e+06  |      1.7048e+06  |          -2.32831e-10 |\n|               -5 |            0.05 |              4.7405 |    0.172241  |              215138   |             454975   |     400060   |   -561210   |      1.77766e+06 |      1.77766e+06 |          -4.07454e-10 |\n|                0 |           -0.05 |              4.99   |    0.0722408 |              138211   |             138211   |     494484   |   -466786   |      1.91237e+06 |      1.91237e+06 |           4.50598e-10 |\n|                0 |            0    |              4.99   |    0.122241  |              233777   |             233777   |     504060   |   -457210   |      1.91005e+06 |      1.91005e+06 |           4.50598e-10 |\n|                0 |            0.05 |              4.99   |    0.172241  |              329197   |             329197   |     513621   |   -447649   |      1.90654e+06 |      1.90654e+06 |           4.31442e-11 |\n|                5 |           -0.05 |              5.2395 |    0.0722408 |              292700   |              52862.8 |     732116   |   -229154   |      1.55997e+06 |      1.55997e+06 |           2.32831e-10 |\n|                5 |            0    |              5.2395 |    0.122241  |              378349   |             138512   |     651099   |   -310171   |      1.80737e+06 |      1.80737e+06 |          -4.65661e-10 |\n|                5 |            0.05 |              5.2395 |    0.172241  |              470756   |             230919   |     619135   |   -342135   |      1.87679e+06 |      1.87679e+06 |          -2.91038e-11 |\n|               10 |           -0.05 |              5.489  |    0.0722408 |              495544   |              15870.3 |     877029   |    -84241.2 | 840020           | 840020           |           1.16415e-09 |\n|               10 |            0    |              5.489  |    0.122241  |              556197   |              76523.7 |     768798   |   -192472   |      1.4782e+06  |      1.4782e+06  |          -2.91038e-10 |\n|               10 |            0.05 |              5.489  |    0.172241  |              636927   |             157254   |     710131   |   -251139   |      1.71574e+06 |      1.71574e+06 |           4.07454e-10 |\n",
@@ -47,6 +61,208 @@
     },
     {
       "content_type": "csv_records",
+      "path": "data/official/processed/fx_option_spot_vol_surface.csv",
+      "records": [
+        {
+          "call_delta": 74463.18783321185,
+          "call_value_domestic": 10579.026683699256,
+          "call_vega": 626320.5469852857,
+          "put_call_parity_gap": 1.1641532182693479e-10,
+          "put_delta": -886806.7661573864,
+          "put_value_domestic": 490252.73372500646,
+          "put_vega": 626320.5469852857,
+          "shocked_spot_rate": 4.4910000000000005,
+          "spot_shock_pct": -10.0,
+          "vol_shock_abs": -0.05,
+          "volatility": 0.0722407671372263
+        },
+        {
+          "call_delta": 203430.46732440408,
+          "call_value_domestic": 59807.47932446762,
+          "call_vega": 1249826.8389438768,
+          "put_call_parity_gap": -2.9103830456733704e-10,
+          "put_delta": -757839.486666194,
+          "put_value_domestic": 539481.1863657752,
+          "put_vega": 1249826.8389438768,
+          "shocked_spot_rate": 4.4910000000000005,
+          "spot_shock_pct": -10.0,
+          "vol_shock_abs": 0.0,
+          "volatility": 0.1222407671372263
+        },
+        {
+          "call_delta": 287985.3945592356,
+          "call_value_domestic": 129446.56977302449,
+          "call_vega": 1500078.3438403052,
+          "put_call_parity_gap": -4.656612873077393e-10,
+          "put_delta": -673284.5594313625,
+          "put_value_domestic": 609120.2768143322,
+          "put_vega": 1500078.3438403052,
+          "shocked_spot_rate": 4.4910000000000005,
+          "spot_shock_pct": -10.0,
+          "vol_shock_abs": 0.05,
+          "volatility": 0.1722407671372263
+        },
+        {
+          "call_delta": 240493.96409813824,
+          "call_value_domestic": 47424.769978900105,
+          "call_vega": 1448640.157741838,
+          "put_call_parity_gap": -2.9103830456733704e-11,
+          "put_delta": -720775.9898924599,
+          "put_value_domestic": 287261.62349955377,
+          "put_vega": 1448640.157741838,
+          "shocked_spot_rate": 4.7405,
+          "spot_shock_pct": -5.0,
+          "vol_shock_abs": -0.05,
+          "volatility": 0.0722407671372263
+        },
+        {
+          "call_delta": 346046.55141228565,
+          "call_value_domestic": 127760.9873148602,
+          "call_vega": 1704798.8564046442,
+          "put_call_parity_gap": -2.3283064365386963e-10,
+          "put_delta": -615223.4025783126,
+          "put_value_domestic": 367597.8408355141,
+          "put_vega": 1704798.8564046442,
+          "shocked_spot_rate": 4.7405,
+          "spot_shock_pct": -5.0,
+          "vol_shock_abs": 0.0,
+          "volatility": 0.1222407671372263
+        },
+        {
+          "call_delta": 400059.8966568173,
+          "call_value_domestic": 215137.69608560108,
+          "call_vega": 1777663.6742685554,
+          "put_call_parity_gap": -4.074536263942719e-10,
+          "put_delta": -561210.0573337809,
+          "put_value_domestic": 454974.5496062552,
+          "put_vega": 1777663.6742685554,
+          "shocked_spot_rate": 4.7405,
+          "spot_shock_pct": -5.0,
+          "vol_shock_abs": 0.05,
+          "volatility": 0.1722407671372263
+        },
+        {
+          "call_delta": 494483.8157745928,
+          "call_value_domestic": 138211.41101735624,
+          "call_vega": 1912373.2987496175,
+          "put_call_parity_gap": 4.505977813096251e-10,
+          "put_delta": -466786.1382160055,
+          "put_value_domestic": 138211.4110173549,
+          "put_vega": 1912373.2987496175,
+          "shocked_spot_rate": 4.99,
+          "spot_shock_pct": 0.0,
+          "vol_shock_abs": -0.05,
+          "volatility": 0.0722407671372263
+        },
+        {
+          "call_delta": 504059.5224922796,
+          "call_value_domestic": 233776.9640598668,
+          "call_vega": 1910050.2028255383,
+          "put_call_parity_gap": 4.505977813096251e-10,
+          "put_delta": -457210.43149831856,
+          "put_value_domestic": 233776.96405986548,
+          "put_vega": 1910050.2028255383,
+          "shocked_spot_rate": 4.99,
+          "spot_shock_pct": 0.0,
+          "vol_shock_abs": 0.0,
+          "volatility": 0.1222407671372263
+        },
+        {
+          "call_delta": 513620.6093722222,
+          "call_value_domestic": 329196.61112169287,
+          "call_vega": 1906537.970251688,
+          "put_call_parity_gap": 4.314415491535328e-11,
+          "put_delta": -447649.344618376,
+          "put_value_domestic": 329196.61112169194,
+          "put_vega": 1906537.970251688,
+          "shocked_spot_rate": 4.99,
+          "spot_shock_pct": 0.0,
+          "vol_shock_abs": 0.05,
+          "volatility": 0.1722407671372263
+        },
+        {
+          "call_delta": 732116.3940892004,
+          "call_value_domestic": 292699.6086968141,
+          "call_vega": 1559974.1079152962,
+          "put_call_parity_gap": 2.3283064365386963e-10,
+          "put_delta": -229153.55990139785,
+          "put_value_domestic": 52862.75517615846,
+          "put_vega": 1559974.1079152962,
+          "shocked_spot_rate": 5.2395000000000005,
+          "spot_shock_pct": 5.0,
+          "vol_shock_abs": -0.05,
+          "volatility": 0.0722407671372263
+        },
+        {
+          "call_delta": 651099.2386827687,
+          "call_value_domestic": 378348.8843760758,
+          "call_vega": 1807367.8392224952,
+          "put_call_parity_gap": -4.656612873077393e-10,
+          "put_delta": -310170.71530782955,
+          "put_value_domestic": 138512.03085542086,
+          "put_vega": 1807367.8392224952,
+          "shocked_spot_rate": 5.2395000000000005,
+          "spot_shock_pct": 5.0,
+          "vol_shock_abs": 0.0,
+          "volatility": 0.1222407671372263
+        },
+        {
+          "call_delta": 619135.312995483,
+          "call_value_domestic": 470756.2226389932,
+          "call_vega": 1876792.00309136,
+          "put_call_parity_gap": -2.9103830456733704e-11,
+          "put_delta": -342134.6409951151,
+          "put_value_domestic": 230919.36911833775,
+          "put_vega": 1876792.00309136,
+          "shocked_spot_rate": 5.2395000000000005,
+          "spot_shock_pct": 5.0,
+          "vol_shock_abs": 0.05,
+          "volatility": 0.1722407671372263
+        },
+        {
+          "call_delta": 877028.7158884988,
+          "call_value_domestic": 495544.025140692,
+          "call_vega": 840019.8687667864,
+          "put_call_parity_gap": 1.164153218269348e-09,
+          "put_delta": -84241.23810209936,
+          "put_value_domestic": 15870.318099380833,
+          "put_vega": 840019.8687667864,
+          "shocked_spot_rate": 5.489000000000001,
+          "spot_shock_pct": 10.0,
+          "vol_shock_abs": -0.05,
+          "volatility": 0.0722407671372263
+        },
+        {
+          "call_delta": 768798.2818202213,
+          "call_value_domestic": 556197.3813075353,
+          "call_vega": 1478199.224687616,
+          "put_call_parity_gap": -2.9103830456733704e-10,
+          "put_delta": -192471.67217037687,
+          "put_value_domestic": 76523.67426622564,
+          "put_vega": 1478199.224687616,
+          "shocked_spot_rate": 5.489000000000001,
+          "spot_shock_pct": 10.0,
+          "vol_shock_abs": 0.0,
+          "volatility": 0.1222407671372263
+        },
+        {
+          "call_delta": 710131.3834939845,
+          "call_value_domestic": 636927.3802726339,
+          "call_vega": 1715738.4675669256,
+          "put_call_parity_gap": 4.074536263942719e-10,
+          "put_delta": -251138.5704966137,
+          "put_value_domestic": 157253.67323132345,
+          "put_vega": 1715738.4675669256,
+          "shocked_spot_rate": 5.489000000000001,
+          "spot_shock_pct": 10.0,
+          "vol_shock_abs": 0.05,
+          "volatility": 0.1722407671372263
+        }
+      ],
+      "sha256": "1484881da5a5d92d0c0351455150d4789ea43ecf42f0be07468d272f53781008"
+    },
+    {
+      "content_type": "csv_records",
       "path": "data/official/processed/fx_option_put_call_parity_table.csv",
       "records": [
         {
@@ -76,7 +292,146 @@
         }
       ],
       "sha256": "0d244e1832e3dfb55d1689c17fe4c007af8ffb1b1474a1ce0efe39a370ca53d1"
+    },
+    {
+      "content": "from __future__ import annotations\n\nfrom dataclasses import dataclass\nimport math\n\nimport pandas as pd\n\n\n@dataclass(frozen=True)\nclass FXOptionValuation:\n    option_type: str\n    spot_rate: float\n    strike_rate: float\n    domestic_rate: float\n    foreign_rate: float\n    volatility: float\n    maturity_years: float\n    notional_foreign: float\n    premium_domestic: float\n    unit_premium_domestic: float\n    delta: float\n    gamma: float\n    vega: float\n    rho_domestic: float\n    rho_foreign: float\n    intrinsic_value: float\n    time_value: float\n    d1: float\n    d2: float\n\n\ndef validate_positive(value: float, name: str) -> None:\n    if float(value) <= 0.0:\n        raise ValueError(f\"{name} must be positive.\")\n\n\ndef validate_option_type(option_type: str) -> str:\n    option = option_type.lower().strip()\n    if option not in {\"call\", \"put\"}:\n        raise ValueError(\"option_type must be 'call' or 'put'.\")\n    return option\n\n\ndef normal_cdf(value: float) -> float:\n    return 0.5 * (1.0 + math.erf(float(value) / math.sqrt(2.0)))\n\n\ndef normal_pdf(value: float) -> float:\n    return math.exp(-0.5 * float(value) ** 2) / math.sqrt(2.0 * math.pi)\n\n\ndef discounted_spot(spot_rate: float, foreign_rate: float, maturity_years: float) -> float:\n    return float(spot_rate) * math.exp(-float(foreign_rate) * float(maturity_years))\n\n\ndef discounted_strike(strike_rate: float, domestic_rate: float, maturity_years: float) -> float:\n    return float(strike_rate) * math.exp(-float(domestic_rate) * float(maturity_years))\n\n\ndef forward_rate(spot_rate: float, domestic_rate: float, foreign_rate: float, maturity_years: float) -> float:\n    validate_positive(spot_rate, \"spot_rate\")\n    validate_positive(maturity_years, \"maturity_years\")\n    return float(spot_rate) * math.exp((float(domestic_rate) - float(foreign_rate)) * float(maturity_years))\n\n\ndef d1_d2(\n    spot_rate: float,\n    strike_rate: float,\n    domestic_rate: float,\n    foreign_rate: float,\n    volatility: float,\n    maturity_years: float,\n) -> tuple[float, float]:\n    validate_positive(spot_rate, \"spot_rate\")\n    validate_positive(strike_rate, \"strike_rate\")\n    validate_positive(volatility, \"volatility\")\n    validate_positive(maturity_years, \"maturity_years\")\n\n    sigma_sqrt_t = float(volatility) * math.sqrt(float(maturity_years))\n    d1 = (\n        math.log(float(spot_rate) / float(strike_rate))\n        + (float(domestic_rate) - float(foreign_rate) + 0.5 * float(volatility) ** 2) * float(maturity_years)\n    ) / sigma_sqrt_t\n    d2 = d1 - sigma_sqrt_t\n    return d1, d2\n\n\ndef garman_kohlhagen_price(\n    option_type: str,\n    spot_rate: float,\n    strike_rate: float,\n    domestic_rate: float,\n    foreign_rate: float,\n    volatility: float,\n    maturity_years: float,\n    notional_foreign: float,\n) -> FXOptionValuation:\n    option = validate_option_type(option_type)\n    validate_positive(notional_foreign, \"notional_foreign\")\n\n    d1, d2 = d1_d2(\n        spot_rate=spot_rate,\n        strike_rate=strike_rate,\n        domestic_rate=domestic_rate,\n        foreign_rate=foreign_rate,\n        volatility=volatility,\n        maturity_years=maturity_years,\n    )\n\n    s_disc = discounted_spot(spot_rate, foreign_rate, maturity_years)\n    k_disc = discounted_strike(strike_rate, domestic_rate, maturity_years)\n\n    if option == \"call\":\n        unit_price = s_disc * normal_cdf(d1) - k_disc * normal_cdf(d2)\n        unit_delta = math.exp(-foreign_rate * maturity_years) * normal_cdf(d1)\n        intrinsic = max(float(spot_rate) - float(strike_rate), 0.0)\n        rho_domestic = float(strike_rate) * float(maturity_years) * math.exp(-domestic_rate * maturity_years) * normal_cdf(d2)\n        rho_foreign = -float(spot_rate) * float(maturity_years) * math.exp(-foreign_rate * maturity_years) * normal_cdf(d1)\n    else:\n        unit_price = k_disc * normal_cdf(-d2) - s_disc * normal_cdf(-d1)\n        unit_delta = math.exp(-foreign_rate * maturity_years) * (normal_cdf(d1) - 1.0)\n        intrinsic = max(float(strike_rate) - float(spot_rate), 0.0)\n        rho_domestic = -float(strike_rate) * float(maturity_years) * math.exp(-domestic_rate * maturity_years) * normal_cdf(-d2)\n        rho_foreign = float(spot_rate) * float(maturity_years) * math.exp(-foreign_rate * maturity_years) * normal_cdf(-d1)\n\n    unit_gamma = math.exp(-foreign_rate * maturity_years) * normal_pdf(d1) / (\n        float(spot_rate) * float(volatility) * math.sqrt(float(maturity_years))\n    )\n    unit_vega = float(spot_rate) * math.exp(-foreign_rate * maturity_years) * normal_pdf(d1) * math.sqrt(float(maturity_years))\n\n    premium = unit_price * float(notional_foreign)\n    intrinsic_value = intrinsic * math.exp(-domestic_rate * maturity_years) * float(notional_foreign)\n    time_value = premium - intrinsic_value\n\n    return FXOptionValuation(\n        option_type=option,\n        spot_rate=float(spot_rate),\n        strike_rate=float(strike_rate),\n        domestic_rate=float(domestic_rate),\n        foreign_rate=float(foreign_rate),\n        volatility=float(volatility),\n        maturity_years=float(maturity_years),\n        notional_foreign=float(notional_foreign),\n        premium_domestic=premium,\n        unit_premium_domestic=unit_price,\n        delta=unit_delta * float(notional_foreign),\n        gamma=unit_gamma * float(notional_foreign),\n        vega=unit_vega * float(notional_foreign),\n        rho_domestic=rho_domestic * float(notional_foreign),\n        rho_foreign=rho_foreign * float(notional_foreign),\n        intrinsic_value=intrinsic_value,\n        time_value=time_value,\n        d1=d1,\n        d2=d2,\n    )\n\n\ndef put_call_parity_gap(\n    call_value: float,\n    put_value: float,\n    spot_rate: float,\n    strike_rate: float,\n    domestic_rate: float,\n    foreign_rate: float,\n    maturity_years: float,\n    notional_foreign: float,\n) -> float:\n    theoretical = float(notional_foreign) * (\n        discounted_spot(spot_rate, foreign_rate, maturity_years)\n        - discounted_strike(strike_rate, domestic_rate, maturity_years)\n    )\n    return float(call_value) - float(put_value) - theoretical\n\n\ndef spot_vol_surface(\n    spot_rate: float,\n    strike_rate: float,\n    domestic_rate: float,\n    foreign_rate: float,\n    base_volatility: float,\n    maturity_years: float,\n    notional_foreign: float,\n    spot_shocks: list[float] | None = None,\n    vol_shocks: list[float] | None = None,\n) -> pd.DataFrame:\n    if spot_shocks is None:\n        spot_shocks = [-10.0, -5.0, 0.0, 5.0, 10.0]\n    if vol_shocks is None:\n        vol_shocks = [-0.05, 0.0, 0.05]\n\n    rows = []\n    for spot_shock in spot_shocks:\n        shocked_spot = float(spot_rate) * (1.0 + float(spot_shock) / 100.0)\n\n        for vol_shock in vol_shocks:\n            shocked_vol = max(float(base_volatility) + float(vol_shock), 0.01)\n\n            call = garman_kohlhagen_price(\n                \"call\",\n                shocked_spot,\n                strike_rate,\n                domestic_rate,\n                foreign_rate,\n                shocked_vol,\n                maturity_years,\n                notional_foreign,\n            )\n            put = garman_kohlhagen_price(\n                \"put\",\n                shocked_spot,\n                strike_rate,\n                domestic_rate,\n                foreign_rate,\n                shocked_vol,\n                maturity_years,\n                notional_foreign,\n            )\n\n            rows.append(\n                {\n                    \"spot_shock_pct\": float(spot_shock),\n                    \"vol_shock_abs\": float(vol_shock),\n                    \"shocked_spot_rate\": shocked_spot,\n                    \"volatility\": shocked_vol,\n                    \"call_value_domestic\": call.premium_domestic,\n                    \"put_value_domestic\": put.premium_domestic,\n                    \"call_delta\": call.delta,\n                    \"put_delta\": put.delta,\n                    \"call_vega\": call.vega,\n                    \"put_vega\": put.vega,\n                    \"put_call_parity_gap\": put_call_parity_gap(\n                        call.premium_domestic,\n                        put.premium_domestic,\n                        shocked_spot,\n                        strike_rate,\n                        domestic_rate,\n                        foreign_rate,\n                        maturity_years,\n                        notional_foreign,\n                    ),\n                }\n            )\n\n    return pd.DataFrame(rows)\n",
+      "content_type": "python",
+      "path": "src/qmrl/fx_options.py",
+      "sha256": "e7489a159b9a288531ca3f48b633841cd25b07747a9dd82bf0b75ab246392c81"
+    },
+    {
+      "content": "from __future__ import annotations\n\nfrom pathlib import Path\nimport sys\nimport subprocess\nimport math\n\nROOT = Path(__file__).resolve().parents[1]\nSRC = ROOT / \"src\"\nif str(SRC) not in sys.path:\n    sys.path.insert(0, str(SRC))\n\nimport matplotlib.pyplot as plt\nfrom matplotlib.ticker import FuncFormatter\nimport pandas as pd\n\nfrom qmrl.fx_options import (\n    forward_rate,\n    garman_kohlhagen_price,\n    put_call_parity_gap,\n    spot_vol_surface,\n)\n\n\nFX_FORWARD_SUMMARY_PATH = ROOT / \"data\" / \"official\" / \"processed\" / \"fx_forward_validation_summary.csv\"\nOFFICIAL_PANEL_PATH = ROOT / \"data\" / \"official\" / \"processed\" / \"official_rates_fx_inflation_panel.csv\"\n\nSUMMARY_PATH = ROOT / \"data\" / \"official\" / \"processed\" / \"fx_option_validation_summary.csv\"\nSURFACE_PATH = ROOT / \"data\" / \"official\" / \"processed\" / \"fx_option_spot_vol_surface.csv\"\nPARITY_PATH = ROOT / \"data\" / \"official\" / \"processed\" / \"fx_option_put_call_parity_table.csv\"\nLIFECYCLE_PATH = ROOT / \"data\" / \"official\" / \"processed\" / \"fx_option_lifecycle_register.csv\"\nREPORT_PATH = ROOT / \"reports\" / \"fx_option_validation_report.md\"\nFIGURE_PATH = ROOT / \"reports\" / \"figures\" / \"fx_option_validation_map.png\"\n\n\ndef money(value: float) -> str:\n    return f\"{float(value):,.0f}\"\n\n\ndef pct(value: float) -> str:\n    return f\"{100.0 * float(value):.4f}%\"\n\n\ndef number(value: float) -> str:\n    return f\"{float(value):,.6f}\"\n\n\ndef realised_fx_volatility(panel: pd.DataFrame, spot_column: str) -> float:\n    if spot_column not in panel.columns:\n        numeric_candidates = []\n        for col in panel.columns:\n            name = col.lower()\n            if \"date\" in name or \"selic\" in name or \"ipca\" in name or \"rate\" in name:\n                continue\n            values = pd.to_numeric(panel[col], errors=\"coerce\").dropna()\n            if values.empty:\n                continue\n            median = float(values.median())\n            if 2.0 <= median <= 10.0:\n                numeric_candidates.append(col)\n        if not numeric_candidates:\n            return 0.15\n        spot_column = numeric_candidates[0]\n\n    work = panel.copy()\n    date_cols = [col for col in work.columns if \"date\" in col.lower()]\n    if date_cols:\n        work[date_cols[0]] = pd.to_datetime(work[date_cols[0]], errors=\"coerce\")\n        work = work.sort_values(date_cols[0])\n\n    spot = pd.to_numeric(work[spot_column], errors=\"coerce\").dropna()\n    returns = (spot / spot.shift(1)).apply(lambda value: math.log(value) if value and value > 0 else None).dropna()\n\n    if len(returns) < 20:\n        return 0.15\n\n    sample = returns.tail(min(len(returns), 252))\n    vol = float(sample.std(ddof=1)) * math.sqrt(252.0)\n\n    if not math.isfinite(vol) or vol <= 0:\n        return 0.15\n\n    return max(min(vol, 0.60), 0.05)\n\n\ndef ensure_fx_forward_outputs() -> None:\n    if FX_FORWARD_SUMMARY_PATH.exists():\n        return\n    subprocess.run([sys.executable, \"scripts/run_fx_derivatives_validation.py\"], check=True)\n\n\ndef run_fx_option_validation() -> None:\n    ensure_fx_forward_outputs()\n\n    fx_forward = pd.read_csv(FX_FORWARD_SUMMARY_PATH).iloc[0]\n    panel = pd.read_csv(OFFICIAL_PANEL_PATH)\n\n    spot = float(fx_forward[\"spot_rate_brl_per_usd\"])\n    domestic_rate = float(fx_forward[\"domestic_rate_brl\"])\n    foreign_rate = float(fx_forward[\"foreign_rate_usd\"])\n    maturity = float(fx_forward[\"maturity_years\"])\n    notional = float(fx_forward[\"notional_usd\"])\n    strike = float(fx_forward[\"model_forward_rate\"])\n\n    spot_column = str(fx_forward[\"spot_input_column\"])\n    volatility = realised_fx_volatility(panel, spot_column)\n\n    call = garman_kohlhagen_price(\n        \"call\",\n        spot_rate=spot,\n        strike_rate=strike,\n        domestic_rate=domestic_rate,\n        foreign_rate=foreign_rate,\n        volatility=volatility,\n        maturity_years=maturity,\n        notional_foreign=notional,\n    )\n    put = garman_kohlhagen_price(\n        \"put\",\n        spot_rate=spot,\n        strike_rate=strike,\n        domestic_rate=domestic_rate,\n        foreign_rate=foreign_rate,\n        volatility=volatility,\n        maturity_years=maturity,\n        notional_foreign=notional,\n    )\n\n    parity_gap = put_call_parity_gap(\n        call.premium_domestic,\n        put.premium_domestic,\n        spot,\n        strike,\n        domestic_rate,\n        foreign_rate,\n        maturity,\n        notional,\n    )\n\n    forward = forward_rate(spot, domestic_rate, foreign_rate, maturity)\n    surface = spot_vol_surface(\n        spot_rate=spot,\n        strike_rate=strike,\n        domestic_rate=domestic_rate,\n        foreign_rate=foreign_rate,\n        base_volatility=volatility,\n        maturity_years=maturity,\n        notional_foreign=notional,\n    )\n\n    parity_table = pd.DataFrame(\n        [\n            {\n                \"check\": \"put_call_parity\",\n                \"call_value_domestic\": call.premium_domestic,\n                \"put_value_domestic\": put.premium_domestic,\n                \"discounted_spot_leg\": notional * spot * math.exp(-foreign_rate * maturity),\n                \"discounted_strike_leg\": notional * strike * math.exp(-domestic_rate * maturity),\n                \"parity_gap\": parity_gap,\n                \"status\": \"PASS\" if abs(parity_gap) <= 1e-6 * max(abs(call.premium_domestic), 1.0) else \"REVIEW\",\n            }\n        ]\n    )\n\n    summary = pd.DataFrame(\n        [\n            {\n                \"model_id\": \"QMRL-FX-OPT-001\",\n                \"source_model\": \"QMRL-FX-FWD-001\",\n                \"product\": \"USD/BRL European FX option\",\n                \"pricing_model\": \"Garman-Kohlhagen lognormal FX option model\",\n                \"spot_rate_brl_per_usd\": spot,\n                \"strike_rate\": strike,\n                \"model_forward_rate\": forward,\n                \"domestic_rate_brl\": domestic_rate,\n                \"foreign_rate_usd\": foreign_rate,\n                \"realised_volatility_input\": volatility,\n                \"maturity_years\": maturity,\n                \"notional_usd\": notional,\n                \"call_value_brl\": call.premium_domestic,\n                \"put_value_brl\": put.premium_domestic,\n                \"call_delta\": call.delta,\n                \"put_delta\": put.delta,\n                \"call_gamma\": call.gamma,\n                \"put_gamma\": put.gamma,\n                \"call_vega\": call.vega,\n                \"put_vega\": put.vega,\n                \"put_call_parity_gap\": parity_gap,\n                \"model_use_decision\": \"Vanilla European FX option pricing, Greeks and parity checks available for model validation review.\",\n                \"next_validation_gate\": \"volatility smile, SABR calibration, barrier/path-dependent options and cross-currency basis\",\n            }\n        ]\n    )\n\n    lifecycle = pd.DataFrame(\n        [\n            {\n                \"model_id\": \"QMRL-FX-OPT-001\",\n                \"product\": \"USD/BRL European FX option\",\n                \"stage\": \"Vanilla FX option validation\",\n                \"validation_status\": \"Garman-Kohlhagen price, Greeks, put-call parity, spot and volatility shocks available\",\n                \"monitoring_trigger\": \"spot move, realised volatility change, rate change, parity gap, delta/vega sign change\",\n                \"archer_mrm_action\": \"Create FX option model record linked to FX forward model and attach validation outputs\",\n                \"next_gate\": \"SABR smile and path-dependent FX option validation\",\n            }\n        ]\n    )\n\n    write_report(summary.iloc[0], parity_table.iloc[0], surface, lifecycle.iloc[0])\n    write_figure(surface, summary.iloc[0])\n\n    SUMMARY_PATH.parent.mkdir(parents=True, exist_ok=True)\n    REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)\n    FIGURE_PATH.parent.mkdir(parents=True, exist_ok=True)\n\n    summary.to_csv(SUMMARY_PATH, index=False)\n    surface.to_csv(SURFACE_PATH, index=False)\n    parity_table.to_csv(PARITY_PATH, index=False)\n    lifecycle.to_csv(LIFECYCLE_PATH, index=False)\n\n    print(\"FX options validation complete.\")\n    print(f\"Generated summary: {SUMMARY_PATH.relative_to(ROOT)}\")\n    print(f\"Generated spot-vol surface: {SURFACE_PATH.relative_to(ROOT)}\")\n    print(f\"Generated put-call parity table: {PARITY_PATH.relative_to(ROOT)}\")\n    print(f\"Generated lifecycle register: {LIFECYCLE_PATH.relative_to(ROOT)}\")\n    print(f\"Generated report: {REPORT_PATH.relative_to(ROOT)}\")\n    print(f\"Generated figure: {FIGURE_PATH.relative_to(ROOT)}\")\n\n\ndef write_report(summary: pd.Series, parity: pd.Series, surface: pd.DataFrame, lifecycle: pd.Series) -> None:\n    report = f\"\"\"# FX Options Validation Report\n\n## Purpose\n\nThis layer adds vanilla FX option validation on top of the USD/BRL FX forward layer.\n\nThe pricing engine uses the Garman-Kohlhagen lognormal FX option model. The validation evidence covers call and put values, Greeks, put-call parity, spot shocks, volatility shocks and model lifecycle controls.\n\n## Acronyms\n\n| Acronym | Meaning | Use in this layer |\n|---|---|---|\n| FX | Foreign Exchange | USD/BRL option exposure |\n| GK | Garman-Kohlhagen | Lognormal FX option pricing model |\n| PV | Present Value | Discounted option premium |\n| Delta | Spot sensitivity | First-order FX risk |\n| Gamma | Delta convexity | Second-order spot risk |\n| Vega | Volatility sensitivity | Volatility-risk control |\n| SABR | Stochastic Alpha Beta Rho | Next smile-calibration gate |\n| MRM | Model Risk Management | Lifecycle governance record |\n\n## Base valuation\n\n| Metric | Value |\n|---|---:|\n| Spot USD/BRL | {number(summary[\"spot_rate_brl_per_usd\"])} |\n| Strike | {number(summary[\"strike_rate\"])} |\n| Model forward | {number(summary[\"model_forward_rate\"])} |\n| BRL domestic rate | {pct(summary[\"domestic_rate_brl\"])} |\n| USD foreign rate | {pct(summary[\"foreign_rate_usd\"])} |\n| Realised volatility input | {pct(summary[\"realised_volatility_input\"])} |\n| Call value, BRL | {money(summary[\"call_value_brl\"])} |\n| Put value, BRL | {money(summary[\"put_value_brl\"])} |\n| Call delta | {money(summary[\"call_delta\"])} |\n| Put delta | {money(summary[\"put_delta\"])} |\n| Call gamma | {money(summary[\"call_gamma\"])} |\n| Call vega | {money(summary[\"call_vega\"])} |\n| Put-call parity gap | {number(summary[\"put_call_parity_gap\"])} |\n\n## Put-call parity control\n\n| Check | Status | Gap |\n|---|---|---:|\n| Put-call parity | {parity[\"status\"]} | {number(parity[\"parity_gap\"])} |\n\n## Model-use decision\n\nThe layer is valid for vanilla European USD/BRL FX option pricing, Greeks, put-call parity and first-order scenario review.\n\nIt is not a smile-calibrated volatility-surface model, SABR model, barrier-option model or path-dependent option engine. Those remain the next validation gates.\n\n## Archer / MRM action\n\n| Field | Record |\n|---|---|\n| Model ID | {lifecycle[\"model_id\"]} |\n| Product | {lifecycle[\"product\"]} |\n| Stage | {lifecycle[\"stage\"]} |\n| Validation status | {lifecycle[\"validation_status\"]} |\n| Monitoring trigger | {lifecycle[\"monitoring_trigger\"]} |\n| Next gate | {lifecycle[\"next_gate\"]} |\n\n## Spot and volatility shock surface\n\n{surface.to_markdown(index=False)}\n\"\"\"\n    REPORT_PATH.write_text(report, encoding=\"utf-8\")\n\n\ndef write_figure(surface: pd.DataFrame, summary: pd.Series) -> None:\n    plt.close(\"all\")\n    fig, axes = plt.subplots(1, 3, figsize=(17.0, 5.8))\n    fig.patch.set_facecolor(\"#f6f8fb\")\n\n    for ax in axes:\n        ax.set_facecolor(\"white\")\n        ax.grid(True, color=\"#d7dde7\", linewidth=0.8, alpha=0.75)\n        for spine in ax.spines.values():\n            spine.set_color(\"#9ca3af\")\n\n    base = surface[surface[\"vol_shock_abs\"].abs() < 1e-12].copy()\n    base = base.sort_values(\"spot_shock_pct\")\n\n    axes[0].plot(base[\"spot_shock_pct\"], base[\"call_value_domestic\"], marker=\"o\", linewidth=2.2, label=\"Call\")\n    axes[0].plot(base[\"spot_shock_pct\"], base[\"put_value_domestic\"], marker=\"o\", linewidth=2.2, label=\"Put\")\n    axes[0].set_title(\"Option Value Across Spot Shocks\", loc=\"left\", fontweight=\"bold\")\n    axes[0].set_xlabel(\"Spot shock, %\")\n    axes[0].set_ylabel(\"Option value, BRL\")\n    axes[0].yaxis.set_major_formatter(FuncFormatter(lambda value, _pos: f\"{int(value):,}\"))\n    axes[0].legend(frameon=True, fontsize=8)\n\n    vol_surface = surface[surface[\"spot_shock_pct\"].abs() < 1e-12].copy()\n    vol_surface = vol_surface.sort_values(\"vol_shock_abs\")\n    axes[1].bar(vol_surface[\"vol_shock_abs\"] * 100.0, vol_surface[\"call_value_domestic\"], width=3.2, alpha=0.88)\n    axes[1].set_title(\"Call Value Across Volatility Shocks\", loc=\"left\", fontweight=\"bold\")\n    axes[1].set_xlabel(\"Volatility shock, percentage points\")\n    axes[1].set_ylabel(\"Call value, BRL\")\n    axes[1].yaxis.set_major_formatter(FuncFormatter(lambda value, _pos: f\"{int(value):,}\"))\n\n    axes[2].plot(base[\"spot_shock_pct\"], base[\"call_delta\"], marker=\"o\", linewidth=2.2, label=\"Call delta\")\n    axes[2].plot(base[\"spot_shock_pct\"], base[\"put_delta\"], marker=\"o\", linewidth=2.2, label=\"Put delta\")\n    axes[2].axhline(0, linewidth=1.0)\n    axes[2].set_title(\"Delta Across Spot Shocks\", loc=\"left\", fontweight=\"bold\")\n    axes[2].set_xlabel(\"Spot shock, %\")\n    axes[2].set_ylabel(\"Delta\")\n    axes[2].yaxis.set_major_formatter(FuncFormatter(lambda value, _pos: f\"{int(value):,}\"))\n    axes[2].legend(frameon=True, fontsize=8)\n\n    fig.suptitle(\"FX Options Validation Layer: Garman-Kohlhagen, Greeks, Parity and Shock Controls\", fontsize=15.5, fontweight=\"bold\", x=0.03, ha=\"left\")\n    fig.text(\n        0.03,\n        0.02,\n        \"Model-use decision: vanilla European FX option validation. Next gate: SABR smile, barrier options and path-dependent FX options.\",\n        fontsize=9.3,\n        color=\"#111827\",\n    )\n\n    fig.tight_layout(rect=[0.02, 0.06, 0.98, 0.88])\n    FIGURE_PATH.parent.mkdir(parents=True, exist_ok=True)\n    fig.savefig(FIGURE_PATH, dpi=220, bbox_inches=\"tight\", facecolor=fig.get_facecolor())\n    plt.close(fig)\n\n\nif __name__ == \"__main__\":\n    run_fx_option_validation()\n",
+      "content_type": "python",
+      "path": "scripts/run_fx_options_validation.py",
+      "sha256": "dfbe6a285058a467f8d76fcaff8353eab8e0155df8ad0a7cb810529d37b420ac"
+    },
+    {
+      "content": "from __future__ import annotations\n\nfrom qmrl.fx_options import (\n    forward_rate,\n    garman_kohlhagen_price,\n    put_call_parity_gap,\n    spot_vol_surface,\n)\n\n\ndef test_garman_kohlhagen_call_and_put_are_positive():\n    call = garman_kohlhagen_price(\"call\", 5.0, 5.1, 0.10, 0.04, 0.15, 1.0, 1_000_000)\n    put = garman_kohlhagen_price(\"put\", 5.0, 5.1, 0.10, 0.04, 0.15, 1.0, 1_000_000)\n\n    assert call.premium_domestic > 0\n    assert put.premium_domestic > 0\n    assert call.vega > 0\n    assert put.vega > 0\n\n\ndef test_fx_option_put_call_parity_gap_is_near_zero():\n    spot = 5.0\n    strike = 5.1\n    rd = 0.10\n    rf = 0.04\n    vol = 0.15\n    maturity = 1.0\n    notional = 1_000_000\n\n    call = garman_kohlhagen_price(\"call\", spot, strike, rd, rf, vol, maturity, notional)\n    put = garman_kohlhagen_price(\"put\", spot, strike, rd, rf, vol, maturity, notional)\n\n    gap = put_call_parity_gap(call.premium_domestic, put.premium_domestic, spot, strike, rd, rf, maturity, notional)\n    assert abs(gap) < 1e-6\n\n\ndef test_fx_option_forward_rate_increases_with_domestic_rate():\n    assert forward_rate(5.0, 0.12, 0.04, 1.0) > forward_rate(5.0, 0.08, 0.04, 1.0)\n\n\ndef test_spot_vol_surface_has_expected_grid():\n    surface = spot_vol_surface(5.0, 5.1, 0.10, 0.04, 0.15, 1.0, 1_000_000)\n\n    assert {-10.0, -5.0, 0.0, 5.0, 10.0}.issubset(set(surface[\"spot_shock_pct\"]))\n    assert {-0.05, 0.0, 0.05}.issubset(set(surface[\"vol_shock_abs\"]))\n    assert \"put_call_parity_gap\" in surface.columns\n",
+      "content_type": "python",
+      "path": "tests/test_fx_options.py",
+      "sha256": "e8c984e84fa7e5c842c8ff4a08d5e8a5488b4fbb50852115e3d8a61bbdfbf899"
+    },
+    {
+      "content": "from __future__ import annotations\n\nimport subprocess\nimport sys\nfrom pathlib import Path\n\nimport pandas as pd\n\n\ndef run_fx_options_script() -> None:\n    subprocess.run([sys.executable, \"scripts/run_fx_options_validation.py\"], check=True)\n\n\ndef test_fx_options_script_generates_outputs():\n    run_fx_options_script()\n\n    assert Path(\"data/official/processed/fx_option_validation_summary.csv\").exists()\n    assert Path(\"data/official/processed/fx_option_spot_vol_surface.csv\").exists()\n    assert Path(\"data/official/processed/fx_option_put_call_parity_table.csv\").exists()\n    assert Path(\"data/official/processed/fx_option_lifecycle_register.csv\").exists()\n    assert Path(\"reports/fx_option_validation_report.md\").exists()\n    assert Path(\"reports/figures/fx_option_validation_map.png\").exists()\n\n\ndef test_fx_options_summary_has_required_columns():\n    run_fx_options_script()\n\n    summary = pd.read_csv(\"data/official/processed/fx_option_validation_summary.csv\")\n    required = {\n        \"model_id\",\n        \"pricing_model\",\n        \"spot_rate_brl_per_usd\",\n        \"strike_rate\",\n        \"realised_volatility_input\",\n        \"call_value_brl\",\n        \"put_value_brl\",\n        \"call_delta\",\n        \"put_delta\",\n        \"call_vega\",\n        \"put_call_parity_gap\",\n        \"model_use_decision\",\n        \"next_validation_gate\",\n    }\n\n    assert required.issubset(summary.columns)\n    assert summary.iloc[0][\"call_value_brl\"] > 0\n    assert summary.iloc[0][\"put_value_brl\"] > 0\n    assert summary.iloc[0][\"realised_volatility_input\"] > 0\n\n\ndef test_fx_options_surface_preserves_spot_and_vol_grid():\n    run_fx_options_script()\n\n    surface = pd.read_csv(\"data/official/processed/fx_option_spot_vol_surface.csv\")\n    assert {-10.0, -5.0, 0.0, 5.0, 10.0}.issubset(set(surface[\"spot_shock_pct\"].astype(float)))\n    assert {-0.05, 0.0, 0.05}.issubset(set(surface[\"vol_shock_abs\"].astype(float)))\n    assert {\"call_value_domestic\", \"put_value_domestic\", \"call_delta\", \"put_delta\"}.issubset(surface.columns)\n\n\ndef test_fx_options_report_contains_sabr_and_path_dependent_next_gate():\n    run_fx_options_script()\n\n    report = Path(\"reports/fx_option_validation_report.md\").read_text(encoding=\"utf-8\")\n    assert \"Garman-Kohlhagen\" in report\n    assert \"put-call parity\" in report\n    assert \"SABR\" in report\n    assert \"path-dependent\" in report\n    assert \"Archer / MRM action\" in report\n",
+      "content_type": "python",
+      "path": "tests/test_fx_options_outputs.py",
+      "sha256": "7eb5e5cd7ddd4e7720e8cbb187b196e918893a8ce4af4f54ed3d1a42f767980e"
+    },
+    {
+      "content": "from __future__ import annotations\n\nfrom dataclasses import dataclass\nimport math\n\nimport pandas as pd\n\n\n@dataclass(frozen=True)\nclass FXForwardValuation:\n    spot_rate: float\n    domestic_rate: float\n    foreign_rate: float\n    maturity_years: float\n    model_forward_rate: float\n    contract_forward_rate: float\n    notional_foreign: float\n    domestic_discount_factor: float\n    long_foreign_forward_value: float\n    short_foreign_forward_value: float\n    fx_delta: float\n    carry_basis: float\n\n\ndef validate_positive_number(value: float, name: str) -> None:\n    if float(value) <= 0.0:\n        raise ValueError(f\"{name} must be positive.\")\n\n\ndef normalise_rate(value: float) -> float:\n    value = float(value)\n    if abs(value) > 1.0:\n        return value / 100.0\n    return value\n\n\ndef domestic_discount_factor(domestic_rate: float, maturity_years: float) -> float:\n    validate_positive_number(maturity_years, \"maturity_years\")\n    return math.exp(-float(domestic_rate) * float(maturity_years))\n\n\ndef fx_forward_rate(\n    spot_rate: float,\n    domestic_rate: float,\n    foreign_rate: float,\n    maturity_years: float,\n) -> float:\n    validate_positive_number(spot_rate, \"spot_rate\")\n    validate_positive_number(maturity_years, \"maturity_years\")\n    return float(spot_rate) * math.exp((float(domestic_rate) - float(foreign_rate)) * float(maturity_years))\n\n\ndef price_fx_forward(\n    spot_rate: float,\n    domestic_rate: float,\n    foreign_rate: float,\n    maturity_years: float,\n    contract_forward_rate: float,\n    notional_foreign: float,\n) -> FXForwardValuation:\n    validate_positive_number(spot_rate, \"spot_rate\")\n    validate_positive_number(maturity_years, \"maturity_years\")\n    validate_positive_number(notional_foreign, \"notional_foreign\")\n    validate_positive_number(contract_forward_rate, \"contract_forward_rate\")\n\n    model_forward = fx_forward_rate(\n        spot_rate=spot_rate,\n        domestic_rate=domestic_rate,\n        foreign_rate=foreign_rate,\n        maturity_years=maturity_years,\n    )\n    discount = domestic_discount_factor(domestic_rate, maturity_years)\n\n    long_value = float(notional_foreign) * (model_forward - float(contract_forward_rate)) * discount\n    short_value = -long_value\n\n    fx_delta = float(notional_foreign) * math.exp((float(domestic_rate) - float(foreign_rate)) * float(maturity_years)) * discount\n    carry_basis = model_forward - float(spot_rate)\n\n    return FXForwardValuation(\n        spot_rate=float(spot_rate),\n        domestic_rate=float(domestic_rate),\n        foreign_rate=float(foreign_rate),\n        maturity_years=float(maturity_years),\n        model_forward_rate=model_forward,\n        contract_forward_rate=float(contract_forward_rate),\n        notional_foreign=float(notional_foreign),\n        domestic_discount_factor=discount,\n        long_foreign_forward_value=long_value,\n        short_foreign_forward_value=short_value,\n        fx_delta=fx_delta,\n        carry_basis=carry_basis,\n    )\n\n\ndef spot_shock_table(\n    spot_rate: float,\n    domestic_rate: float,\n    foreign_rate: float,\n    maturity_years: float,\n    contract_forward_rate: float,\n    notional_foreign: float,\n    shock_percents: list[float] | None = None,\n) -> pd.DataFrame:\n    if shock_percents is None:\n        shock_percents = [-10.0, -5.0, 0.0, 5.0, 10.0]\n\n    base = price_fx_forward(\n        spot_rate=spot_rate,\n        domestic_rate=domestic_rate,\n        foreign_rate=foreign_rate,\n        maturity_years=maturity_years,\n        contract_forward_rate=contract_forward_rate,\n        notional_foreign=notional_foreign,\n    )\n\n    rows = []\n    for shock_pct in shock_percents:\n        shocked_spot = float(spot_rate) * (1.0 + float(shock_pct) / 100.0)\n        valuation = price_fx_forward(\n            spot_rate=shocked_spot,\n            domestic_rate=domestic_rate,\n            foreign_rate=foreign_rate,\n            maturity_years=maturity_years,\n            contract_forward_rate=contract_forward_rate,\n            notional_foreign=notional_foreign,\n        )\n        rows.append(\n            {\n                \"spot_shock_pct\": float(shock_pct),\n                \"shocked_spot_rate\": shocked_spot,\n                \"model_forward_rate\": valuation.model_forward_rate,\n                \"long_foreign_forward_value\": valuation.long_foreign_forward_value,\n                \"short_foreign_forward_value\": valuation.short_foreign_forward_value,\n                \"long_foreign_forward_pnl\": valuation.long_foreign_forward_value - base.long_foreign_forward_value,\n                \"fx_delta\": valuation.fx_delta,\n            }\n        )\n\n    return pd.DataFrame(rows)\n",
+      "content_type": "python",
+      "path": "src/qmrl/fx_derivatives.py",
+      "sha256": "6863cf5b9f5eb4e27601b846f611dcfdb2196f4c0ed26d4b36434c8a4e06892c"
+    },
+    {
+      "content": "from __future__ import annotations\n\nfrom pathlib import Path\nimport sys\n\nROOT = Path(__file__).resolve().parents[1]\nSRC = ROOT / \"src\"\nif str(SRC) not in sys.path:\n    sys.path.insert(0, str(SRC))\n\nimport matplotlib.pyplot as plt\nfrom matplotlib.ticker import FuncFormatter\nimport pandas as pd\n\nfrom qmrl.fx_derivatives import (\n    normalise_rate,\n    price_fx_forward,\n    spot_shock_table,\n)\n\n\nPANEL_PATH = ROOT / \"data\" / \"official\" / \"processed\" / \"official_rates_fx_inflation_panel.csv\"\nUSD_CURVE_PATH = ROOT / \"data\" / \"official\" / \"processed\" / \"usd_treasury_curve_nodes.csv\"\nUSD_FRED_PATH = ROOT / \"data\" / \"official\" / \"raw\" / \"fred_us_rates_inflation.csv\"\n\nSUMMARY_PATH = ROOT / \"data\" / \"official\" / \"processed\" / \"fx_forward_validation_summary.csv\"\nSHOCK_PATH = ROOT / \"data\" / \"official\" / \"processed\" / \"fx_forward_shock_table.csv\"\nLIFECYCLE_PATH = ROOT / \"data\" / \"official\" / \"processed\" / \"fx_model_lifecycle_register.csv\"\nREPORT_PATH = ROOT / \"reports\" / \"fx_forward_validation_report.md\"\nFIGURE_PATH = ROOT / \"reports\" / \"figures\" / \"fx_forward_validation_map.png\"\n\n\ndef money(value: float) -> str:\n    return f\"{float(value):,.0f}\"\n\n\ndef pct(value: float) -> str:\n    return f\"{100.0 * float(value):.4f}%\"\n\n\ndef number(value: float) -> str:\n    return f\"{float(value):,.6f}\"\n\n\ndef to_numeric_series(frame: pd.DataFrame, column: str) -> pd.Series:\n    return pd.to_numeric(frame[column], errors=\"coerce\")\n\n\ndef latest_numeric_value(frame: pd.DataFrame, column: str) -> float:\n    work = frame.copy()\n    date_columns = [col for col in work.columns if \"date\" in col.lower()]\n    if date_columns:\n        work[date_columns[0]] = pd.to_datetime(work[date_columns[0]], errors=\"coerce\")\n        work = work.sort_values(date_columns[0])\n\n    values = pd.to_numeric(work[column], errors=\"coerce\").dropna()\n    if values.empty:\n        raise ValueError(f\"No numeric values found in column {column}.\")\n    return float(values.iloc[-1])\n\n\ndef find_fx_spot_column(frame: pd.DataFrame) -> str:\n    \"\"\"Locate the USD/BRL spot column without assuming one exact name.\n\n    The official panel has changed names across pipeline versions. This detector\n    first uses semantic column names, then falls back to a numerical profile:\n    USD/BRL spot is usually a positive series around 3 to 8 in the Brazil sample,\n    while SELIC/IPCA/rates are excluded by name.\n    \"\"\"\n\n    columns = list(frame.columns)\n    lower = {col: col.lower().replace(\" \", \"_\").replace(\"-\", \"_\").replace(\"/\", \"_\") for col in columns}\n\n    strong_terms = [\n        \"usd_brl\",\n        \"usdbrl\",\n        \"brl_usd\",\n        \"usdb_rl\",\n        \"dollar_brl\",\n        \"dolar_brl\",\n        \"dolar\",\n        \"dollar\",\n        \"cambio\",\n        \"exchange\",\n        \"fx\",\n        \"ptax\",\n        \"venda\",\n        \"sell\",\n    ]\n\n    exclusions = [\n        \"selic\",\n        \"ipca\",\n        \"inflation\",\n        \"cpi\",\n        \"rate\",\n        \"interest\",\n        \"yield\",\n        \"treasury\",\n        \"real_rate\",\n    ]\n\n    semantic_candidates = []\n    for col in columns:\n        name = lower[col]\n        if any(term in name for term in strong_terms) and not any(term in name for term in exclusions):\n            values = pd.to_numeric(frame[col], errors=\"coerce\").dropna()\n            if not values.empty and values.median() > 1.0:\n                semantic_candidates.append(col)\n\n    if semantic_candidates:\n        return semantic_candidates[0]\n\n    numeric_candidates = []\n    for col in columns:\n        name = lower[col]\n        if \"date\" in name or any(term in name for term in exclusions):\n            continue\n\n        values = pd.to_numeric(frame[col], errors=\"coerce\").dropna()\n        if values.empty:\n            continue\n\n        median = float(values.median())\n        min_value = float(values.min())\n        max_value = float(values.max())\n\n        if min_value > 0.0 and 2.0 <= median <= 10.0 and max_value <= 20.0:\n            numeric_candidates.append((col, median, values.notna().sum()))\n\n    if numeric_candidates:\n        numeric_candidates.sort(key=lambda item: (-item[2], abs(item[1] - 5.0)))\n        return numeric_candidates[0][0]\n\n    diagnostic = \", \".join(columns)\n    raise KeyError(f\"Could not locate USD/BRL or FX spot column in official panel. Available columns: {diagnostic}\")\n\n\ndef find_brl_rate_column(frame: pd.DataFrame) -> str:\n    \"\"\"Locate the BRL domestic rate column.\n\n    Prefer SELIC or policy-rate naming. If names are not explicit, use the\n    highest plausible positive rate-like numerical column after excluding FX,\n    inflation and date fields.\n    \"\"\"\n\n    columns = list(frame.columns)\n    lower = {col: col.lower().replace(\" \", \"_\").replace(\"-\", \"_\").replace(\"/\", \"_\") for col in columns}\n\n    preferred_terms = [\"selic\", \"policy\", \"brl_rate\", \"domestic_rate\", \"interest_rate\"]\n    for col in columns:\n        name = lower[col]\n        if any(term in name for term in preferred_terms):\n            values = pd.to_numeric(frame[col], errors=\"coerce\").dropna()\n            if not values.empty:\n                return col\n\n    exclusions = [\n        \"date\",\n        \"usd\",\n        \"brl_usd\",\n        \"usd_brl\",\n        \"usdbrl\",\n        \"dolar\",\n        \"dollar\",\n        \"cambio\",\n        \"exchange\",\n        \"fx\",\n        \"ipca\",\n        \"inflation\",\n        \"cpi\",\n        \"treasury\",\n    ]\n\n    numeric_candidates = []\n    for col in columns:\n        name = lower[col]\n        if any(term in name for term in exclusions):\n            continue\n\n        values = pd.to_numeric(frame[col], errors=\"coerce\").dropna()\n        if values.empty:\n            continue\n\n        median = float(values.median())\n        if median > 0.0:\n            numeric_candidates.append((col, median, values.notna().sum()))\n\n    if numeric_candidates:\n        numeric_candidates.sort(key=lambda item: (-item[1], -item[2]))\n        return numeric_candidates[0][0]\n\n    diagnostic = \", \".join(columns)\n    raise KeyError(f\"Could not locate BRL domestic interest-rate column in official panel. Available columns: {diagnostic}\")\n\n\ndef read_usd_rate() -> float:\n    if USD_CURVE_PATH.exists():\n        curve = pd.read_csv(USD_CURVE_PATH)\n\n        lower = {col: col.lower() for col in curve.columns}\n\n        tenor_cols = [col for col in curve.columns if \"tenor\" in lower[col]]\n        rate_cols = [col for col in curve.columns if \"rate\" in lower[col] or \"yield\" in lower[col] or \"zero\" in lower[col]]\n\n        if tenor_cols and rate_cols:\n            tenor_col = tenor_cols[0]\n            rate_col = rate_cols[0]\n            curve[tenor_col] = pd.to_numeric(curve[tenor_col], errors=\"coerce\")\n            curve[rate_col] = pd.to_numeric(curve[rate_col], errors=\"coerce\")\n            curve = curve.dropna(subset=[tenor_col, rate_col])\n            if not curve.empty:\n                idx = (curve[tenor_col] - 1.0).abs().idxmin()\n                return normalise_rate(float(curve.loc[idx, rate_col]))\n\n        preferred = [\n            col for col in curve.columns\n            if any(token in lower[col] for token in [\"1y\", \"1_yr\", \"one_year\", \"dgs1\"])\n        ]\n        if preferred:\n            return normalise_rate(latest_numeric_value(curve, preferred[0]))\n\n        numeric_cols = [\n            col for col in curve.columns\n            if pd.to_numeric(curve[col], errors=\"coerce\").notna().sum() > 0 and \"date\" not in lower[col]\n        ]\n        if numeric_cols:\n            return normalise_rate(latest_numeric_value(curve, numeric_cols[0]))\n\n    if USD_FRED_PATH.exists():\n        fred = pd.read_csv(USD_FRED_PATH)\n        lower = {col: col.lower() for col in fred.columns}\n\n        preferred = [\n            col for col in fred.columns\n            if any(token in lower[col] for token in [\"dgs1\", \"1y\", \"1_yr\", \"one_year\"])\n        ]\n        if preferred:\n            return normalise_rate(latest_numeric_value(fred, preferred[0]))\n\n        numeric_cols = [\n            col for col in fred.columns\n            if pd.to_numeric(fred[col], errors=\"coerce\").notna().sum() > 0 and \"date\" not in lower[col]\n        ]\n        if numeric_cols:\n            return normalise_rate(latest_numeric_value(fred, numeric_cols[0]))\n\n    raise FileNotFoundError(\"Could not locate USD foreign rate input from USD curve or FRED files.\")\n\n\ndef run_fx_validation() -> None:\n    if not PANEL_PATH.exists():\n        raise FileNotFoundError(\"Official rates/FX/inflation panel not found. Run the official data pipeline first.\")\n\n    panel = pd.read_csv(PANEL_PATH)\n\n    fx_col = find_fx_spot_column(panel)\n    brl_rate_col = find_brl_rate_column(panel)\n\n    spot_rate = latest_numeric_value(panel, fx_col)\n    domestic_rate = normalise_rate(latest_numeric_value(panel, brl_rate_col))\n    foreign_rate = read_usd_rate()\n\n    maturity_years = 1.0\n    notional_usd = 1_000_000.0\n\n    model_at_par = price_fx_forward(\n        spot_rate=spot_rate,\n        domestic_rate=domestic_rate,\n        foreign_rate=foreign_rate,\n        maturity_years=maturity_years,\n        contract_forward_rate=spot_rate,\n        notional_foreign=notional_usd,\n    )\n\n    contract_forward_rate = model_at_par.model_forward_rate * 1.005\n\n    valuation = price_fx_forward(\n        spot_rate=spot_rate,\n        domestic_rate=domestic_rate,\n        foreign_rate=foreign_rate,\n        maturity_years=maturity_years,\n        contract_forward_rate=contract_forward_rate,\n        notional_foreign=notional_usd,\n    )\n\n    shocks = spot_shock_table(\n        spot_rate=spot_rate,\n        domestic_rate=domestic_rate,\n        foreign_rate=foreign_rate,\n        maturity_years=maturity_years,\n        contract_forward_rate=contract_forward_rate,\n        notional_foreign=notional_usd,\n    )\n\n    summary = pd.DataFrame(\n        [\n            {\n                \"model_id\": \"QMRL-FX-FWD-001\",\n                \"product\": \"USD/BRL FX forward\",\n                \"spot_input_column\": fx_col,\n                \"domestic_rate_column\": brl_rate_col,\n                \"spot_rate_brl_per_usd\": spot_rate,\n                \"domestic_rate_brl\": domestic_rate,\n                \"foreign_rate_usd\": foreign_rate,\n                \"maturity_years\": maturity_years,\n                \"notional_usd\": notional_usd,\n                \"model_forward_rate\": valuation.model_forward_rate,\n                \"contract_forward_rate\": valuation.contract_forward_rate,\n                \"long_usd_forward_value_brl\": valuation.long_foreign_forward_value,\n                \"short_usd_forward_value_brl\": valuation.short_foreign_forward_value,\n                \"fx_delta\": valuation.fx_delta,\n                \"carry_basis\": valuation.carry_basis,\n                \"model_use_decision\": \"Base FX forward pricing and first-order spot-shock validation available for review.\",\n                \"next_validation_gate\": \"FX option valuation, volatility surface and cross-currency basis extension\",\n            }\n        ]\n    )\n\n    lifecycle = pd.DataFrame(\n        [\n            {\n                \"model_id\": \"QMRL-FX-FWD-001\",\n                \"product\": \"USD/BRL FX forward\",\n                \"stage\": \"Base FX forward pricing and spot-risk validation\",\n                \"validation_status\": \"Forward parity, PV sign, FX delta and shock direction available\",\n                \"monitoring_trigger\": \"USD/BRL spot change, BRL rate change, USD rate change, contract forward change\",\n                \"archer_mrm_action\": \"Create or update FX derivatives model record and attach validation outputs\",\n                \"next_gate\": \"FX options and cross-currency basis validation\",\n            }\n        ]\n    )\n\n    write_report(summary.iloc[0], shocks, lifecycle.iloc[0])\n    write_figure(shocks, summary.iloc[0])\n\n    SUMMARY_PATH.parent.mkdir(parents=True, exist_ok=True)\n    REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)\n    FIGURE_PATH.parent.mkdir(parents=True, exist_ok=True)\n\n    summary.to_csv(SUMMARY_PATH, index=False)\n    shocks.to_csv(SHOCK_PATH, index=False)\n    lifecycle.to_csv(LIFECYCLE_PATH, index=False)\n\n    print(\"FX derivatives validation complete.\")\n    print(f\"Generated summary: {SUMMARY_PATH.relative_to(ROOT)}\")\n    print(f\"Generated shock table: {SHOCK_PATH.relative_to(ROOT)}\")\n    print(f\"Generated lifecycle register: {LIFECYCLE_PATH.relative_to(ROOT)}\")\n    print(f\"Generated report: {REPORT_PATH.relative_to(ROOT)}\")\n    print(f\"Generated figure: {FIGURE_PATH.relative_to(ROOT)}\")\n\n\ndef write_report(summary: pd.Series, shocks: pd.DataFrame, lifecycle: pd.Series) -> None:\n    report = f\"\"\"# FX Forward Validation Report\n\n## Purpose\n\nThis layer adds a base Foreign Exchange (FX) derivatives validation layer.\n\nThe model prices a USD/BRL FX forward using spot FX, a BRL domestic rate, a USD foreign rate and covered-interest-parity logic. It then produces a spot-shock table, FX delta and lifecycle record.\n\n## Acronyms\n\n| Acronym | Meaning | Use in this layer |\n|---|---|---|\n| FX | Foreign Exchange | USD/BRL exchange-rate derivative |\n| PV | Present Value | Discounted value of the forward payoff |\n| NPV | Net Present Value | Forward value after discounting |\n| BRL | Brazilian Real | Domestic currency |\n| USD | United States Dollar | Foreign currency |\n| MRM | Model Risk Management | Lifecycle governance and validation record |\n\n## Base valuation\n\n| Metric | Value |\n|---|---:|\n| Spot USD/BRL | {number(summary[\"spot_rate_brl_per_usd\"])} |\n| BRL domestic rate | {pct(summary[\"domestic_rate_brl\"])} |\n| USD foreign rate | {pct(summary[\"foreign_rate_usd\"])} |\n| Model forward rate | {number(summary[\"model_forward_rate\"])} |\n| Contract forward rate | {number(summary[\"contract_forward_rate\"])} |\n| Long USD forward value, BRL | {money(summary[\"long_usd_forward_value_brl\"])} |\n| FX delta | {money(summary[\"fx_delta\"])} |\n| Carry basis | {number(summary[\"carry_basis\"])} |\n\n## Model-use decision\n\nThe FX forward layer is available for base forward-pricing validation, first-order spot-risk review and lifecycle evidence.\n\nIt is not an FX options model, volatility-surface model or cross-currency-basis model. Those remain the next validation gates.\n\n## Archer / MRM action\n\n| Field | Record |\n|---|---|\n| Model ID | {lifecycle[\"model_id\"]} |\n| Product | {lifecycle[\"product\"]} |\n| Stage | {lifecycle[\"stage\"]} |\n| Validation status | {lifecycle[\"validation_status\"]} |\n| Monitoring trigger | {lifecycle[\"monitoring_trigger\"]} |\n| Next gate | {lifecycle[\"next_gate\"]} |\n\n## Spot-shock table\n\n{shocks.to_markdown(index=False)}\n\"\"\"\n    REPORT_PATH.write_text(report, encoding=\"utf-8\")\n\n\ndef write_figure(shocks: pd.DataFrame, summary: pd.Series) -> None:\n    plt.close(\"all\")\n    fig, axes = plt.subplots(1, 2, figsize=(14.5, 5.6))\n    fig.patch.set_facecolor(\"#f6f8fb\")\n\n    for ax in axes:\n        ax.set_facecolor(\"white\")\n        ax.grid(True, color=\"#d7dde7\", linewidth=0.8, alpha=0.75)\n        for spine in ax.spines.values():\n            spine.set_color(\"#9ca3af\")\n\n    x = shocks[\"spot_shock_pct\"].astype(float)\n    pnl = shocks[\"long_foreign_forward_pnl\"].astype(float)\n    value = shocks[\"long_foreign_forward_value\"].astype(float)\n\n    colors = [\"#b42318\" if val < 0 else \"#15803d\" if val > 0 else \"#9ca3af\" for val in pnl]\n\n    axes[0].bar(x, pnl, width=3.8, color=colors, alpha=0.90, edgecolor=\"white\")\n    axes[0].axhline(0, color=\"#374151\", linewidth=1.0)\n    axes[0].set_title(\"USD/BRL Forward Spot-Shock P&L\", loc=\"left\", fontweight=\"bold\")\n    axes[0].set_xlabel(\"Spot shock, %\")\n    axes[0].set_ylabel(\"Long USD forward P&L, BRL\")\n    axes[0].yaxis.set_major_formatter(FuncFormatter(lambda value, _pos: f\"{int(value):,}\"))\n\n    axes[1].plot(x, value, marker=\"o\", linewidth=2.4, color=\"#374151\")\n    axes[1].axhline(0, color=\"#374151\", linewidth=1.0)\n    axes[1].set_title(\"Forward Value Across Spot Shocks\", loc=\"left\", fontweight=\"bold\")\n    axes[1].set_xlabel(\"Spot shock, %\")\n    axes[1].set_ylabel(\"Long USD forward value, BRL\")\n    axes[1].yaxis.set_major_formatter(FuncFormatter(lambda value, _pos: f\"{int(value):,}\"))\n\n    fig.suptitle(\"FX Forward Validation Layer: Pricing, Delta and Spot-Shock Behaviour\", fontsize=15.5, fontweight=\"bold\", x=0.03, ha=\"left\")\n    fig.text(\n        0.03,\n        0.02,\n        \"Model-use decision: base USD/BRL forward pricing and first-order FX spot-risk validation. Next gate: FX options, volatility surface and cross-currency basis.\",\n        fontsize=9.3,\n        color=\"#111827\",\n    )\n\n    fig.tight_layout(rect=[0.02, 0.06, 0.98, 0.88])\n    FIGURE_PATH.parent.mkdir(parents=True, exist_ok=True)\n    fig.savefig(FIGURE_PATH, dpi=220, bbox_inches=\"tight\", facecolor=fig.get_facecolor())\n    plt.close(fig)\n\n\nif __name__ == \"__main__\":\n    run_fx_validation()\n",
+      "content_type": "python",
+      "path": "scripts/run_fx_derivatives_validation.py",
+      "sha256": "2593218f2df51d8fa0691eb0d2f688ef28f7a5e7c07d35f4523cd6d7325e759f"
+    },
+    {
+      "content": "from __future__ import annotations\n\nimport pandas as pd\n\nfrom qmrl.fx_derivatives import (\n    fx_forward_rate,\n    normalise_rate,\n    price_fx_forward,\n    spot_shock_table,\n)\n\n\ndef test_rate_normalisation_accepts_percent_or_decimal():\n    assert normalise_rate(13.25) == 0.1325\n    assert normalise_rate(0.05) == 0.05\n\n\ndef test_fx_forward_rate_increases_when_domestic_rate_exceeds_foreign_rate():\n    forward = fx_forward_rate(spot_rate=5.0, domestic_rate=0.10, foreign_rate=0.04, maturity_years=1.0)\n\n    assert forward > 5.0\n\n\ndef test_fx_forward_long_value_sign_changes_with_contract_rate():\n    low_contract = price_fx_forward(5.0, 0.10, 0.04, 1.0, 5.0, 1_000_000.0)\n    high_contract = price_fx_forward(5.0, 0.10, 0.04, 1.0, 6.0, 1_000_000.0)\n\n    assert low_contract.long_foreign_forward_value > high_contract.long_foreign_forward_value\n    assert abs(low_contract.long_foreign_forward_value + low_contract.short_foreign_forward_value) < 1e-9\n\n\ndef test_fx_forward_shock_table_has_expected_shocks():\n    table = spot_shock_table(5.0, 0.10, 0.04, 1.0, 5.1, 1_000_000.0)\n\n    assert {-10.0, -5.0, 0.0, 5.0, 10.0}.issubset(set(table[\"spot_shock_pct\"]))\n    assert \"long_foreign_forward_pnl\" in table.columns\n",
+      "content_type": "python",
+      "path": "tests/test_fx_derivatives.py",
+      "sha256": "6b6950a0460ded652cc8cc657c5fc6ef77a5a60d7bb8018ab355e4142d53e26d"
+    },
+    {
+      "content": "from __future__ import annotations\n\nimport subprocess\nimport sys\nfrom pathlib import Path\n\nimport pandas as pd\n\n\ndef run_fx_script() -> None:\n    subprocess.run([sys.executable, \"scripts/run_fx_derivatives_validation.py\"], check=True)\n\n\ndef test_fx_script_generates_outputs():\n    run_fx_script()\n\n    assert Path(\"data/official/processed/fx_forward_validation_summary.csv\").exists()\n    assert Path(\"data/official/processed/fx_forward_shock_table.csv\").exists()\n    assert Path(\"data/official/processed/fx_model_lifecycle_register.csv\").exists()\n    assert Path(\"reports/fx_forward_validation_report.md\").exists()\n    assert Path(\"reports/figures/fx_forward_validation_map.png\").exists()\n\n\ndef test_fx_summary_has_required_columns():\n    run_fx_script()\n\n    summary = pd.read_csv(\"data/official/processed/fx_forward_validation_summary.csv\")\n    required = {\n        \"model_id\",\n        \"product\",\n        \"spot_rate_brl_per_usd\",\n        \"domestic_rate_brl\",\n        \"foreign_rate_usd\",\n        \"model_forward_rate\",\n        \"contract_forward_rate\",\n        \"long_usd_forward_value_brl\",\n        \"fx_delta\",\n        \"model_use_decision\",\n        \"next_validation_gate\",\n    }\n\n    assert required.issubset(summary.columns)\n    assert summary.iloc[0][\"spot_rate_brl_per_usd\"] > 0\n    assert summary.iloc[0][\"model_forward_rate\"] > 0\n\n\ndef test_fx_shock_table_has_required_shocks():\n    run_fx_script()\n\n    shocks = pd.read_csv(\"data/official/processed/fx_forward_shock_table.csv\")\n    assert {-10.0, -5.0, 0.0, 5.0, 10.0}.issubset(set(shocks[\"spot_shock_pct\"].astype(float)))\n    assert {\"long_foreign_forward_pnl\", \"fx_delta\"}.issubset(shocks.columns)\n\n\ndef test_fx_report_contains_mrm_and_next_gate():\n    run_fx_script()\n\n    report = Path(\"reports/fx_forward_validation_report.md\").read_text(encoding=\"utf-8\")\n    assert \"Foreign Exchange (FX)\" in report\n    assert \"Archer / MRM action\" in report\n    assert \"FX options\" in report\n    assert \"cross-currency-basis\" in report\n",
+      "content_type": "python",
+      "path": "tests/test_fx_derivatives_outputs.py",
+      "sha256": "55783ed6d7e4342265798d029283bd35d673813491d4619a3ed69cb90adcfb2f"
+    },
+    {
+      "content": "# Model Risk Framework\n\nThis document defines the open model-risk logic used in Quant Model Risk Lab.\n\n## Core principle\n\nA model should not be accepted only because it produces numbers. A model should be reviewed through its purpose, assumptions, data inputs, implementation logic, limitations, sensitivity and monitoring behaviour.\n\n## Validation dimensions\n\n1. Purpose and scope\n2. Methodology and assumptions\n3. Data quality\n4. Implementation checks\n5. Output reasonableness\n6. Sensitivity analysis\n7. Stress behaviour\n8. Limitations\n9. Monitoring requirements\n10. Review status\n\n## Independent challenge\n\nThe validation process asks whether the model is fit for its stated purpose, whether its assumptions are defensible, whether the implementation is reproducible and whether the outputs remain stable under changing market conditions.\n",
+      "content_type": "markdown",
+      "path": "docs/model_risk_framework.md",
+      "sha256": "d30437d0b1b9ccc23e6232b30715ee35976bfea9b9f6c8ecca6b46a47887a174"
+    },
+    {
+      "content": "# Model Lifecycle\n\nA simplified model lifecycle contains the following stages:\n\n1. Model proposal\n2. Methodology design\n3. Implementation\n4. Data validation\n5. Independent review\n6. Approval or rejection\n7. Monitoring\n8. Periodic review\n9. Issue remediation\n10. Retirement or replacement\n\n## Lifecycle logic\n\nA model can be technically correct and still become weak if data changes, market structure changes, assumptions break down or implementation logic drifts from the documented methodology.\n",
+      "content_type": "markdown",
+      "path": "docs/model_lifecycle.md",
+      "sha256": "3a5c13d204fd52ee183533bc4d54b2b34e9f84417d2125c07137afbf5b201cdc"
+    },
+    {
+      "content": "# Validation Policy\n\nThis repository uses a simple validation policy for public and educational financial models.\n\n## Minimum validation checks\n\n- Input completeness\n- Missing-value inspection\n- Parameter reasonableness\n- Output sanity checks\n- Sensitivity to key assumptions\n- Stress scenario response\n- Known limitation documentation\n- Monitoring status\n\n## Validation result categories\n\n- Pass\n- Pass with limitations\n- Under review\n- Fail\n\n## Important note\n\nThis repository does not validate proprietary banking models. It demonstrates public, reproducible model-risk logic using simplified financial models and open workflows.\n",
+      "content_type": "markdown",
+      "path": "docs/validation_policy.md",
+      "sha256": "bb88ccf6d5f1503fdc1df91ac2d6561e22ea27a353a5a2ea407781e229d1a53b"
+    },
+    {
+      "content": "# Limitations and Assumptions\n\n## General assumptions\n\n- The repository uses simplified financial models.\n- The objective is validation evidence, not trading advice.\n- Examples use public or illustrative data.\n- The project avoids proprietary models, confidential data and institutional workflows.\n\n## Current limitations\n\n- Black-Scholes assumes constant volatility and continuous trading.\n- Historical VaR assumes the past loss distribution is informative for current risk.\n- Stress scenarios are simplified and should not be interpreted as full regulatory stress tests.\n- Monitoring outputs are examples of validation logic, not production risk reports.\n",
+      "content_type": "markdown",
+      "path": "docs/limitations_and_assumptions.md",
+      "sha256": "8b9dd95adb5a1f8091bad293157b0dc52494b38d5a6d9243b1f981a2ec8a5fd3"
+    },
+    {
+      "content": {
+        "generated_at_utc": "2026-07-08T16:53:28.081378+00:00",
+        "processed_files": {
+          "breakeven_inflation_panel": {
+            "path": "data/official/processed/breakeven_inflation_panel.csv",
+            "rows": 5881,
+            "sha256": "f3db6f408b36b614ef15c6171e28fadaa43c19fc6099741d79c02e83370ca0c2"
+          },
+          "curve_validation_summary": {
+            "path": "data/official/processed/curve_validation_summary.csv",
+            "sha256": "e89a1c3cf4c019559bf4fb0c15befeac745e1ef5610c11df23656fb896a06952"
+          },
+          "ecb_fx_panel": {
+            "path": "data/official/processed/ecb_fx_panel.csv",
+            "rows": 7044,
+            "sha256": "706a2cab67cd602337b11d1b0444fa49f64d43c7b123278a49994386049beb78"
+          },
+          "fx_daily_returns": {
+            "path": "data/official/processed/fx_daily_returns.csv",
+            "rows": 7043,
+            "sha256": "d292e3c8ec411347a655d48865ba6055da7188cdc90504216396b1a1424815cd"
+          },
+          "fx_risk_summary": {
+            "path": "data/official/processed/fx_risk_summary.csv",
+            "sha256": "61762292636a19fc4f109e6dbd722ebe0c2157c166b3fa844afdff77f7d7617a"
+          },
+          "official_rates_fx_inflation_panel": {
+            "path": "data/official/processed/official_rates_fx_inflation_panel.csv",
+            "rows": 6809,
+            "sha256": "a2ac8b0fa3d2cd0ddedd9a935ec19b0663e69c79b47a36321255ddd4d3e2f5cf"
+          },
+          "usd_treasury_curve_nodes": {
+            "path": "data/official/processed/usd_treasury_curve_nodes.csv",
+            "rows": 16111,
+            "sha256": "ff9f8d7f7e70630b70d9356a67158f2e3aa9d418e4e81cdcc190618ee3e88785"
+          }
+        },
+        "raw_files": {
+          "ecb_eurofxref_hist_csv": {
+            "path": "data/official/raw/ecb_eurofxref_hist.csv",
+            "sha256": "706a2cab67cd602337b11d1b0444fa49f64d43c7b123278a49994386049beb78"
+          },
+          "ecb_eurofxref_hist_zip": {
+            "path": "data/official/raw/ecb_eurofxref_hist.zip",
+            "sha256": "f3b7b2294ffe42cd5854d311e53ef1b835d829e1860bec27116bef8072261b55"
+          },
+          "fred_us_rates_inflation": {
+            "path": "data/official/raw/fred_us_rates_inflation.csv",
+            "sha256": "81143def85fa58ef624f5c0818dde3e1172f5bd10caddf3706e70a64c537ce15"
+          }
+        },
+        "sources": {
+          "ecb_fx_rates": "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-hist.zip",
+          "fred_rates_inflation": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=DGS1,DGS2,DGS5,DGS10,DGS30,T10YIE"
+        }
+      },
+      "content_type": "json",
+      "path": "data/official/manifest.json",
+      "sha256": "cecaff6abe1150b53f26636fa9eb1588f8187a230fa113e88154952a3d3de4a2"
+    },
+    {
+      "content": "numpy\npandas\npytest\nrequests\nmatplotlib\nopenai\npydantic\n",
+      "content_type": "text",
+      "path": "requirements.txt",
+      "sha256": "ace189e1b8fd9443439fa7db3b186fdba4f81d67d98282bf5545b5425125aeae"
     }
   ],
-  "use_case": "Independent GenAI challenge of the existing public FX option validation evidence."
+  "use_case": "Independent GenAI challenge of the complete public FX-option validation implementation and evidence."
 }

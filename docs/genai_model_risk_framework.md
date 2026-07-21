@@ -74,3 +74,8 @@ The first gate passes only when:
 - the response preserves the human-review requirement
 - the output and run manifest are saved
 - a human reviews the generated report before commit
+## Complete evidence-package scope
+
+The GenAI challenger receives valuation outputs, sensitivity outputs, parity evidence, lifecycle records, implementation code, execution scripts, automated tests, upstream FX-forward code, governance policies, data-lineage metadata and dependency specifications.
+
+A missing-evidence finding must therefore be assessed against the complete package rather than against a single report. Each numeric claim inside a finding is checked against the specific source cited by that finding.
