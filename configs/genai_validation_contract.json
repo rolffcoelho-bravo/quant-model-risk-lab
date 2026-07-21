@@ -1,0 +1,51 @@
+{
+    "schema_version":  "1.0.0",
+    "layer_name":  "GenAI-Assisted Independent Validation Challenge",
+    "release_target":  "v1.2",
+    "provider":  "openai",
+    "api":  "responses",
+    "model_environment_variable":  "OPENAI_MODEL",
+    "default_model":  "gpt-5-mini-2025-08-07",
+    "input_policy":  {
+                         "allowed":  [
+                                         "public repository evidence",
+                                         "aggregated model metrics",
+                                         "validation reports",
+                                         "model lifecycle records"
+                                     ],
+                         "prohibited":  [
+                                            "API keys",
+                                            "personally identifiable information",
+                                            "confidential customer data",
+                                            "unapproved production data"
+                                        ]
+                     },
+    "decision_boundary":  {
+                              "genai_role":  "independent challenger and documentation assistant",
+                              "genai_may_not":  [
+                                                    "approve a model by itself",
+                                                    "alter deterministic model results",
+                                                    "invent metrics",
+                                                    "make customer-level decisions",
+                                                    "replace human validation"
+                                                ],
+                              "human_approval_required":  true
+                          },
+    "required_evidence":  [
+                              "versioned prompt",
+                              "structured output schema",
+                              "input file hashes",
+                              "prompt hash",
+                              "response hash",
+                              "provider response identifier",
+                              "model identifier",
+                              "grounding checks",
+                              "automated tests",
+                              "run manifest"
+                          ],
+    "grounding_controls":  {
+                               "source_path_required_for_each_finding":  true,
+                               "unsupported_numeric_claims_block_release":  true,
+                               "unknown_evidence_must_be_labelled_missing":  true
+                           }
+}

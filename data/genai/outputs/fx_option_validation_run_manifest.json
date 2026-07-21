@@ -1,0 +1,30 @@
+{
+  "api": "responses",
+  "created_at_utc": "2026-07-21T21:54:12.185161+00:00",
+  "evidence_package_id": "QMRL-GENAI-FXOPTION-002",
+  "grounding_gate": "PASS",
+  "grounding_issues": [],
+  "human_review_required": true,
+  "input_path": "data/genai/inputs/fx_option_validation_evidence.json",
+  "input_sha256": "981010ce5771411f94ef9cc833d3c0f81d30100320ad0c208c7ed06ef8123a71",
+  "model": "gpt-5-mini-2025-08-07",
+  "output_path": "data/genai/outputs/fx_option_validation_challenge.json",
+  "output_sha256": "df2688e192b30fc976b05b25e21afb10929132fc378e43da03fbd5b01b9160a7",
+  "prompt_path": "prompts/genai/independent_validation_challenge_v1.md",
+  "prompt_sha256": "10d6e98c00949f5b1c0b92db3de91a00f7729b931d35838718e15fa8e849d212",
+  "provider": "openai",
+  "provider_response_id": "resp_0e938f48f7e92763006a5fea403b6081a1b56a366c4382babc",
+  "run_id": "QMRL-GENAI-RUN-001",
+  "usage": {
+    "input_tokens": 23525,
+    "input_tokens_details": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0
+    },
+    "output_tokens": 6334,
+    "output_tokens_details": {
+      "reasoning_tokens": 4672
+    },
+    "total_tokens": 29859
+  }
+}
