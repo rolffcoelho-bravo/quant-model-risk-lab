@@ -1,0 +1,29 @@
+{
+  "arbitrary_correlation_forbidden": true,
+  "baseline_result_preserved": true,
+  "calibration_source_required": true,
+  "channels": [
+    "systemic",
+    "sector",
+    "sovereign",
+    "commodity",
+    "fx",
+    "rates",
+    "idiosyncratic"
+  ],
+  "classifications": [
+    "independent",
+    "general_wrong_way",
+    "specific_wrong_way",
+    "right_way"
+  ],
+  "correlation_bounds": [
+    -0.99,
+    0.99
+  ],
+  "gate": "XVA_EXPOSURE_GATE_6",
+  "human_review_required": true,
+  "model": "GAUSSIAN_COPULA_BASELINE",
+  "production_approval": false,
+  "schema_version": "1.0"
+}

@@ -275,3 +275,29 @@ from .xva_integration_benchmark import (
     load_xva_integration_benchmark_contract,
     run_xva_integration_benchmark_suite,
 )
+
+# v1.3 Gate 6 wrong-way risk and stress scenarios
+from .wrong_way_risk import (
+    WWRDependenceSpec,
+    WWRResult,
+    calculate_wwr_cva,
+    gaussian_copula_conditional_cumulative_pd,
+    gaussian_copula_default_uniforms,
+    normal_ppf,
+    pathwise_exposure_scores,
+    wwr_manifest,
+)
+from .xva_stress import (
+    XVAStressResult,
+    XVAStressScenario,
+    evaluate_xva_stress,
+    scale_credit_curve,
+    scale_exposure_input,
+    stress_manifest,
+)
+from .wwr_benchmark import (
+    WWRBenchmarkResult,
+    evaluate_wwr_benchmark,
+    load_wwr_benchmark_contract,
+    run_wwr_benchmark_suite,
+)
