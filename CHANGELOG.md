@@ -37,6 +37,18 @@ All notable repository changes are documented here.
 
 
 
+
+### Gate 5 - CVA, DVA, and FVA integration and attribution
+
+- CVA, DVA, FCA, FBA, FVA, and total-adjustment integration
+- bilateral first-to-default survival controls
+- governed discount and funding curves
+- time-bucket, netting-set, counterparty, portfolio, and trade attribution
+- independent loop challenger and reconciliation
+- spread, recovery, funding, and discount sensitivities
+- deterministic calculation manifests and eleven locked benchmarks
+- Gate 5 validation across `266` collected tests
+
 ### Gate 4 - Counterparty credit calibration and PD/LGD term structures
 
 - Added governed credit-spread quote, recovery, LGD, and proxy contracts.

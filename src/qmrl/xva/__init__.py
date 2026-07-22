@@ -242,3 +242,36 @@ __all__.extend([
     "load_credit_benchmark_contract",
     "run_credit_benchmark_suite",
 ])
+
+# v1.3 Gate 5 CVA, DVA, and FVA integration
+from .xva_integration import (
+    DiscountCurve,
+    FundingCurve,
+    XVAExposureInput,
+    XVAIntegrationPolicy,
+    XVAResult,
+    integrate_xva,
+    xva_manifest,
+)
+from .xva_attribution import (
+    TradeAllocationWeights,
+    TradeXVAAllocation,
+    XVAReconciliation,
+    allocate_xva_to_trades,
+    challenger_xva_components,
+    equal_trade_weights,
+    reconcile_xva,
+)
+from .xva_sensitivity import (
+    XVASensitivityReport,
+    run_standard_xva_sensitivities,
+    shift_credit_curve,
+    shift_discount_curve,
+    shift_funding_curve,
+)
+from .xva_integration_benchmark import (
+    XVAIntegrationBenchmarkResult,
+    evaluate_xva_integration_benchmark,
+    load_xva_integration_benchmark_contract,
+    run_xva_integration_benchmark_suite,
+)

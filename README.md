@@ -798,3 +798,33 @@ Primary evidence:
 Gate 4 produces independently validated credit term structures only. It does not calculate CVA, DVA, or FVA and does not grant production approval.
 
 Next gate: CVA, DVA, and FVA integration and attribution.
+
+## v1.3 XVA Exposure Simulation - Gate 5
+
+### Gate 5 - CVA, DVA, and FVA integration and attribution
+
+Implemented:
+
+- unilateral and bilateral CVA
+- DVA from own-credit curves and expected negative exposure
+- FCA, FBA, and net FVA
+- discounted marginal-default-probability integration
+- time-bucket, netting-set, counterparty, and portfolio attribution
+- governed trade-level allocation with full reconciliation
+- collateralized and MPOR funding bases
+- independent loop challenger
+- spread, recovery, funding, and discount sensitivities
+- deterministic content-addressed evidence
+- eleven locked integration and attribution benchmarks
+
+Primary evidence:
+
+- [`docs/xva_integration_and_attribution.md`](docs/xva_integration_and_attribution.md)
+- [`configs/xva_integration_contract.yml`](configs/xva_integration_contract.yml)
+- [`configs/xva_integration_benchmark_contract.yml`](configs/xva_integration_benchmark_contract.yml)
+- [`src/qmrl/xva/xva_integration.py`](src/qmrl/xva/xva_integration.py)
+- Gate 5 integration, attribution, sensitivity, reconciliation, benchmark, and contract tests
+
+**Current development test surface:** `266 collected tests`.
+
+Next gate: wrong-way-risk dependence and stress scenarios.

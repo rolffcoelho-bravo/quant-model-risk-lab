@@ -1,0 +1,28 @@
+{
+  "components": [
+    "CVA",
+    "DVA",
+    "FCA",
+    "FBA",
+    "FVA",
+    "total_adjustment"
+  ],
+  "gate": "XVA_EXPOSURE_GATE_5",
+  "human_review_required": true,
+  "probability_measure": "risk_neutral",
+  "production_approval": false,
+  "schema_version": "1.0",
+  "sign_convention": "total_adjustment = -CVA + DVA - FCA + FBA",
+  "status": "IMPLEMENTED_PUBLIC_VALIDATION_FOUNDATION",
+  "supported_closeout_conventions": [
+    "risk_free"
+  ],
+  "supported_exposure_rules": [
+    "interval_end",
+    "trapezoidal"
+  ],
+  "supported_valuation_modes": [
+    "unilateral",
+    "bilateral"
+  ]
+}

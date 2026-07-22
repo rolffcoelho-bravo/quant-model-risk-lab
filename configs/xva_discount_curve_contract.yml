@@ -1,0 +1,16 @@
+{
+  "controls": [
+    "time_zero_factor_equals_one",
+    "positive_factors",
+    "non_increasing_factors",
+    "currency_match",
+    "as_of_date_match"
+  ],
+  "extrapolation_modes": [
+    "flat_zero_rate",
+    "forbidden"
+  ],
+  "gate": "XVA_EXPOSURE_GATE_5",
+  "interpolation": "log_linear_discount_factor",
+  "schema_version": "1.0"
+}

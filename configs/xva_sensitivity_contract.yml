@@ -1,0 +1,15 @@
+{
+  "credit_shift_method": "LGD-consistent piecewise hazard approximation",
+  "gate": "XVA_EXPOSURE_GATE_5",
+  "method": "one_factor_at_a_time",
+  "schema_version": "1.0",
+  "standard_sensitivities": [
+    "counterparty_credit_spread",
+    "own_credit_spread",
+    "counterparty_recovery",
+    "own_recovery",
+    "funding_cost",
+    "funding_benefit",
+    "discount_rate"
+  ]
+}
