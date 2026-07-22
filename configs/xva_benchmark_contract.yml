@@ -1,0 +1,333 @@
+{
+  "benchmarks": [
+    {
+      "benchmark_id": "single_positive_no_collateral",
+      "clean_values": [
+        100.0
+      ],
+      "collateral_values": [
+        0.0
+      ],
+      "expected": {
+        "negative_exposure": [
+          0.0
+        ],
+        "positive_exposure": [
+          100.0
+        ]
+      },
+      "tolerance": 1e-10,
+      "type": "exposure"
+    },
+    {
+      "agreement": {
+        "agreement_id": "BENCHMARK-CSA",
+        "call_frequency_days": 1,
+        "collateral_currency": "USD",
+        "direction": "two_way",
+        "haircut": 0.0,
+        "independent_amount_posted": 0.0,
+        "independent_amount_received": 0.0,
+        "initial_margin_posted": 0.0,
+        "initial_margin_received": 0.0,
+        "margin_period_of_risk_days": 0,
+        "minimum_transfer_amount": 0.0,
+        "rehypothecation_allowed": false,
+        "remuneration_rate": 0.0,
+        "rounding": 0.01,
+        "settlement_lag_days": 0,
+        "threshold_posted": 0.0,
+        "threshold_received": 0.0
+      },
+      "benchmark_id": "perfect_collateralization",
+      "clean_values": [
+        100.0
+      ],
+      "dates": [
+        "2026-01-05"
+      ],
+      "expected": {
+        "effective_collateral": [
+          100.0
+        ],
+        "negative_exposure": [
+          0.0
+        ],
+        "positive_exposure": [
+          0.0
+        ]
+      },
+      "tolerance": 1e-10,
+      "type": "collateral_path"
+    },
+    {
+      "agreement": {
+        "agreement_id": "BENCHMARK-THRESHOLD",
+        "call_frequency_days": 1,
+        "collateral_currency": "USD",
+        "direction": "two_way",
+        "haircut": 0.0,
+        "independent_amount_posted": 0.0,
+        "independent_amount_received": 0.0,
+        "initial_margin_posted": 0.0,
+        "initial_margin_received": 0.0,
+        "margin_period_of_risk_days": 0,
+        "minimum_transfer_amount": 0.0,
+        "rehypothecation_allowed": false,
+        "remuneration_rate": 0.0,
+        "rounding": 0.01,
+        "settlement_lag_days": 0,
+        "threshold_posted": 0.0,
+        "threshold_received": 20.0
+      },
+      "benchmark_id": "threshold_only",
+      "clean_values": [
+        100.0
+      ],
+      "dates": [
+        "2026-01-05"
+      ],
+      "expected": {
+        "effective_collateral": [
+          80.0
+        ],
+        "negative_exposure": [
+          0.0
+        ],
+        "positive_exposure": [
+          20.0
+        ]
+      },
+      "tolerance": 1e-10,
+      "type": "collateral_path"
+    },
+    {
+      "agreement": {
+        "agreement_id": "BENCHMARK-MTA",
+        "call_frequency_days": 1,
+        "collateral_currency": "USD",
+        "direction": "two_way",
+        "haircut": 0.0,
+        "independent_amount_posted": 0.0,
+        "independent_amount_received": 0.0,
+        "initial_margin_posted": 0.0,
+        "initial_margin_received": 0.0,
+        "margin_period_of_risk_days": 0,
+        "minimum_transfer_amount": 5.0,
+        "rehypothecation_allowed": false,
+        "remuneration_rate": 0.0,
+        "rounding": 0.01,
+        "settlement_lag_days": 0,
+        "threshold_posted": 0.0,
+        "threshold_received": 0.0
+      },
+      "benchmark_id": "minimum_transfer_amount_discontinuity",
+      "clean_values": [
+        0.0,
+        4.0
+      ],
+      "dates": [
+        "2026-01-05",
+        "2026-01-06"
+      ],
+      "expected": {
+        "effective_collateral": [
+          0.0,
+          0.0
+        ],
+        "negative_exposure": [
+          0.0,
+          0.0
+        ],
+        "positive_exposure": [
+          0.0,
+          4.0
+        ]
+      },
+      "tolerance": 1e-10,
+      "type": "collateral_path"
+    },
+    {
+      "agreement": {
+        "agreement_id": "BENCHMARK-LAG",
+        "call_frequency_days": 1,
+        "collateral_currency": "USD",
+        "direction": "two_way",
+        "haircut": 0.0,
+        "independent_amount_posted": 0.0,
+        "independent_amount_received": 0.0,
+        "initial_margin_posted": 0.0,
+        "initial_margin_received": 0.0,
+        "margin_period_of_risk_days": 0,
+        "minimum_transfer_amount": 0.0,
+        "rehypothecation_allowed": false,
+        "remuneration_rate": 0.0,
+        "rounding": 0.01,
+        "settlement_lag_days": 1,
+        "threshold_posted": 0.0,
+        "threshold_received": 0.0
+      },
+      "benchmark_id": "settlement_lag_exposure",
+      "clean_values": [
+        0.0,
+        100.0,
+        100.0
+      ],
+      "dates": [
+        "2026-01-05",
+        "2026-01-06",
+        "2026-01-07"
+      ],
+      "expected": {
+        "effective_collateral": [
+          0.0,
+          0.0,
+          100.0
+        ],
+        "negative_exposure": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "positive_exposure": [
+          0.0,
+          100.0,
+          0.0
+        ]
+      },
+      "tolerance": 1e-10,
+      "type": "collateral_path"
+    },
+    {
+      "benchmark_id": "margin_period_of_risk",
+      "clean_values": [
+        0.0,
+        50.0,
+        100.0
+      ],
+      "collateral_values": [
+        0.0,
+        50.0,
+        100.0
+      ],
+      "expected": {
+        "negative_exposure": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "positive_exposure": [
+          50.0,
+          50.0,
+          0.0
+        ]
+      },
+      "mpor_steps": 1,
+      "tolerance": 1e-10,
+      "type": "mpor"
+    },
+    {
+      "agreement_id": "ISDA-BENCHMARK",
+      "benchmark_id": "offsetting_trades_same_netting_set",
+      "counterparty_id": "CP-BENCHMARK",
+      "currency": "USD",
+      "expected": {
+        "clean_value": 10.0,
+        "negative_exposure": 0.0,
+        "positive_exposure": 10.0
+      },
+      "netting_eligible": true,
+      "netting_set_id": "NS-BENCHMARK",
+      "tolerance": 1e-10,
+      "trades": [
+        {
+          "clean_value": 100.0,
+          "trade_id": "T1"
+        },
+        {
+          "clean_value": -90.0,
+          "trade_id": "T2"
+        }
+      ],
+      "type": "netting"
+    },
+    {
+      "agreement_id": "ISDA-GROSS",
+      "benchmark_id": "separate_or_noneligible_trades",
+      "counterparty_id": "CP-BENCHMARK",
+      "currency": "USD",
+      "expected": {
+        "clean_value": 10.0,
+        "negative_exposure": 90.0,
+        "positive_exposure": 100.0
+      },
+      "netting_eligible": false,
+      "netting_set_id": "NS-GROSS",
+      "tolerance": 1e-10,
+      "trades": [
+        {
+          "clean_value": 100.0,
+          "trade_id": "T1"
+        },
+        {
+          "clean_value": -90.0,
+          "trade_id": "T2"
+        }
+      ],
+      "type": "netting"
+    },
+    {
+      "agreement": {
+        "agreement_id": "BENCHMARK-HAIRCUT",
+        "call_frequency_days": 1,
+        "collateral_currency": "USD",
+        "direction": "two_way",
+        "haircut": 0.1,
+        "independent_amount_posted": 0.0,
+        "independent_amount_received": 0.0,
+        "initial_margin_posted": 0.0,
+        "initial_margin_received": 0.0,
+        "margin_period_of_risk_days": 0,
+        "minimum_transfer_amount": 0.0,
+        "rehypothecation_allowed": false,
+        "remuneration_rate": 0.0,
+        "rounding": 0.01,
+        "settlement_lag_days": 0,
+        "threshold_posted": 0.0,
+        "threshold_received": 0.0
+      },
+      "benchmark_id": "collateral_haircut_impact",
+      "clean_value": 100.0,
+      "collateral_face": 100.0,
+      "expected": {
+        "effective_collateral": 90.0,
+        "negative_exposure": 0.0,
+        "positive_exposure": 10.0
+      },
+      "tolerance": 1e-10,
+      "type": "haircut"
+    },
+    {
+      "benchmark_id": "negative_portfolio_ene",
+      "clean_values": [
+        -80.0
+      ],
+      "collateral_values": [
+        0.0
+      ],
+      "expected": {
+        "negative_exposure": [
+          80.0
+        ],
+        "positive_exposure": [
+          0.0
+        ]
+      },
+      "tolerance": 1e-10,
+      "type": "exposure"
+    }
+  ],
+  "gate": "XVA_EXPOSURE_GATE_1",
+  "schema_version": "1.0",
+  "status": "LOCKED_REFERENCE_CASES"
+}

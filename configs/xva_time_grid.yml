@@ -1,0 +1,20 @@
+{
+  "business_day_convention": "following",
+  "day_count_basis": 365.0,
+  "exposure_interval_days": 30,
+  "gate": "XVA_EXPOSURE_GATE_1",
+  "margin_call_interval_days": 1,
+  "margin_period_of_risk_days": 10,
+  "maturity_date": "2031-01-02",
+  "required_date_roles": [
+    "valuation",
+    "exposure_observation",
+    "margin_call",
+    "settlement",
+    "margin_period_of_risk_end",
+    "maturity"
+  ],
+  "schema_version": "1.0",
+  "settlement_lag_days": 2,
+  "valuation_date": "2026-01-02"
+}

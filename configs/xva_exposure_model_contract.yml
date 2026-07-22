@@ -1,0 +1,27 @@
+{
+  "gate": "XVA_EXPOSURE_GATE_1",
+  "human_review_required": true,
+  "implemented_components": [
+    "time_grid",
+    "netting_set_representation",
+    "collateral_state_process",
+    "collateralized_exposure",
+    "epe_ene_pfe_aggregation",
+    "margin_period_of_risk_view",
+    "deterministic_reference_benchmarks"
+  ],
+  "model_name": "XVA Exposure Simulation Foundation",
+  "next_gate": "XVA_EXPOSURE_GATE_2_SCENARIO_PATH_SIMULATION",
+  "out_of_scope": [
+    "stochastic_market_factor_simulation",
+    "counterparty_specific_pd_lgd_calibration",
+    "wrong_way_risk_dependence_model",
+    "production_csa_legal_opinion",
+    "enterprise_collateral_system_integration",
+    "production_approval"
+  ],
+  "production_approval": false,
+  "purpose": "Provide deterministic architecture and controls for time-grid exposure, legal netting, collateral state, exposure metrics, and reference benchmarks.",
+  "schema_version": "1.0",
+  "status": "IMPLEMENTED_PUBLIC_VALIDATION_FOUNDATION"
+}
