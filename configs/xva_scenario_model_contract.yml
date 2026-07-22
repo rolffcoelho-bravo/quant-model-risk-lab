@@ -1,0 +1,38 @@
+{
+  "gate": "XVA_EXPOSURE_GATE_2",
+  "human_review_required": true,
+  "implemented_components": [
+    "governed_risk_factor_set",
+    "correlation_matrix_validation",
+    "pcg64_seed_control",
+    "antithetic_variates",
+    "correlated_factor_path_generation",
+    "scenario_cube",
+    "scenario_reproducibility_manifest",
+    "fx_forward_pathwise_valuation",
+    "zero_coupon_bond_pathwise_valuation",
+    "future_value_cube",
+    "monte_carlo_convergence_diagnostics",
+    "analytical_moment_challenger",
+    "locked_scenario_benchmarks"
+  ],
+  "model_name": "XVA Scenario-Path and Future-Value Simulation",
+  "next_gate": "XVA_EXPOSURE_GATE_3_PATHWISE_EXPOSURE_INTEGRATION",
+  "production_approval": false,
+  "purpose": "Generate reproducible correlated market-factor paths and pathwise future clean values before credit, wrong-way-risk, and XVA integration.",
+  "schema_version": "1.0",
+  "separation_controls": {
+    "calibration_inputs_are_external_to_simulation": true,
+    "credit_calibration_is_out_of_scope": true,
+    "future_value_output_is_clean_value_only": true,
+    "simulation_output_cannot_recalibrate_inputs": true,
+    "wrong_way_risk_is_out_of_scope": true,
+    "xva_attribution_is_out_of_scope": true
+  },
+  "status": "IMPLEMENTED_PUBLIC_VALIDATION_FOUNDATION",
+  "supported_factor_models": [
+    "gbm_fx",
+    "vasicek_rate",
+    "deterministic"
+  ]
+}

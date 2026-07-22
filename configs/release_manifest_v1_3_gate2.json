@@ -1,0 +1,27 @@
+{
+  "artifacts": [
+    "docs/xva_scenario_path_architecture.md",
+    "configs/xva_scenario_model_contract.yml",
+    "configs/xva_risk_factor_contract.yml",
+    "configs/xva_random_control.yml",
+    "configs/xva_future_value_contract.yml",
+    "configs/xva_scenario_benchmark_contract.yml",
+    "src/qmrl/xva/random_control.py",
+    "src/qmrl/xva/risk_factors.py",
+    "src/qmrl/xva/scenario_paths.py",
+    "src/qmrl/xva/future_value.py",
+    "src/qmrl/xva/convergence.py",
+    "src/qmrl/xva/scenario_challenger.py",
+    "src/qmrl/xva/scenario_benchmark.py"
+  ],
+  "branch": "feature/v1-3-xva-exposure-gate-2",
+  "gate": "XVA_EXPOSURE_GATE_2",
+  "next_gate": "XVA_EXPOSURE_GATE_3_PATHWISE_EXPOSURE_INTEGRATION",
+  "previous_gate": "XVA_EXPOSURE_GATE_1",
+  "production_approval": false,
+  "release_line": "v1.3-development",
+  "required_check": "Python 3.12 validation",
+  "schema_version": "1.0",
+  "status": "IMPLEMENTED_LOCAL_VALIDATION_PASS",
+  "test_count": 183
+}

@@ -1,0 +1,19 @@
+{
+  "antithetic_even_path_requirement": true,
+  "antithetic_variates": true,
+  "bit_generator": "PCG64",
+  "controls": [
+    "fixed seed",
+    "explicit path count",
+    "explicit time grid",
+    "explicit factor order",
+    "explicit correlation matrix",
+    "content hash"
+  ],
+  "default_seed": 20260722,
+  "dtype": "float64",
+  "gate": "XVA_EXPOSURE_GATE_2",
+  "reproducibility_manifest_required": true,
+  "scenario_hash": "SHA-256",
+  "schema_version": "1.0"
+}
