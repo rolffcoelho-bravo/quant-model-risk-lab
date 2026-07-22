@@ -1,0 +1,23 @@
+{
+  "gate": "XVA_RELEASE_GATE_8",
+  "human_release_approval_required": true,
+  "material_block_prevents_release": true,
+  "post_merge_ci_required": true,
+  "production_approval": false,
+  "release_version": "1.3.0",
+  "required_approval_token": "RELEASE",
+  "required_check": "Python 3.12 validation",
+  "required_gate_coverage": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "schema_version": "1.0",
+  "strict_branch_protection": true,
+  "tag": "v1.3.0"
+}

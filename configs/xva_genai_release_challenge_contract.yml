@@ -1,0 +1,18 @@
+{
+  "approved_evidence_only": true,
+  "artifact_citations_required": true,
+  "autonomous_model_approval": false,
+  "gate": "XVA_RELEASE_GATE_8",
+  "human_review_required": true,
+  "live_provider_execution_required_in_ci": false,
+  "prohibited_actions": [
+    "approve production use",
+    "close material findings",
+    "override deterministic tests",
+    "invent calibration evidence",
+    "remove explicit model boundaries"
+  ],
+  "purpose": "Evidence-grounded provider-neutral GenAI release challenge",
+  "schema_version": "1.0",
+  "structured_findings_required": true
+}

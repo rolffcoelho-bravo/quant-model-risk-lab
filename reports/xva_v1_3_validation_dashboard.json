@@ -1,0 +1,84 @@
+{
+  "collected_test_count": 350,
+  "generated_at": "2026-07-22",
+  "overall_status": "PASS_WITH_MONITORING",
+  "panels": [
+    {
+      "artifact_refs": [
+        "docs/xva_scenario_path_architecture.md"
+      ],
+      "owner": "Quantitative Model Validation",
+      "panel_id": "scenario_future_value",
+      "status": "PASS",
+      "title": "Scenario paths and future value"
+    },
+    {
+      "artifact_refs": [
+        "docs/xva_pathwise_exposure_integration.md"
+      ],
+      "owner": "Counterparty Risk Validation",
+      "panel_id": "exposure",
+      "status": "PASS",
+      "title": "Netting, collateral, and exposure"
+    },
+    {
+      "artifact_refs": [
+        "docs/xva_counterparty_credit_calibration.md"
+      ],
+      "owner": "Credit Model Validation",
+      "panel_id": "credit",
+      "status": "PASS_WITH_MONITORING",
+      "title": "Counterparty credit calibration"
+    },
+    {
+      "artifact_refs": [
+        "docs/xva_integration_and_attribution.md"
+      ],
+      "owner": "XVA Model Validation",
+      "panel_id": "xva",
+      "status": "PASS",
+      "title": "CVA, DVA, and FVA"
+    },
+    {
+      "artifact_refs": [
+        "docs/xva_wrong_way_risk_and_stress.md"
+      ],
+      "owner": "Stress Testing and Model Risk",
+      "panel_id": "wwr_stress",
+      "status": "PASS_WITH_MONITORING",
+      "title": "Wrong-way risk and stress"
+    },
+    {
+      "artifact_refs": [
+        "docs/xva_independent_challenger_and_promotion.md"
+      ],
+      "owner": "Independent Validation",
+      "panel_id": "challenger",
+      "status": "PASS",
+      "title": "Independent challenge and stability"
+    },
+    {
+      "artifact_refs": [
+        "reports/xva_v1_3_lifecycle_monitoring.json"
+      ],
+      "owner": "Model Risk Governance",
+      "panel_id": "lifecycle",
+      "status": "PASS_WITH_MONITORING",
+      "title": "Lifecycle monitoring"
+    },
+    {
+      "artifact_refs": [
+        "data/genai/outputs/xva_v1_3_human_review.json",
+        "configs/release_manifest_v1_3.json"
+      ],
+      "owner": "Human Model Risk Reviewer",
+      "panel_id": "genai_release",
+      "status": "PASS_WITH_MONITORING",
+      "title": "Governed GenAI and release governance"
+    }
+  ],
+  "production_approval": false,
+  "release_manifest_sha256": "6068be4478d56fea96a394b74346ac273575b039e7c11a7661ba1a9944026e9a",
+  "release_version": "1.3.0",
+  "required_check": "Python 3.12 validation"
+}

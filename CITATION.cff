@@ -1,9 +1,8 @@
-
 cff-version: 1.2.0
 message: "Please cite this software using the metadata below."
 title: "Quant Model Risk Lab"
 type: software
-version: "1.2.0"
+version: "1.3.0"
 date-released: "2026-07-22"
 authors:
   - family-names: "Pereira"
@@ -11,14 +10,19 @@ authors:
 repository-code: "https://github.com/rolffcoelho-bravo/quant-model-risk-lab"
 url: "https://github.com/rolffcoelho-bravo/quant-model-risk-lab"
 abstract: >-
-  Public quantitative model-risk validation infrastructure covering
-  valuation, challengers, monitoring, lifecycle controls, governed GenAI,
-  reproducible testing, and release governance.
+  Public XVA exposure simulation and counterparty risk validation platform
+  covering scenario paths, future valuation, netting, collateral, exposure,
+  credit calibration, CVA, DVA, FVA, wrong-way risk, stress, independent
+  challenge, lifecycle monitoring, governed GenAI, and release governance.
 keywords:
   - model risk
   - quantitative finance
-  - validation
   - XVA
-  - FX derivatives
+  - counterparty credit risk
+  - exposure simulation
+  - CVA
+  - DVA
+  - FVA
+  - wrong-way risk
   - governed GenAI
   - Python

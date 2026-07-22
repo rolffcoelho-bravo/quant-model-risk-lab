@@ -1,0 +1,12 @@
+{
+  "autonomous_model_approval": false,
+  "execution_mode": "DETERMINISTIC_OFFLINE_CONTRACT_VALIDATION",
+  "human_review_required": true,
+  "human_review_sha256": "ed9c813c313e1abf05365c444c32f38b5a29a66d36cac4f1165ac83a11f6582e",
+  "human_review_status": "ACCEPTED_WITH_MONITORING",
+  "input_sha256": "bfcd9a453ef5e926acdc78f2185ed4127e96dfd89c4a2413364faae394c927f3",
+  "live_provider_execution": false,
+  "output_sha256": "5e420821b53fa29d64eb103b572ac1cc4e438514668f0ec737f6cfeed9ea4245",
+  "run_id": "XVA-V1.3-GENAI-RELEASE-CHALLENGE",
+  "schema_version": "1.0"
+}
