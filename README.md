@@ -516,9 +516,8 @@ See [`docs/continuous_integration_policy.md`](docs/continuous_integration_policy
 
 ## Current release
 
-### v1.2.0 â€” Governed GenAI and Model-Risk Platform Consolidation
-
-The current release consolidates the repository around a single public validation narrative:
+### v1.2.0 — Governed GenAI and Model-Risk Platform Consolidation
+The current release consolidates the repository into a single, coherent public validation narrative:
 
 - quantitative model implementation
 - independent challenger evidence
@@ -607,17 +606,23 @@ A provider credential is not present in CI. Deterministic schema, grounding, par
 
 ```text
 Model implementation
-        â†“
+        |
+        v
 Deterministic unit and property tests
-        â†“
+        |
+        v
 Independent numerical or analytical challenger
-        â†“
+        |
+        v
 Market-input and assumption governance
-        â†“
+        |
+        v
 Monitoring and revalidation status
-        â†“
+        |
+        v
 Governed GenAI challenge
-        â†“
+        |
+        v
 Human review and decision
 ```
 
@@ -639,18 +644,25 @@ The following boundaries remain explicit:
 
 ## Current roadmap
 
-### v1.3 â€” XVA Exposure Simulation and Counterparty Calibration
+### v1.3 — XVA Exposure Simulation and Counterparty Calibration
 
-The next technical phase is expected to add:
+The next technical phase will extend the repository from transparent static XVA controls toward a more realistic counterparty-risk validation platform.
 
-- time-grid exposure simulation
-- counterparty-specific probability-of-default and loss-given-default inputs
-- netting and collateral logic
+Core scope:
+
+- time-grid future exposure simulation
+- expected positive and negative exposure profiles
+- potential future exposure
+- netting-set logic
+- collateral and margin mechanics
+- counterparty-specific PD and LGD term structures
 - wrong-way-risk scenarios
-- expanded exposure challengers
-- deeper CVA, DVA, and FVA sensitivity evidence
+- CVA, DVA, and FVA attribution
+- challenger models and sensitivity decomposition
+- decision-grade exposure dashboards
+- monitoring and revalidation controls
 
-The roadmap does not convert public validation demonstrations into production claims.
+This roadmap defines the next public validation build. It does not imply access to proprietary counterparty data, production collateral systems, or internal exposure limits.
 
 ## Release evidence
 
