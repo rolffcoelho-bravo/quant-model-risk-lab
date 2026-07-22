@@ -1,0 +1,39 @@
+{
+  "contract_id": "QMRL-FX-OPT-GOV-001",
+  "contract_status": "GOVERNED_PUBLIC_VALIDATION_CONTROL",
+  "volatility_estimation": {
+    "annualisation_observations": 252,
+    "lookback_observations": 60,
+    "minimum_return_observations": 20,
+    "fallback_volatility": 0.15,
+    "lower_bound": 0.05,
+    "upper_bound": 0.60,
+    "input_unit": "positive FX levels",
+    "output_unit": "annual decimal volatility"
+  },
+  "volatility_surface": {
+    "absolute_floor": 0.01,
+    "floor_status": "NUMERICAL_DOMAIN_CONTROL"
+  },
+  "monitoring": {
+    "spot_move_relative_threshold": 0.05,
+    "realised_volatility_change_absolute_threshold": 0.05,
+    "domestic_rate_change_absolute_threshold": 0.01,
+    "foreign_rate_change_absolute_threshold": 0.01,
+    "parity_relative_gap_threshold": 0.000001,
+    "monitor_delta_sign_change": true,
+    "monitor_vega_sign_change": true,
+    "model_owner": "ShockBridge Pulse Research",
+    "validation_owner": "Independent Model Validation",
+    "escalation_owner": "Model Risk Governance",
+    "review_frequency": "per governed validation run",
+    "alert_artifact": "data/official/processed/fx_option_monitoring_status.csv",
+    "revalidation_status_on_breach": "REVALIDATION_REQUIRED"
+  },
+  "model_boundaries": {
+    "production_approval": false,
+    "market_quote_benchmark": "OPEN_NO_PUBLIC_QUOTE_DATA",
+    "threshold_scope": "public validation demonstration",
+    "external_alert_delivery": "OUTSIDE_PUBLIC_REPOSITORY_SCOPE"
+  }
+}

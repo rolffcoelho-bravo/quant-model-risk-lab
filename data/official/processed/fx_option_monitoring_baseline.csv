@@ -1,0 +1,2 @@
+created_at_utc,spot_rate,realised_volatility,domestic_rate,foreign_rate,parity_relative_gap,call_delta,vega
+2026-07-22T00:56:01.439377+00:00,5.167,0.1047309496663142,0.1425,0.0395,4.276900343942879e-15,500707.5031774053,1978784.2572279016

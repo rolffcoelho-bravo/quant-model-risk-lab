@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from qmrl.fx_option_governance import apply_volatility_floor
+
 from dataclasses import dataclass
 import math
 
@@ -193,7 +195,10 @@ def spot_vol_surface(
         shocked_spot = float(spot_rate) * (1.0 + float(spot_shock) / 100.0)
 
         for vol_shock in vol_shocks:
-            shocked_vol = max(float(base_volatility) + float(vol_shock), 0.01)
+            shocked_vol = apply_volatility_floor(
+            float(base_volatility)
+            + float(vol_shock)
+        )
 
             call = garman_kohlhagen_price(
                 "call",
