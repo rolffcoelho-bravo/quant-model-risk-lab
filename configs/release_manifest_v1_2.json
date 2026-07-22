@@ -1,0 +1,37 @@
+{
+  "governed_genai": {
+    "autonomous_model_approval": false,
+    "deterministic_controls_in_ci": true,
+    "human_review_required": true,
+    "provider_call_in_ci": false,
+    "role": "independent validation challenger and documentation assistant"
+  },
+  "open_gates": [
+    {
+      "gate": "usd_brl_market_option_quote_benchmark",
+      "production_approval": false,
+      "status": "OPEN_NO_PUBLIC_QUOTE_DATA"
+    }
+  ],
+  "release": {
+    "name": "Governed GenAI and Model-Risk Platform Consolidation",
+    "release_date": "2026-07-22",
+    "tag": "v1.2.0",
+    "version": "1.2.0"
+  },
+  "repository": {
+    "default_branch": "main",
+    "name": "quant-model-risk-lab",
+    "url": "https://github.com/rolffcoelho-bravo/quant-model-risk-lab"
+  },
+  "validation": {
+    "administrator_enforcement": true,
+    "branch_protection": true,
+    "collected_test_count": 136,
+    "junit_evidence": true,
+    "python_version": "3.12",
+    "required_check": "Python 3.12 validation",
+    "required_check_provider": "GitHub Actions",
+    "strict_required_checks": true
+  }
+}

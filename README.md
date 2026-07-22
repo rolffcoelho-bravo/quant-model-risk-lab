@@ -1,5 +1,7 @@
 # Quant Model Risk Lab
 
+![Release](https://img.shields.io/badge/release-v1.2.0-176B52)
+
 **Open Model Validation, Official Rates, FX, Inflation and Risk Analytics Lab**
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
@@ -11,8 +13,8 @@
 **Research site:** https://www.shockbridgepulse.com  
 **Author:** Rodolfo Pereira  
 **Repository type:** Public model-risk evidence package  
-**Current release:** v0.8 interest-rate derivatives pricing validation
-**Latest analytical artifacts:** v0.8 IR derivatives pricing validation dashboard; v0.7.1 ML model-risk decision intelligence dashboard; v0.6 inflation derivatives validation dashboard
+**Current release:** v1.2.0 Governed GenAI and Model-Risk Platform Consolidation
+**Latest analytical artifacts:** governed GenAI validation, FX option valuation and monitoring, XVA controls, interest-rate derivatives validation, lifecycle evidence, and enforced continuous integration
 
 ---
 
@@ -26,23 +28,38 @@ The objective is direct: provide public evidence of model-validation logic, data
 
 ---
 
-## Start here
+## Key public evidence
 
-For a fast review, inspect these files first:
+The strongest entry points are:
 
-| Review item | File | What it proves |
-|---|---|---|
-| Decision dashboard | `reports/figures/curve_inflation_decision_map.png` | Bank-facing curve and inflation monitoring artifact |
-| One-page report | `reports/one_page_curve_inflation_decision_report.md` | Decision state, model-risk trigger, bank action and investor read-through |
-| Curve-pricing harness | `reports/curve_pricing_validation_harness.md` | Official curve inputs, discount factors, bond price, DV01 and shock sensitivity |
-| Official-data report | `reports/official_rates_fx_inflation_pipeline_report.md` | Public official rates, FX and inflation data pipeline |
-| Data lineage | `data/official/manifest.json` | Source URLs, hashes and reproducibility metadata |
-| Model inventory | `model_inventory/model_register.csv` | Simplified model lifecycle evidence |
-| Findings log | `model_inventory/findings_log.csv` | Validation findings and limitations |
-| Source code | `src/qmrl/` | Python implementation |
-| Tests | `tests/` | Automated validation checks |
+- [`configs/fx_option_governance_contract.json`](configs/fx_option_governance_contract.json)
+- [`configs/genai_validation_contract.json`](configs/genai_validation_contract.json)
+- [`conftest.py`](conftest.py)
+- [`data/genai/README.md`](data/genai/README.md)
+- [`data/genai/inputs/fx_option_validation_evidence.json`](data/genai/inputs/fx_option_validation_evidence.json)
+- [`data/genai/outputs/fx_option_validation_challenge.json`](data/genai/outputs/fx_option_validation_challenge.json)
+- [`data/genai/outputs/fx_option_validation_human_review.json`](data/genai/outputs/fx_option_validation_human_review.json)
+- [`data/genai/outputs/fx_option_validation_run_manifest.json`](data/genai/outputs/fx_option_validation_run_manifest.json)
+- [`data/official/processed/fx_option_challenger_benchmark.csv`](data/official/processed/fx_option_challenger_benchmark.csv)
+- [`data/official/processed/fx_option_monitoring_status.csv`](data/official/processed/fx_option_monitoring_status.csv)
+- [`docs/continuous_integration_policy.md`](docs/continuous_integration_policy.md)
+- [`docs/genai_model_risk_framework.md`](docs/genai_model_risk_framework.md)
+- [`model_inventory/fx_option_remediation_register.csv`](model_inventory/fx_option_remediation_register.csv)
+- [`prompts/genai/independent_validation_challenge_v1.md`](prompts/genai/independent_validation_challenge_v1.md)
+- [`reports/figures/xva_validation_map.png`](reports/figures/xva_validation_map.png)
+- [`reports/fx_option_challenger_validation_report.md`](reports/fx_option_challenger_validation_report.md)
+- [`reports/fx_option_monitoring_report.md`](reports/fx_option_monitoring_report.md)
+- [`reports/fx_option_validation_report.md`](reports/fx_option_validation_report.md)
+- [`reports/genai/.gitkeep`](reports/genai/.gitkeep)
+- [`reports/xva_validation_report.md`](reports/xva_validation_report.md)
+- [`scripts/__pycache__/run_xva_validation.cpython-312.pyc`](scripts/__pycache__/run_xva_validation.cpython-312.pyc)
+- [`scripts/run_xva_validation.py`](scripts/run_xva_validation.py)
+- [`src/qmrl/__pycache__/xva.cpython-312.pyc`](src/qmrl/__pycache__/xva.cpython-312.pyc)
+- [`src/qmrl/xva.py`](src/qmrl/xva.py)
+- [`tests/__pycache__/test_xva.cpython-312-pytest-9.0.3.pyc`](tests/__pycache__/test_xva.cpython-312-pytest-9.0.3.pyc)
+- [`tests/__pycache__/test_xva_outputs.cpython-312-pytest-9.0.3.pyc`](tests/__pycache__/test_xva_outputs.cpython-312-pytest-9.0.3.pyc)
 
----
+Reports explain results, processed artifacts expose underlying values, configuration files define controls, and tests demonstrate reproducibility.
 
 ## First-review ML artifacts
 
@@ -108,57 +125,19 @@ The dashboard is not a market forecast. It is a validation object. It shows whic
 
 ---
 
-## Repository structure
+## Repository map
 
 ```text
-quant-model-risk-lab/
-|-- data/
-|   |-- README.md
-|   `-- official/
-|       |-- raw/
-|       |-- processed/
-|       `-- manifest.json
-|-- docs/
-|   |-- interview_alignment_note.md
-|   |-- limitations_and_assumptions.md
-|   |-- model_lifecycle.md
-|   |-- model_risk_framework.md
-|   |-- official_rates_fx_inflation_pipeline.md
-|   `-- validation_policy.md
-|-- model_inventory/
-|   |-- findings_log.csv
-|   |-- model_register.csv
-|   `-- validation_status.csv
-|-- reports/
-|   |-- figures/
-|   |   `-- curve_inflation_decision_map.png
-|   |-- curve_pricing_validation_harness.md
-|   |-- generated_model_risk_evidence.md
-|   |-- official_rates_fx_inflation_pipeline_report.md
-|   |-- one_page_curve_inflation_decision_report.md
-|   |-- sample_model_monitoring_report.md
-|   `-- sample_model_validation_report.md
-|-- scripts/
-|   |-- generate_model_risk_evidence.py
-|   |-- run_curve_pricing_validation_harness.py
-|   |-- run_official_rates_fx_inflation_pipeline.py
-|   `-- run_one_page_curve_inflation_decision_report.py
-|-- src/
-|   `-- qmrl/
-|       |-- black_scholes.py
-|       |-- curve_pricing.py
-|       |-- data_checks.py
-|       |-- monitoring.py
-|       |-- reporting.py
-|       |-- stress_testing.py
-|       `-- var_backtesting.py
-|-- tests/
-|-- README.md
-|-- LICENSE
-`-- requirements.txt
+.github/workflows/   Enforced continuous-integration workflows
+configs/             Versioned model, monitoring, GenAI, and release contracts
+data/                Public raw and processed validation evidence
+docs/                Governance policies, architecture, and release documentation
+model_inventory/     Model lifecycle, remediation, and validation records
+reports/             Decision-facing validation reports and figures
+scripts/             Reproducible validation and evidence-generation entry points
+src/qmrl/            Quantitative models and governed validation components
+tests/               Unit, property, output, governance, and release-contract tests
 ```
-
----
 
 ## Model architecture
 
@@ -219,7 +198,7 @@ This repository does not use ETF proxies as the main evidence layer. The analyti
 | PCA reconstruction-error drift monitor | Implemented |
 | Static regime clustering | Implemented |
 | ML decision intelligence gate | Implemented |
-| Automated tests | 69 tests passing |
+| Automated tests | 136 collected tests passing |
 
 ---
 
@@ -359,7 +338,7 @@ python scripts\generate_model_risk_evidence.py
 python -m pytest
 ```
 
-Current validation state: **69 tests passing**.
+Current validation state: **136 collected tests passing**.
 
 ---
 
@@ -475,7 +454,6 @@ Evidence added:
 The layer validates Garman-Kohlhagen FX option pricing, Greeks, put-call parity, realised-volatility input, spot shocks, volatility shocks and Archer/MRM lifecycle action. SABR, volatility smile calibration, barrier options and path-dependent FX options remain the next validation gates.
 
 
-
 ## FX input remediation and option challenger
 
 The USD/BRL forward and option layers now use a fail-closed market-input contract.
@@ -518,17 +496,167 @@ Primary evidence:
 The controls are repository-level validation controls. They do not grant production approval or replace the open USD/BRL market-quote benchmark gate.
 
 
-## Continuous integration validation
+## Continuous integration and merge governance
 
-The repository runs its complete deterministic validation suite through GitHub Actions for every pull request targeting `main` and every push to `main`.
+The repository uses GitHub Actions to execute:
 
-Primary evidence:
+- Python 3.12 environment setup
+- dependency installation and compatibility checks
+- deterministic import verification
+- headless Matplotlib validation
+- Python compilation
+- the complete pytest suite
+- JUnit evidence upload
 
-- `.github/workflows/validation-ci.yml`
-- `docs/continuous_integration_policy.md`
-- `tests/test_validation_ci_contract.py`
-- GitHub Actions JUnit test artifact
+The `main` branch is protected.
 
-The workflow uses Python 3.12, pip dependency caching, headless Matplotlib, deterministic numerical-thread controls and read-only repository permissions.
+The check `Python 3.12 validation` is strict, provider-bound to GitHub Actions, and enforced for administrators. A pull request cannot be merged when its latest commit has not passed the required validation workflow.
 
-The workflow does not receive provider credentials and does not execute the controlled GenAI API call. GenAI schema, grounding and governance tests remain part of the deterministic CI suite.
+See [`docs/continuous_integration_policy.md`](docs/continuous_integration_policy.md).
+
+## Current release
+
+### v1.2.0 â€” Governed GenAI and Model-Risk Platform Consolidation
+
+The current release consolidates the repository around a single public validation narrative:
+
+- quantitative model implementation
+- independent challenger evidence
+- market-input governance
+- monitoring and revalidation triggers
+- structured lifecycle records
+- governed GenAI validation support
+- reproducible Python 3.12 CI
+- enforced merge protection on `main`
+- explicit model boundaries and open validation gates
+
+**Validated test surface:** `136 collected tests`.
+
+Every pull request targeting `main` must pass:
+
+`Python 3.12 validation`
+
+## Implemented platform layers
+
+| Layer | Purpose | Current state |
+|---|---|---|
+| Interest-rate valuation | Pricing, sensitivities, scenarios, and revalidation evidence | Implemented |
+| XVA controls | CVA, DVA, FVA-style logic, exposure assumptions, sensitivities, and validation boundaries | Implemented public validation layer |
+| FX forwards | Market-input controls, valuation, shocks, lifecycle evidence, and reporting | Implemented |
+| FX options | Valuation, Greeks, parity controls, challenger testing, and volatility governance | Implemented |
+| FX monitoring | Threshold status, ownership, alert evidence, and revalidation triggers | Implemented |
+| Governed GenAI | Independent challenger and documentation support using grounded evidence packages | Implemented with mandatory human review |
+| Continuous integration | Python 3.12 compilation, dependency verification, complete pytest execution, and JUnit evidence | Enforced on `main` |
+
+## Governed GenAI validation layer
+
+GenAI is used as a **controlled validation assistant**, not as an autonomous model approver.
+
+Its permitted role includes:
+
+- challenging documented assumptions
+- identifying missing validation evidence
+- comparing model outputs with supplied control evidence
+- drafting structured findings for human review
+- improving traceability across validation artifacts
+- supporting consistent model-risk documentation
+
+### Control design
+
+1. **Approved evidence package**  
+   Only governed repository evidence is supplied to the model.
+
+2. **Versioned instruction contract**  
+   The task, scope, prohibited actions, and output schema are explicit.
+
+3. **Structured response**  
+   Findings must conform to controlled schemas rather than unrestricted prose.
+
+4. **Grounding and traceability**  
+   Claims must point back to supplied evidence. Prompt, input, response, and run metadata are retained or hashed where required.
+
+5. **Human decision**  
+   GenAI cannot approve production use, close findings, override quantitative tests, or replace independent model-risk judgement.
+
+### Governed GenAI evidence
+
+- [`configs/genai_validation_contract.json`](configs/genai_validation_contract.json)
+- [`conftest.py`](conftest.py)
+- [`data/genai/README.md`](data/genai/README.md)
+- [`data/genai/inputs/fx_option_validation_evidence.json`](data/genai/inputs/fx_option_validation_evidence.json)
+- [`data/genai/outputs/fx_option_validation_challenge.json`](data/genai/outputs/fx_option_validation_challenge.json)
+- [`data/genai/outputs/fx_option_validation_human_review.json`](data/genai/outputs/fx_option_validation_human_review.json)
+- [`data/genai/outputs/fx_option_validation_run_manifest.json`](data/genai/outputs/fx_option_validation_run_manifest.json)
+- [`docs/genai_model_risk_framework.md`](docs/genai_model_risk_framework.md)
+- [`prompts/genai/independent_validation_challenge_v1.md`](prompts/genai/independent_validation_challenge_v1.md)
+- [`reports/genai/.gitkeep`](reports/genai/.gitkeep)
+- [`reports/genai/fx_option_genai_human_review.md`](reports/genai/fx_option_genai_human_review.md)
+- [`reports/genai/fx_option_genai_validation_challenge.md`](reports/genai/fx_option_genai_validation_challenge.md)
+- [`requirements.txt`](requirements.txt)
+- [`scripts/__pycache__/build_genai_evidence_input.cpython-312.pyc`](scripts/__pycache__/build_genai_evidence_input.cpython-312.pyc)
+- [`scripts/__pycache__/run_genai_validation_challenge.cpython-312.pyc`](scripts/__pycache__/run_genai_validation_challenge.cpython-312.pyc)
+- [`scripts/build_genai_evidence_input.py`](scripts/build_genai_evidence_input.py)
+- [`scripts/run_genai_validation_challenge.py`](scripts/run_genai_validation_challenge.py)
+- [`scripts/run_xva_validation.py`](scripts/run_xva_validation.py)
+- [`src/qmrl/__pycache__/genai_client.cpython-312.pyc`](src/qmrl/__pycache__/genai_client.cpython-312.pyc)
+- [`src/qmrl/__pycache__/genai_grounding.cpython-312.pyc`](src/qmrl/__pycache__/genai_grounding.cpython-312.pyc)
+
+A provider credential is not present in CI. Deterministic schema, grounding, parsing, evidence-package, and governance tests remain executable without a live provider call.
+
+## Validation operating model
+
+```text
+Model implementation
+        â†“
+Deterministic unit and property tests
+        â†“
+Independent numerical or analytical challenger
+        â†“
+Market-input and assumption governance
+        â†“
+Monitoring and revalidation status
+        â†“
+Governed GenAI challenge
+        â†“
+Human review and decision
+```
+
+No single layer is treated as sufficient validation evidence on its own.
+
+## Current validation boundaries
+
+This repository does not represent production approval.
+
+The following boundaries remain explicit:
+
+- the dated USD/BRL market-option quote benchmark remains `OPEN_NO_PUBLIC_QUOTE_DATA`
+- public thresholds are validation controls, not confidential trading or regulatory limits
+- public rates and FX series are proxies where explicitly documented
+- GenAI findings require human review
+- CI success demonstrates reproducibility, not model approval
+- external alert delivery and enterprise workflow integration remain outside the public repository
+- production calibration, counterparty data, collateral agreements, and internal exposure systems are not represented as available
+
+## Current roadmap
+
+### v1.3 â€” XVA Exposure Simulation and Counterparty Calibration
+
+The next technical phase is expected to add:
+
+- time-grid exposure simulation
+- counterparty-specific probability-of-default and loss-given-default inputs
+- netting and collateral logic
+- wrong-way-risk scenarios
+- expanded exposure challengers
+- deeper CVA, DVA, and FVA sensitivity evidence
+
+The roadmap does not convert public validation demonstrations into production claims.
+
+## Release evidence
+
+- [`CHANGELOG.md`](CHANGELOG.md)
+- [`docs/releases/v1.2.0.md`](docs/releases/v1.2.0.md)
+- [`docs/validation_matrix.md`](docs/validation_matrix.md)
+- [`docs/governed_genai_architecture.md`](docs/governed_genai_architecture.md)
+- [`configs/release_manifest_v1_2.json`](configs/release_manifest_v1_2.json)
+- [`CITATION.cff`](CITATION.cff)
