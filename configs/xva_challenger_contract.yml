@@ -1,0 +1,34 @@
+{
+  "components": [
+    "EE",
+    "EPE",
+    "ENE",
+    "PFE",
+    "CVA",
+    "DVA",
+    "FCA",
+    "FBA",
+    "FVA",
+    "WWR_CVA",
+    "TOTAL_XVA"
+  ],
+  "gate": "XVA_EXPOSURE_GATE_7",
+  "root_cause_required_for": [
+    "REMEDIATE",
+    "BLOCK"
+  ],
+  "schema_version": "1.0",
+  "silent_override_allowed": false,
+  "statuses": [
+    "PASS",
+    "PASS_WITH_MONITORING",
+    "REMEDIATE",
+    "BLOCK"
+  ],
+  "tolerance_hierarchy": {
+    "hard_multiplier": 5.0,
+    "materiality": 1.0,
+    "soft_absolute": 0.01,
+    "soft_relative": 0.001
+  }
+}

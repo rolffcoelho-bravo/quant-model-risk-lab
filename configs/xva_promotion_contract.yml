@@ -1,0 +1,22 @@
+{
+  "candidate_version": "v1.3.0-rc1",
+  "gate": "XVA_EXPOSURE_GATE_7",
+  "human_approval_required": true,
+  "mandatory_hard_gates": [
+    "locked_benchmarks",
+    "reproducibility",
+    "required_ci",
+    "evidence_completeness"
+  ],
+  "portfolio_block_rule": "NO_MATERIAL_COMPONENT_BLOCK",
+  "production_approval": false,
+  "release_publication": false,
+  "schema_version": "1.0",
+  "statuses": [
+    "PASS",
+    "PASS_WITH_MONITORING",
+    "REMEDIATE",
+    "BLOCK"
+  ],
+  "unresolved_material_challenger_discrepancy_allowed": false
+}

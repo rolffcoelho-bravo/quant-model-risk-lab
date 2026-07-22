@@ -1,0 +1,23 @@
+{
+  "benchmark_drift_blocking": true,
+  "gate": "XVA_EXPOSURE_GATE_7",
+  "positive_worst_case_stability_rule": true,
+  "required_diagnostics": [
+    "path_count",
+    "seed",
+    "time_grid",
+    "quantile",
+    "wwr_correlation",
+    "hazard_curve",
+    "collateral",
+    "attribution"
+  ],
+  "schema_version": "1.0",
+  "thresholds": {
+    "hard_coefficient_of_variation": 0.08,
+    "hard_relative_change": 0.1,
+    "minimum_observations": 3,
+    "soft_coefficient_of_variation": 0.02,
+    "soft_relative_change": 0.03
+  }
+}

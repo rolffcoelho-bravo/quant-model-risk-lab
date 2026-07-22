@@ -858,3 +858,34 @@ Primary evidence:
 **Current Gate 6 development test surface:** `294 collected tests`.
 
 Baseline, stressed, wrong-way-risk, and right-way-risk results remain separately attributable. Gate 6 does not grant production approval.
+
+## v1.3 XVA Exposure Simulation - Gate 7
+
+### Gate 7 - Independent challengers, stability, and promotion governance
+
+Implemented:
+
+- independent loop-based CVA, DVA, FCA, FBA, and FVA challengers
+- materiality-aware component reconciliation
+- soft and hard numerical tolerance hierarchy
+- path-count, seed, antithetic, time-grid, and parameter stability controls
+- sensitivity-driver, discontinuity, and benchmark-drift diagnostics
+- component statuses: `PASS`, `PASS_WITH_MONITORING`, `REMEDIATE`, and `BLOCK`
+- no-material-`BLOCK` portfolio promotion rule
+- hard gates for locked benchmarks, reproducibility, required CI, and evidence completeness
+- deterministic v1.3 release-candidate evidence package
+- twelve locked challenger, stability, and promotion benchmarks
+
+Primary evidence:
+
+- [`docs/xva_independent_challenger_and_promotion.md`](docs/xva_independent_challenger_and_promotion.md)
+- [`configs/xva_challenger_contract.yml`](configs/xva_challenger_contract.yml)
+- [`configs/xva_stability_contract.yml`](configs/xva_stability_contract.yml)
+- [`configs/xva_promotion_contract.yml`](configs/xva_promotion_contract.yml)
+- [`src/qmrl/xva/challenger.py`](src/qmrl/xva/challenger.py)
+- [`src/qmrl/xva/stability.py`](src/qmrl/xva/stability.py)
+- [`src/qmrl/xva/promotion.py`](src/qmrl/xva/promotion.py)
+
+**Current development test surface:** `322 collected tests`.
+
+Gate 7 creates release-candidate evidence only. Production approval and v1.3 publication remain outside this gate.

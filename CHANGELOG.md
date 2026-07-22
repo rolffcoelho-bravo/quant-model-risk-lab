@@ -39,6 +39,17 @@ All notable repository changes are documented here.
 
 
 
+
+### Gate 7 - Wrong-way risk dependence and stress scenarios
+
+- Added independent CVA, DVA, and funding challengers.
+- Added materiality-aware discrepancy classification and a hard tolerance hierarchy.
+- Added path-count, seed, antithetic, time-grid, parameter, and attribution stability controls.
+- Added sensitivity ranking, discontinuity detection, and locked-benchmark drift diagnostics.
+- Added component and portfolio promotion governance with `PASS`, `PASS_WITH_MONITORING`, `REMEDIATE`, and `BLOCK`.
+- Added deterministic v1.3 release-candidate evidence and twelve locked Gate 7 benchmarks.
+- Expanded the repository validation surface to `322` collected tests.
+
 ### Gate 6 - Wrong-way risk dependence and stress scenarios
 
 - Added governed Gaussian-copula wrong-way-risk and right-way-risk dependence.

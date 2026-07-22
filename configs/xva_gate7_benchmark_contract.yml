@@ -1,0 +1,218 @@
+{
+  "benchmarks": [
+    {
+      "benchmark_id": "challenger_exact",
+      "challenger": 100.0,
+      "component": "CVA",
+      "expected_status": "PASS",
+      "primary": 100.0,
+      "tolerance": {
+        "absolute": 0.01,
+        "hard_multiplier": 5.0,
+        "materiality": 1.0,
+        "relative": 0.001
+      },
+      "type": "challenger"
+    },
+    {
+      "benchmark_id": "challenger_soft",
+      "challenger": 50.005,
+      "component": "DVA",
+      "expected_status": "PASS",
+      "primary": 50.0,
+      "tolerance": {
+        "absolute": 0.01,
+        "hard_multiplier": 5.0,
+        "materiality": 1.0,
+        "relative": 0.001
+      },
+      "type": "challenger"
+    },
+    {
+      "benchmark_id": "challenger_monitoring_immaterial",
+      "challenger": 0.23,
+      "component": "FVA",
+      "expected_status": "PASS_WITH_MONITORING",
+      "primary": 0.2,
+      "tolerance": {
+        "absolute": 0.01,
+        "hard_multiplier": 5.0,
+        "materiality": 1.0,
+        "relative": 0.001
+      },
+      "type": "challenger"
+    },
+    {
+      "benchmark_id": "challenger_remediate",
+      "challenger": 100.2,
+      "component": "PFE",
+      "expected_status": "REMEDIATE",
+      "primary": 100.0,
+      "tolerance": {
+        "absolute": 0.01,
+        "hard_multiplier": 5.0,
+        "materiality": 1.0,
+        "relative": 0.001
+      },
+      "type": "challenger"
+    },
+    {
+      "benchmark_id": "challenger_block",
+      "challenger": 101.0,
+      "component": "WWR",
+      "expected_status": "BLOCK",
+      "primary": 100.0,
+      "tolerance": {
+        "absolute": 0.01,
+        "hard_multiplier": 5.0,
+        "materiality": 1.0,
+        "relative": 0.001
+      },
+      "type": "challenger"
+    },
+    {
+      "benchmark_id": "stability_pass",
+      "diagnostic": "seed",
+      "estimates": [
+        100.0,
+        100.5,
+        100.2,
+        100.3
+      ],
+      "expected_status": "PASS",
+      "thresholds": {
+        "hard_coefficient_of_variation": 0.08,
+        "hard_relative_change": 0.1,
+        "minimum_observations": 3,
+        "soft_coefficient_of_variation": 0.02,
+        "soft_relative_change": 0.03
+      },
+      "type": "stability"
+    },
+    {
+      "benchmark_id": "stability_monitoring",
+      "diagnostic": "grid",
+      "estimates": [
+        100.0,
+        104.0,
+        102.5,
+        102.0
+      ],
+      "expected_status": "PASS_WITH_MONITORING",
+      "thresholds": {
+        "hard_coefficient_of_variation": 0.08,
+        "hard_relative_change": 0.1,
+        "minimum_observations": 3,
+        "soft_coefficient_of_variation": 0.02,
+        "soft_relative_change": 0.03
+      },
+      "type": "stability"
+    },
+    {
+      "benchmark_id": "stability_block",
+      "diagnostic": "seed",
+      "estimates": [
+        60.0,
+        140.0,
+        50.0,
+        150.0
+      ],
+      "expected_status": "BLOCK",
+      "thresholds": {
+        "hard_coefficient_of_variation": 0.08,
+        "hard_relative_change": 0.1,
+        "minimum_observations": 3,
+        "soft_coefficient_of_variation": 0.02,
+        "soft_relative_change": 0.03
+      },
+      "type": "stability"
+    },
+    {
+      "benchmark_id": "promotion_pass",
+      "candidate_version": "v1.3.0-rc1",
+      "components": [
+        {
+          "component": "CVA",
+          "diagnostic_statuses": [
+            "PASS"
+          ],
+          "material": true
+        }
+      ],
+      "expected_status": "PASS",
+      "hard_gates": {
+        "benchmarks_passed": true,
+        "evidence_complete": true,
+        "reproducibility_passed": true,
+        "required_ci_passed": true
+      },
+      "type": "promotion"
+    },
+    {
+      "benchmark_id": "promotion_monitoring",
+      "candidate_version": "v1.3.0-rc1",
+      "components": [
+        {
+          "component": "FVA",
+          "diagnostic_statuses": [
+            "PASS_WITH_MONITORING"
+          ],
+          "material": true
+        }
+      ],
+      "expected_status": "PASS_WITH_MONITORING",
+      "hard_gates": {
+        "benchmarks_passed": true,
+        "evidence_complete": true,
+        "reproducibility_passed": true,
+        "required_ci_passed": true
+      },
+      "type": "promotion"
+    },
+    {
+      "benchmark_id": "promotion_remediate",
+      "candidate_version": "v1.3.0-rc1",
+      "components": [
+        {
+          "component": "Collateral",
+          "diagnostic_statuses": [
+            "REMEDIATE"
+          ],
+          "material": true
+        }
+      ],
+      "expected_status": "REMEDIATE",
+      "hard_gates": {
+        "benchmarks_passed": true,
+        "evidence_complete": true,
+        "reproducibility_passed": true,
+        "required_ci_passed": true
+      },
+      "type": "promotion"
+    },
+    {
+      "benchmark_id": "promotion_block",
+      "candidate_version": "v1.3.0-rc1",
+      "components": [
+        {
+          "component": "WWR",
+          "diagnostic_statuses": [
+            "BLOCK"
+          ],
+          "material": true
+        }
+      ],
+      "expected_status": "BLOCK",
+      "hard_gates": {
+        "benchmarks_passed": true,
+        "evidence_complete": true,
+        "reproducibility_passed": true,
+        "required_ci_passed": true
+      },
+      "type": "promotion"
+    }
+  ],
+  "gate": "XVA_EXPOSURE_GATE_7",
+  "schema_version": "1.0",
+  "status": "LOCKED_RELEASE_CANDIDATE_BENCHMARKS"
+}
