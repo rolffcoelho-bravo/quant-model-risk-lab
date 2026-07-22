@@ -49,7 +49,7 @@ def test_validation_workflow_executes_full_pytest_suite() -> None:
 
     required_controls = {
         "actions/checkout@v7",
-        "actions/setup-python@v7",
+        "actions/setup-python@v6",
         'python-version: "3.12"',
         "cache: pip",
         "python -m compileall -q src scripts tests",
