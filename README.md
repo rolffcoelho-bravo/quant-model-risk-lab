@@ -699,3 +699,38 @@ Primary evidence:
 Next gate: stochastic scenario-path and future-value simulation.
 
 **Current development test surface:** `157 collected tests`.
+
+## v1.3 XVA Exposure Simulation — Gate 2
+
+### Gate 2 — Scenario-Path and Future-Value Simulation
+
+Implemented:
+
+- governed market-factor definitions and ordered dependence controls
+- symmetric, unit-diagonal, positive-semidefinite correlation validation
+- seeded PCG64 random-number control
+- antithetic variance reduction
+- correlated GBM FX and exact-transition Vasicek short-rate paths
+- immutable scenario cube indexed by path, time, and factor
+- SHA-256 reproducibility manifest
+- pathwise FX-forward and zero-coupon public valuation adapters
+- future-value cube indexed by path, time, and trade
+- portfolio clean-value aggregation
+- Monte Carlo convergence diagnostics
+- independent analytical moment challengers
+- eight locked scenario and valuation benchmark cases
+- explicit calibration, credit, wrong-way-risk, and production boundaries
+
+Primary evidence:
+
+- [`docs/xva_scenario_path_architecture.md`](docs/xva_scenario_path_architecture.md)
+- [`configs/xva_scenario_model_contract.yml`](configs/xva_scenario_model_contract.yml)
+- [`configs/xva_scenario_benchmark_contract.yml`](configs/xva_scenario_benchmark_contract.yml)
+- [`src/qmrl/xva/scenario_paths.py`](src/qmrl/xva/scenario_paths.py)
+- [`src/qmrl/xva/future_value.py`](src/qmrl/xva/future_value.py)
+- [`src/qmrl/xva/scenario_challenger.py`](src/qmrl/xva/scenario_challenger.py)
+- Gate 2 random-control, dependence, simulation, valuation, convergence, challenger, benchmark, and contract tests
+
+**Current development test surface:** `183 collected tests`.
+
+Next gate: pathwise netting, collateral, and exposure integration.

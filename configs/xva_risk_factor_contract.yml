@@ -1,0 +1,32 @@
+{
+  "calibration_controls": {
+    "as_of_date_supported": true,
+    "historical_calibration_separate_from_forward_simulation": true,
+    "source_required": true
+  },
+  "dependence_controls": {
+    "factor_order_is_contractual": true,
+    "matrix_type": "correlation",
+    "positive_semidefinite": true,
+    "symmetric": true,
+    "unit_diagonal": true
+  },
+  "gate": "XVA_EXPOSURE_GATE_2",
+  "required_factor_fields": [
+    "name",
+    "factor_type",
+    "model",
+    "initial_value",
+    "drift",
+    "volatility",
+    "mean_reversion",
+    "long_run_mean",
+    "currency"
+  ],
+  "schema_version": "1.0",
+  "supported_models": {
+    "deterministic": "Deterministic additive path for locked controls.",
+    "gbm_fx": "Exact lognormal transition for positive FX spot factors.",
+    "vasicek_rate": "Exact Gaussian transition for mean-reverting short rates."
+  }
+}

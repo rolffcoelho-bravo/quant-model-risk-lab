@@ -1,0 +1,26 @@
+{
+  "cube_dimensions": [
+    "path",
+    "time",
+    "trade"
+  ],
+  "gate": "XVA_EXPOSURE_GATE_2",
+  "model_boundaries": [
+    "No production curve rebuild.",
+    "No optionality or path-dependent valuation.",
+    "No collateral or credit integration in Gate 2.",
+    "No production approval."
+  ],
+  "portfolio_aggregation": "sum_across_trade_dimension",
+  "required_controls": [
+    "unique_trade_id",
+    "trade_maturity_within_scenario_horizon",
+    "finite_values",
+    "portfolio_equals_trade_sum"
+  ],
+  "schema_version": "1.0",
+  "supported_public_adapters": [
+    "fx_forward_flat_residual_rate_adapter",
+    "zero_coupon_bond_flat_short_rate_adapter"
+  ]
+}

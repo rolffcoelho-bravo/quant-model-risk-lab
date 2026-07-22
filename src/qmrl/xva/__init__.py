@@ -2,7 +2,8 @@
 
 The package preserves the public v0.9 static XVA API while adding the v1.3
 Gate 1 foundations for time grids, netting sets, collateral state, exposure
-measurement, and deterministic benchmarks.
+measurement, and deterministic benchmarks, plus Gate 2 scenario paths,
+future clean values, convergence diagnostics, and analytical challengers.
 """
 
 from .legacy import (
@@ -49,6 +50,45 @@ from .benchmark import (
     run_benchmark_suite,
 )
 
+from .random_control import (
+    RandomControl,
+    generate_standard_normal,
+)
+from .risk_factors import (
+    RiskFactorSet,
+    RiskFactorSpec,
+    validate_correlation_matrix,
+)
+from .scenario_paths import (
+    ScenarioCube,
+    generate_scenario_cube,
+    scenario_manifest,
+)
+from .future_value import (
+    FXForwardTrade,
+    FutureValueCube,
+    ZeroCouponBondTrade,
+    value_fx_forward,
+    value_portfolio,
+    value_zero_coupon_bond,
+)
+from .convergence import (
+    ConvergenceDiagnostics,
+    convergence_diagnostics,
+)
+from .scenario_challenger import (
+    AnalyticalMomentCheck,
+    compare_terminal_moments,
+    gbm_moments,
+    vasicek_moments,
+)
+from .scenario_benchmark import (
+    ScenarioBenchmarkResult,
+    evaluate_scenario_benchmark,
+    load_scenario_benchmark_contract,
+    run_scenario_benchmark_suite,
+)
+
 __all__ = [
     "XVAAssumptions",
     "compute_xva_from_clean_values",
@@ -81,4 +121,28 @@ __all__ = [
     "evaluate_reference_case",
     "load_benchmark_contract",
     "run_benchmark_suite",
+    "RandomControl",
+    "generate_standard_normal",
+    "RiskFactorSet",
+    "RiskFactorSpec",
+    "validate_correlation_matrix",
+    "ScenarioCube",
+    "generate_scenario_cube",
+    "scenario_manifest",
+    "FXForwardTrade",
+    "FutureValueCube",
+    "ZeroCouponBondTrade",
+    "value_fx_forward",
+    "value_portfolio",
+    "value_zero_coupon_bond",
+    "ConvergenceDiagnostics",
+    "convergence_diagnostics",
+    "AnalyticalMomentCheck",
+    "compare_terminal_moments",
+    "gbm_moments",
+    "vasicek_moments",
+    "ScenarioBenchmarkResult",
+    "evaluate_scenario_benchmark",
+    "load_scenario_benchmark_contract",
+    "run_scenario_benchmark_suite",
 ]

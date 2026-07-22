@@ -35,6 +35,30 @@ All notable repository changes are documented here.
 
 ## [Unreleased]
 
+### Gate 2 — Scenario-Path and Future-Value Simulation
+
+#### Added
+
+- governed risk-factor and dependence contracts
+- PCG64 seed and antithetic random-number controls
+- correlated GBM FX and Vasicek short-rate scenario paths
+- immutable scenario and future-value cubes
+- SHA-256 scenario reproducibility manifests
+- pathwise FX-forward and zero-coupon valuation adapters
+- Monte Carlo convergence diagnostics
+- analytical GBM and Vasicek moment challengers
+- eight locked Gate 2 benchmark cases
+
+#### Validation
+
+- Gate 2 targeted tests: PASS
+- Gate 1 and legacy XVA compatibility: PASS
+- complete collected test surface: `183` tests
+
+#### Boundaries
+
+Gate 2 produces future clean-value paths only. It does not provide production calibration, credit integration, wrong-way-risk modelling, collateral integration, final XVA attribution, or production approval.
+
 ### Added
 
 - XVA exposure-simulation architecture and model contract

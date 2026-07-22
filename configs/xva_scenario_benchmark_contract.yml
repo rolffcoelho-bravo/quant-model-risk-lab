@@ -1,0 +1,351 @@
+{
+  "benchmarks": [
+    {
+      "benchmark_id": "seed_reproducibility",
+      "factor_set": {
+        "calibration_as_of": "2026-07-22",
+        "calibration_source": "locked_benchmark_parameters",
+        "correlation": [
+          [
+            1.0,
+            -0.25
+          ],
+          [
+            -0.25,
+            1.0
+          ]
+        ],
+        "factors": [
+          {
+            "currency": "BRL",
+            "drift": 0.02,
+            "factor_type": "fx_spot",
+            "initial_value": 5.0,
+            "long_run_mean": 0.0,
+            "mean_reversion": 0.0,
+            "model": "gbm_fx",
+            "name": "USD_BRL",
+            "volatility": 0.15
+          },
+          {
+            "currency": "USD",
+            "drift": 0.0,
+            "factor_type": "short_rate",
+            "initial_value": 0.04,
+            "long_run_mean": 0.035,
+            "mean_reversion": 0.4,
+            "model": "vasicek_rate",
+            "name": "USD_RATE",
+            "volatility": 0.01
+          }
+        ]
+      },
+      "num_paths": 1000,
+      "random_control": {
+        "antithetic": true,
+        "seed": 17
+      },
+      "times": [
+        0.0,
+        0.25,
+        0.5,
+        1.0
+      ],
+      "tolerance": 0.0,
+      "type": "seed_reproducibility"
+    },
+    {
+      "benchmark_id": "antithetic_zero_mean",
+      "num_factors": 3,
+      "num_paths": 2000,
+      "num_steps": 4,
+      "random_control": {
+        "antithetic": true,
+        "seed": 23
+      },
+      "tolerance": 1e-14,
+      "type": "antithetic_mean"
+    },
+    {
+      "benchmark_id": "correlation_recovery",
+      "correlation": [
+        [
+          1.0,
+          0.6
+        ],
+        [
+          0.6,
+          1.0
+        ]
+      ],
+      "num_paths": 30000,
+      "random_control": {
+        "antithetic": true,
+        "seed": 29
+      },
+      "tolerance": 0.015,
+      "type": "correlation_recovery"
+    },
+    {
+      "benchmark_id": "deterministic_path",
+      "expected_values": [
+        1.0,
+        1.05,
+        1.1
+      ],
+      "factor_name": "DET",
+      "factor_set": {
+        "correlation": [
+          [
+            1.0
+          ]
+        ],
+        "factors": [
+          {
+            "currency": null,
+            "drift": 0.05,
+            "factor_type": "generic",
+            "initial_value": 1.0,
+            "long_run_mean": 0.0,
+            "mean_reversion": 0.0,
+            "model": "deterministic",
+            "name": "DET",
+            "volatility": 0.0
+          }
+        ]
+      },
+      "num_paths": 2,
+      "random_control": {
+        "antithetic": true,
+        "seed": 31
+      },
+      "times": [
+        0.0,
+        1.0,
+        2.0
+      ],
+      "tolerance": 1e-12,
+      "type": "deterministic_path"
+    },
+    {
+      "benchmark_id": "gbm_terminal_mean",
+      "factor_name": "FX",
+      "factor_set": {
+        "correlation": [
+          [
+            1.0
+          ]
+        ],
+        "factors": [
+          {
+            "currency": "USD",
+            "drift": 0.03,
+            "factor_type": "fx_spot",
+            "initial_value": 1.2,
+            "long_run_mean": 0.0,
+            "mean_reversion": 0.0,
+            "model": "gbm_fx",
+            "name": "FX",
+            "volatility": 0.2
+          }
+        ]
+      },
+      "moment": "mean",
+      "num_paths": 40000,
+      "random_control": {
+        "antithetic": true,
+        "seed": 37
+      },
+      "times": [
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "tolerance": 0.0015,
+      "type": "gbm_moment"
+    },
+    {
+      "benchmark_id": "vasicek_terminal_mean",
+      "factor_name": "RATE",
+      "factor_set": {
+        "correlation": [
+          [
+            1.0
+          ]
+        ],
+        "factors": [
+          {
+            "currency": "USD",
+            "drift": 0.0,
+            "factor_type": "short_rate",
+            "initial_value": 0.04,
+            "long_run_mean": 0.03,
+            "mean_reversion": 0.5,
+            "model": "vasicek_rate",
+            "name": "RATE",
+            "volatility": 0.01
+          }
+        ]
+      },
+      "moment": "mean",
+      "num_paths": 40000,
+      "random_control": {
+        "antithetic": true,
+        "seed": 41
+      },
+      "times": [
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "tolerance": 0.0015,
+      "type": "vasicek_moment"
+    },
+    {
+      "benchmark_id": "manifest_metadata",
+      "expected": [
+        100,
+        3,
+        1,
+        64
+      ],
+      "factor_set": {
+        "correlation": [
+          [
+            1.0
+          ]
+        ],
+        "factors": [
+          {
+            "currency": null,
+            "drift": 0.05,
+            "factor_type": "generic",
+            "initial_value": 1.0,
+            "long_run_mean": 0.0,
+            "mean_reversion": 0.0,
+            "model": "deterministic",
+            "name": "DET",
+            "volatility": 0.0
+          }
+        ]
+      },
+      "num_paths": 100,
+      "random_control": {
+        "antithetic": true,
+        "seed": 43
+      },
+      "times": [
+        0.0,
+        0.5,
+        1.0
+      ],
+      "tolerance": 0.0,
+      "type": "manifest_metadata"
+    },
+    {
+      "benchmark_id": "future_value_cube",
+      "expected": [
+        958.3146000550935,
+        981.4300683620569,
+        1005.0
+      ],
+      "factor_set": {
+        "correlation": [
+          [
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "factors": [
+          {
+            "currency": "USD",
+            "drift": 0.1,
+            "factor_type": "fx_spot",
+            "initial_value": 1.2,
+            "long_run_mean": 0.0,
+            "mean_reversion": 0.0,
+            "model": "deterministic",
+            "name": "SPOT",
+            "volatility": 0.0
+          },
+          {
+            "currency": "USD",
+            "drift": 0.0,
+            "factor_type": "short_rate",
+            "initial_value": 0.04,
+            "long_run_mean": 0.0,
+            "mean_reversion": 0.0,
+            "model": "deterministic",
+            "name": "RD",
+            "volatility": 0.0
+          },
+          {
+            "currency": "USD",
+            "drift": 0.0,
+            "factor_type": "short_rate",
+            "initial_value": 0.02,
+            "long_run_mean": 0.0,
+            "mean_reversion": 0.0,
+            "model": "deterministic",
+            "name": "RF",
+            "volatility": 0.0
+          }
+        ]
+      },
+      "num_paths": 2,
+      "observation_indices": [
+        0,
+        1,
+        2
+      ],
+      "random_control": {
+        "antithetic": true,
+        "seed": 47
+      },
+      "times": [
+        0.0,
+        0.5,
+        1.0
+      ],
+      "tolerance": 1e-10,
+      "trades": [
+        {
+          "domestic_rate_factor": "RD",
+          "foreign_rate_factor": "RF",
+          "maturity_time": 1.0,
+          "notional_foreign": 100.0,
+          "spot_factor": "SPOT",
+          "strike": 1.25,
+          "trade_id": "FXFWD1",
+          "trade_type": "fx_forward"
+        },
+        {
+          "maturity_time": 1.0,
+          "notional": 1000.0,
+          "rate_factor": "RD",
+          "trade_id": "ZCB1",
+          "trade_type": "zero_coupon_bond"
+        }
+      ],
+      "type": "future_value_cube"
+    }
+  ],
+  "gate": "XVA_EXPOSURE_GATE_2",
+  "schema_version": "1.0",
+  "status": "LOCKED_REFERENCE_CASES"
+}
