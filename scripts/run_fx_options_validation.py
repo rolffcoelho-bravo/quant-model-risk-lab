@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import json
+
 from pathlib import Path
 import sys
 import subprocess
@@ -22,6 +24,10 @@ from qmrl.fx_options import (
     garman_kohlhagen_price,
     put_call_parity_gap,
     spot_vol_surface,
+)
+from qmrl.fx_option_governance import (
+    governed_realised_volatility,
+    load_fx_option_governance_contract,
 )
 
 
@@ -48,42 +54,119 @@ def number(value: float) -> str:
     return f"{float(value):,.6f}"
 
 
-def realised_fx_volatility(panel: pd.DataFrame, spot_column: str) -> float:
-    if spot_column not in panel.columns:
-        numeric_candidates = []
-        for col in panel.columns:
-            name = col.lower()
-            if "date" in name or "selic" in name or "ipca" in name or "rate" in name:
-                continue
-            values = pd.to_numeric(panel[col], errors="coerce").dropna()
-            if values.empty:
-                continue
-            median = float(values.median())
-            if 2.0 <= median <= 10.0:
-                numeric_candidates.append(col)
-        if not numeric_candidates:
-            return 0.15
-        spot_column = numeric_candidates[0]
+BCB_SPOT_HISTORY_PATH = (
+    ROOT
+    / "data"
+    / "official"
+    / "raw"
+    / "bcb_usd_brl_sgs1.json"
+)
 
-    work = panel.copy()
-    date_cols = [col for col in work.columns if "date" in col.lower()]
-    if date_cols:
-        work[date_cols[0]] = pd.to_datetime(work[date_cols[0]], errors="coerce")
-        work = work.sort_values(date_cols[0])
 
-    spot = pd.to_numeric(work[spot_column], errors="coerce").dropna()
-    returns = (spot / spot.shift(1)).apply(lambda value: math.log(value) if value and value > 0 else None).dropna()
+def load_governed_usd_brl_levels(
+    panel: pd.DataFrame,
+    fx_column: str,
+) -> pd.Series:
+    """Load FX levels under the governed source-identity contract."""
+    if fx_column in panel.columns:
+        levels = pd.to_numeric(
+            panel[fx_column],
+            errors="coerce",
+        ).dropna()
 
-    if len(returns) < 20:
-        return 0.15
+        if not levels.empty:
+            return levels
 
-    sample = returns.tail(min(len(returns), 252))
-    vol = float(sample.std(ddof=1)) * math.sqrt(252.0)
+    if fx_column != "BCB_SGS_1":
+        raise KeyError(
+            "The requested FX series is not present in the panel "
+            "and is not the governed BCB USD/BRL source."
+        )
 
-    if not math.isfinite(vol) or vol <= 0:
-        return 0.15
+    if not BCB_SPOT_HISTORY_PATH.exists():
+        raise FileNotFoundError(
+            "The governed BCB USD/BRL spot history is missing. "
+            "Run scripts/build_usd_brl_market_inputs.py first."
+        )
 
-    return max(min(vol, 0.60), 0.05)
+    payload = json.loads(
+        BCB_SPOT_HISTORY_PATH.read_text(
+            encoding="utf-8-sig"
+        )
+    )
+
+    if not isinstance(payload, list) or not payload:
+        raise ValueError(
+            "The governed BCB USD/BRL spot history is empty."
+        )
+
+    history = pd.DataFrame(payload)
+
+    required_columns = {"data", "valor"}
+
+    if not required_columns.issubset(
+        history.columns
+    ):
+        raise ValueError(
+            "The governed BCB history must contain data and valor."
+        )
+
+    history["observation_date"] = pd.to_datetime(
+        history["data"],
+        format="%d/%m/%Y",
+        errors="coerce",
+    )
+
+    history["spot_rate_brl_per_usd"] = pd.to_numeric(
+        history["valor"]
+        .astype(str)
+        .str.replace(
+            ",",
+            ".",
+            regex=False,
+        ),
+        errors="coerce",
+    )
+
+    history = history.dropna(
+        subset=[
+            "observation_date",
+            "spot_rate_brl_per_usd",
+        ]
+    ).sort_values(
+        "observation_date"
+    )
+
+    levels = history.loc[
+        history["spot_rate_brl_per_usd"] > 0.0,
+        "spot_rate_brl_per_usd",
+    ]
+
+    if levels.empty:
+        raise ValueError(
+            "The governed BCB USD/BRL history contains no "
+            "positive spot observations."
+        )
+
+    return levels.reset_index(drop=True)
+
+
+def realised_fx_volatility(
+    panel: pd.DataFrame,
+    fx_column: str,
+) -> float:
+    """Estimate volatility from the governed USD/BRL spot history."""
+    contract = load_fx_option_governance_contract()
+
+    levels = load_governed_usd_brl_levels(
+        panel,
+        fx_column,
+    )
+
+    return governed_realised_volatility(
+        levels,
+        contract,
+    )
 
 
 def ensure_fx_forward_outputs() -> None:

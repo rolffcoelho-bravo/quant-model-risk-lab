@@ -498,3 +498,21 @@ The source contract requires BCB SGS series 1 for USD/BRL spot, BCB SGS series 4
 The Garman-Kohlhagen implementation is challenged through a forward-based Black-76 formulation and finite-difference Greek verification.
 
 Market option quote benchmarking remains explicitly open. The implementation challenger is not represented as evidence of market calibration.
+
+
+## FX option volatility and monitoring governance
+
+The FX-option layer now includes an externalized volatility-estimation contract, governed volatility floor, quantitative monitoring thresholds, ownership, alert evidence and automatic revalidation status.
+
+Primary evidence:
+
+- `configs/fx_option_governance_contract.json`
+- `src/qmrl/fx_option_governance.py`
+- `src/qmrl/fx_option_monitoring.py`
+- `scripts/run_fx_option_monitoring.py`
+- `data/official/processed/fx_option_monitoring_baseline.csv`
+- `data/official/processed/fx_option_monitoring_status.csv`
+- `reports/fx_option_monitoring_report.md`
+- `docs/fx_option_volatility_monitoring_governance.md`
+
+The controls are repository-level validation controls. They do not grant production approval or replace the open USD/BRL market-quote benchmark gate.
