@@ -1,0 +1,14 @@
+{
+  "baseline_override_forbidden": true,
+  "correlation_shift_bounds": [
+    -0.5,
+    0.5
+  ],
+  "gate": "XVA_EXPOSURE_GATE_6",
+  "low_plausibility_requires_approval": true,
+  "production_approval": false,
+  "scenario_library_version_required": true,
+  "schema_version": "1.0",
+  "severe_scenario_requires_approval": true,
+  "specific_wwr_requires_human_review": true
+}

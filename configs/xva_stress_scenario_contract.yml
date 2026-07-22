@@ -1,0 +1,23 @@
+{
+  "gate": "XVA_EXPOSURE_GATE_6",
+  "production_approval": false,
+  "required_components": [
+    "exposure_multiplier",
+    "negative_exposure_multiplier",
+    "counterparty_hazard_multiplier",
+    "own_hazard_multiplier",
+    "borrowing_spread_bump_bps",
+    "lending_spread_bump_bps",
+    "discount_rate_bump_bps",
+    "correlation_shift",
+    "plausibility_score"
+  ],
+  "results_kept_separate": [
+    "base",
+    "stressed",
+    "wrong_way",
+    "right_way"
+  ],
+  "schema_version": "1.0",
+  "total_adjustment_identity": "-CVA + DVA - FCA + FBA"
+}

@@ -828,3 +828,33 @@ Primary evidence:
 **Current development test surface:** `266 collected tests`.
 
 Next gate: wrong-way-risk dependence and stress scenarios.
+
+## v1.3 XVA Exposure Simulation - Gate 6
+
+### Gate 6 - Wrong-way risk dependence and stress scenarios
+
+Implemented:
+
+- independent, general WWR, specific WWR, and right-way classifications
+- governed Gaussian copula dependence baseline
+- conditional marginal default probabilities linked to pathwise MPOR exposure
+- independent and dependence-adjusted CVA with uplift attribution
+- systemic, sector, sovereign, commodity, FX, rate, and idiosyncratic stress channels
+- stressed CVA, DVA, FCA, FBA, FVA, and total-adjustment reconciliation
+- exposure, hazard, funding, discount, and correlation scenario controls
+- concentration HHI and tail-exposure diagnostics
+- deterministic SHA-256 WWR and stress evidence
+- eleven locked dependence, stress, and governance benchmarks
+
+Primary evidence:
+
+- [`docs/xva_wrong_way_risk_and_stress.md`](docs/xva_wrong_way_risk_and_stress.md)
+- [`configs/xva_wwr_dependence_contract.yml`](configs/xva_wwr_dependence_contract.yml)
+- [`configs/xva_stress_scenario_contract.yml`](configs/xva_stress_scenario_contract.yml)
+- [`configs/xva_wwr_benchmark_contract.yml`](configs/xva_wwr_benchmark_contract.yml)
+- [`src/qmrl/xva/wrong_way_risk.py`](src/qmrl/xva/wrong_way_risk.py)
+- [`src/qmrl/xva/xva_stress.py`](src/qmrl/xva/xva_stress.py)
+
+**Current Gate 6 development test surface:** `294 collected tests`.
+
+Baseline, stressed, wrong-way-risk, and right-way-risk results remain separately attributable. Gate 6 does not grant production approval.

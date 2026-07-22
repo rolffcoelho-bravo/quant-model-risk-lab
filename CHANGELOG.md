@@ -38,6 +38,18 @@ All notable repository changes are documented here.
 
 
 
+
+### Gate 6 - Wrong-way risk dependence and stress scenarios
+
+- Added governed Gaussian-copula wrong-way-risk and right-way-risk dependence.
+- Added pathwise conditional-PD CVA uplift and legal netting-set attribution.
+- Added systemic, sector, sovereign, commodity, FX, rate, and idiosyncratic stress scenarios.
+- Added stressed CVA, DVA, FCA, FBA, FVA, and total-adjustment reconciliation.
+- Added tail-exposure and concentration diagnostics.
+- Added deterministic WWR and stress evidence manifests.
+- Added eleven locked Gate 6 dependence, stress, and governance benchmarks.
+- Complete Gate 6 development test surface: `294` tests.
+
 ### Gate 5 - CVA, DVA, and FVA integration and attribution
 
 - CVA, DVA, FCA, FBA, FVA, and total-adjustment integration

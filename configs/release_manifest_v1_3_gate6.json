@@ -1,0 +1,11 @@
+{
+  "branch": "feature/v1-3-xva-exposure-gate-6",
+  "gate": "XVA_EXPOSURE_GATE_6",
+  "next_gate": "XVA_EXPOSURE_GATE_7_CHALLENGERS_AND_MODEL_STABILITY",
+  "production_approval": false,
+  "release_line": "v1.3-development",
+  "required_check": "Python 3.12 validation",
+  "schema_version": "1.0",
+  "status": "IMPLEMENTED_LOCAL_VALIDATION_PASS",
+  "test_count": 294
+}

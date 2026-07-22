@@ -1,0 +1,80 @@
+{
+  "benchmarks": [
+    {
+      "benchmark_id": "independence_zero_uplift",
+      "classification": "independent",
+      "correlation": 0.0,
+      "tolerance": 1e-10,
+      "type": "independence"
+    },
+    {
+      "benchmark_id": "positive_wwr_uplift",
+      "classification": "general_wrong_way",
+      "correlation": 0.65,
+      "type": "wwr"
+    },
+    {
+      "benchmark_id": "right_way_reduction",
+      "classification": "right_way",
+      "correlation": -0.65,
+      "type": "rwr"
+    },
+    {
+      "benchmark_id": "near_perfect_dependence_boundary",
+      "classification": "specific_wrong_way",
+      "correlation": 0.99,
+      "type": "boundary"
+    },
+    {
+      "benchmark_id": "hazard_multiplier_stress",
+      "parameters": {
+        "counterparty_hazard_multiplier": 1.5
+      },
+      "type": "hazard_stress"
+    },
+    {
+      "benchmark_id": "exposure_multiplier_stress",
+      "parameters": {
+        "exposure_multiplier": 1.4
+      },
+      "type": "exposure_stress"
+    },
+    {
+      "benchmark_id": "funding_cost_stress",
+      "parameters": {
+        "borrowing_spread_bump_bps": 50.0
+      },
+      "type": "funding_stress"
+    },
+    {
+      "benchmark_id": "discount_rate_stress",
+      "parameters": {
+        "discount_rate_bump_bps": 100.0
+      },
+      "type": "discount_stress"
+    },
+    {
+      "benchmark_id": "component_reconciliation",
+      "parameters": {
+        "borrowing_spread_bump_bps": 20.0,
+        "counterparty_hazard_multiplier": 1.3,
+        "exposure_multiplier": 1.2
+      },
+      "tolerance": 1e-10,
+      "type": "reconciliation"
+    },
+    {
+      "benchmark_id": "severe_unapproved_rejection",
+      "type": "governance"
+    },
+    {
+      "benchmark_id": "deterministic_evidence",
+      "classification": "general_wrong_way",
+      "correlation": 0.5,
+      "type": "manifest"
+    }
+  ],
+  "gate": "XVA_EXPOSURE_GATE_6",
+  "schema_version": "1.0",
+  "status": "LOCKED_REFERENCE_CASES"
+}
