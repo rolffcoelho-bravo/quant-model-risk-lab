@@ -1,0 +1,17 @@
+{
+  "gate": "XVA_EXPOSURE_GATE_5",
+  "legal_boundary": "No cross-netting-set offset is permitted.",
+  "required_levels": [
+    "time_bucket",
+    "netting_set",
+    "counterparty",
+    "portfolio",
+    "trade_allocation"
+  ],
+  "schema_version": "1.0",
+  "trade_allocation": {
+    "method": "governed_component_weights",
+    "portfolio_reconciliation_required": true,
+    "weights_sum_to_one_within_each_netting_set": true
+  }
+}

@@ -1,0 +1,389 @@
+{
+  "benchmarks": [
+    {
+      "benchmark_id": "unilateral_flat_cva",
+      "counterparty_spread_bps": 100.0,
+      "expected": {
+        "cva": 0.9917127707029505,
+        "dva": 0.0,
+        "fba": 0.0,
+        "fca": 0.0,
+        "fva": 0.0,
+        "total_adjustment": -0.9917127707029505
+      },
+      "expected_negative": [
+        [
+          0.0
+        ],
+        [
+          0.0
+        ]
+      ],
+      "expected_positive": [
+        [
+          0.0
+        ],
+        [
+          100.0
+        ]
+      ],
+      "own_spread_bps": 120.0,
+      "tolerance": 1e-10,
+      "type": "unilateral_cva",
+      "valuation_mode": "unilateral"
+    },
+    {
+      "benchmark_id": "bilateral_first_to_default_cva",
+      "expected": {
+        "cva": 0.9720755421443985,
+        "dva": 0.0,
+        "fba": 0.0,
+        "fca": 0.0,
+        "fva": 0.0,
+        "total_adjustment": -0.9720755421443985
+      },
+      "expected_negative": [
+        [
+          0.0
+        ],
+        [
+          0.0
+        ]
+      ],
+      "expected_positive": [
+        [
+          0.0
+        ],
+        [
+          100.0
+        ]
+      ],
+      "tolerance": 1e-10,
+      "type": "bilateral_cva",
+      "valuation_mode": "bilateral"
+    },
+    {
+      "benchmark_id": "bilateral_dva",
+      "expected": {
+        "cva": 0.0,
+        "dva": 0.9347538984289062,
+        "fba": 0.0,
+        "fca": 0.0,
+        "fva": 0.0,
+        "total_adjustment": 0.9347538984289062
+      },
+      "expected_negative": [
+        [
+          0.0
+        ],
+        [
+          80.0
+        ]
+      ],
+      "expected_positive": [
+        [
+          0.0
+        ],
+        [
+          0.0
+        ]
+      ],
+      "tolerance": 1e-10,
+      "type": "dva",
+      "valuation_mode": "bilateral"
+    },
+    {
+      "benchmark_id": "funding_cost_only",
+      "borrowing_spread_bps": 200.0,
+      "counterparty_spread_bps": 0.0,
+      "expected": {
+        "cva": 0.0,
+        "dva": 0.0,
+        "fba": 0.0,
+        "fca": 2.0,
+        "fva": 2.0,
+        "total_adjustment": -2.0
+      },
+      "expected_negative": [
+        [
+          0.0
+        ],
+        [
+          0.0
+        ]
+      ],
+      "expected_positive": [
+        [
+          0.0
+        ],
+        [
+          100.0
+        ]
+      ],
+      "funding_survival_mode": "none",
+      "tolerance": 1e-10,
+      "type": "fca",
+      "valuation_mode": "unilateral"
+    },
+    {
+      "benchmark_id": "funding_benefit_only",
+      "borrowing_spread_bps": 200.0,
+      "counterparty_spread_bps": 0.0,
+      "expected": {
+        "cva": 0.0,
+        "dva": 0.0,
+        "fba": 0.8,
+        "fca": 0.0,
+        "fva": -0.8,
+        "total_adjustment": 0.8
+      },
+      "expected_negative": [
+        [
+          0.0
+        ],
+        [
+          80.0
+        ]
+      ],
+      "expected_positive": [
+        [
+          0.0
+        ],
+        [
+          0.0
+        ]
+      ],
+      "funding_survival_mode": "none",
+      "lending_spread_bps": 100.0,
+      "tolerance": 1e-10,
+      "type": "fba",
+      "valuation_mode": "unilateral"
+    },
+    {
+      "benchmark_id": "component_sign_identity",
+      "borrowing_spread_bps": 200.0,
+      "expected": {
+        "cva": 0.9720755421443985,
+        "dva": 0.9347538984289062,
+        "fba": 0.8,
+        "fca": 2.0,
+        "fva": 1.2,
+        "total_adjustment": -1.2373216437154924
+      },
+      "expected_negative": [
+        [
+          0.0
+        ],
+        [
+          80.0
+        ]
+      ],
+      "expected_positive": [
+        [
+          0.0
+        ],
+        [
+          100.0
+        ]
+      ],
+      "funding_survival_mode": "none",
+      "lending_spread_bps": 100.0,
+      "tolerance": 1e-10,
+      "type": "total_identity",
+      "valuation_mode": "bilateral"
+    },
+    {
+      "benchmark_id": "netting_set_attribution",
+      "borrowing_spread_bps": 100.0,
+      "counterparty_ids": [
+        "CP1",
+        "CP1"
+      ],
+      "counterparty_spread_bps": 0.0,
+      "expected": {
+        "portfolio_cva": 0.0,
+        "portfolio_fca": 1.0,
+        "set_cva_sum": 0.0,
+        "set_fca_sum": 1.0
+      },
+      "expected_negative": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "expected_positive": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          40.0,
+          60.0
+        ]
+      ],
+      "netting_set_ids": [
+        "NS1",
+        "NS2"
+      ],
+      "tolerance": 1e-10,
+      "type": "netting_set_attribution",
+      "valuation_mode": "unilateral"
+    },
+    {
+      "benchmark_id": "counterparty_attribution",
+      "counterparty_ids": [
+        "CP1",
+        "CP2"
+      ],
+      "counterparty_spreads_bps": {
+        "CP1": 100.0,
+        "CP2": 200.0
+      },
+      "expected": {
+        "counterparty_count": 2,
+        "counterparty_cva_sum": 1.4793733708912982,
+        "portfolio_cva": 1.4793733708912982
+      },
+      "expected_negative": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "expected_positive": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          50.0,
+          50.0
+        ]
+      ],
+      "netting_set_ids": [
+        "NS1",
+        "NS2"
+      ],
+      "tolerance": 1e-10,
+      "type": "counterparty_attribution",
+      "valuation_mode": "unilateral"
+    },
+    {
+      "benchmark_id": "trade_allocation_reconciliation",
+      "counterparty_ids": [
+        "CP1",
+        "CP1"
+      ],
+      "expected": {
+        "portfolio_cva": 0.9917127707029505,
+        "portfolio_total": -0.9917127707029505,
+        "trade_cva_sum": 0.9917127707029505,
+        "trade_total_sum": -0.9917127707029505
+      },
+      "expected_negative": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "expected_positive": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          40.0,
+          60.0
+        ]
+      ],
+      "netting_set_ids": [
+        "NS1",
+        "NS2"
+      ],
+      "tolerance": 1e-10,
+      "trade_to_netting_set": {
+        "T1": "NS1",
+        "T2": "NS1",
+        "T3": "NS2"
+      },
+      "type": "trade_allocation",
+      "valuation_mode": "unilateral"
+    },
+    {
+      "benchmark_id": "challenger_reconciliation",
+      "borrowing_spread_bps": 200.0,
+      "expected": {
+        "max_error": 0.0,
+        "status": "PASS"
+      },
+      "expected_negative": [
+        [
+          0.0
+        ],
+        [
+          80.0
+        ]
+      ],
+      "expected_positive": [
+        [
+          0.0
+        ],
+        [
+          100.0
+        ]
+      ],
+      "funding_survival_mode": "first_to_default",
+      "lending_spread_bps": 100.0,
+      "tolerance": 1e-12,
+      "type": "challenger_reconciliation",
+      "valuation_mode": "bilateral"
+    },
+    {
+      "benchmark_id": "sensitivity_direction",
+      "borrowing_spread_bps": 200.0,
+      "expected": {
+        "cp_spread_increases_cva": true,
+        "funding_bump_increases_fca": true,
+        "manifest_hash_length": 64,
+        "own_spread_increases_dva": true
+      },
+      "expected_negative": [
+        [
+          0.0
+        ],
+        [
+          80.0
+        ]
+      ],
+      "expected_positive": [
+        [
+          0.0
+        ],
+        [
+          100.0
+        ]
+      ],
+      "funding_survival_mode": "none",
+      "lending_spread_bps": 100.0,
+      "tolerance": 0.0,
+      "type": "sensitivity_direction",
+      "valuation_mode": "bilateral"
+    }
+  ],
+  "gate": "XVA_EXPOSURE_GATE_5",
+  "schema_version": "1.0",
+  "status": "LOCKED_REFERENCE_CASES"
+}

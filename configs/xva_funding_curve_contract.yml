@@ -1,0 +1,23 @@
+{
+  "components": [
+    "borrowing_cost_spread",
+    "lending_benefit_spread"
+  ],
+  "controls": [
+    "non_negative_spreads",
+    "lending_not_above_borrowing",
+    "currency_match",
+    "as_of_date_match"
+  ],
+  "exposure_bases": [
+    "collateralized",
+    "mpor"
+  ],
+  "fva_definition": "FVA = FCA - FBA",
+  "gate": "XVA_EXPOSURE_GATE_5",
+  "schema_version": "1.0",
+  "survival_modes": [
+    "none",
+    "first_to_default"
+  ]
+}
