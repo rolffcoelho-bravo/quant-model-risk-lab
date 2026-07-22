@@ -185,3 +185,60 @@ __all__.extend([
     "load_exposure_integration_benchmark_contract",
     "run_exposure_integration_benchmark_suite",
 ])
+
+# v1.3 Gate 4 counterparty credit calibration
+from .credit_curve import (
+    CreditCurve,
+    CreditCurveRepricing,
+    CreditCurveSensitivity,
+    CreditQuote,
+    RecoveryAssumption,
+    build_flat_credit_curve,
+    calibrate_piecewise_credit_curve,
+    cds_legs,
+    credit_curve_manifest,
+    credit_curve_sensitivity,
+    flat_hazard_from_spread,
+    par_spread_bps,
+    reprice_credit_quotes,
+    validate_credit_quotes,
+    validate_recovery_assumption,
+)
+from .credit_proxy import (
+    CreditProxyCandidate,
+    CreditProxySelection,
+    proxy_selection_to_quote,
+    select_credit_proxy,
+)
+from .credit_benchmark import (
+    CreditCalibrationBenchmarkResult,
+    evaluate_credit_benchmark,
+    load_credit_benchmark_contract,
+    run_credit_benchmark_suite,
+)
+
+__all__.extend([
+    "CreditCurve",
+    "CreditCurveRepricing",
+    "CreditCurveSensitivity",
+    "CreditQuote",
+    "RecoveryAssumption",
+    "build_flat_credit_curve",
+    "calibrate_piecewise_credit_curve",
+    "cds_legs",
+    "credit_curve_manifest",
+    "credit_curve_sensitivity",
+    "flat_hazard_from_spread",
+    "par_spread_bps",
+    "reprice_credit_quotes",
+    "validate_credit_quotes",
+    "validate_recovery_assumption",
+    "CreditProxyCandidate",
+    "CreditProxySelection",
+    "proxy_selection_to_quote",
+    "select_credit_proxy",
+    "CreditCalibrationBenchmarkResult",
+    "evaluate_credit_benchmark",
+    "load_credit_benchmark_contract",
+    "run_credit_benchmark_suite",
+])

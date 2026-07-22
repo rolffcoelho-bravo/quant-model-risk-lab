@@ -1,0 +1,29 @@
+{
+  "calibration_instrument": "par_credit_spread",
+  "curve_model": "piecewise_constant_hazard",
+  "extrapolation_modes": [
+    "flat_hazard",
+    "forbidden"
+  ],
+  "gate": "XVA_EXPOSURE_GATE_4",
+  "human_review_required": true,
+  "interpolation": "linear_cumulative_hazard",
+  "monotone_survival_required": true,
+  "next_gate": "XVA_EXPOSURE_GATE_5_XVA_INTEGRATION",
+  "non_negative_hazard_required": true,
+  "probability_measure_separation": true,
+  "production_approval": false,
+  "quote_repricing_tolerance_bps": 1e-07,
+  "roles": [
+    "counterparty",
+    "own",
+    "proxy"
+  ],
+  "schema_version": "1.0",
+  "status": "IMPLEMENTED_PUBLIC_VALIDATION_FOUNDATION",
+  "supported_quote_types": [
+    "cds",
+    "bond",
+    "proxy"
+  ]
+}

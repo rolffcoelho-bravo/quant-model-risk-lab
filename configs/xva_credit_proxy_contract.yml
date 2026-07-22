@@ -1,0 +1,21 @@
+{
+  "controls": {
+    "basis_adjustment_recorded": true,
+    "currency_match": true,
+    "measure_match": true,
+    "negative_adjusted_spread_rejected": true,
+    "non_direct_selection_requires_human_review": true,
+    "seniority_match": true,
+    "stale_candidate_rejected": true,
+    "tenor_match": true
+  },
+  "gate": "XVA_EXPOSURE_GATE_4",
+  "hierarchy": [
+    "direct",
+    "parent",
+    "sovereign",
+    "sector"
+  ],
+  "production_approval": false,
+  "schema_version": "1.0"
+}
