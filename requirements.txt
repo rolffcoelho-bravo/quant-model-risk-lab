@@ -1,7 +1,8 @@
-﻿numpy
+numpy
 pandas
 pytest
 requests
 matplotlib
 openai
 pydantic
+tabulate==0.10.0

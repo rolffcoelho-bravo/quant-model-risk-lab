@@ -54,7 +54,7 @@ jobs:
       - name: Verify deterministic environment
         run: |
           python --version
-          python -c "import numpy, pandas, matplotlib, pytest, pydantic, openai; print('Dependency imports: PASS')"
+          python -c "import numpy, pandas, matplotlib, pytest, pydantic, openai, tabulate; print('Dependency imports: PASS')"
           python -c "import matplotlib; assert matplotlib.get_backend().lower() == 'agg'; print('Matplotlib backend:', matplotlib.get_backend())"
           python -m compileall -q src scripts tests
 

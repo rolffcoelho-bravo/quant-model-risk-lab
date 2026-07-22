@@ -59,3 +59,23 @@ def test_validation_workflow_executes_full_pytest_suite() -> None:
 
     for control in required_controls:
         assert control in workflow
+
+
+def test_tabulate_runtime_dependency_is_declared() -> None:
+    requirements = Path("requirements.txt").read_text(
+        encoding="utf-8-sig"
+    )
+
+    declarations = {
+        line.strip()
+        for line in requirements.splitlines()
+        if line.strip()
+        and not line.lstrip().startswith("#")
+    }
+
+    workflow = workflow_text()
+
+    assert "tabulate==0.10.0" in declarations
+    assert "tabulate" in workflow
+    assert "Dependency imports: PASS" in workflow
+
