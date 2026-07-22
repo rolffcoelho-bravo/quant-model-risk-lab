@@ -3,7 +3,7 @@
 **Open Model Validation, Official Rates, FX, Inflation and Risk Analytics Lab**
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
-![Tests](https://img.shields.io/badge/Tests-69%20passing-brightgreen)
+[![Validation CI](https://github.com/rolffcoelho-bravo/quant-model-risk-lab/actions/workflows/validation-ci.yml/badge.svg?branch=main)](https://github.com/rolffcoelho-bravo/quant-model-risk-lab/actions/workflows/validation-ci.yml)
 ![Status](https://img.shields.io/badge/Status-Model%20Risk%20Evidence%20Lab-blue)
 ![Use](https://img.shields.io/badge/Use-Research%20Only-lightgrey)
 
@@ -516,3 +516,19 @@ Primary evidence:
 - `docs/fx_option_volatility_monitoring_governance.md`
 
 The controls are repository-level validation controls. They do not grant production approval or replace the open USD/BRL market-quote benchmark gate.
+
+
+## Continuous integration validation
+
+The repository runs its complete deterministic validation suite through GitHub Actions for every pull request targeting `main` and every push to `main`.
+
+Primary evidence:
+
+- `.github/workflows/validation-ci.yml`
+- `docs/continuous_integration_policy.md`
+- `tests/test_validation_ci_contract.py`
+- GitHub Actions JUnit test artifact
+
+The workflow uses Python 3.12, pip dependency caching, headless Matplotlib, deterministic numerical-thread controls and read-only repository permissions.
+
+The workflow does not receive provider credentials and does not execute the controlled GenAI API call. GenAI schema, grounding and governance tests remain part of the deterministic CI suite.
