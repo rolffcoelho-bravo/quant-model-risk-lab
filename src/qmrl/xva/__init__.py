@@ -344,3 +344,67 @@ from .gate7_benchmark import (
     load_gate7_benchmark_contract,
     run_gate7_benchmarks,
 )
+
+# v1.3 Gate 8 dashboard, lifecycle monitoring, governed GenAI, and release governance
+try:
+    __all__
+except NameError:
+    __all__ = []
+
+from .dashboard import (
+    DashboardPanel,
+    ValidationDashboard,
+    build_validation_dashboard,
+    canonical_dashboard_hash,
+    render_dashboard_markdown,
+)
+from .lifecycle import (
+    LifecycleAssessment,
+    MonitoringObservation,
+    MonitoringRule,
+    assess_lifecycle,
+    evaluate_monitoring_metric,
+    lifecycle_manifest_hash,
+)
+from .genai_release_challenge import (
+    ApprovedArtifact,
+    ChallengeFinding,
+    ChallengeValidation,
+    artifact_sha256,
+    build_challenge_packet,
+    validate_findings,
+    validate_human_review,
+)
+from .release_evidence import (
+    GateEvidence,
+    ReleaseCandidateEvidence,
+    ReleaseValidation,
+    canonical_release_hash,
+    validate_release_candidate,
+)
+
+__all__ += [
+    "DashboardPanel",
+    "ValidationDashboard",
+    "build_validation_dashboard",
+    "canonical_dashboard_hash",
+    "render_dashboard_markdown",
+    "LifecycleAssessment",
+    "MonitoringObservation",
+    "MonitoringRule",
+    "assess_lifecycle",
+    "evaluate_monitoring_metric",
+    "lifecycle_manifest_hash",
+    "ApprovedArtifact",
+    "ChallengeFinding",
+    "ChallengeValidation",
+    "artifact_sha256",
+    "build_challenge_packet",
+    "validate_findings",
+    "validate_human_review",
+    "GateEvidence",
+    "ReleaseCandidateEvidence",
+    "ReleaseValidation",
+    "canonical_release_hash",
+    "validate_release_candidate",
+]

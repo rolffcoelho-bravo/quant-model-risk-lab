@@ -1,0 +1,29 @@
+{
+  "drilldown_dimensions": [
+    "gate",
+    "counterparty",
+    "netting_set",
+    "time_bucket",
+    "component"
+  ],
+  "gate": "XVA_RELEASE_GATE_8",
+  "production_approval": false,
+  "purpose": "Decision-grade public XVA validation dashboard",
+  "required_panels": [
+    "scenario_and_future_value",
+    "netting_collateral_and_exposure",
+    "credit_calibration",
+    "cva_dva_fva",
+    "wrong_way_risk_and_stress",
+    "challenger_and_stability",
+    "lifecycle_monitoring",
+    "governed_genai_and_release"
+  ],
+  "schema_version": "1.0",
+  "status_vocabulary": [
+    "PASS",
+    "PASS_WITH_MONITORING",
+    "REMEDIATE",
+    "BLOCK"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "gate": "XVA_RELEASE_GATE_8",
+  "human_override_requires_rationale": true,
+  "production_approval": false,
+  "purpose": "Lifecycle monitoring and revalidation control",
+  "required_metrics": [
+    "benchmark_drift",
+    "challenger_disagreement",
+    "input_age_days",
+    "path_convergence_relative_change",
+    "tail_concentration_hhi",
+    "open_gate_count"
+  ],
+  "schema_version": "1.0",
+  "status_vocabulary": [
+    "PASS",
+    "PASS_WITH_MONITORING",
+    "REMEDIATE",
+    "BLOCK"
+  ],
+  "worst_status_aggregation": true
+}

@@ -1,0 +1,31 @@
+{
+  "approved_artifacts": [
+    {
+      "path": "configs/release_manifest_v1_3_gate7.json",
+      "sha256": "e9b7c453e8b47408cd9f65d4b11a2877cdb3f6432692e990b35b0eeb5e9f55d9"
+    },
+    {
+      "path": "configs/xva_promotion_contract.yml",
+      "sha256": "0a93ca483e810bfb9736229e8ae543a9e7c879f17adc94915af6631621f1adab"
+    },
+    {
+      "path": "docs/xva_independent_challenger_and_promotion.md",
+      "sha256": "7f306f8020f71bd2a634761b740485fbf4cdb6007c9c459a539c21ee781e4ba2"
+    },
+    {
+      "path": "docs/validation_matrix.md",
+      "sha256": "15ece8c23a7107a6db9ebe75caa6b1adb32b02ff1613120421ff6d4bac70f0c9"
+    },
+    {
+      "path": "reports/xva_v1_3_validation_dashboard.json",
+      "sha256": "1cf1b349c8152d46f72eb90f20d2297720d96ef92453be756979986ef0b4897d"
+    }
+  ],
+  "approved_evidence_only": true,
+  "autonomous_model_approval": false,
+  "challenge_id": "XVA-V1.3-RELEASE-CHALLENGE",
+  "human_review_required": true,
+  "instruction_version": "xva_v1_3_release_challenge_v1",
+  "packet_sha256": "43b58880f9b94c0340e2fc6f8d825f962d7f694525e91faf9d72a186a9b3bee4",
+  "schema_version": "1.0"
+}

@@ -1,0 +1,78 @@
+{
+  "dashboard": {
+    "artifact": "reports/xva_v1_3_validation_dashboard.json",
+    "status": "PASS_WITH_MONITORING"
+  },
+  "gates": [
+    {
+      "gate": 1,
+      "status": "PASS"
+    },
+    {
+      "gate": 2,
+      "status": "PASS"
+    },
+    {
+      "gate": 3,
+      "status": "PASS"
+    },
+    {
+      "gate": 4,
+      "status": "PASS_WITH_MONITORING"
+    },
+    {
+      "gate": 5,
+      "status": "PASS"
+    },
+    {
+      "gate": 6,
+      "status": "PASS_WITH_MONITORING"
+    },
+    {
+      "gate": 7,
+      "status": "PASS"
+    },
+    {
+      "gate": 8,
+      "status": "PASS_WITH_MONITORING"
+    }
+  ],
+  "governed_genai": {
+    "autonomous_model_approval": false,
+    "human_review_required": true,
+    "live_provider_execution_required_in_ci": false,
+    "status": "ACCEPTED_WITH_MONITORING"
+  },
+  "lifecycle_monitoring": {
+    "artifact": "reports/xva_v1_3_lifecycle_monitoring.json",
+    "status": "PASS_WITH_MONITORING"
+  },
+  "open_gates": [
+    {
+      "production_approval": false,
+      "scope": "dated auditable USD/BRL option quote benchmark",
+      "status": "OPEN_NO_PUBLIC_QUOTE_DATA"
+    },
+    {
+      "production_approval": false,
+      "scope": "institution-specific counterparty, CSA, funding, and legal-enforceability evidence",
+      "status": "NON_PRODUCTION_PUBLIC_CALIBRATION"
+    }
+  ],
+  "production_approval": false,
+  "release": {
+    "date": "2026-07-22",
+    "status": "RELEASE_READY_PUBLIC_RESEARCH_SOFTWARE",
+    "tag": "v1.3.0",
+    "title": "XVA Exposure Simulation and Counterparty Risk Validation Platform",
+    "version": "1.3.0"
+  },
+  "schema_version": "1.0",
+  "validation": {
+    "collected_test_count": 350,
+    "junit_evidence": true,
+    "post_merge_ci_required": true,
+    "pull_request_ci_required": true,
+    "required_check": "Python 3.12 validation"
+  }
+}

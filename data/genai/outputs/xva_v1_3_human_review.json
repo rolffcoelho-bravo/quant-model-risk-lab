@@ -1,0 +1,14 @@
+{
+  "autonomous_model_approval": false,
+  "decision": "ACCEPTED_WITH_MONITORING",
+  "production_approval": false,
+  "rationale": "The findings are grounded, preserve public-data and non-production boundaries, and do not override quantitative evidence.",
+  "review_id": "XVA-V1.3-HUMAN-REVIEW",
+  "reviewed_finding_ids": [
+    "XVA-G8-001",
+    "XVA-G8-002",
+    "XVA-G8-003"
+  ],
+  "reviewer_type": "HUMAN_MODEL_RISK_REVIEWER",
+  "schema_version": "1.0"
+}

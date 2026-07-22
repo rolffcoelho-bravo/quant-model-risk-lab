@@ -1,0 +1,38 @@
+{
+  "autonomous_model_approval": false,
+  "challenge_id": "XVA-V1.3-RELEASE-CHALLENGE",
+  "findings": [
+    {
+      "artifact_citations": [
+        "docs/xva_independent_challenger_and_promotion.md",
+        "docs/validation_matrix.md"
+      ],
+      "claim": "The release evidence is internally coherent, but the public calibration and legal-enforceability boundary must remain explicit.",
+      "finding_id": "XVA-G8-001",
+      "recommendation": "Publish with PASS_WITH_MONITORING and retain the non-production boundary.",
+      "severity": "MONITORING"
+    },
+    {
+      "artifact_citations": [
+        "configs/xva_promotion_contract.yml",
+        "reports/xva_v1_3_validation_dashboard.json"
+      ],
+      "claim": "Credit and wrong-way-risk controls are validated as public methodology rather than institution-approved calibration.",
+      "finding_id": "XVA-G8-002",
+      "recommendation": "Require revalidation before any institution-specific use.",
+      "severity": "MONITORING"
+    },
+    {
+      "artifact_citations": [
+        "docs/validation_matrix.md"
+      ],
+      "claim": "The repository-level USD/BRL option quote benchmark remains open and is not converted into a pass by the XVA release.",
+      "finding_id": "XVA-G8-003",
+      "recommendation": "Preserve OPEN_NO_PUBLIC_QUOTE_DATA until dated auditable quote evidence exists.",
+      "severity": "INFORMATIONAL"
+    }
+  ],
+  "live_provider_execution": false,
+  "schema_version": "1.0",
+  "status": "VALIDATED_PENDING_HUMAN_REVIEW"
+}

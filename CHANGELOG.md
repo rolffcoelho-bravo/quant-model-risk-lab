@@ -40,117 +40,30 @@ All notable repository changes are documented here.
 
 
 
-### Gate 7 - Wrong-way risk dependence and stress scenarios
 
-- Added independent CVA, DVA, and funding challengers.
-- Added materiality-aware discrepancy classification and a hard tolerance hierarchy.
-- Added path-count, seed, antithetic, time-grid, parameter, and attribution stability controls.
-- Added sensitivity ranking, discontinuity detection, and locked-benchmark drift diagnostics.
-- Added component and portfolio promotion governance with `PASS`, `PASS_WITH_MONITORING`, `REMEDIATE`, and `BLOCK`.
-- Added deterministic v1.3 release-candidate evidence and twelve locked Gate 7 benchmarks.
-- Expanded the repository validation surface to `322` collected tests.
 
-### Gate 6 - Wrong-way risk dependence and stress scenarios
 
-- Added governed Gaussian-copula wrong-way-risk and right-way-risk dependence.
-- Added pathwise conditional-PD CVA uplift and legal netting-set attribution.
-- Added systemic, sector, sovereign, commodity, FX, rate, and idiosyncratic stress scenarios.
-- Added stressed CVA, DVA, FCA, FBA, FVA, and total-adjustment reconciliation.
-- Added tail-exposure and concentration diagnostics.
-- Added deterministic WWR and stress evidence manifests.
-- Added eleven locked Gate 6 dependence, stress, and governance benchmarks.
-- Complete Gate 6 development test surface: `294` tests.
-
-### Gate 5 - CVA, DVA, and FVA integration and attribution
-
-- CVA, DVA, FCA, FBA, FVA, and total-adjustment integration
-- bilateral first-to-default survival controls
-- governed discount and funding curves
-- time-bucket, netting-set, counterparty, portfolio, and trade attribution
-- independent loop challenger and reconciliation
-- spread, recovery, funding, and discount sensitivities
-- deterministic calculation manifests and eleven locked benchmarks
-- Gate 5 validation across `266` collected tests
-
-### Gate 4 - Counterparty credit calibration and PD/LGD term structures
-
-- Added governed credit-spread quote, recovery, LGD, and proxy contracts.
-- Added piecewise-constant hazard calibration with source-quote repricing.
-- Added survival, cumulative default, and marginal default-probability term structures.
-- Added explicit risk-neutral and historical probability-measure separation.
-- Added counterparty and own-credit curve roles.
-- Added stale-data, missing-tenor, bond-proxy, and extrapolation controls.
-- Added direct, parent, sovereign, and sector proxy hierarchy with mandatory human review for non-direct selections.
-- Added parallel spread and recovery sensitivity evidence.
-- Added deterministic credit-curve manifests and ten locked Gate 4 benchmarks.
-- Gate 4 and all prior XVA gates validated across `239` collected tests.
-- Gate 4 remains outside CVA, DVA, FVA, wrong-way-risk, legal-enforceability, and production-approval scope.
-
-### Gate 3 - Pathwise netting, collateral, and exposure integration
-
-### Gate 3 - Pathwise netting, collateral, and exposure integration
-
-#### Added
-
-- pathwise trade allocation to governed legal netting sets
-- collateral-state simulation across paths and netting sets
-- date-based margin-period-of-risk exposure
-- legal-set, counterparty, and portfolio exposure aggregation
-- EE, EPE, ENE, PFE, effective EPE, and peak-PFE evidence
-- independent reconciliation and content-addressed manifests
-- ten locked Gate 3 integration benchmarks
-
-#### Validation
-
-- Gate 3 targeted tests: PASS
-- Gate 1, Gate 2, and legacy XVA tests remain compatible
-- complete collected test surface: `211` tests
-
-#### Boundaries
-
-Gate 3 does not introduce counterparty PD/LGD calibration, default dependence, wrong-way risk, CVA, DVA, FVA, legal enforceability evidence, or production approval.
-
-### Gate 2 — Scenario-Path and Future-Value Simulation
-
-#### Added
-
-- governed risk-factor and dependence contracts
-- PCG64 seed and antithetic random-number controls
-- correlated GBM FX and Vasicek short-rate scenario paths
-- immutable scenario and future-value cubes
-- SHA-256 scenario reproducibility manifests
-- pathwise FX-forward and zero-coupon valuation adapters
-- Monte Carlo convergence diagnostics
-- analytical GBM and Vasicek moment challengers
-- eight locked Gate 2 benchmark cases
-
-#### Validation
-
-- Gate 2 targeted tests: PASS
-- Gate 1 and legacy XVA compatibility: PASS
-- complete collected test surface: `183` tests
-
-#### Boundaries
-
-Gate 2 produces future clean-value paths only. It does not provide production calibration, credit integration, wrong-way-risk modelling, collateral integration, final XVA attribution, or production approval.
+## [1.3.0] - 2026-07-22
 
 ### Added
 
-- XVA exposure-simulation architecture and model contract
-- deterministic time-grid construction
-- governed netting-set representation
-- collateral agreement and state-process mechanics
-- collateralized exposure and MPOR controls
-- EPE, ENE, PFE, effective EPE, and discounted-EPE aggregation
-- ten configuration-driven deterministic benchmarks
-- backward-compatible migration of `qmrl.xva` from module to package
+- complete XVA exposure simulation and counterparty risk validation platform
+- scenario paths, future-value cubes, netting, collateral, exposure, and MPOR controls
+- counterparty hazard, survival, PD, recovery, and LGD term structures
+- CVA, DVA, FCA, FBA, FVA, attribution, sensitivities, and reconciliation
+- wrong-way risk, stress scenarios, concentration, and tail diagnostics
+- independent challengers, convergence, stability, and promotion governance
+- decision-grade dashboard and lifecycle monitoring
+- governed GenAI release challenge with repository artifact citations and mandatory human review
+- final v1.3 release manifest, validation matrix, citation metadata, and release-contract tests
 
 ### Validation
 
-- Gate 1 targeted tests: PASS
-- legacy XVA tests remain compatible
-- complete collected test surface: `157` tests
+- complete deterministic collection: `350` tests
+- required pull-request check: `Python 3.12 validation`
+- required post-merge main validation
+- explicit human `RELEASE` approval before tag publication
 
 ### Boundaries
 
-Gate 1 does not provide stochastic market-factor simulation, counterparty-specific calibration, legal enforceability evidence, or production approval.
+The release is public research software. It does not grant production or regulatory approval, assert legal enforceability, or represent confidential institutional calibration.

@@ -1,0 +1,46 @@
+{
+  "collected_test_count": 350,
+  "dashboard_sha256": "1cf1b349c8152d46f72eb90f20d2297720d96ef92453be756979986ef0b4897d",
+  "generated_at": "2026-07-22",
+  "observations": [
+    {
+      "metric": "benchmark_drift",
+      "owner": "Independent Validation",
+      "status": "PASS",
+      "value": 0.0
+    },
+    {
+      "metric": "challenger_disagreement",
+      "owner": "Independent Validation",
+      "status": "PASS",
+      "value": 0.0
+    },
+    {
+      "metric": "input_age_days",
+      "owner": "Data Governance",
+      "status": "PASS",
+      "value": 0.0
+    },
+    {
+      "metric": "path_convergence_relative_change",
+      "owner": "Quantitative Model Validation",
+      "status": "PASS",
+      "value": 0.01
+    },
+    {
+      "metric": "tail_concentration_hhi",
+      "owner": "Counterparty Risk Validation",
+      "status": "PASS",
+      "value": 0.22
+    },
+    {
+      "metric": "open_gate_count",
+      "owner": "Model Risk Governance",
+      "status": "PASS_WITH_MONITORING",
+      "value": 2.0
+    }
+  ],
+  "overall_status": "PASS_WITH_MONITORING",
+  "production_approval": false,
+  "release_version": "1.3.0"
+}
