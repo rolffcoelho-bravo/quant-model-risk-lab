@@ -36,6 +36,21 @@ All notable repository changes are documented here.
 ## [Unreleased]
 
 
+
+### Gate 4 - Counterparty credit calibration and PD/LGD term structures
+
+- Added governed credit-spread quote, recovery, LGD, and proxy contracts.
+- Added piecewise-constant hazard calibration with source-quote repricing.
+- Added survival, cumulative default, and marginal default-probability term structures.
+- Added explicit risk-neutral and historical probability-measure separation.
+- Added counterparty and own-credit curve roles.
+- Added stale-data, missing-tenor, bond-proxy, and extrapolation controls.
+- Added direct, parent, sovereign, and sector proxy hierarchy with mandatory human review for non-direct selections.
+- Added parallel spread and recovery sensitivity evidence.
+- Added deterministic credit-curve manifests and ten locked Gate 4 benchmarks.
+- Gate 4 and all prior XVA gates validated across `239` collected tests.
+- Gate 4 remains outside CVA, DVA, FVA, wrong-way-risk, legal-enforceability, and production-approval scope.
+
 ### Gate 3 - Pathwise netting, collateral, and exposure integration
 
 ### Gate 3 - Pathwise netting, collateral, and exposure integration

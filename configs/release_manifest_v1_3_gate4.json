@@ -1,0 +1,23 @@
+{
+  "artifacts": [
+    "docs/xva_counterparty_credit_calibration.md",
+    "configs/xva_credit_curve_contract.yml",
+    "configs/xva_credit_quote_contract.yml",
+    "configs/xva_recovery_lgd_contract.yml",
+    "configs/xva_credit_proxy_contract.yml",
+    "configs/xva_credit_benchmark_contract.yml",
+    "src/qmrl/xva/credit_curve.py",
+    "src/qmrl/xva/credit_proxy.py",
+    "src/qmrl/xva/credit_benchmark.py"
+  ],
+  "branch": "feature/v1-3-xva-exposure-gate-4",
+  "gate": "XVA_EXPOSURE_GATE_4",
+  "next_gate": "XVA_EXPOSURE_GATE_5_XVA_INTEGRATION",
+  "previous_gate": "XVA_EXPOSURE_GATE_3",
+  "production_approval": false,
+  "release_line": "v1.3-development",
+  "required_check": "Python 3.12 validation",
+  "schema_version": "1.0",
+  "status": "IMPLEMENTED_LOCAL_VALIDATION_PASS",
+  "test_count": 239
+}

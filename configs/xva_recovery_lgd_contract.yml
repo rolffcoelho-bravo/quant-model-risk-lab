@@ -1,0 +1,16 @@
+{
+  "controls": {
+    "as_of_date_required": true,
+    "obligor_match": true,
+    "seniority_match": true,
+    "sensitivity_required": true,
+    "source_id_required": true,
+    "stale_assumption_rejected": true
+  },
+  "gate": "XVA_EXPOSURE_GATE_4",
+  "human_override_requires_documentation": true,
+  "lgd_definition": "1 - recovery_rate",
+  "production_approval": false,
+  "recovery_interval": "[0,1)",
+  "schema_version": "1.0"
+}

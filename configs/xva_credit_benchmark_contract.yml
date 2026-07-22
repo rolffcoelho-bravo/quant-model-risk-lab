@@ -1,0 +1,219 @@
+{
+  "benchmarks": [
+    {
+      "benchmark_id": "flat_hazard_analytic_survival",
+      "expected": {
+        "cumulative_pd": 0.09516258196404048,
+        "hazard_rate": 0.02,
+        "survival_probability": 0.9048374180359595
+      },
+      "node_times": [
+        1.0,
+        3.0,
+        5.0
+      ],
+      "recovery_rate": 0.4,
+      "spread_bps": 120.0,
+      "terminal_time": 5.0,
+      "tolerance": 1e-12,
+      "type": "flat_survival"
+    },
+    {
+      "benchmark_id": "piecewise_quote_repricing",
+      "expected": {
+        "hazards_non_negative": true,
+        "max_abs_repricing_error_bps": 0.0,
+        "survival_monotone": true
+      },
+      "quotes": [
+        {
+          "quote_id": "Q1",
+          "spread_bps": 80.0,
+          "tenor_years": 1.0
+        },
+        {
+          "quote_id": "Q3",
+          "spread_bps": 100.0,
+          "tenor_years": 3.0
+        },
+        {
+          "quote_id": "Q5",
+          "spread_bps": 120.0,
+          "tenor_years": 5.0
+        }
+      ],
+      "tolerance": 1e-07,
+      "type": "piecewise_repricing"
+    },
+    {
+      "benchmark_id": "marginal_pd_reconciliation",
+      "expected": {
+        "marginal_pd_sum": 0.07995558537067671,
+        "terminal_cumulative_pd": 0.07995558537067671
+      },
+      "node_times": [
+        1.0,
+        2.0,
+        3.0,
+        5.0
+      ],
+      "recovery_rate": 0.4,
+      "spread_bps": 100.0,
+      "tolerance": 1e-12,
+      "type": "probability_reconciliation"
+    },
+    {
+      "benchmark_id": "stale_quote_rejection",
+      "expected": {
+        "rejected": true
+      },
+      "max_age_days": 5,
+      "quotes": [
+        {
+          "age_days": 10,
+          "quote_id": "STALE",
+          "spread_bps": 100.0,
+          "tenor_years": 5.0
+        }
+      ],
+      "tolerance": 0.0,
+      "type": "stale_quote_rejection"
+    },
+    {
+      "benchmark_id": "missing_tenor_rejection",
+      "expected": {
+        "rejected": true
+      },
+      "quotes": [
+        {
+          "quote_id": "Q1",
+          "spread_bps": 80.0,
+          "tenor_years": 1.0
+        },
+        {
+          "quote_id": "Q5",
+          "spread_bps": 120.0,
+          "tenor_years": 5.0
+        }
+      ],
+      "required_tenors": [
+        1.0,
+        3.0,
+        5.0
+      ],
+      "tolerance": 0.0,
+      "type": "missing_tenor_rejection"
+    },
+    {
+      "benchmark_id": "proxy_hierarchy_parent_selection",
+      "candidates": [
+        {
+          "age_days": 10,
+          "candidate_id": "DIRECT",
+          "level": "direct",
+          "proxy_obligor_id": "CP1",
+          "spread_bps": 100.0,
+          "tenor_years": 5.0
+        },
+        {
+          "basis_adjustment_bps": 5.0,
+          "candidate_id": "PARENT",
+          "level": "parent",
+          "proxy_obligor_id": "PARENT1",
+          "spread_bps": 100.0,
+          "tenor_years": 5.0
+        },
+        {
+          "candidate_id": "SECTOR",
+          "level": "sector",
+          "proxy_obligor_id": "SECTOR1",
+          "spread_bps": 140.0,
+          "tenor_years": 5.0
+        }
+      ],
+      "expected": {
+        "adjusted_spread_bps": 105.0,
+        "human_review_required": true,
+        "selected_candidate_id": "PARENT",
+        "selected_level": "parent"
+      },
+      "max_age_days": 5,
+      "required_tenor": 5.0,
+      "tolerance": 0.0,
+      "type": "proxy_hierarchy"
+    },
+    {
+      "benchmark_id": "forbidden_extrapolation",
+      "expected": {
+        "rejected": true
+      },
+      "tolerance": 0.0,
+      "type": "extrapolation_rejection"
+    },
+    {
+      "benchmark_id": "parallel_spread_sensitivity",
+      "expected": {
+        "max_abs_repricing_error_bps": 0.0,
+        "positive_pd_delta": true
+      },
+      "quotes": [
+        {
+          "quote_id": "Q1",
+          "spread_bps": 80.0,
+          "tenor_years": 1.0
+        },
+        {
+          "quote_id": "Q3",
+          "spread_bps": 100.0,
+          "tenor_years": 3.0
+        },
+        {
+          "quote_id": "Q5",
+          "spread_bps": 120.0,
+          "tenor_years": 5.0
+        }
+      ],
+      "tolerance": 1e-07,
+      "type": "spread_sensitivity"
+    },
+    {
+      "benchmark_id": "recovery_sensitivity",
+      "expected": {
+        "max_abs_repricing_error_bps": 0.0,
+        "positive_pd_delta": true
+      },
+      "quotes": [
+        {
+          "quote_id": "Q1",
+          "spread_bps": 80.0,
+          "tenor_years": 1.0
+        },
+        {
+          "quote_id": "Q3",
+          "spread_bps": 100.0,
+          "tenor_years": 3.0
+        },
+        {
+          "quote_id": "Q5",
+          "spread_bps": 120.0,
+          "tenor_years": 5.0
+        }
+      ],
+      "tolerance": 1e-07,
+      "type": "recovery_sensitivity"
+    },
+    {
+      "benchmark_id": "credit_curve_manifest",
+      "expected": {
+        "hash_length": 64,
+        "probability_measure": "risk_neutral",
+        "role": "counterparty"
+      },
+      "tolerance": 0.0,
+      "type": "manifest_hash"
+    }
+  ],
+  "gate": "XVA_EXPOSURE_GATE_4",
+  "schema_version": "1.0",
+  "status": "LOCKED_REFERENCE_CASES"
+}

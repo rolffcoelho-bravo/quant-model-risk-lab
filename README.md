@@ -764,3 +764,37 @@ Primary evidence:
 Gate 3 stops at validated exposure profiles. Counterparty PD/LGD calibration, default dependence, CVA, DVA, FVA, and wrong-way risk remain outside this gate.
 
 Next gate: counterparty credit calibration and default-probability term structures.
+
+## v1.3 XVA Exposure Simulation - Gate 4
+
+### Gate 4 - Counterparty credit calibration and PD/LGD term structures
+
+Implemented:
+
+- governed CDS, bond-spread proxy, and proxy-quote contracts
+- explicit risk-neutral versus historical probability separation
+- piecewise-constant non-negative hazard calibration
+- survival, cumulative PD, and marginal PD term structures
+- source-quote repricing and monotonicity controls
+- recovery-rate and LGD governance
+- counterparty and own-credit curve separation
+- controlled direct, parent, sovereign, and sector proxy hierarchy
+- staleness, missing-tenor, interpolation, and extrapolation controls
+- spread and recovery sensitivities
+- deterministic SHA-256 credit-curve evidence
+- ten locked calibration and governance benchmarks
+
+Primary evidence:
+
+- [`docs/xva_counterparty_credit_calibration.md`](docs/xva_counterparty_credit_calibration.md)
+- [`configs/xva_credit_curve_contract.yml`](configs/xva_credit_curve_contract.yml)
+- [`configs/xva_credit_benchmark_contract.yml`](configs/xva_credit_benchmark_contract.yml)
+- [`src/qmrl/xva/credit_curve.py`](src/qmrl/xva/credit_curve.py)
+- [`src/qmrl/xva/credit_proxy.py`](src/qmrl/xva/credit_proxy.py)
+- Gate 4 calibration, governance, proxy, sensitivity, benchmark, and contract tests
+
+**Current development test surface:** `239 collected tests`.
+
+Gate 4 produces independently validated credit term structures only. It does not calculate CVA, DVA, or FVA and does not grant production approval.
+
+Next gate: CVA, DVA, and FVA integration and attribution.

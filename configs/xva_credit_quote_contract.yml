@@ -1,0 +1,37 @@
+{
+  "allowed_probability_measures": [
+    "risk_neutral",
+    "historical"
+  ],
+  "allowed_quote_types": [
+    "cds",
+    "bond",
+    "proxy"
+  ],
+  "controls": {
+    "bond_spread_proxy_requires_explicit_approval": true,
+    "future_date_rejected": true,
+    "required_tenor_coverage": true,
+    "single_currency": true,
+    "single_measure": true,
+    "single_obligor": true,
+    "single_seniority": true,
+    "stale_quote_rejected": true,
+    "unique_quote_id": true,
+    "unique_tenor": true
+  },
+  "gate": "XVA_EXPOSURE_GATE_4",
+  "required_fields": [
+    "quote_id",
+    "obligor_id",
+    "tenor_years",
+    "spread_bps",
+    "as_of_date",
+    "source_id",
+    "quote_type",
+    "probability_measure",
+    "currency",
+    "seniority"
+  ],
+  "schema_version": "1.0"
+}
