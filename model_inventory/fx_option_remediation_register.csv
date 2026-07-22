@@ -1,0 +1,8 @@
+finding_id,severity,remediation_status,deterministic_action,closure_evidence,remaining_gate
+GENAI-001,medium,CLOSED_AS_NUMERICAL_CONTROL,Document parity tolerance as a floating-point implementation control,docs/fx_option_validation_contract.md,Business-materiality threshold remains outside public scope
+GENAI-002,medium,OPEN,Replace volatility fallback and bounds with governed configurable assumptions and empirical evidence,,Empirical volatility-estimator validation
+GENAI-003,low,OPEN,Govern and test the volatility floor with explicit activation evidence,,Volatility-floor methodology review
+GENAI-004,high,PARTIALLY_REMEDIATED,Add an independent Black-76 implementation challenger and preserve the market-data boundary,data/official/processed/fx_option_challenger_benchmark.csv,Public dated USD/BRL option quote benchmark
+GENAI-005,medium,CLOSED,Replace generic panel inference with exact BCB and FRED source identities,data/official/processed/usd_brl_market_inputs.csv,None
+GENAI-006,medium,CLOSED,Add deterministic price-equivalence and finite-difference Greek tests,tests/test_fx_option_challenger.py,None
+GENAI-007,low,OPEN,Implement quantitative monitoring thresholds ownership and alert workflow,,Operational monitoring automation

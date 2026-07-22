@@ -1,0 +1,2 @@
+as_of_date,currency_pair,quote_convention,spot_rate_brl_per_usd,domestic_rate_brl,foreign_rate_usd,spot_source_id,domestic_rate_source_id,foreign_rate_source_id,spot_observation_date,domestic_rate_observation_date,foreign_rate_observation_date,input_contract_status
+2026-07-06,USD/BRL,BRL per USD,5.167,0.1425,0.0395,BCB_SGS_1,BCB_SGS_432,FRED_DGS1,2026-07-06,2026-07-06,2026-07-06,PASS

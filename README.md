@@ -1,4 +1,4 @@
-﻿# Quant Model Risk Lab
+# Quant Model Risk Lab
 
 **Open Model Validation, Official Rates, FX, Inflation and Risk Analytics Lab**
 
@@ -474,3 +474,27 @@ Evidence added:
 
 The layer validates Garman-Kohlhagen FX option pricing, Greeks, put-call parity, realised-volatility input, spot shocks, volatility shocks and Archer/MRM lifecycle action. SABR, volatility smile calibration, barrier options and path-dependent FX options remain the next validation gates.
 
+
+
+## FX input remediation and option challenger
+
+The USD/BRL forward and option layers now use a fail-closed market-input contract.
+
+Evidence added:
+
+- `src/qmrl/fx_market_inputs.py`
+- `scripts/build_usd_brl_market_inputs.py`
+- `data/official/processed/usd_brl_market_inputs.csv`
+- `data/official/processed/usd_brl_market_input_manifest.json`
+- `src/qmrl/fx_option_challenger.py`
+- `scripts/run_fx_option_challenger_validation.py`
+- `data/official/processed/fx_option_challenger_benchmark.csv`
+- `reports/fx_option_challenger_validation_report.md`
+- `docs/fx_option_validation_contract.md`
+- `model_inventory/fx_option_remediation_register.csv`
+
+The source contract requires BCB SGS series 1 for USD/BRL spot, BCB SGS series 432 for the BRL rate proxy and FRED DGS1 for the USD rate proxy.
+
+The Garman-Kohlhagen implementation is challenged through a forward-based Black-76 formulation and finite-difference Greek verification.
+
+Market option quote benchmarking remains explicitly open. The implementation challenger is not represented as evidence of market calibration.

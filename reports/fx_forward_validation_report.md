@@ -21,18 +21,18 @@ The model prices a USD/BRL FX forward using spot FX, a BRL domestic rate, a USD 
 
 | Metric | Value |
 |---|---:|
-| Spot USD/BRL | 4.990000 |
-| BRL domestic rate | 185.0900% |
+| Spot USD/BRL, BRL per USD | 5.167000 |
+| BRL domestic rate | 14.2500% |
 | USD foreign rate | 3.9500% |
-| Model forward rate | 30.533850 |
-| Contract forward rate | 30.686519 |
-| Long USD forward value, BRL | -23,984 |
+| Model forward rate, BRL per USD | 5.727575 |
+| Contract forward rate | 5.756213 |
+| Long USD forward value, BRL | -24,834 |
 | FX delta | 961,270 |
-| Carry basis | 25.543850 |
+| Carry basis | 0.560575 |
 
 ## Model-use decision
 
-The FX forward layer is available for base forward-pricing validation, first-order spot-risk review and lifecycle evidence.
+The FX forward layer is available for governed base forward-pricing validation, first-order spot-risk review and lifecycle evidence.
 
 It is not an FX options model, volatility-surface model or cross-currency-basis model. Those remain the next validation gates.
 
@@ -51,8 +51,8 @@ It is not an FX options model, volatility-surface model or cross-currency-basis 
 
 |   spot_shock_pct |   shocked_spot_rate |   model_forward_rate |   long_foreign_forward_value |   short_foreign_forward_value |   long_foreign_forward_pnl |   fx_delta |
 |-----------------:|--------------------:|---------------------:|-----------------------------:|------------------------------:|---------------------------:|-----------:|
-|              -10 |              4.491  |              27.4805 |                    -503657   |                      503657   |                    -479674 |     961270 |
-|               -5 |              4.7405 |              29.0072 |                    -263821   |                      263821   |                    -239837 |     961270 |
-|                0 |              4.99   |              30.5339 |                     -23983.7 |                       23983.7 |                          0 |     961270 |
-|                5 |              5.2395 |              32.0605 |                     215853   |                     -215853   |                     239837 |     961270 |
-|               10 |              5.489  |              33.5872 |                     455690   |                     -455690   |                     479674 |     961270 |
+|              -10 |             4.6503  |              5.15482 |                    -521523   |                      521523   |                    -496688 |     961270 |
+|               -5 |             4.90865 |              5.4412  |                    -273179   |                      273179   |                    -248344 |     961270 |
+|                0 |             5.167   |              5.72758 |                     -24834.4 |                       24834.4 |                          0 |     961270 |
+|                5 |             5.42535 |              6.01395 |                     223510   |                     -223510   |                     248344 |     961270 |
+|               10 |             5.6837  |              6.30033 |                     471854   |                     -471854   |                     496688 |     961270 |

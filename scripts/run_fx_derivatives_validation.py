@@ -8,6 +8,9 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
+import matplotlib
+
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter
 import pandas as pd
@@ -17,8 +20,16 @@ from qmrl.fx_derivatives import (
     price_fx_forward,
     spot_shock_table,
 )
+from qmrl.fx_market_inputs import load_market_input_snapshot
 
 
+MARKET_INPUT_PATH = (
+    ROOT
+    / "data"
+    / "official"
+    / "processed"
+    / "usd_brl_market_inputs.csv"
+)
 PANEL_PATH = ROOT / "data" / "official" / "processed" / "official_rates_fx_inflation_panel.csv"
 USD_CURVE_PATH = ROOT / "data" / "official" / "processed" / "usd_treasury_curve_nodes.csv"
 USD_FRED_PATH = ROOT / "data" / "official" / "raw" / "fred_us_rates_inflation.csv"
@@ -249,17 +260,22 @@ def read_usd_rate() -> float:
 
 
 def run_fx_validation() -> None:
-    if not PANEL_PATH.exists():
-        raise FileNotFoundError("Official rates/FX/inflation panel not found. Run the official data pipeline first.")
+    if not MARKET_INPUT_PATH.exists():
+        raise FileNotFoundError(
+            "Governed USD/BRL market inputs are missing. "
+            "Run scripts/build_usd_brl_market_inputs.py first."
+        )
 
-    panel = pd.read_csv(PANEL_PATH)
+    market = load_market_input_snapshot(
+        MARKET_INPUT_PATH
+    )
 
-    fx_col = find_fx_spot_column(panel)
-    brl_rate_col = find_brl_rate_column(panel)
+    spot_rate = market.spot_rate_brl_per_usd
+    domestic_rate = market.domestic_rate_brl
+    foreign_rate = market.foreign_rate_usd
 
-    spot_rate = latest_numeric_value(panel, fx_col)
-    domestic_rate = normalise_rate(latest_numeric_value(panel, brl_rate_col))
-    foreign_rate = read_usd_rate()
+    fx_col = market.spot_source_id
+    brl_rate_col = market.domestic_rate_source_id
 
     maturity_years = 1.0
     notional_usd = 1_000_000.0
@@ -297,6 +313,16 @@ def run_fx_validation() -> None:
         [
             {
                 "model_id": "QMRL-FX-FWD-001",
+            "currency_pair": market.currency_pair,
+            "quote_convention": market.quote_convention,
+            "as_of_date": market.as_of_date.isoformat(),
+            "spot_source_id": market.spot_source_id,
+            "domestic_rate_source_id": market.domestic_rate_source_id,
+            "foreign_rate_source_id": market.foreign_rate_source_id,
+            "spot_observation_date": market.spot_observation_date.isoformat(),
+            "domestic_rate_observation_date": market.domestic_rate_observation_date.isoformat(),
+            "foreign_rate_observation_date": market.foreign_rate_observation_date.isoformat(),
+            "input_contract_status": market.input_contract_status,
                 "product": "USD/BRL FX forward",
                 "spot_input_column": fx_col,
                 "domestic_rate_column": brl_rate_col,
@@ -374,10 +400,10 @@ The model prices a USD/BRL FX forward using spot FX, a BRL domestic rate, a USD 
 
 | Metric | Value |
 |---|---:|
-| Spot USD/BRL | {number(summary["spot_rate_brl_per_usd"])} |
+| Spot USD/BRL, BRL per USD | {number(summary["spot_rate_brl_per_usd"])} |
 | BRL domestic rate | {pct(summary["domestic_rate_brl"])} |
 | USD foreign rate | {pct(summary["foreign_rate_usd"])} |
-| Model forward rate | {number(summary["model_forward_rate"])} |
+| Model forward rate, BRL per USD | {number(summary["model_forward_rate"])} |
 | Contract forward rate | {number(summary["contract_forward_rate"])} |
 | Long USD forward value, BRL | {money(summary["long_usd_forward_value_brl"])} |
 | FX delta | {money(summary["fx_delta"])} |
@@ -385,7 +411,7 @@ The model prices a USD/BRL FX forward using spot FX, a BRL domestic rate, a USD 
 
 ## Model-use decision
 
-The FX forward layer is available for base forward-pricing validation, first-order spot-risk review and lifecycle evidence.
+The FX forward layer is available for governed base forward-pricing validation, first-order spot-risk review and lifecycle evidence.
 
 It is not an FX options model, volatility-surface model or cross-currency-basis model. Those remain the next validation gates.
 
@@ -449,7 +475,7 @@ def write_figure(shocks: pd.DataFrame, summary: pd.Series) -> None:
 
     fig.tight_layout(rect=[0.02, 0.06, 0.98, 0.88])
     FIGURE_PATH.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(FIGURE_PATH, dpi=220, bbox_inches="tight", facecolor=fig.get_facecolor())
+    fig.savefig(FIGURE_PATH, dpi=110, bbox_inches="tight", facecolor=fig.get_facecolor())
     plt.close(fig)
 
 

@@ -10,6 +10,9 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
+import matplotlib
+
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter
 import pandas as pd
@@ -84,9 +87,14 @@ def realised_fx_volatility(panel: pd.DataFrame, spot_column: str) -> float:
 
 
 def ensure_fx_forward_outputs() -> None:
-    if FX_FORWARD_SUMMARY_PATH.exists():
-        return
-    subprocess.run([sys.executable, "scripts/run_fx_derivatives_validation.py"], check=True)
+    subprocess.run(
+        [
+            sys.executable,
+            "scripts/run_fx_derivatives_validation.py",
+        ],
+        check=True,
+    )
+
 
 
 def run_fx_option_validation() -> None:
@@ -166,6 +174,16 @@ def run_fx_option_validation() -> None:
         [
             {
                 "model_id": "QMRL-FX-OPT-001",
+            "currency_pair": str(fx_forward["currency_pair"]),
+            "quote_convention": str(fx_forward["quote_convention"]),
+            "as_of_date": str(fx_forward["as_of_date"]),
+            "spot_source_id": str(fx_forward["spot_source_id"]),
+            "domestic_rate_source_id": str(fx_forward["domestic_rate_source_id"]),
+            "foreign_rate_source_id": str(fx_forward["foreign_rate_source_id"]),
+            "spot_observation_date": str(fx_forward["spot_observation_date"]),
+            "domestic_rate_observation_date": str(fx_forward["domestic_rate_observation_date"]),
+            "foreign_rate_observation_date": str(fx_forward["foreign_rate_observation_date"]),
+            "input_contract_status": str(fx_forward["input_contract_status"]),
                 "source_model": "QMRL-FX-FWD-001",
                 "product": "USD/BRL European FX option",
                 "pricing_model": "Garman-Kohlhagen lognormal FX option model",
@@ -253,9 +271,9 @@ The pricing engine uses the Garman-Kohlhagen lognormal FX option model. The vali
 
 | Metric | Value |
 |---|---:|
-| Spot USD/BRL | {number(summary["spot_rate_brl_per_usd"])} |
-| Strike | {number(summary["strike_rate"])} |
-| Model forward | {number(summary["model_forward_rate"])} |
+| Spot USD/BRL, BRL per USD | {number(summary["spot_rate_brl_per_usd"])} |
+| Strike, BRL per USD | {number(summary["strike_rate"])} |
+| Model forward, BRL per USD | {number(summary["model_forward_rate"])} |
 | BRL domestic rate | {pct(summary["domestic_rate_brl"])} |
 | USD foreign rate | {pct(summary["foreign_rate_usd"])} |
 | Realised volatility input | {pct(summary["realised_volatility_input"])} |
@@ -275,7 +293,7 @@ The pricing engine uses the Garman-Kohlhagen lognormal FX option model. The vali
 
 ## Model-use decision
 
-The layer is valid for vanilla European USD/BRL FX option pricing, Greeks, put-call parity and first-order scenario review.
+The layer is available for governed validation review of vanilla European USD/BRL FX option pricing, Greeks, put-call parity and first-order scenario review.
 
 It is not a smile-calibrated volatility-surface model, SABR model, barrier-option model or path-dependent option engine. Those remain the next validation gates.
 
@@ -347,7 +365,7 @@ def write_figure(surface: pd.DataFrame, summary: pd.Series) -> None:
 
     fig.tight_layout(rect=[0.02, 0.06, 0.98, 0.88])
     FIGURE_PATH.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(FIGURE_PATH, dpi=220, bbox_inches="tight", facecolor=fig.get_facecolor())
+    fig.savefig(FIGURE_PATH, dpi=110, bbox_inches="tight", facecolor=fig.get_facecolor())
     plt.close(fig)
 
 
