@@ -32,3 +32,26 @@
 This release does not grant production approval, regulatory approval, or market-calibration certification.
 
 All notable repository changes are documented here.
+
+## [Unreleased]
+
+### Added
+
+- XVA exposure-simulation architecture and model contract
+- deterministic time-grid construction
+- governed netting-set representation
+- collateral agreement and state-process mechanics
+- collateralized exposure and MPOR controls
+- EPE, ENE, PFE, effective EPE, and discounted-EPE aggregation
+- ten configuration-driven deterministic benchmarks
+- backward-compatible migration of `qmrl.xva` from module to package
+
+### Validation
+
+- Gate 1 targeted tests: PASS
+- legacy XVA tests remain compatible
+- complete collected test surface: `157` tests
+
+### Boundaries
+
+Gate 1 does not provide stochastic market-factor simulation, counterparty-specific calibration, legal enforceability evidence, or production approval.

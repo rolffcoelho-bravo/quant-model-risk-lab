@@ -1,0 +1,47 @@
+{
+  "example": {
+    "agreement_id": "CSA-CP1-001",
+    "call_frequency_days": 1,
+    "collateral_currency": "USD",
+    "direction": "two_way",
+    "haircut": 0.02,
+    "independent_amount_posted": 0.0,
+    "independent_amount_received": 0.0,
+    "initial_margin_posted": 0.0,
+    "initial_margin_received": 0.0,
+    "margin_period_of_risk_days": 10,
+    "minimum_transfer_amount": 250000.0,
+    "rehypothecation_allowed": false,
+    "remuneration_rate": 0.0,
+    "rounding": 1000.0,
+    "settlement_lag_days": 2,
+    "threshold_posted": 0.0,
+    "threshold_received": 0.0
+  },
+  "gate": "XVA_EXPOSURE_GATE_1",
+  "required_mechanics": [
+    "threshold_received",
+    "threshold_posted",
+    "minimum_transfer_amount",
+    "independent_amount_received",
+    "independent_amount_posted",
+    "initial_margin_received",
+    "initial_margin_posted",
+    "haircut",
+    "rounding",
+    "call_frequency_days",
+    "settlement_lag_days",
+    "margin_period_of_risk_days",
+    "collateral_currency",
+    "remuneration_rate",
+    "rehypothecation_allowed",
+    "direction"
+  ],
+  "schema_version": "1.0",
+  "state_process_required": true,
+  "supported_directions": [
+    "two_way",
+    "receive_only",
+    "post_only"
+  ]
+}

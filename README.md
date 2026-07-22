@@ -672,3 +672,30 @@ This roadmap defines the next public validation build. It does not imply access 
 - [`docs/governed_genai_architecture.md`](docs/governed_genai_architecture.md)
 - [`configs/release_manifest_v1_2.json`](configs/release_manifest_v1_2.json)
 - [`CITATION.cff`](CITATION.cff)
+
+## v1.3 XVA Exposure Simulation — Gate 1
+
+### Gate 1 — Architecture and deterministic controls
+
+Implemented:
+
+- unified exposure, margin-call, settlement, and MPOR time grid
+- backward-compatible `qmrl.xva` package migration
+- governed netting-set representation and membership validation
+- collateral agreement and collateral state-process controls
+- collateralized positive and negative exposure
+- EPE, ENE, PFE, effective EPE, and discounted EPE aggregation
+- ten deterministic reference benchmarks
+- explicit human-review and production-use boundaries
+
+Primary evidence:
+
+- [`docs/xva_exposure_simulation_architecture.md`](docs/xva_exposure_simulation_architecture.md)
+- [`configs/xva_exposure_model_contract.yml`](configs/xva_exposure_model_contract.yml)
+- [`configs/xva_benchmark_contract.yml`](configs/xva_benchmark_contract.yml)
+- [`src/qmrl/xva/`](src/qmrl/xva/)
+- Gate 1 contract, time-grid, netting, collateral, exposure, and benchmark tests
+
+Next gate: stochastic scenario-path and future-value simulation.
+
+**Current development test surface:** `157 collected tests`.

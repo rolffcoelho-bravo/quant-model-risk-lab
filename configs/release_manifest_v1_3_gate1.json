@@ -1,0 +1,24 @@
+{
+  "artifacts": [
+    "docs/xva_exposure_simulation_architecture.md",
+    "configs/xva_exposure_model_contract.yml",
+    "configs/xva_time_grid.yml",
+    "configs/netting_set_contract.yml",
+    "configs/collateral_agreement_contract.yml",
+    "configs/xva_benchmark_contract.yml",
+    "src/qmrl/xva/time_grid.py",
+    "src/qmrl/xva/netting.py",
+    "src/qmrl/xva/collateral.py",
+    "src/qmrl/xva/exposure.py",
+    "src/qmrl/xva/benchmark.py"
+  ],
+  "branch": "feature/v1-3-xva-exposure-gate-1",
+  "gate": "XVA_EXPOSURE_GATE_1",
+  "next_gate": "XVA_EXPOSURE_GATE_2_SCENARIO_PATH_SIMULATION",
+  "production_approval": false,
+  "release_line": "v1.3-development",
+  "required_check": "Python 3.12 validation",
+  "schema_version": "1.0",
+  "status": "IMPLEMENTED_LOCAL_VALIDATION_PASS",
+  "test_count": 157
+}

@@ -1,0 +1,39 @@
+{
+  "controls": {
+    "counterparty_consistency": true,
+    "currency_consistency_gate1": true,
+    "legal_opinion_required_for_production": true,
+    "unique_trade_membership": true
+  },
+  "example": {
+    "agreement_id": "ISDA-CP1-001",
+    "close_out_convention": "replacement_cost",
+    "collateral_agreement_id": "CSA-CP1-001",
+    "counterparty_id": "CP1",
+    "effective_date": "2026-01-02",
+    "netting_eligible": true,
+    "netting_set_id": "NS-CP1-USD-001",
+    "review_date": "2027-01-02",
+    "settlement_currency": "USD",
+    "trade_ids": [
+      "T1",
+      "T2"
+    ],
+    "wrong_way_risk_classification": "none"
+  },
+  "gate": "XVA_EXPOSURE_GATE_1",
+  "required_fields": [
+    "netting_set_id",
+    "counterparty_id",
+    "agreement_id",
+    "settlement_currency",
+    "trade_ids",
+    "netting_eligible",
+    "collateral_agreement_id",
+    "close_out_convention",
+    "wrong_way_risk_classification",
+    "effective_date",
+    "review_date"
+  ],
+  "schema_version": "1.0"
+}
