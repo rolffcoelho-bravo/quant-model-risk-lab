@@ -1,0 +1,45 @@
+{
+  "as_of_date": "2026-07-06",
+  "created_at_utc": "2026-07-22T00:15:53.475862+00:00",
+  "currency_pair": "USD/BRL",
+  "input_contract_status": "PASS",
+  "manifest_id": "QMRL-FX-INPUT-001",
+  "model_boundaries": [
+    "Selic target is a transparent domestic-rate proxy rather than a tradable BRL zero curve.",
+    "DGS1 is a transparent USD foreign-rate proxy rather than a collateral-specific discount curve.",
+    "Market option quotes are not included in this input snapshot."
+  ],
+  "output_path": "data/official/processed/usd_brl_market_inputs.csv",
+  "output_sha256": "bc2764e796408cde3834137a1b0914ee8d7787d6708ef34a6252f3bc932aada4",
+  "quote_convention": "BRL per USD",
+  "sources": [
+    {
+      "description": "Daily USD sell exchange rate, BRL per USD",
+      "observation_date": "2026-07-06",
+      "raw_path": "data/official/raw/bcb_usd_brl_sgs1.json",
+      "raw_sha256": "119c99dec50d8083cd50e548efba1e755fa71399a5a840c16a414df0ab057826",
+      "source_id": "BCB_SGS_1",
+      "unit": "BRL per USD",
+      "url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.1/dados?formato=json&dataInicial=01%2F07%2F2025&dataFinal=06%2F07%2F2026"
+    },
+    {
+      "description": "Copom Selic target proxy",
+      "model_unit": "annual decimal",
+      "observation_date": "2026-07-06",
+      "raw_path": "data/official/raw/bcb_selic_target_sgs432.json",
+      "raw_sha256": "2121bdfa2392c9c6be47ad40532bfc41c0b84ffe1161f7bfd70db95651a8b3c5",
+      "source_id": "BCB_SGS_432",
+      "source_unit": "percent per year",
+      "url": "https://api.bcb.gov.br/dados/serie/bcdata.sgs.432/dados?formato=json&dataInicial=01%2F07%2F2025&dataFinal=06%2F07%2F2026"
+    },
+    {
+      "description": "One-year USD Treasury yield proxy",
+      "file_sha256": "ff9f8d7f7e70630b70d9356a67158f2e3aa9d418e4e81cdcc190618ee3e88785",
+      "model_unit": "annual decimal",
+      "observation_date": "2026-07-06",
+      "path": "data/official/processed/usd_treasury_curve_nodes.csv",
+      "source_id": "FRED_DGS1",
+      "source_unit": "percent per year"
+    }
+  ]
+}
