@@ -301,3 +301,46 @@ from .wwr_benchmark import (
     load_wwr_benchmark_contract,
     run_wwr_benchmark_suite,
 )
+
+# v1.3 Gate 7 independent challengers, stability, and promotion governance
+from .challenger import (
+    ChallengerComparison,
+    ToleranceBand,
+    challenger_evidence_hash,
+    compare_component,
+    compare_component_vectors,
+    independent_cva_challenger,
+    independent_dva_challenger,
+    independent_funding_challenger,
+)
+from .stability import (
+    StabilityAssessment,
+    StabilityThresholds,
+    antithetic_comparison,
+    assess_stability,
+    benchmark_drift_score,
+    detect_threshold_discontinuity,
+    path_count_convergence,
+    rank_sensitivity_drivers,
+    seed_stability,
+    time_grid_refinement,
+)
+from .promotion import (
+    ComponentDecision,
+    PromotionDecision,
+    component_decision,
+    portfolio_promotion_decision,
+    promotion_evidence_payload,
+)
+from .release_candidate import (
+    ReleaseCandidatePackage,
+    build_release_candidate_package,
+    validate_release_candidate_payload,
+    write_release_candidate_package,
+)
+from .gate7_benchmark import (
+    Gate7BenchmarkResult,
+    evaluate_gate7_case,
+    load_gate7_benchmark_contract,
+    run_gate7_benchmarks,
+)
