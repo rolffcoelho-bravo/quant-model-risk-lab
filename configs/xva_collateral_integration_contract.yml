@@ -1,0 +1,33 @@
+{
+  "fail_closed_rules": [
+    "missing_collateral_agreement",
+    "multi_trade_noneligible_set_with_collateral",
+    "dimension_mismatch",
+    "nonfinite_path_values"
+  ],
+  "gate": "XVA_EXPOSURE_GATE_3",
+  "schema_version": "1.0",
+  "state_dimensions": [
+    "path",
+    "time",
+    "netting_set"
+  ],
+  "state_fields": [
+    "face_balance",
+    "effective_balance",
+    "transfer_called",
+    "pending_face_balance"
+  ],
+  "supported_controls": [
+    "threshold",
+    "minimum_transfer_amount",
+    "independent_amount",
+    "initial_margin",
+    "haircut",
+    "rounding",
+    "call_frequency",
+    "settlement_lag",
+    "margin_period_of_risk",
+    "directionality"
+  ]
+}

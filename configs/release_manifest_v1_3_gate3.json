@@ -1,0 +1,21 @@
+{
+  "artifacts": [
+    "docs/xva_pathwise_exposure_integration.md",
+    "configs/xva_pathwise_exposure_contract.yml",
+    "configs/xva_exposure_aggregation_contract.yml",
+    "configs/xva_collateral_integration_contract.yml",
+    "configs/xva_exposure_integration_benchmark_contract.yml",
+    "src/qmrl/xva/pathwise_exposure.py",
+    "src/qmrl/xva/exposure_benchmark.py"
+  ],
+  "branch": "feature/v1-3-xva-exposure-gate-3",
+  "gate": "XVA_EXPOSURE_GATE_3",
+  "next_gate": "XVA_EXPOSURE_GATE_4_COUNTERPARTY_CREDIT_CALIBRATION",
+  "previous_gate": "XVA_EXPOSURE_GATE_2",
+  "production_approval": false,
+  "release_line": "v1.3-development",
+  "required_check": "Python 3.12 validation",
+  "schema_version": "1.0",
+  "status": "IMPLEMENTED_LOCAL_VALIDATION_PASS",
+  "test_count": 211
+}
