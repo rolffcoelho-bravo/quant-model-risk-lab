@@ -1,0 +1,24 @@
+{
+  "controls": {
+    "collateral_state_by_path": true,
+    "complete_trade_allocation": true,
+    "content_hash_manifest": true,
+    "date_based_margin_period_of_risk": true,
+    "no_cross_netting_across_legal_sets": true,
+    "reconciliation_required": true,
+    "unique_trade_membership": true
+  },
+  "gate": "XVA_EXPOSURE_GATE_3",
+  "human_review_required": true,
+  "next_gate": "XVA_EXPOSURE_GATE_4_COUNTERPARTY_CREDIT_CALIBRATION",
+  "production_approval": false,
+  "purpose": "Integrate Gate 2 future-value paths with Gate 1 legal netting and collateral mechanics.",
+  "required_dimensions": [
+    "path",
+    "time",
+    "trade",
+    "netting_set"
+  ],
+  "schema_version": "1.0",
+  "status": "IMPLEMENTED_PUBLIC_VALIDATION_FOUNDATION"
+}

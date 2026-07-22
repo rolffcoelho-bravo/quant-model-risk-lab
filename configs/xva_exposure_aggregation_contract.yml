@@ -1,0 +1,23 @@
+{
+  "aggregation_order": [
+    "trade_to_netting_set",
+    "pathwise_collateral",
+    "netting_set_exposure",
+    "counterparty_sum_without_cross_netting",
+    "portfolio_sum_without_cross_netting",
+    "path_quantile"
+  ],
+  "default_pfe_quantile": 0.95,
+  "gate": "XVA_EXPOSURE_GATE_3",
+  "metrics": [
+    "expected_positive_exposure",
+    "expected_negative_exposure",
+    "potential_future_exposure",
+    "effective_epe",
+    "mpor_expected_positive_exposure",
+    "portfolio_epe",
+    "portfolio_ene",
+    "portfolio_peak_pfe"
+  ],
+  "schema_version": "1.0"
+}

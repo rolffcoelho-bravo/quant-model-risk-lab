@@ -35,6 +35,31 @@ All notable repository changes are documented here.
 
 ## [Unreleased]
 
+
+### Gate 3 - Pathwise netting, collateral, and exposure integration
+
+### Gate 3 - Pathwise netting, collateral, and exposure integration
+
+#### Added
+
+- pathwise trade allocation to governed legal netting sets
+- collateral-state simulation across paths and netting sets
+- date-based margin-period-of-risk exposure
+- legal-set, counterparty, and portfolio exposure aggregation
+- EE, EPE, ENE, PFE, effective EPE, and peak-PFE evidence
+- independent reconciliation and content-addressed manifests
+- ten locked Gate 3 integration benchmarks
+
+#### Validation
+
+- Gate 3 targeted tests: PASS
+- Gate 1, Gate 2, and legacy XVA tests remain compatible
+- complete collected test surface: `211` tests
+
+#### Boundaries
+
+Gate 3 does not introduce counterparty PD/LGD calibration, default dependence, wrong-way risk, CVA, DVA, FVA, legal enforceability evidence, or production approval.
+
 ### Gate 2 — Scenario-Path and Future-Value Simulation
 
 #### Added

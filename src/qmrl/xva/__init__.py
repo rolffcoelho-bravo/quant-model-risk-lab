@@ -146,3 +146,42 @@ __all__ = [
     "load_scenario_benchmark_contract",
     "run_scenario_benchmark_suite",
 ]
+
+# v1.3 Gate 3 pathwise exposure integration
+from .pathwise_exposure import (
+    PathwiseNettingCube,
+    CollateralStateCube,
+    PathwiseExposureCube,
+    ExposureAggregation,
+    ExposureReconciliation,
+    allocate_future_values,
+    simulate_pathwise_collateral,
+    build_pathwise_exposure_cube,
+    aggregate_pathwise_exposure,
+    reconcile_pathwise_exposure,
+    exposure_manifest,
+)
+from .exposure_benchmark import (
+    ExposureIntegrationBenchmarkResult,
+    evaluate_exposure_integration_benchmark,
+    load_exposure_integration_benchmark_contract,
+    run_exposure_integration_benchmark_suite,
+)
+
+__all__.extend([
+    "PathwiseNettingCube",
+    "CollateralStateCube",
+    "PathwiseExposureCube",
+    "ExposureAggregation",
+    "ExposureReconciliation",
+    "allocate_future_values",
+    "simulate_pathwise_collateral",
+    "build_pathwise_exposure_cube",
+    "aggregate_pathwise_exposure",
+    "reconcile_pathwise_exposure",
+    "exposure_manifest",
+    "ExposureIntegrationBenchmarkResult",
+    "evaluate_exposure_integration_benchmark",
+    "load_exposure_integration_benchmark_contract",
+    "run_exposure_integration_benchmark_suite",
+])

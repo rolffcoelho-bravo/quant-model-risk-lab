@@ -734,3 +734,33 @@ Primary evidence:
 **Current development test surface:** `183 collected tests`.
 
 Next gate: pathwise netting, collateral, and exposure integration.
+
+## v1.3 XVA Exposure Simulation - Gate 3
+
+### Pathwise netting, collateral, and exposure integration
+
+Implemented:
+
+- complete pathwise trade-to-netting-set allocation
+- legal-set reconciliation with no cross-netting across agreements
+- collateral state by path, time, and netting set
+- threshold, MTA, haircut, settlement-lag, and MPOR integration
+- collateralized EE, EPE, ENE, PFE, effective EPE, and MPOR profiles
+- counterparty and portfolio aggregation without illegal offsetting
+- independent loop challenger and numerical reconciliation controls
+- deterministic SHA-256 exposure evidence manifests
+- ten locked pathwise integration benchmarks
+
+Primary evidence:
+
+- [`docs/xva_pathwise_exposure_integration.md`](docs/xva_pathwise_exposure_integration.md)
+- [`configs/xva_pathwise_exposure_contract.yml`](configs/xva_pathwise_exposure_contract.yml)
+- [`configs/xva_exposure_integration_benchmark_contract.yml`](configs/xva_exposure_integration_benchmark_contract.yml)
+- [`src/qmrl/xva/pathwise_exposure.py`](src/qmrl/xva/pathwise_exposure.py)
+- [`src/qmrl/xva/exposure_benchmark.py`](src/qmrl/xva/exposure_benchmark.py)
+
+**Current development test surface:** `211 collected tests`.
+
+Gate 3 stops at validated exposure profiles. Counterparty PD/LGD calibration, default dependence, CVA, DVA, FVA, and wrong-way risk remain outside this gate.
+
+Next gate: counterparty credit calibration and default-probability term structures.

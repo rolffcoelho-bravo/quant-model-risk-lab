@@ -1,0 +1,844 @@
+{
+  "benchmarks": [
+    {
+      "agreements": [],
+      "benchmark_id": "same_set_offsetting",
+      "dates": [
+        "2026-01-05",
+        "2027-01-05"
+      ],
+      "expected": {
+        "clean_values": [
+          [
+            [
+              10.0
+            ],
+            [
+              10.0
+            ]
+          ]
+        ],
+        "negative_exposure": [
+          [
+            [
+              0.0
+            ],
+            [
+              0.0
+            ]
+          ]
+        ],
+        "positive_exposure": [
+          [
+            [
+              10.0
+            ],
+            [
+              10.0
+            ]
+          ]
+        ]
+      },
+      "metrics": [
+        "clean_values",
+        "positive_exposure",
+        "negative_exposure"
+      ],
+      "netting_sets": [
+        {
+          "agreement_id": "ISDA-NS1",
+          "collateral_agreement_id": null,
+          "counterparty_id": "CP1",
+          "netting_eligible": true,
+          "netting_set_id": "NS1",
+          "settlement_currency": "USD",
+          "trade_ids": [
+            "T1",
+            "T2"
+          ]
+        }
+      ],
+      "times": [
+        0.0,
+        1.0
+      ],
+      "tolerance": 1e-10,
+      "trade_ids": [
+        "T1",
+        "T2"
+      ],
+      "trade_values": [
+        [
+          [
+            100.0,
+            -90.0
+          ],
+          [
+            80.0,
+            -70.0
+          ]
+        ]
+      ]
+    },
+    {
+      "agreements": [],
+      "benchmark_id": "separate_sets_no_cross_netting",
+      "dates": [
+        "2026-01-05",
+        "2027-01-05"
+      ],
+      "expected": {
+        "negative_exposure": [
+          [
+            [
+              0.0,
+              90.0
+            ],
+            [
+              0.0,
+              70.0
+            ]
+          ]
+        ],
+        "portfolio_expected_positive": [
+          100.0,
+          80.0
+        ],
+        "positive_exposure": [
+          [
+            [
+              100.0,
+              0.0
+            ],
+            [
+              80.0,
+              0.0
+            ]
+          ]
+        ]
+      },
+      "metrics": [
+        "positive_exposure",
+        "negative_exposure",
+        "portfolio_expected_positive"
+      ],
+      "netting_sets": [
+        {
+          "agreement_id": "ISDA-NS1",
+          "collateral_agreement_id": null,
+          "counterparty_id": "CP1",
+          "netting_eligible": true,
+          "netting_set_id": "NS1",
+          "settlement_currency": "USD",
+          "trade_ids": [
+            "T1"
+          ]
+        },
+        {
+          "agreement_id": "ISDA-NS2",
+          "collateral_agreement_id": null,
+          "counterparty_id": "CP1",
+          "netting_eligible": true,
+          "netting_set_id": "NS2",
+          "settlement_currency": "USD",
+          "trade_ids": [
+            "T2"
+          ]
+        }
+      ],
+      "times": [
+        0.0,
+        1.0
+      ],
+      "tolerance": 1e-10,
+      "trade_ids": [
+        "T1",
+        "T2"
+      ],
+      "trade_values": [
+        [
+          [
+            100.0,
+            -90.0
+          ],
+          [
+            80.0,
+            -70.0
+          ]
+        ]
+      ]
+    },
+    {
+      "agreements": [
+        {
+          "agreement_id": "CSA1",
+          "call_frequency_days": 1,
+          "collateral_currency": "USD",
+          "direction": "two_way",
+          "haircut": 0.0,
+          "independent_amount_posted": 0.0,
+          "independent_amount_received": 0.0,
+          "initial_margin_posted": 0.0,
+          "initial_margin_received": 0.0,
+          "margin_period_of_risk_days": 0,
+          "minimum_transfer_amount": 0.0,
+          "rehypothecation_allowed": false,
+          "remuneration_rate": 0.0,
+          "rounding": 0.01,
+          "settlement_lag_days": 0,
+          "threshold_posted": 0.0,
+          "threshold_received": 0.0
+        }
+      ],
+      "benchmark_id": "perfect_collateralization",
+      "dates": [
+        "2026-01-05",
+        "2026-01-06"
+      ],
+      "expected": {
+        "effective_collateral": [
+          [
+            [
+              0.0
+            ],
+            [
+              100.0
+            ]
+          ]
+        ],
+        "positive_exposure": [
+          [
+            [
+              0.0
+            ],
+            [
+              0.0
+            ]
+          ]
+        ]
+      },
+      "metrics": [
+        "effective_collateral",
+        "positive_exposure"
+      ],
+      "netting_sets": [
+        {
+          "agreement_id": "ISDA-NS1",
+          "collateral_agreement_id": "CSA1",
+          "counterparty_id": "CP1",
+          "netting_eligible": true,
+          "netting_set_id": "NS1",
+          "settlement_currency": "USD",
+          "trade_ids": [
+            "T1"
+          ]
+        }
+      ],
+      "times": [
+        0.0,
+        1.0
+      ],
+      "tolerance": 1e-10,
+      "trade_ids": [
+        "T1"
+      ],
+      "trade_values": [
+        [
+          [
+            0.0
+          ],
+          [
+            100.0
+          ]
+        ]
+      ]
+    },
+    {
+      "agreements": [
+        {
+          "agreement_id": "CSA1",
+          "call_frequency_days": 1,
+          "collateral_currency": "USD",
+          "direction": "two_way",
+          "haircut": 0.0,
+          "independent_amount_posted": 0.0,
+          "independent_amount_received": 0.0,
+          "initial_margin_posted": 0.0,
+          "initial_margin_received": 0.0,
+          "margin_period_of_risk_days": 0,
+          "minimum_transfer_amount": 0.0,
+          "rehypothecation_allowed": false,
+          "remuneration_rate": 0.0,
+          "rounding": 0.01,
+          "settlement_lag_days": 0,
+          "threshold_posted": 0.0,
+          "threshold_received": 20.0
+        }
+      ],
+      "benchmark_id": "threshold_residual",
+      "dates": [
+        "2026-01-05",
+        "2026-01-06"
+      ],
+      "expected": {
+        "effective_collateral": [
+          [
+            [
+              0.0
+            ],
+            [
+              80.0
+            ]
+          ]
+        ],
+        "positive_exposure": [
+          [
+            [
+              0.0
+            ],
+            [
+              20.0
+            ]
+          ]
+        ]
+      },
+      "metrics": [
+        "effective_collateral",
+        "positive_exposure"
+      ],
+      "netting_sets": [
+        {
+          "agreement_id": "ISDA-NS1",
+          "collateral_agreement_id": "CSA1",
+          "counterparty_id": "CP1",
+          "netting_eligible": true,
+          "netting_set_id": "NS1",
+          "settlement_currency": "USD",
+          "trade_ids": [
+            "T1"
+          ]
+        }
+      ],
+      "times": [
+        0.0,
+        1.0
+      ],
+      "tolerance": 1e-10,
+      "trade_ids": [
+        "T1"
+      ],
+      "trade_values": [
+        [
+          [
+            0.0
+          ],
+          [
+            100.0
+          ]
+        ]
+      ]
+    },
+    {
+      "agreements": [
+        {
+          "agreement_id": "CSA1",
+          "call_frequency_days": 1,
+          "collateral_currency": "USD",
+          "direction": "two_way",
+          "haircut": 0.0,
+          "independent_amount_posted": 0.0,
+          "independent_amount_received": 0.0,
+          "initial_margin_posted": 0.0,
+          "initial_margin_received": 0.0,
+          "margin_period_of_risk_days": 0,
+          "minimum_transfer_amount": 5.0,
+          "rehypothecation_allowed": false,
+          "remuneration_rate": 0.0,
+          "rounding": 0.01,
+          "settlement_lag_days": 0,
+          "threshold_posted": 0.0,
+          "threshold_received": 0.0
+        }
+      ],
+      "benchmark_id": "mta_discontinuity",
+      "dates": [
+        "2026-01-05",
+        "2026-01-06"
+      ],
+      "expected": {
+        "effective_collateral": [
+          [
+            [
+              0.0
+            ],
+            [
+              0.0
+            ]
+          ]
+        ],
+        "positive_exposure": [
+          [
+            [
+              0.0
+            ],
+            [
+              4.0
+            ]
+          ]
+        ]
+      },
+      "metrics": [
+        "effective_collateral",
+        "positive_exposure"
+      ],
+      "netting_sets": [
+        {
+          "agreement_id": "ISDA-NS1",
+          "collateral_agreement_id": "CSA1",
+          "counterparty_id": "CP1",
+          "netting_eligible": true,
+          "netting_set_id": "NS1",
+          "settlement_currency": "USD",
+          "trade_ids": [
+            "T1"
+          ]
+        }
+      ],
+      "times": [
+        0.0,
+        1.0
+      ],
+      "tolerance": 1e-10,
+      "trade_ids": [
+        "T1"
+      ],
+      "trade_values": [
+        [
+          [
+            0.0
+          ],
+          [
+            4.0
+          ]
+        ]
+      ]
+    },
+    {
+      "agreements": [
+        {
+          "agreement_id": "CSA1",
+          "call_frequency_days": 1,
+          "collateral_currency": "USD",
+          "direction": "two_way",
+          "haircut": 0.0,
+          "independent_amount_posted": 0.0,
+          "independent_amount_received": 0.0,
+          "initial_margin_posted": 0.0,
+          "initial_margin_received": 0.0,
+          "margin_period_of_risk_days": 0,
+          "minimum_transfer_amount": 0.0,
+          "rehypothecation_allowed": false,
+          "remuneration_rate": 0.0,
+          "rounding": 0.01,
+          "settlement_lag_days": 1,
+          "threshold_posted": 0.0,
+          "threshold_received": 0.0
+        }
+      ],
+      "benchmark_id": "settlement_lag_pending_transfer",
+      "dates": [
+        "2026-01-05",
+        "2026-01-06",
+        "2026-01-07"
+      ],
+      "expected": {
+        "effective_collateral": [
+          [
+            [
+              0.0
+            ],
+            [
+              0.0
+            ],
+            [
+              100.0
+            ]
+          ]
+        ],
+        "pending_collateral": [
+          [
+            [
+              0.0
+            ],
+            [
+              100.0
+            ],
+            [
+              0.0
+            ]
+          ]
+        ],
+        "positive_exposure": [
+          [
+            [
+              0.0
+            ],
+            [
+              100.0
+            ],
+            [
+              0.0
+            ]
+          ]
+        ]
+      },
+      "metrics": [
+        "effective_collateral",
+        "pending_collateral",
+        "positive_exposure"
+      ],
+      "netting_sets": [
+        {
+          "agreement_id": "ISDA-NS1",
+          "collateral_agreement_id": "CSA1",
+          "counterparty_id": "CP1",
+          "netting_eligible": true,
+          "netting_set_id": "NS1",
+          "settlement_currency": "USD",
+          "trade_ids": [
+            "T1"
+          ]
+        }
+      ],
+      "times": [
+        0.0,
+        0.5,
+        1.0
+      ],
+      "tolerance": 1e-10,
+      "trade_ids": [
+        "T1"
+      ],
+      "trade_values": [
+        [
+          [
+            0.0
+          ],
+          [
+            100.0
+          ],
+          [
+            100.0
+          ]
+        ]
+      ]
+    },
+    {
+      "agreements": [
+        {
+          "agreement_id": "CSA1",
+          "call_frequency_days": 1,
+          "collateral_currency": "USD",
+          "direction": "two_way",
+          "haircut": 0.1,
+          "independent_amount_posted": 0.0,
+          "independent_amount_received": 0.0,
+          "initial_margin_posted": 0.0,
+          "initial_margin_received": 0.0,
+          "margin_period_of_risk_days": 0,
+          "minimum_transfer_amount": 0.0,
+          "rehypothecation_allowed": false,
+          "remuneration_rate": 0.0,
+          "rounding": 0.01,
+          "settlement_lag_days": 0,
+          "threshold_posted": 0.0,
+          "threshold_received": 0.0
+        }
+      ],
+      "benchmark_id": "haircut_face_value_compensation",
+      "dates": [
+        "2026-01-05",
+        "2026-01-06"
+      ],
+      "expected": {
+        "effective_collateral": [
+          [
+            [
+              0.0
+            ],
+            [
+              99.999
+            ]
+          ]
+        ],
+        "face_balances": [
+          [
+            [
+              0.0
+            ],
+            [
+              111.11
+            ]
+          ]
+        ],
+        "positive_exposure": [
+          [
+            [
+              0.0
+            ],
+            [
+              0.001
+            ]
+          ]
+        ]
+      },
+      "metrics": [
+        "face_balances",
+        "effective_collateral",
+        "positive_exposure"
+      ],
+      "netting_sets": [
+        {
+          "agreement_id": "ISDA-NS1",
+          "collateral_agreement_id": "CSA1",
+          "counterparty_id": "CP1",
+          "netting_eligible": true,
+          "netting_set_id": "NS1",
+          "settlement_currency": "USD",
+          "trade_ids": [
+            "T1"
+          ]
+        }
+      ],
+      "times": [
+        0.0,
+        1.0
+      ],
+      "tolerance": 1e-09,
+      "trade_ids": [
+        "T1"
+      ],
+      "trade_values": [
+        [
+          [
+            0.0
+          ],
+          [
+            100.0
+          ]
+        ]
+      ]
+    },
+    {
+      "agreements": [
+        {
+          "agreement_id": "CSA1",
+          "call_frequency_days": 1,
+          "collateral_currency": "USD",
+          "direction": "two_way",
+          "haircut": 0.0,
+          "independent_amount_posted": 0.0,
+          "independent_amount_received": 0.0,
+          "initial_margin_posted": 0.0,
+          "initial_margin_received": 0.0,
+          "margin_period_of_risk_days": 1,
+          "minimum_transfer_amount": 0.0,
+          "rehypothecation_allowed": false,
+          "remuneration_rate": 0.0,
+          "rounding": 0.01,
+          "settlement_lag_days": 0,
+          "threshold_posted": 0.0,
+          "threshold_received": 0.0
+        }
+      ],
+      "benchmark_id": "margin_period_of_risk",
+      "dates": [
+        "2026-01-05",
+        "2026-01-06",
+        "2026-01-07"
+      ],
+      "expected": {
+        "mpor_positive_exposure": [
+          [
+            [
+              50.0
+            ],
+            [
+              50.0
+            ],
+            [
+              0.0
+            ]
+          ]
+        ]
+      },
+      "metrics": [
+        "mpor_positive_exposure"
+      ],
+      "netting_sets": [
+        {
+          "agreement_id": "ISDA-NS1",
+          "collateral_agreement_id": "CSA1",
+          "counterparty_id": "CP1",
+          "netting_eligible": true,
+          "netting_set_id": "NS1",
+          "settlement_currency": "USD",
+          "trade_ids": [
+            "T1"
+          ]
+        }
+      ],
+      "times": [
+        0.0,
+        0.5,
+        1.0
+      ],
+      "tolerance": 1e-10,
+      "trade_ids": [
+        "T1"
+      ],
+      "trade_values": [
+        [
+          [
+            0.0
+          ],
+          [
+            50.0
+          ],
+          [
+            100.0
+          ]
+        ]
+      ]
+    },
+    {
+      "agreements": [],
+      "benchmark_id": "counterparty_aggregation",
+      "dates": [
+        "2026-01-05",
+        "2027-01-05"
+      ],
+      "expected": {
+        "counterparty_expected_positive": [
+          [
+            0.0
+          ],
+          [
+            120.0
+          ]
+        ],
+        "portfolio_pfe": [
+          0.0,
+          120.0
+        ]
+      },
+      "metrics": [
+        "counterparty_expected_positive",
+        "portfolio_pfe"
+      ],
+      "netting_sets": [
+        {
+          "agreement_id": "ISDA-NS1",
+          "collateral_agreement_id": null,
+          "counterparty_id": "CP1",
+          "netting_eligible": true,
+          "netting_set_id": "NS1",
+          "settlement_currency": "USD",
+          "trade_ids": [
+            "T1"
+          ]
+        },
+        {
+          "agreement_id": "ISDA-NS2",
+          "collateral_agreement_id": null,
+          "counterparty_id": "CP1",
+          "netting_eligible": true,
+          "netting_set_id": "NS2",
+          "settlement_currency": "USD",
+          "trade_ids": [
+            "T2"
+          ]
+        }
+      ],
+      "times": [
+        0.0,
+        1.0
+      ],
+      "tolerance": 1e-10,
+      "trade_ids": [
+        "T1",
+        "T2"
+      ],
+      "trade_values": [
+        [
+          [
+            0.0,
+            0.0
+          ],
+          [
+            100.0,
+            20.0
+          ]
+        ]
+      ]
+    },
+    {
+      "agreements": [],
+      "benchmark_id": "reconciliation_and_manifest",
+      "dates": [
+        "2026-01-05",
+        "2027-01-05"
+      ],
+      "expected": {
+        "manifest_hash_length": 64,
+        "reconciliation_status": "PASS"
+      },
+      "metrics": [
+        "reconciliation_status",
+        "manifest_hash_length"
+      ],
+      "netting_sets": [
+        {
+          "agreement_id": "ISDA-NS1",
+          "collateral_agreement_id": null,
+          "counterparty_id": "CP1",
+          "netting_eligible": true,
+          "netting_set_id": "NS1",
+          "settlement_currency": "USD",
+          "trade_ids": [
+            "T1"
+          ]
+        }
+      ],
+      "times": [
+        0.0,
+        1.0
+      ],
+      "tolerance": 1e-10,
+      "trade_ids": [
+        "T1"
+      ],
+      "trade_values": [
+        [
+          [
+            0.0
+          ],
+          [
+            25.0
+          ]
+        ],
+        [
+          [
+            0.0
+          ],
+          [
+            -10.0
+          ]
+        ]
+      ]
+    }
+  ],
+  "gate": "XVA_EXPOSURE_GATE_3",
+  "schema_version": "1.0",
+  "status": "LOCKED_REFERENCE_CASES"
+}
