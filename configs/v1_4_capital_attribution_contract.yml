@@ -1,0 +1,15 @@
+schema_version: "1.0"
+release_line: v1.4
+gate: 4
+required_dimensions:
+  - counterparty
+  - netting_set
+  - trade
+  - currency
+  - time_bucket
+reconciliation:
+  absolute_tolerance: 1.0e-10
+  portfolio_total_required: true
+concentration:
+  metrics: [hhi, maximum_share, peak_capital]
+  zero_portfolio_handling: explicit_zero

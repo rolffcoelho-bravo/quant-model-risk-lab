@@ -1,0 +1,18 @@
+schema_version: "1.0"
+release_line: v1.4
+gate: 4
+status: CAPITAL_KVA_VALIDATED_CANDIDATE
+capital_profile:
+  exposure_measure: expected_exposure_proxy
+  ead_formula: expected_exposure_times_ead_multiplier
+  capital_formula: ead_times_risk_weight_times_capital_ratio_times_maturity_times_stress
+  risk_weight_overrides: permitted_by_netting_set
+  negative_capital: prohibited
+attribution:
+  dimensions: [counterparty, netting_set, trade, currency, time_bucket]
+  reconciliation_required: true
+boundaries:
+  production_approval: false
+  regulatory_approval: false
+  certified_SA_CCR_IMM_or_Basel: false
+  label: PUBLIC_CAPITAL_PROXY_NOT_REGULATORY_APPROVAL

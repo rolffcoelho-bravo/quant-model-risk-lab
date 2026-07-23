@@ -1,0 +1,14 @@
+schema_version: "1.0"
+release_line: v1.4
+gate: 4
+kva:
+  formula: integral_discount_survival_hurdle_capital
+  integration_rules: [endpoint, trapezoid]
+  hurdle_rate_term_structure: basis_points
+  survival_modes: [counterparty, none]
+  zero_hurdle_zero_kva: required
+  mva_separation: required
+  fva_separation: required
+  sign_convention: positive_cost
+sensitivities:
+  required: [hurdle_rate, ead, risk_weight, capital_ratio, maturity, stress, discount_rate]

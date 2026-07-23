@@ -1,0 +1,21 @@
+schema_version: "1.0"
+release_line: v1.4
+gate: 4
+absolute_tolerance: 1.0e-12
+benchmarks:
+  - name: base_trapezoid_kva
+    expected: 0.680764
+  - name: discount_shock_reduces_kva
+    expected: 0.6644030958279261
+  - name: risk_weight_monotonic
+    expected: 1.021146
+  - name: stress_multiplier_monotonic
+    expected: 1.021146
+  - name: survival_decay_reduces_kva
+    expected: 0.5348000000000002
+  - name: two_set_portfolio_kva
+    expected: 0.9431744000000001
+  - name: zero_exposure_zero_kva
+    expected: 0
+  - name: zero_hurdle_zero_kva
+    expected: 0
