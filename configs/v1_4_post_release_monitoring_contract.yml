@@ -1,0 +1,15 @@
+schema_version: "1.0"
+release_line: "v1.4"
+gate: 8
+release_status: "RELEASED_WITH_MONITORING"
+monitoring_dimensions:
+  - challenger_disagreement
+  - seed_path_and_grid_stability
+  - input_and_policy_perturbation
+  - lifecycle_drift
+  - cache_and_checkpoint_integrity
+  - runtime_and_memory_budget
+  - genai_evidence_boundary
+escalation_statuses: [PASS_WITH_MONITORING, REMEDIATE, BLOCK]
+material_block_requires_revalidation: true
+monitoring_does_not_grant_production_approval: true

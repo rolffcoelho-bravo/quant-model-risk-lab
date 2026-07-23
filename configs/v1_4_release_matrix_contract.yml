@@ -1,0 +1,17 @@
+schema_version: "1.0"
+release_line: "v1.4"
+gate: 8
+required_gates: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+required_statuses:
+  0: "ARCHITECTURE_FROZEN"
+  1: "PORTFOLIO_CONTRACTS_VALIDATED"
+  2: "MULTI_CURRENCY_VALIDATED"
+  3: "MVA_VALIDATED"
+  4: "KVA_VALIDATED"
+  5: "INCREMENTAL_ANALYTICS_VALIDATED"
+  6: "OPERATIONAL_SCALE_VALIDATED"
+  7: "RELEASE_CANDIDATE_VALIDATED"
+  8: "RELEASED_WITH_MONITORING"
+all_prior_gates_required: true
+release_candidate_gate: 7
+release_gate: 8

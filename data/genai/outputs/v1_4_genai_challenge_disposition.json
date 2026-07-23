@@ -1,0 +1,12 @@
+{
+  "autonomous_model_approval": false,
+  "boundary": "GENAI_ADVISORY_ONLY_NO_AUTONOMOUS_APPROVAL",
+  "changed_quantitative_result": false,
+  "disposition": "ACCEPTED_WITH_HUMAN_REVIEW",
+  "human_release_decision_required": true,
+  "promoted_release": false,
+  "record_id": "qmrl-v1.4-gate8-genai-disposition",
+  "role": "advisory_evidence_challenge",
+  "schema_version": "1.0",
+  "source_gate": 7
+}

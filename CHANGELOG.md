@@ -35,6 +35,30 @@ All notable repository changes are documented here.
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-07-23
+
+### Added
+
+- canonical portfolio ingestion, lineage, validation contracts, and deterministic hashes
+- multi-currency exposure, collateral, triangulation, attribution, FX stress, and WWR linkage
+- transparent initial-margin proxies, MVA, public capital profiles, and KVA
+- full-revaluation incremental XVA, marginal convergence, Euler validity, allocation residuals, and rankings
+- dependency-aware recalculation, deterministic cache keys, checkpoints, recovery, chunking, parallel determinism, and scale evidence
+- unified challenger registry, stability, drift, remediation governance, lifecycle dashboard, and advisory-only GenAI challenge
+- v1.4 validation matrix, assurance package, migration notes, release notes, and machine-readable manifest
+
+### Validation
+
+- complete deterministic collection: `708` tests
+- pull-request and post-merge `Python 3.12 validation`
+- explicit `SQUASH` approval before merge
+- explicit `RELEASE` approval before annotated tag and GitHub release publication
+
+### Boundaries
+
+The release status is `RELEASED_WITH_MONITORING`. Production approval and regulatory approval remain false. Initial margin and capital outputs remain transparent public proxies, and GenAI remains advisory only.
+
+
 
 
 

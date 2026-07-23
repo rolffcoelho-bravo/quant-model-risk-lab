@@ -1,0 +1,20 @@
+schema_version: "1.0"
+release_line: "v1.4"
+gate: 8
+publication:
+  tag: "v1.4.0"
+  tag_type: "annotated"
+  github_release: true
+  draft: false
+  prerelease: false
+  release_notes: "docs/releases/v1.4.0.md"
+required_disclosures:
+  - public_proxy_methods
+  - non_regulatory_capital_boundary
+  - margin_not_simm_or_ccp
+  - full_revaluation_primary
+  - genai_advisory_only
+  - production_approval_false
+  - regulatory_approval_false
+autonomous_genai_publication: false
+human_release_approval_required: true

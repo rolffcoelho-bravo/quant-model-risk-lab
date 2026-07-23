@@ -1,0 +1,185 @@
+{
+  "artifacts": [
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "79987dd16f03e6686fd910ea0a59778f3772d84c18c359ccb0ffaf710d91af75"
+    },
+    {
+      "path": "CITATION_v1_4.cff",
+      "sha256": "91beab52081e71c7be68d253cee2593627818888a9a5bec76ad358bb055ba85e"
+    },
+    {
+      "path": "README.md",
+      "sha256": "87c8e03d55c27f79018d684962040998e63d006c856fe611fcd4ddf667e4c368"
+    },
+    {
+      "path": "configs/v1_4_post_release_monitoring_contract.yml",
+      "sha256": "aa52e7f9094ef11fc569b86289a2189d83ad98e78485e7aaf83b5dcd87541d7a"
+    },
+    {
+      "path": "configs/v1_4_publication_contract.yml",
+      "sha256": "f6f4513ee5479f45f6ff0e49a9d608f6f0b19bd8374b900d052efb42a7386399"
+    },
+    {
+      "path": "configs/v1_4_release_assurance_contract.yml",
+      "sha256": "a937f8cad9184cc0c70f370e98bc89101324132f70e14060aff6306aea78772f"
+    },
+    {
+      "path": "configs/v1_4_release_contract.yml",
+      "sha256": "a64868c5e223d640980b301b8363f7dfbd84105d49d8132bc604b94fd5a0ef13"
+    },
+    {
+      "path": "configs/v1_4_release_matrix_contract.yml",
+      "sha256": "8110100ac7082b9e023d0dfe536b7bf4570d68da93db24224a31f9b1d8dc57c0"
+    },
+    {
+      "path": "data/genai/outputs/v1_4_genai_challenge_disposition.json",
+      "sha256": "d8847d7af8ec6b1c96b6c73af1a7debdc7ea3ec0d2b17fa1d5d809b19847cc65"
+    },
+    {
+      "path": "data/release/v1_4_gate_statuses.json",
+      "sha256": "f5cbe50a15b82d504398ca6e36dd5be5bb7dcbb1aa14fc12b2ea7d71a5726737"
+    },
+    {
+      "path": "data/release/v1_4_human_review.json",
+      "sha256": "bcd5a035a4dd48d9d1d5911d6c4f5714bdaebd235f2e9f136c3cf2371b02406d"
+    },
+    {
+      "path": "docs/releases/v1.4.0.md",
+      "sha256": "f409f55ee6391a297fbb358640874ad74ac8b045c366b9cef0931424a0af04ce"
+    },
+    {
+      "path": "docs/v1_4_migration_from_v1_3.md",
+      "sha256": "457cff8ca6623b20d201d697bd9f7dc60e85009fef041219303589e02417ea0e"
+    },
+    {
+      "path": "docs/v1_4_model_boundaries_and_governance.md",
+      "sha256": "92b814430b0b8860074cffde93b465c3c32cb0e623300f7585a64f5611a6e741"
+    },
+    {
+      "path": "docs/v1_4_release_consolidation.md",
+      "sha256": "9b93832e9a09be9288d8082756a2af09f8de53e155956697d063a4540046313c"
+    },
+    {
+      "path": "docs/v1_4_validation_matrix.md",
+      "sha256": "e05aefacd2b2878997961be41c2c05912a0ceea100fb9b436a94c897db9b0067"
+    },
+    {
+      "path": "reports/v1_4_lifecycle_report.md",
+      "sha256": "3d121074eb8b5f28fa1416a96f29380477eb3bf7bfc589a5843d9b6fe0b87d06"
+    },
+    {
+      "path": "reports/v1_4_release_assurance.md",
+      "sha256": "104a0926a660181f5a925b59414fab8bcd124b226acaf6a2d682178d00dc72d2"
+    },
+    {
+      "path": "reports/v1_4_validation_dashboard.md",
+      "sha256": "5aa3365af65416785ca9c4d99ac069152d0cb7a0634313d4236bdf4d89fe367c"
+    },
+    {
+      "path": "src/qmrl/release_consolidation/__init__.py",
+      "sha256": "3f3274e627817cfbfaf61b63a781d1ea9d137b3b6c97cbaf4d1cfce6d6d03f4a"
+    },
+    {
+      "path": "src/qmrl/release_consolidation/assurance.py",
+      "sha256": "0a89f2be746efa6d538829a3df81ace5d97ecc48b3c37e10d54e0f715f0855c8"
+    },
+    {
+      "path": "src/qmrl/release_consolidation/benchmark.py",
+      "sha256": "7c17232dd39268cb68e04e02c31a87d9d578176ef2ff2248b2149ae4a38df9bb"
+    },
+    {
+      "path": "src/qmrl/release_consolidation/dashboard.py",
+      "sha256": "99c361ba51d3b801c7bc33211f4cf23e2a5f32ffc1b7982114a4fcc3738a0f35"
+    },
+    {
+      "path": "src/qmrl/release_consolidation/domain.py",
+      "sha256": "d49e75d4ef90f8a380a62aad4d9f4692e50db9c25371aaa304a10f4abbd947f8"
+    },
+    {
+      "path": "src/qmrl/release_consolidation/manifest.py",
+      "sha256": "680ee021570f4eede8ddbabd7bdb94cf01825163f1ff78f3606973cc2dd17301"
+    },
+    {
+      "path": "src/qmrl/release_consolidation/matrix.py",
+      "sha256": "7f77106a31a4872ac95622b2b3a805da9589467c06454bd561c8757d261d4636"
+    },
+    {
+      "path": "src/qmrl/release_consolidation/publication.py",
+      "sha256": "dce3a4b0af9bee6d252a451532b8a4edb54f258b2567c25a89782bc54be7a8f6"
+    },
+    {
+      "path": "tests/test_v1_4_gate8_assurance.py",
+      "sha256": "94d9659e1c2871a4acd0ccd24ea36ac30ab4988f6c2a8bdb26000283d88f0c43"
+    },
+    {
+      "path": "tests/test_v1_4_gate8_benchmarks_release.py",
+      "sha256": "5c230bf426168685f6257f6b5afc8c8e7bba78d8608bfd8ec69a856b8b119c0e"
+    },
+    {
+      "path": "tests/test_v1_4_gate8_dashboard.py",
+      "sha256": "9c16b96e6d3f03b2cfe26d2ef17c363926f8e6f8842cb2437ed1ecd023d43a57"
+    },
+    {
+      "path": "tests/test_v1_4_gate8_domain.py",
+      "sha256": "70b95a4629311eec062a1b44675c347195b39e8032286c67c99cc07170dd2ce2"
+    },
+    {
+      "path": "tests/test_v1_4_gate8_manifest_contracts.py",
+      "sha256": "67867588d03c08bdffa1d060530570d7095339cd8c562d0986db2e72ea89f2d9"
+    },
+    {
+      "path": "tests/test_v1_4_gate8_matrix.py",
+      "sha256": "aad490735c03b061f9ec8e95d3551e030e7c4dde7e2752316d1836959acfd06b"
+    },
+    {
+      "path": "tests/test_v1_4_gate8_publication.py",
+      "sha256": "050d62144bb7ae84cd146a48d179b7c666e0dc2bb5a39db2796b28f28a1b71b2"
+    }
+  ],
+  "base_main_commit": "f433475",
+  "boundaries": {
+    "autonomous_genai_release_approval": false,
+    "human_release_approval_required": true,
+    "human_squash_approval_required": true,
+    "production_approval": false,
+    "regulatory_approval": false,
+    "release_boundary": "PUBLIC_RESEARCH_RELEASE_WITH_MONITORING"
+  },
+  "dependencies": [
+    7
+  ],
+  "gate": 8,
+  "preserved_release_tag": "v1.3.0",
+  "promotion_rules": [
+    "all Gates 0 through 7 remain validated",
+    "all artifact hashes reconcile",
+    "pull-request and post-merge CI pass",
+    "explicit RELEASE approval precedes tagging",
+    "annotated v1.4.0 tag points to validated main",
+    "GitHub release is published",
+    "post-release assurance passes",
+    "v1.3.0 remains immutable"
+  ],
+  "release": {
+    "github_release_required": true,
+    "tag": "v1.4.0",
+    "tag_type": "annotated",
+    "version": "1.4.0"
+  },
+  "release_line": "v1.4",
+  "schema_version": "1.0",
+  "status": "RELEASE_CONSOLIDATION_CANDIDATE",
+  "target_status": "RELEASED_WITH_MONITORING",
+  "validation": {
+    "artifact_hash_policy": {
+      "algorithm": "sha256",
+      "encoding": "UTF-8",
+      "text_line_endings": "LF"
+    },
+    "collected_test_count": 708,
+    "new_test_count": 42,
+    "prior_collected_test_count": 666,
+    "required_check": "Python 3.12 validation"
+  }
+}

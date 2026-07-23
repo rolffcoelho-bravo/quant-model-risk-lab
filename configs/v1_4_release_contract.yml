@@ -1,0 +1,22 @@
+schema_version: "1.0"
+release_line: "v1.4"
+gate: 8
+release:
+  version: "1.4.0"
+  tag: "v1.4.0"
+  status: "RELEASED_WITH_MONITORING"
+required_human_tokens:
+  pull_request_merge: "SQUASH"
+  publication: "RELEASE"
+required_pre_publication_evidence:
+  - local_full_suite
+  - pull_request_ci
+  - post_merge_main_ci
+  - release_candidate_assurance
+  - annotated_tag_target
+  - github_release_metadata
+preserved_release_tags:
+  - "v1.3.0"
+production_approval: false
+regulatory_approval: false
+boundary: "PUBLIC_RESEARCH_RELEASE_WITH_MONITORING"
