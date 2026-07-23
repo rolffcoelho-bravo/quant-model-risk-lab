@@ -21,7 +21,9 @@ def load_yaml(path: Path) -> dict:
 
 
 def sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    data = path.read_bytes()
+    normalized = data.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    return hashlib.sha256(normalized).hexdigest()
 
 
 def test_gate0_artifacts_exist() -> None:
@@ -252,6 +254,11 @@ def test_manifest_records_expanded_test_surface_and_ci_governance() -> None:
     assert validation["pull_request_ci_required"] is True
     assert validation["post_merge_ci_required"] is True
     assert validation["human_squash_approval_required"] is True
+    assert validation["artifact_hash_policy"] == {
+        "algorithm": "sha256",
+        "encoding": "UTF-8",
+        "text_line_endings": "LF",
+    }
 
 
 def test_manifest_artifact_hashes_reconcile() -> None:
