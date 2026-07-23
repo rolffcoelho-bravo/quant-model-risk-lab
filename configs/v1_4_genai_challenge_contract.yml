@@ -1,0 +1,21 @@
+schema_version: "1.0"
+release_line: "v1.4"
+gate: 7
+role: "advisory_evidence_challenge"
+required_lineage:
+  - record_id
+  - prompt_id
+  - model_id
+  - model_version
+  - input_hash
+  - output_hash
+  - reviewer
+  - disposition
+prohibited:
+  - autonomous_model_approval
+  - quantitative_result_change
+  - release_promotion
+  - regulatory_or_production_approval
+deterministic_test_fixtures: true
+external_model_call_required_for_tests: false
+boundary: "GENAI_ADVISORY_ONLY_NO_AUTONOMOUS_APPROVAL"

@@ -1,0 +1,21 @@
+schema_version: "1.0"
+release_line: "v1.4"
+gate: 7
+dimensions:
+  - seed
+  - path_count
+  - time_grid
+  - fx_path_perturbation
+  - curve_and_spread_perturbation
+  - collateral_policy_perturbation
+  - margin_policy_perturbation
+  - capital_policy_perturbation
+  - sensitivity_ranking
+required_evidence:
+  - baseline
+  - challenged_value
+  - deviation
+  - warning_threshold
+  - block_threshold
+  - status
+quantitative_results_mutable: false

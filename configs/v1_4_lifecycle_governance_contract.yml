@@ -1,0 +1,22 @@
+schema_version: "1.0"
+release_line: "v1.4"
+gate: 7
+lifecycle_statuses:
+  - PASS
+  - PASS_WITH_MONITORING
+  - REMEDIATE
+  - BLOCK
+  - INVALID
+promotion_rule: "no material BLOCK and every REMEDIATE item has documented resolved disposition"
+disposition_fields:
+  - finding_id
+  - owner
+  - action
+  - state
+  - evidence_id
+  - reviewed_by
+accepted_resolution_states: [CLOSED, ACCEPTED_RISK]
+human_promotion_decision_required: true
+target_status: "RELEASE_CANDIDATE_VALIDATED"
+production_approval: false
+regulatory_approval: false

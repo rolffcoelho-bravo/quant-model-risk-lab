@@ -1,0 +1,18 @@
+schema_version: "1.0"
+release_line: "v1.4"
+gate: 7
+benchmark_suite:
+  - registry_coverage
+  - scalar_reconciliation
+  - material_disagreement_detection
+  - seed_stability
+  - path_count_stability
+  - sensitivity_ranking
+  - drift_block_detection
+  - remediation_and_promotion
+  - genai_autonomous_approval_block
+expected: "PASS"
+hash_policy:
+  algorithm: "sha256"
+  encoding: "UTF-8"
+  text_line_endings: "LF"
