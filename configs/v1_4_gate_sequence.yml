@@ -1,0 +1,215 @@
+schema_version: "1.0"
+release_line: "v1.4"
+status: "ARCHITECTURE_FROZEN"
+required_order: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+gates:
+  - gate: 0
+    name: "architecture_scope_and_contract_freeze"
+    title: "Architecture, scope, and contract freeze"
+    depends_on: []
+    objective: "Freeze the authoritative v1.4 architecture, scope, boundaries, dependency map, and acceptance controls."
+    required_capabilities:
+      - "machine-readable scope"
+      - "layered architecture"
+      - "gated dependency sequence"
+      - "release boundaries"
+      - "contract-test evidence"
+    required_evidence:
+      - "architecture blueprint"
+      - "scope contract"
+      - "architecture contract"
+      - "gate-sequence contract"
+      - "Gate 0 manifest"
+      - "contract tests"
+    promotion_conditions:
+      - "all Gate 0 artifacts present"
+      - "v1.3.0 remains immutable"
+      - "no quantitative v1.4 code"
+      - "all repository tests pass"
+      - "pull-request and post-merge CI pass"
+      - "human approval recorded"
+    prohibited_before_promotion:
+      - "portfolio ingestion implementation"
+      - "multi-currency calculation implementation"
+      - "MVA implementation"
+      - "KVA implementation"
+      - "incremental-XVA implementation"
+    target_status: "ARCHITECTURE_FROZEN"
+  - gate: 1
+    name: "canonical_portfolio_ingestion_and_lineage"
+    title: "Canonical portfolio ingestion and lineage"
+    depends_on: [0]
+    objective: "Create the governed portfolio domain model and deterministic ingestion pipeline."
+    required_capabilities:
+      - "portfolio snapshot schema"
+      - "trade and counterparty schemas"
+      - "netting and collateral mapping"
+      - "referential integrity"
+      - "lineage and content hashing"
+      - "synthetic reference portfolios"
+    required_evidence:
+      - "valid and invalid fixtures"
+      - "round-trip serialization"
+      - "deterministic hashes"
+      - "data-quality report"
+      - "independent parser challenger"
+    promotion_conditions:
+      - "no downstream calculation accepts unvalidated or partially mapped portfolio data"
+    target_status: "PORTFOLIO_CONTRACTS_VALIDATED"
+  - gate: 2
+    name: "multi_currency_exposure_and_collateral"
+    title: "Multi-currency exposure and collateral"
+    depends_on: [1]
+    objective: "Extend exposure, collateral, discounting, and funding logic to multiple currencies."
+    required_capabilities:
+      - "FX path conversion"
+      - "collateral currency and remuneration"
+      - "currency-specific discount and funding curves"
+      - "cross-currency attribution"
+      - "triangulation controls"
+      - "FX stress and WWR linkage"
+    required_evidence:
+      - "parity and triangulation benchmarks"
+      - "zero-FX-volatility benchmark"
+      - "single-currency backward compatibility"
+      - "collateral-currency switch benchmark"
+      - "independent conversion challenger"
+    promotion_conditions:
+      - "single-currency v1.3 results remain reproducible within governed tolerance"
+    target_status: "MULTI_CURRENCY_VALIDATED"
+  - gate: 3
+    name: "initial_margin_and_mva"
+    title: "Initial margin and MVA"
+    depends_on: [2]
+    objective: "Introduce governed initial-margin proxies and MVA integration."
+    required_capabilities:
+      - "historical-simulation-style margin proxy"
+      - "parametric margin proxy"
+      - "MPOR and confidence controls"
+      - "posting and receiving profiles"
+      - "segregated funding treatment"
+      - "MVA sensitivities and challenger"
+    required_evidence:
+      - "zero-margin benchmark"
+      - "confidence and MPOR monotonicity"
+      - "funding-spread monotonicity"
+      - "independent MVA challenger"
+      - "model-boundary disclosure"
+    promotion_conditions:
+      - "MVA remains separately attributable and is not silently embedded in FVA"
+    target_status: "MVA_VALIDATED"
+  - gate: 4
+    name: "capital_profiles_and_kva"
+    title: "Capital profiles and KVA"
+    depends_on: [2]
+    objective: "Introduce transparent capital proxies and KVA."
+    required_capabilities:
+      - "EAD proxy"
+      - "capital-factor policy"
+      - "maturity and stress multipliers"
+      - "hurdle-rate term structure"
+      - "capital-release profile"
+      - "KVA attribution and challenger"
+    required_evidence:
+      - "zero-capital benchmark"
+      - "zero-hurdle-rate benchmark"
+      - "capital monotonicity"
+      - "maturity-profile benchmark"
+      - "independent KVA challenger"
+      - "regulatory-boundary declaration"
+    promotion_conditions:
+      - "no regulatory approval or certified capital-adequacy claim"
+    target_status: "KVA_VALIDATED"
+  - gate: 5
+    name: "incremental_marginal_and_allocation_analytics"
+    title: "Incremental, marginal, and allocation analytics"
+    depends_on: [3, 4]
+    objective: "Measure trade and portfolio contributions to valuation adjustment and capital use."
+    required_capabilities:
+      - "trade insertion and removal"
+      - "full-revaluation increments"
+      - "marginal approximation"
+      - "Euler allocation where valid"
+      - "non-additivity diagnostics"
+      - "trade and concentration ranking"
+    required_evidence:
+      - "additive synthetic benchmark"
+      - "non-additive collateral benchmark"
+      - "finite-difference convergence"
+      - "leave-one-out reconciliation"
+      - "allocation residual"
+      - "full versus approximate comparison"
+    promotion_conditions:
+      - "approximate marginal results disclose status and error against full revaluation"
+    target_status: "INCREMENTAL_ANALYTICS_VALIDATED"
+  - gate: 6
+    name: "operational_recalculation_performance_and_scale"
+    title: "Operational recalculation, performance, and scale"
+    depends_on: [5]
+    objective: "Establish dependency-aware recalculation and measured scale evidence."
+    required_capabilities:
+      - "dependency graph"
+      - "partial recalculation"
+      - "deterministic cache keys"
+      - "stale-output detection"
+      - "restartable runs"
+      - "chunked and reproducible parallel processing"
+      - "performance and memory budgets"
+    required_evidence:
+      - "trade and path scaling curves"
+      - "memory peak evidence"
+      - "parallel determinism"
+      - "cache invalidation"
+      - "interrupted-run recovery"
+      - "full versus partial reconciliation"
+    promotion_conditions:
+      - "performance changes preserve quantitative results within governed tolerance"
+    target_status: "OPERATIONAL_SCALE_VALIDATED"
+  - gate: 7
+    name: "independent_challenge_stability_and_lifecycle"
+    title: "Independent challenge, stability, and lifecycle governance"
+    depends_on: [6]
+    objective: "Extend independent challenge and lifecycle governance to all v1.4 modules."
+    required_capabilities:
+      - "multi-currency challenger"
+      - "MVA challenger"
+      - "KVA challenger"
+      - "incremental-XVA challenger"
+      - "stability and drift diagnostics"
+      - "promotion governance"
+      - "governed GenAI evidence challenge"
+    required_evidence:
+      - "component reconciliation"
+      - "sensitivity ranking"
+      - "seed, path, and grid stability"
+      - "input perturbation"
+      - "challenger disagreement"
+      - "lifecycle dashboard"
+    promotion_conditions:
+      - "no material BLOCK and every REMEDIATE item has documented disposition"
+    target_status: "RELEASE_CANDIDATE_VALIDATED"
+  - gate: 8
+    name: "release_consolidation"
+    title: "v1.4 release consolidation"
+    depends_on: [7]
+    objective: "Consolidate documentation, dashboards, evidence, contracts, human review, and publication controls."
+    required_capabilities:
+      - "institutional README"
+      - "validation dashboard"
+      - "lifecycle report"
+      - "release manifest and matrix"
+      - "human review"
+      - "governed GenAI challenge"
+      - "release and assurance packages"
+    required_evidence:
+      - "local full-suite validation"
+      - "pull-request CI"
+      - "post-merge main CI"
+      - "release-candidate assurance"
+      - "annotated tag and GitHub release"
+      - "post-release assurance"
+    promotion_conditions:
+      - "explicit SQUASH and RELEASE approvals"
+      - "historical v1.3 preservation"
+      - "release-line freeze after assurance PASS"
+    target_status: "RELEASED_WITH_MONITORING"

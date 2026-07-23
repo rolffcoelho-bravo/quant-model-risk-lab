@@ -1,0 +1,82 @@
+schema_version: "1.0"
+release_line: "v1.4"
+gate: 0
+status: "ARCHITECTURE_FROZEN"
+title: "Institutional Portfolio and Capital-Adjustment Platform"
+purpose: >-
+  Freeze the v1.4 scope, architecture, dependency order, model boundaries,
+  evidence requirements, and promotion controls before quantitative
+  implementation begins.
+strategic_transition:
+  from: "v1.3 validated XVA engine"
+  to: "v1.4 institutional portfolio and capital-adjustment platform"
+base_release:
+  version: "1.3.0"
+  tag: "v1.3.0"
+  immutable_historical_evidence: true
+  semantic_reinterpretation_permitted: false
+in_scope:
+  - id: "portfolio_ingestion"
+    description: "Canonical portfolio, counterparty, agreement, collateral, currency, and lineage contracts."
+  - id: "multi_currency_xva"
+    description: "FX conversion, collateral currency, cross-currency discounting, funding, attribution, and stress."
+  - id: "mva"
+    description: "Governed initial-margin proxies, margin profiles, sensitivities, challengers, and MVA integration."
+  - id: "kva"
+    description: "Transparent capital proxies, capital profiles, hurdle rates, attribution, challengers, and KVA."
+  - id: "incremental_allocation"
+    description: "Full-revaluation incremental XVA, marginal approximation, allocation, and non-additivity diagnostics."
+  - id: "operational_recalculation"
+    description: "Dependency-aware recalculation, lineage, cache invalidation, performance, memory, and recovery evidence."
+  - id: "independent_governance"
+    description: "Independent challengers, stability, lifecycle monitoring, promotion governance, and release evidence."
+out_of_scope:
+  - "production trade capture"
+  - "live market-data ingestion"
+  - "proprietary pricing engines"
+  - "legally enforceable CSA interpretation"
+  - "regulatory reporting"
+  - "binding SA-CCR, IMM, FRTB, or Basel approval"
+  - "production initial-margin approval"
+  - "SIMM certification"
+  - "CCP margin replication"
+  - "legal closeout opinions"
+  - "production collateral optimization"
+  - "real-time intraday deployment"
+  - "production cloud authorization"
+  - "confidential counterparty data"
+  - "public claims of regulatory compliance"
+boundaries:
+  production_approval: false
+  regulatory_approval: false
+  simm_certification: false
+  live_market_data: false
+  proprietary_data: false
+  quantitative_implementation_in_gate_0: false
+  release_tag_creation_in_gate_0: false
+  future_release_tag: "v1.4.0"
+release_principles:
+  - "Preserve v1.3.0 evidence and meaning."
+  - "Require evidence before promotion."
+  - "Expose institutional approximations and parameters."
+  - "Preserve portfolio, counterparty, netting-set, collateral-set, currency, product, desk, and trade attribution."
+  - "Introduce capabilities only in validated dependency order."
+required_gate_0_artifacts:
+  - "docs/v1_4_architecture_and_execution_blueprint.md"
+  - "configs/v1_4_scope_contract.yml"
+  - "configs/v1_4_architecture_contract.yml"
+  - "configs/v1_4_gate_sequence.yml"
+  - "configs/release_manifest_v1_4_gate0.json"
+  - "tests/test_v1_4_gate0_contracts.py"
+promotion_conditions:
+  - "v1.3.0 annotated tag remains unchanged."
+  - "Scope and exclusions are machine-readable."
+  - "Architecture dependencies are explicit and acyclic."
+  - "Every future gate defines capabilities, evidence, and promotion conditions."
+  - "Production and regulatory approval remain false."
+  - "No quantitative v1.4 implementation is introduced."
+  - "Local validation, pull-request CI, and post-merge main CI pass."
+  - "Human SQUASH approval is recorded."
+next_gate:
+  gate: 1
+  title: "Canonical portfolio ingestion and lineage"

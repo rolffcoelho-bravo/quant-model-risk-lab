@@ -1,0 +1,118 @@
+schema_version: "1.0"
+release_line: "v1.4"
+gate: 0
+status: "ARCHITECTURE_FROZEN"
+architecture_style: "layered_composition_over_v1_3"
+calculation_identity_required: true
+layers:
+  - id: 1
+    name: "canonical_portfolio_domain"
+    depends_on: []
+    responsibility: "Authoritative portfolio, entity, trade, agreement, currency, snapshot, and run identities."
+  - id: 2
+    name: "input_and_market_state"
+    depends_on: [1]
+    responsibility: "Curves, credit, FX, volatility, funding, collateral remuneration, capital parameters, freshness, and provenance."
+  - id: 3
+    name: "revaluation_and_exposure"
+    depends_on: [1, 2]
+    responsibility: "Canonical-portfolio revaluation, multi-currency conversion, netting, collateral, and pathwise exposure lineage."
+  - id: 4
+    name: "margin"
+    depends_on: [3]
+    responsibility: "Initial-margin profiles, margin policies, funding treatment, MVA, sensitivities, and challengers."
+  - id: 5
+    name: "capital"
+    depends_on: [3]
+    responsibility: "Exposure-at-default proxies, capital profiles, hurdle rates, KVA, sensitivities, and challengers."
+  - id: 6
+    name: "incremental_analytics"
+    depends_on: [4, 5]
+    responsibility: "Insertion, removal, marginal, allocation, approximation-error, and non-additivity analytics."
+  - id: 7
+    name: "operational_recalculation"
+    depends_on: [6]
+    responsibility: "Dependency graph, partial recalculation, deterministic cache keys, scale, memory, and failure recovery."
+  - id: 8
+    name: "validation_and_promotion"
+    depends_on: [7]
+    responsibility: "Independent challenge, stability, lifecycle monitoring, GenAI evidence review, promotion, and release governance."
+canonical_entities:
+  - "PortfolioSnapshot"
+  - "LegalEntity"
+  - "Counterparty"
+  - "NettingSet"
+  - "CollateralSet"
+  - "TradeRecord"
+  - "AgreementTerms"
+  - "CurrencyDefinition"
+  - "MarketState"
+  - "CreditState"
+  - "CapitalPolicy"
+  - "MarginPolicy"
+  - "CalculationRun"
+  - "EvidenceManifest"
+calculation_run_required_fields:
+  - "run_id"
+  - "valuation_date"
+  - "portfolio_snapshot_id"
+  - "model_version"
+  - "configuration_hash"
+  - "input_hash"
+  - "random_seed"
+  - "created_at_utc"
+recommended_module_roots:
+  portfolio:
+    - "domain.py"
+    - "schemas.py"
+    - "ingestion.py"
+    - "validation.py"
+    - "lineage.py"
+  multicurrency:
+    - "fx_paths.py"
+    - "conversion.py"
+    - "collateral_currency.py"
+    - "funding_currency.py"
+  margin:
+    - "initial_margin.py"
+    - "margin_models.py"
+    - "mva.py"
+    - "mva_challenger.py"
+  capital:
+    - "capital_profile.py"
+    - "kva.py"
+    - "kva_challenger.py"
+  allocation:
+    - "incremental.py"
+    - "marginal.py"
+    - "euler.py"
+    - "reconciliation.py"
+  operations:
+    - "dependency_graph.py"
+    - "recalculation.py"
+    - "cache.py"
+    - "performance.py"
+  monitoring:
+    - "v1_4_dashboard.py"
+    - "v1_4_lifecycle.py"
+invariants:
+  - id: "v1_3_composition"
+    rule: "Validated v1.3 XVA modules are composed or versioned, not silently duplicated or reinterpreted."
+  - id: "run_identity"
+    rule: "No calculation result exists without CalculationRun lineage."
+  - id: "no_hidden_aggregation"
+    rule: "Results remain attributable by portfolio, counterparty, netting set, collateral set, currency, product, desk, and trade where applicable."
+  - id: "mva_separation"
+    rule: "MVA remains separately attributable and is not silently embedded in FVA."
+  - id: "kva_boundary"
+    rule: "KVA is a transparent public proxy and never implies regulatory approval."
+  - id: "approximation_disclosure"
+    rule: "Marginal or allocation approximations disclose method, residual, and error against full revaluation."
+  - id: "gate_0_no_quantitative_code"
+    rule: "Gate 0 contains architecture, contracts, evidence, and contract tests only."
+permitted_component_statuses:
+  - "PASS"
+  - "PASS_WITH_MONITORING"
+  - "REMEDIATE"
+  - "BLOCK"
+portfolio_promotion_rule: "A material BLOCK prevents portfolio promotion."
