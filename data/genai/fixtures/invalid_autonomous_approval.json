@@ -1,0 +1,14 @@
+{
+  "autonomous_model_approval": true,
+  "boundary": "GENAI_ADVISORY_ONLY_NO_AUTONOMOUS_APPROVAL",
+  "changed_quantitative_result": false,
+  "disposition": "REJECTED",
+  "input_hash": "30992f9d70207a593d3db4440d66c60e21aa36efc3ba44bdc7af28bf54761e5a",
+  "model_id": "deterministic-fixture-model",
+  "model_version": "1.0",
+  "output_hash": "05c66df0eb513e945837c8d5afb6a9b1cac8385b746a4546a1052b715687af11",
+  "promoted_release": false,
+  "prompt_id": "gate7-evidence-challenge-v1",
+  "record_id": "gate7-invalid-autonomous-approval",
+  "reviewer": "human-model-risk-reviewer"
+}

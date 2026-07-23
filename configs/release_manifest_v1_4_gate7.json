@@ -1,0 +1,159 @@
+{
+  "artifacts": [
+    {
+      "path": "configs/v1_4_challenger_registry_contract.yml",
+      "sha256": "37ec7663d984465a639f61d2fbaf21048527e005a103c42058b572013a52209d"
+    },
+    {
+      "path": "configs/v1_4_genai_challenge_contract.yml",
+      "sha256": "2aee4d6036e645f4136292d4002532fb9acaac04452714e4080dc458d879cf46"
+    },
+    {
+      "path": "configs/v1_4_lifecycle_benchmark_contract.yml",
+      "sha256": "55fc21d9e9068322373e172d507c3f497dc6dabec503db9e92de5356cba15af4"
+    },
+    {
+      "path": "configs/v1_4_lifecycle_governance_contract.yml",
+      "sha256": "ed5367e3700c21eae1b7d506ad75a4082481b6b9e9e2c093371e29cf848d6f0b"
+    },
+    {
+      "path": "configs/v1_4_release_candidate_contract.yml",
+      "sha256": "123b88ffc0135c8c1f08ae62638628f6aad4073589ba8fe3850f15052d949d2d"
+    },
+    {
+      "path": "configs/v1_4_stability_contract.yml",
+      "sha256": "fbd59f0c2ab69c512d25fcafa040351bed4740b4c49cd0bc290a76784d0fea7f"
+    },
+    {
+      "path": "data/genai/fixtures/invalid_autonomous_approval.json",
+      "sha256": "737d31891166538cb8c10bc12329b7244d092214238defa911431df31af800c8"
+    },
+    {
+      "path": "data/genai/fixtures/remediation_required_review.json",
+      "sha256": "f5dc39e718d247ec18f2caf7c6d8d6b4f3bd2363982642921571f9e96cae12a6"
+    },
+    {
+      "path": "data/genai/fixtures/valid_advisory_review.json",
+      "sha256": "d9a53566e46b2139f2b61c4780d972ee9623cd3ff91e81e95534e3fdbccaa746"
+    },
+    {
+      "path": "docs/v1_4_independent_challenge_stability_and_lifecycle.md",
+      "sha256": "bb3b3becd9f26b28f2b5ca24eda320ed13e77c8d87f5c1c8dbfdaca6a93bd1d7"
+    },
+    {
+      "path": "src/qmrl/lifecycle_governance/__init__.py",
+      "sha256": "b2e63fe091b44567d12497f077a235b048ccd22f861a9fde62b3d29c1164269c"
+    },
+    {
+      "path": "src/qmrl/lifecycle_governance/benchmark.py",
+      "sha256": "d2c0536c4096abd5f8142bacd7d9dd087987e03203c446c09a20166e580bd778"
+    },
+    {
+      "path": "src/qmrl/lifecycle_governance/dashboard.py",
+      "sha256": "0fdf5007b933fc8d1ed7e833ec434c103816efc548b7f1a11a7da3f414965c47"
+    },
+    {
+      "path": "src/qmrl/lifecycle_governance/domain.py",
+      "sha256": "af0f980e6eb5d1b5b48f46be9d7553aa48c2abd5cdf7e54adfc7539f1849fc35"
+    },
+    {
+      "path": "src/qmrl/lifecycle_governance/drift.py",
+      "sha256": "4e3811d340449f06def8fdf89b943cd90276f7d22cf6237dbca4f2b1e8e62e0d"
+    },
+    {
+      "path": "src/qmrl/lifecycle_governance/genai.py",
+      "sha256": "d9a532e5f5448ea10d9a9e6b3388fe2a8e4592a4483353ce92439c06d42ccf9b"
+    },
+    {
+      "path": "src/qmrl/lifecycle_governance/governance.py",
+      "sha256": "1a7210210213fd79abc693a8d58e80581096a692506e033e11b8e714b42801eb"
+    },
+    {
+      "path": "src/qmrl/lifecycle_governance/orchestrator.py",
+      "sha256": "0f2fe320ef730415c5edaec4cd7e18a6eda661359e8915dc6b1188f8b0f01287"
+    },
+    {
+      "path": "src/qmrl/lifecycle_governance/reconciliation.py",
+      "sha256": "0e9f4fc08f64c312ca4d479c2009a73fced3f7db3e02cd9cbaef55b18b0935b2"
+    },
+    {
+      "path": "src/qmrl/lifecycle_governance/registry.py",
+      "sha256": "53ddb92355aca25b006abfd26473bc48041b0a4bfa71be4da290b027a21b7b66"
+    },
+    {
+      "path": "src/qmrl/lifecycle_governance/stability.py",
+      "sha256": "d0f851ef537c86fed49b1abe53bd0e6253af9a9be8cf4523e6af6f7cc4a0e72f"
+    },
+    {
+      "path": "tests/test_v1_4_gate7_contracts_benchmarks.py",
+      "sha256": "2cddb1a44732775417ea793bb522f0c01280a12d751a1530523359ecd6b430d5"
+    },
+    {
+      "path": "tests/test_v1_4_gate7_domain_registry.py",
+      "sha256": "97abceb0383260247170482b831feba6adf0d800a89f66d2577ca86f91930b4c"
+    },
+    {
+      "path": "tests/test_v1_4_gate7_drift.py",
+      "sha256": "83cd1159c524439d8a7aa1312bf247a9a98e45767a15cedf94561753be0de238"
+    },
+    {
+      "path": "tests/test_v1_4_gate7_genai_dashboard.py",
+      "sha256": "514045a2489bdf2974c661d77991bd2d470afcab078720d2be95ab94b3b7d014"
+    },
+    {
+      "path": "tests/test_v1_4_gate7_governance.py",
+      "sha256": "5c393664d939bee6bc3383609cbe2fc9a7d94531d76c570e400581db90eefa88"
+    },
+    {
+      "path": "tests/test_v1_4_gate7_reconciliation_orchestrator.py",
+      "sha256": "fabc8e660f1dd9c9fb615ee69a6fea189301ed005a6ef236c739a404812c846d"
+    },
+    {
+      "path": "tests/test_v1_4_gate7_stability.py",
+      "sha256": "526811a844a8044944a2e1127e5e3c216d90493b688c3ef778715acf67c07bc8"
+    },
+    {
+      "path": "tests/v1_4_gate7_helpers.py",
+      "sha256": "2c90cedb6c674fd4296d888f3f9b6640e01d5364d45184095677844f08655486"
+    }
+  ],
+  "base_main_commit": "bc1f22f",
+  "boundaries": {
+    "challenge_boundary": "ADVISORY_CHALLENGE_NO_MODEL_APPROVAL",
+    "genai_boundary": "GENAI_ADVISORY_ONLY_NO_AUTONOMOUS_APPROVAL",
+    "human_promotion_decision_required": true,
+    "production_approval": false,
+    "regulatory_approval": false,
+    "release_tag_created": false
+  },
+  "dependencies": [
+    6
+  ],
+  "gate": 7,
+  "next_gate": "release_consolidation",
+  "preserved_release_tag": "v1.3.0",
+  "promotion_rules": [
+    "no material BLOCK remains",
+    "every REMEDIATE item has a resolved disposition",
+    "all required challenger components are registered",
+    "stability and drift contain no blocking observation",
+    "GenAI remains advisory and cannot approve models or releases",
+    "human reviewer makes the release-candidate decision"
+  ],
+  "release_line": "v1.4",
+  "schema_version": "1.0",
+  "status": "RELEASE_CANDIDATE_CANDIDATE",
+  "target_status": "RELEASE_CANDIDATE_VALIDATED",
+  "validation": {
+    "artifact_hash_policy": {
+      "algorithm": "sha256",
+      "encoding": "UTF-8",
+      "text_line_endings": "LF"
+    },
+    "collected_test_count": 666,
+    "human_squash_approval_required": true,
+    "new_test_count": 42,
+    "prior_collected_test_count": 624,
+    "required_check": "Python 3.12 validation"
+  }
+}

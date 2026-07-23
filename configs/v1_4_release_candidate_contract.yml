@@ -1,0 +1,16 @@
+schema_version: "1.0"
+release_line: "v1.4"
+gate: 7
+depends_on: [6]
+required_conditions:
+  - complete_challenger_registry
+  - component_reconciliation_evidence
+  - stability_evidence
+  - drift_evidence
+  - no_material_block
+  - resolved_remediation_dispositions
+  - governed_genai_boundary_pass
+  - human_release_candidate_decision
+target_status: "RELEASE_CANDIDATE_VALIDATED"
+release_tag_created: false
+next_gate: "release_consolidation"

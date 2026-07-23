@@ -1,0 +1,22 @@
+schema_version: "1.0"
+release_line: "v1.4"
+gate: 7
+status: "CHALLENGER_REGISTRY_CANDIDATE"
+required_components:
+  - portfolio_ingestion
+  - multicurrency
+  - margin_mva
+  - capital_kva
+  - incremental_allocation
+  - operations
+required_fields:
+  - challenger_id
+  - primary_method
+  - challenger_method
+  - tolerance
+  - materiality_threshold
+  - required_evidence
+reconciliation:
+  statuses: [PASS, PASS_WITH_MONITORING, REMEDIATE, BLOCK, INVALID]
+  material_block_prevents_promotion: true
+boundary: "ADVISORY_CHALLENGE_NO_MODEL_APPROVAL"
