@@ -1,0 +1,30 @@
+schema_version: "1.0"
+release_line: "v1.4"
+gate: 6
+benchmark_dimensions:
+  - trade_count
+  - path_count
+  - chunk_size
+  - worker_count
+measures:
+  - elapsed_seconds
+  - peak_bytes
+  - deterministic_checksum
+portfolio_classes:
+  small:
+    trades: 100
+    paths: 10
+    maximum_seconds: 30.0
+    maximum_peak_bytes: 256000000
+  medium:
+    trades: 500
+    paths: 50
+    maximum_seconds: 60.0
+    maximum_peak_bytes: 512000000
+required_evidence:
+  - "trade scaling points"
+  - "path scaling points"
+  - "peak-memory evidence"
+  - "deterministic checksums"
+  - "budget status"
+promotion_rule: "performance changes preserve quantitative results within governed tolerance"

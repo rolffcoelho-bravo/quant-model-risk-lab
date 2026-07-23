@@ -1,0 +1,20 @@
+schema_version: "1.0"
+release_line: "v1.4"
+gate: 6
+statuses:
+  - PASS
+  - PASS_WITH_MONITORING
+  - REMEDIATE
+  - BLOCK
+promotion_rules:
+  - "full and partial recalculation reconcile within governed tolerance"
+  - "cached and uncached execution reconcile exactly"
+  - "single-worker and multi-worker execution reconcile exactly"
+  - "stale and corrupt artifacts are blocked"
+  - "interrupted runs resume only from validated checkpoints"
+  - "runtime and peak-memory evidence are machine readable"
+boundaries:
+  quantitative_boundary: "QUANTITATIVE_EQUIVALENCE_REQUIRED"
+  production_approval: false
+  regulatory_approval: false
+next_gate: "independent_challenge_stability_and_lifecycle"

@@ -1,0 +1,18 @@
+schema_version: "1.0"
+release_line: "v1.4"
+gate: 6
+chunking:
+  ordering: "stable_item_identifier"
+  chunk_identifier: "zero_padded_sequence"
+  aggregation: "sorted_math_fsum"
+parallel_execution:
+  implementation: "bounded_worker_pool"
+  reproducibility_inputs:
+    - global_seed
+    - item_identifier
+  required_evidence:
+    - "single-worker and multi-worker outputs reconcile exactly"
+    - "chunk checksums validated before aggregation"
+    - "no duplicate work items"
+    - "no omitted work items"
+promotion_rule: "parallelism does not alter quantitative results"

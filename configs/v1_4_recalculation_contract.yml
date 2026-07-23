@@ -1,0 +1,23 @@
+schema_version: "1.0"
+release_line: "v1.4"
+gate: 6
+primary_method: "dependency_aware_recalculation"
+change_classes:
+  - trade
+  - market
+  - policy
+  - graph
+required_evidence:
+  - "previous and current snapshot hashes"
+  - "machine-readable change set"
+  - "topologically ordered recalculation plan"
+  - "reason retained for every recalculated node"
+  - "full versus partial result reconciliation"
+reconciliation:
+  quantitative_tolerance: 1.0e-10
+  hash_tolerance: "exact"
+promotion_rule: "partial recalculation reproduces full recalculation within governed tolerance"
+prohibited:
+  - "reuse of missing baseline outputs"
+  - "reuse of stale cache entries"
+  - "silent dependency omission"

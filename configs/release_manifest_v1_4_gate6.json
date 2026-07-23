@@ -1,0 +1,146 @@
+{
+  "artifacts": [
+    {
+      "path": "configs/v1_4_cache_recovery_contract.yml",
+      "sha256": "ba4b75b27e619d29d460f1077a815d19a4373e82c2f89cec193ea43b8181adae"
+    },
+    {
+      "path": "configs/v1_4_dependency_graph_contract.yml",
+      "sha256": "5c3849d6864fcac18914c629af66493699149ccd8d84520db04e79dbfd6b9455"
+    },
+    {
+      "path": "configs/v1_4_operational_governance_contract.yml",
+      "sha256": "fc92faa2ce2be68bef34cf7ec52e159216dfd0c66455b5f4df270a6afb7dba24"
+    },
+    {
+      "path": "configs/v1_4_parallel_determinism_contract.yml",
+      "sha256": "76c1cc62e43d570d96b46e5334ad521540b5b12503a47c1611ea39d21fded391"
+    },
+    {
+      "path": "configs/v1_4_recalculation_contract.yml",
+      "sha256": "6350298843090d4788f0e11224de0d05df8b5f9f78e40095d3d82290e4a93bc5"
+    },
+    {
+      "path": "configs/v1_4_scale_benchmark_contract.yml",
+      "sha256": "33e5e52335f8606717b91e54a6ebf74959de878a68ad76dd61ac755016f97e30"
+    },
+    {
+      "path": "docs/v1_4_operational_recalculation_performance_and_scale.md",
+      "sha256": "e616e78602e6ac715a3883a48c2c3e2c1f6e4df064267bfbfbe51f0c8301c436"
+    },
+    {
+      "path": "src/qmrl/operations/__init__.py",
+      "sha256": "1f9f1f1d6e435535788a28096591879fca664652ad13ee7716741653abf6d02b"
+    },
+    {
+      "path": "src/qmrl/operations/benchmark.py",
+      "sha256": "3e971cf6d28340bf6fd21f328ee7de4a6f6ddd55d1e5da7c610cc8ed22fef60e"
+    },
+    {
+      "path": "src/qmrl/operations/cache.py",
+      "sha256": "95b02840f4a8225c29136847845e1256160c2cdea66a50d245e01febcc26d14c"
+    },
+    {
+      "path": "src/qmrl/operations/challenger.py",
+      "sha256": "4293380cd949c0b61aa1a37e2961cdcf34b8e6beaca89887e14c6e5273975959"
+    },
+    {
+      "path": "src/qmrl/operations/checkpoint.py",
+      "sha256": "326394ed60b6c5f11dedc2ebf643a38c84b3d0173b85b15379e8be117bbea2e2"
+    },
+    {
+      "path": "src/qmrl/operations/chunking.py",
+      "sha256": "d11c738d66d3ef03f307786cf06a0867d9364abfcc453b721e36059974d36b43"
+    },
+    {
+      "path": "src/qmrl/operations/dependency.py",
+      "sha256": "204735692192b352888fed6c56dbbd83280251b77d9cff8123ac6268ceee96ef"
+    },
+    {
+      "path": "src/qmrl/operations/domain.py",
+      "sha256": "c3df8ec78bd9f7f54af942c86c8322a09315d1d8176a3910ecc64f19a0c754b4"
+    },
+    {
+      "path": "src/qmrl/operations/execution.py",
+      "sha256": "fba22de3cfe7e95d0f5d5030a990c599e113a1172a27b61f3cf50180b6f2821a"
+    },
+    {
+      "path": "src/qmrl/operations/fingerprint.py",
+      "sha256": "80f904465dc25371f27eb34d5d4788db7a77c2c0c53c655114557c0217416a72"
+    },
+    {
+      "path": "src/qmrl/operations/planning.py",
+      "sha256": "833758b998cf56a486cbc706b52d4ae28635f9322a0b1fb547c4d563f0d9c09b"
+    },
+    {
+      "path": "tests/test_v1_4_gate6_benchmarks_challenger.py",
+      "sha256": "580d2c204519798bf0847cdbf3c34601f515396aa0fdefca2834f73e2891d9f9"
+    },
+    {
+      "path": "tests/test_v1_4_gate6_cache_fingerprint.py",
+      "sha256": "be19bae3cac2e01454ac7c44bb6c2720b5ab7e6a42cdfe14e1e22c83144e6e39"
+    },
+    {
+      "path": "tests/test_v1_4_gate6_checkpoint_recovery.py",
+      "sha256": "97a1bb2047aff84cbc10f9ee3a2e16a51f223edd26bc4fa1ea1e189648e11ae6"
+    },
+    {
+      "path": "tests/test_v1_4_gate6_chunking_parallel.py",
+      "sha256": "c588a21112d2b694ee78f9bd9f4d027661dc6ca65299fe46dc618ea310d1cec9"
+    },
+    {
+      "path": "tests/test_v1_4_gate6_contracts_governance.py",
+      "sha256": "5a8dc0d2bd5441cf72e5f59caa7f1748192c903854162d87213f4b9a5652e2f4"
+    },
+    {
+      "path": "tests/test_v1_4_gate6_dependency_planning.py",
+      "sha256": "c8b7624b4756e2b95580fe1804deda19c947c5a4b7b2aea078ff0209c208dabb"
+    },
+    {
+      "path": "tests/test_v1_4_gate6_execution_reconciliation.py",
+      "sha256": "466d95f983f035f54364e2650b4db28aeec32c72e107f22fe3f488f744e20657"
+    },
+    {
+      "path": "tests/v1_4_gate6_helpers.py",
+      "sha256": "18a3b2d79c4c19b50dafbd13833cd4b0893c4b456c62e6eeffe6b537e3cce7c6"
+    }
+  ],
+  "base_main_commit": "a06e93c",
+  "boundaries": {
+    "governed_genai_challenge_introduced": false,
+    "operational_boundary": "QUANTITATIVE_EQUIVALENCE_REQUIRED",
+    "performance_is_not_quantitative_approval": true,
+    "production_approval": false,
+    "regulatory_approval": false
+  },
+  "dependencies": [
+    5
+  ],
+  "gate": 6,
+  "next_gate": "independent_challenge_stability_and_lifecycle",
+  "preserved_release_tag": "v1.3.0",
+  "promotion_rules": [
+    "partial recalculation reconciles to full recalculation within governed tolerance",
+    "cached and uncached execution reconcile exactly",
+    "single-worker and multi-worker execution reconcile exactly",
+    "stale and corrupt artifacts are blocked",
+    "interrupted runs recover from validated checkpoints",
+    "performance and memory evidence are machine readable"
+  ],
+  "release_line": "v1.4",
+  "schema_version": "1.0",
+  "status": "OPERATIONAL_SCALE_CANDIDATE",
+  "target_status": "OPERATIONAL_SCALE_VALIDATED",
+  "validation": {
+    "artifact_hash_policy": {
+      "algorithm": "sha256",
+      "encoding": "UTF-8",
+      "text_line_endings": "LF"
+    },
+    "collected_test_count": 624,
+    "human_squash_approval_required": true,
+    "new_test_count": 42,
+    "prior_collected_test_count": 582,
+    "required_check": "Python 3.12 validation"
+  }
+}
