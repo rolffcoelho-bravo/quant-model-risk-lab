@@ -1,0 +1,50 @@
+schema_version: "1.0"
+release_line: "v1.4"
+gate: 2
+title: "Multi-Currency Exposure and Collateral"
+status: "MULTICURRENCY_EXPOSURE_VALIDATED"
+owner: "Quant Model Risk Lab"
+promotion_rule: "The single-currency Gate 2 result must reproduce the validated v1.3 exposure result within governed tolerance."
+scope:
+  canonical_gate1_portfolio_required: true
+  trade_currency: true
+  settlement_currency: true
+  collateral_currency: true
+  reporting_currency: true
+  conversion_before_netting: true
+  currency_specific_discounting: true
+  currency_specific_funding_curves: true
+  collateral_remuneration: true
+  fx_triangulation: true
+  cross_currency_attribution: true
+  independent_challenger: true
+  single_currency_backward_compatibility: true
+  mva: false
+  kva: false
+  incremental_xva: false
+  production_approval: false
+  regulatory_approval: false
+permitted_modes:
+  fx_conversion:
+    - direct
+    - inverse
+    - governed_triangulation
+  collateral_sign:
+    - held_positive
+  conversion_order:
+    - trade_then_netting
+prohibited_modes:
+  - netting_before_currency_conversion
+  - implicit_unpriced_fx_path
+  - silent_currency_fallback
+  - live_market_data
+  - production_collateral_optimization
+tolerances:
+  reconciliation_absolute: 1.0e-10
+  triangulation_absolute: 1.0e-10
+  single_currency_compatibility_absolute: 1.0e-10
+model_boundaries:
+  - "Synthetic or explicitly supplied FX paths only."
+  - "No production market-data ingestion."
+  - "No MVA, KVA, or incremental XVA."
+  - "No legal interpretation of collateral agreements."

@@ -1,0 +1,23 @@
+schema_version: "1.0"
+release_line: "v1.4"
+gate: 2
+collateral_sign_convention: "held_positive"
+eligibility:
+  agreement_currency_list_required: true
+  ineligible_currency_action: "BLOCK"
+conversion:
+  conversion_before_exposure_netting: true
+  scenario_time_consistent: true
+  reporting_value_preserved_on_currency_switch: true
+remuneration:
+  optional: true
+  method: "continuous_compounding"
+  rate_curve_currency_must_match_collateral_currency: true
+funding:
+  currency_specific_curve_required_for_future_funding_layers: true
+  fva_recalculation_in_gate2: false
+boundaries:
+  optimization: false
+  cheapest_to_deliver: false
+  legal_csa_interpretation: false
+  initial_margin: false
