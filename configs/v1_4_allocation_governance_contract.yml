@@ -1,0 +1,19 @@
+schema_version: "1.0"
+release_line: "v1.4"
+gate: 5
+statuses:
+  - PASS
+  - PASS_WITH_MONITORING
+  - REMEDIATE
+  - BLOCK
+  - INVALID
+promotion_rules:
+  - "all allocated components plus residual reconcile to the portfolio result"
+  - "approximate marginal results disclose error against full revaluation"
+  - "Euler results are INVALID when thresholds, MTA, concentration add-ons, collateral switches, or failed homogeneity are detected"
+  - "independent challenger reconciles within governed tolerance"
+  - "MVA remains separate from FVA"
+  - "capital results retain the public non-regulatory boundary"
+production_approval: false
+regulatory_approval: false
+next_gate: "operational_recalculation_performance_and_scale"
