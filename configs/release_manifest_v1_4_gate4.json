@@ -1,0 +1,124 @@
+{
+  "artifacts": [
+    {
+      "path": "configs/v1_4_capital_attribution_contract.yml",
+      "sha256": "73c19ca1025875dfa409942d88ff0048a6ea455183ac59b424e7a06ca89e75e0"
+    },
+    {
+      "path": "configs/v1_4_capital_benchmark_contract.yml",
+      "sha256": "5ee208202be792ffdee9a79746202e1ab32356ea968fa4c17b577d4cd22445e0"
+    },
+    {
+      "path": "configs/v1_4_capital_contract.yml",
+      "sha256": "8e8d054431374c6ad180e8e5960bf3898c0957eb5c9a234d2f69dc3b4e0db3c6"
+    },
+    {
+      "path": "configs/v1_4_capital_governance_contract.yml",
+      "sha256": "7c62dcad1d94020f08db29e254ce7eaa76e3435ad3891845ebaedf20a1a969b5"
+    },
+    {
+      "path": "configs/v1_4_kva_contract.yml",
+      "sha256": "0b2df6f9ab04263fe56f740049f6369ce37ec17e8f801ca13359131eec895683"
+    },
+    {
+      "path": "docs/v1_4_capital_profiles_and_kva.md",
+      "sha256": "c0ae6a6c98226a217103f862e6e725526d81ea93512d8c8cf48c2b135f9e432f"
+    },
+    {
+      "path": "src/qmrl/capital/__init__.py",
+      "sha256": "f0d51e8e04e1a3964f5de68abe7e2fde3377457ef3a09a23a5f708ada493c957"
+    },
+    {
+      "path": "src/qmrl/capital/attribution.py",
+      "sha256": "b4ace4f5999b01c627d3fa6e614840221be4d4cf06c332150b80219b30ad5c78"
+    },
+    {
+      "path": "src/qmrl/capital/benchmark.py",
+      "sha256": "ed58e1cc1aac3c8338401c0e77766138da6d0baaa8a05424a9f049f51147989d"
+    },
+    {
+      "path": "src/qmrl/capital/capital_profile.py",
+      "sha256": "0ed4cfd2d8b0734616dc856018358074e65af32378286d6793fb5d569e06eb4e"
+    },
+    {
+      "path": "src/qmrl/capital/challenger.py",
+      "sha256": "cffef5f3b25872d2eff1a5ad70714e7a9fd2eba6b23699307fee9717298b765a"
+    },
+    {
+      "path": "src/qmrl/capital/domain.py",
+      "sha256": "b9583c7f265e2adf328ce59dd3323003c7782d291bd166dd65c1cda69cef67a8"
+    },
+    {
+      "path": "src/qmrl/capital/kva.py",
+      "sha256": "1d17ccca47d6611245ac47516b72ac0e5040a83dc96d2353302a06537bee3c21"
+    },
+    {
+      "path": "src/qmrl/capital/sensitivity.py",
+      "sha256": "e821b6aa00c05338eece92a1203877ce09620f15a4c8bd11aac85cd25f32d068"
+    },
+    {
+      "path": "tests/test_v1_4_gate4_attribution.py",
+      "sha256": "b79cfacd9aa19bc17bd2cc267d243852b92b94e023128df6aa04abcb3b4ce696"
+    },
+    {
+      "path": "tests/test_v1_4_gate4_capital_profile.py",
+      "sha256": "10a772e96e0823e0e8f3ca5895914f6579a75c0da6da1fa51187e4c3c0813d8e"
+    },
+    {
+      "path": "tests/test_v1_4_gate4_challenger_sensitivity.py",
+      "sha256": "ab841bfb2e9ecb5ff60c70c429ca87e8b46a1bc87cdb11229ca0f75a646bee25"
+    },
+    {
+      "path": "tests/test_v1_4_gate4_contracts_benchmarks.py",
+      "sha256": "7039d966a1d284ca3d94b1d77bf53de836cc20638c8371eebfb1cab42238d30d"
+    },
+    {
+      "path": "tests/test_v1_4_gate4_domain.py",
+      "sha256": "a0a46501f9b915b7d501c943eae52ccb68a85b6bde80e5f311bac72351e9bfee"
+    },
+    {
+      "path": "tests/test_v1_4_gate4_kva.py",
+      "sha256": "10ab0821c093ba5dad841e5b3220ed75f7166af46a3021f3ee24635ddfa166b3"
+    },
+    {
+      "path": "tests/v1_4_gate4_helpers.py",
+      "sha256": "e2fab2b91dc0640c2a3e1b99ec8aa960930ef1d01ef728e0a52fccbc6cdd2c65"
+    }
+  ],
+  "base_release": "v1.3.0",
+  "gate": 4,
+  "gate0": "ARCHITECTURE_FROZEN",
+  "gate1": "PORTFOLIO_CONTRACTS_VALIDATED",
+  "gate2": "MULTICURRENCY_EXPOSURE_VALIDATED",
+  "gate3": "INITIAL_MARGIN_MVA_VALIDATED",
+  "next_gate": "incremental_marginal_and_allocation_analytics",
+  "promotion_rule": "Zero hurdle rate implies zero KVA and all public capital outputs remain transparent non-regulatory proxies.",
+  "release_line": "v1.4",
+  "schema_version": "1.0",
+  "scope": {
+    "KVA": "validated",
+    "capital_profiles": "validated",
+    "certified_SA_CCR_IMM_or_Basel": false,
+    "concentration_diagnostics": "validated",
+    "counterparty_netting_set_trade_currency_time_attribution": "validated",
+    "incremental_XVA": "not_introduced",
+    "independent_challenger": "validated",
+    "production_approval": false,
+    "regulatory_approval": false,
+    "stressed_capital": "validated"
+  },
+  "status": "CAPITAL_KVA_VALIDATED",
+  "title": "Quant Model Risk Lab v1.4 Gate 4 Capital Profiles and KVA",
+  "validation": {
+    "artifact_hash_policy": {
+      "algorithm": "sha256",
+      "encoding": "UTF-8",
+      "text_line_endings": "LF"
+    },
+    "expected_new_tests": 42,
+    "expected_prior_tests": 498,
+    "expected_total_tests": 540,
+    "human_squash_approval_required": true,
+    "required_check": "Python 3.12 validation"
+  }
+}

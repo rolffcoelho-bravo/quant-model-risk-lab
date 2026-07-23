@@ -1,0 +1,20 @@
+schema_version: "1.0"
+release_line: v1.4
+gate: 4
+governance:
+  public_proxy_only: true
+  regulatory_approval: false
+  production_approval: false
+  parameter_visibility: required
+  independent_challenger: required
+  deterministic_benchmarks: required
+  concentration_diagnostics: required
+  component_attribution: required
+  human_squash_approval_required: true
+prohibited_claims:
+  - certified_SA_CCR
+  - certified_IMM
+  - Basel_capital_approval
+  - regulatory_capital_adequacy
+  - production_KVA
+next_gate: incremental_marginal_and_allocation_analytics
