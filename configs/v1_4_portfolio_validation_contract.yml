@@ -1,0 +1,52 @@
+schema_version: "1.0"
+release_line: "v1.4"
+gate: 1
+status: "PORTFOLIO_CONTRACTS_VALIDATED"
+title: "Portfolio Validation and Data-Quality Contract"
+promotion_rule: >-
+  No downstream calculation may consume an invalid, incomplete, or partially
+  mapped portfolio snapshot.
+severities:
+  - "ERROR"
+  - "WARNING"
+portfolio_statuses:
+  valid: "PASS"
+  invalid: "BLOCK"
+required_error_classes:
+  - "INVALID_IDENTIFIER"
+  - "DUPLICATE_IDENTIFIER"
+  - "INVALID_CURRENCY"
+  - "UNDECLARED_REPORTING_CURRENCY"
+  - "MISSING_PARENT_COUNTERPARTY"
+  - "COUNTERPARTY_HIERARCHY_CYCLE"
+  - "MISSING_COUNTERPARTY"
+  - "MISSING_LEGAL_ENTITY"
+  - "MISSING_AGREEMENT"
+  - "MISSING_NETTING_SET"
+  - "MISSING_COLLATERAL_SET"
+  - "COLLATERAL_AGREEMENT_MISMATCH"
+  - "TRADE_COUNTERPARTY_MISMATCH"
+  - "TRADE_LEGAL_ENTITY_MISMATCH"
+  - "TRADE_COLLATERAL_MAPPING_MISMATCH"
+  - "UNDECLARED_TRADE_CURRENCY"
+  - "NON_FINITE_NOTIONAL"
+  - "ZERO_NOTIONAL"
+  - "INVALID_TRADE_DATE_ORDER"
+  - "MATURED_TRADE"
+required_data_quality_metrics:
+  - "currencies"
+  - "legal_entities"
+  - "counterparties"
+  - "agreements"
+  - "netting_sets"
+  - "collateral_sets"
+  - "trades"
+  - "errors"
+  - "warnings"
+rejection_controls:
+  unknown_fields: true
+  non_utf8_input: true
+  non_json_input: true
+  invalid_mapping: true
+  partial_mapping: true
+downstream_calculation_permitted_only_when: "validation_status == PASS"

@@ -1,0 +1,143 @@
+{
+  "artifacts": [
+    {
+      "path": "configs/v1_4_portfolio_benchmark_contract.yml",
+      "sha256": "a7ac12fb75e24b25a029b7a2fd7e69dc55d9baa734008a7cd3054a4a467628ab"
+    },
+    {
+      "path": "configs/v1_4_portfolio_lineage_contract.yml",
+      "sha256": "98cb1b7c2615c2218bd6fcb5b41070d681f7f5fc38d1e97e9c8bc263502f2676"
+    },
+    {
+      "path": "configs/v1_4_portfolio_schema_contract.yml",
+      "sha256": "04104b482668a643971660d6915e16caeea205eee78e3396aad25587271b4eba"
+    },
+    {
+      "path": "configs/v1_4_portfolio_validation_contract.yml",
+      "sha256": "2cb6b6661930fdd7abbc7e8771372650e0ba978f41988a4fb7df10b8f7e92398"
+    },
+    {
+      "path": "data/portfolio/fixtures/invalid_collateral_mapping.json",
+      "sha256": "a6be78f960bd13c304b1dcad11c75c22d9d70bcf837acb329e69e889abe4c0f1"
+    },
+    {
+      "path": "data/portfolio/fixtures/invalid_counterparty_cycle.json",
+      "sha256": "f8a7587feeccb92550a5b6e8cc1835545e0a45cb08cfd05a894ce52064156037"
+    },
+    {
+      "path": "data/portfolio/fixtures/invalid_duplicate_trade.json",
+      "sha256": "9cfaab9b9285d292a61404dd9d64a8ab79805893a9027cc86157ff727ac61cf2"
+    },
+    {
+      "path": "data/portfolio/fixtures/invalid_missing_netting_set.json",
+      "sha256": "4b0dd09ce00e528bb5bf9d0b510451a5b6b2a7ee365916fe172a4579e5fea737"
+    },
+    {
+      "path": "data/portfolio/fixtures/invalid_unknown_field.json",
+      "sha256": "55eba9d13f39361a14f1e9c600b1ac12c49b5578df145d56891ac45abc2a9a7c"
+    },
+    {
+      "path": "data/portfolio/fixtures/valid_reference_portfolio.json",
+      "sha256": "9387854e07a39adddba416decc33f8a00e8d6fd0f962939aeb45535a7839a7bc"
+    },
+    {
+      "path": "docs/v1_4_portfolio_ingestion_and_lineage.md",
+      "sha256": "9353ad3c7a3804442bde987eea501d60e5bdd782a356abf15f9fdb3881c518e8"
+    },
+    {
+      "path": "src/qmrl/portfolio/__init__.py",
+      "sha256": "1009490b91b8316e690ca25e77c2b9acba90e1e7174d2adad1d6dd26b7495bca"
+    },
+    {
+      "path": "src/qmrl/portfolio/benchmark.py",
+      "sha256": "8f21562f44fb9be958560dd8f4c3bd6548a44f96464011a8525c321dd8e4e065"
+    },
+    {
+      "path": "src/qmrl/portfolio/challenger.py",
+      "sha256": "848453768b7645203c9560d1694d2bc3ea5ab9241553e77a837e6799fcf888da"
+    },
+    {
+      "path": "src/qmrl/portfolio/domain.py",
+      "sha256": "3737929dcd092f301313e901d09f5bc617e8fba7dd718bda2e76d9ad3266fd32"
+    },
+    {
+      "path": "src/qmrl/portfolio/ingestion.py",
+      "sha256": "fa46586b4e8fd7213d34d99592036299ce3304fe6c781ce7819cb2f8ddf7ba74"
+    },
+    {
+      "path": "src/qmrl/portfolio/lineage.py",
+      "sha256": "04dac63709f710ab83f9569f6f9c0d75934a283478d3cafca23bfbee793091a7"
+    },
+    {
+      "path": "src/qmrl/portfolio/validation.py",
+      "sha256": "491275fbc9afec69745d425a149ea87f2b28019c083f05f3b050203c94cfac29"
+    },
+    {
+      "path": "tests/test_v1_4_gate1_contracts_benchmarks.py",
+      "sha256": "bb131c12324eb390a8a05babeed57ebd66897225bb642f7b214cfdc5c42e2503"
+    },
+    {
+      "path": "tests/test_v1_4_gate1_domain_ingestion.py",
+      "sha256": "b3a9d4d74e3978af098fef17acf6479ca82cfc2746c208aeed36c62b3cb30ab3"
+    },
+    {
+      "path": "tests/test_v1_4_gate1_lineage_challenger.py",
+      "sha256": "8123a068cd9ba63e49fdb0f21fa695dc9e5c87eb8ca8d2de11deda6e9414f602"
+    },
+    {
+      "path": "tests/test_v1_4_gate1_validation.py",
+      "sha256": "b0bc2eb0ab7c26c5823ff7e93f74add53efb0cac4eccf8b47d4f49f2e487e6be"
+    }
+  ],
+  "base_release": {
+    "immutable_historical_evidence": true,
+    "tag": "v1.3.0",
+    "version": "1.3.0"
+  },
+  "gate": 1,
+  "gate0": {
+    "main_commit_before_gate_1": "2188d33",
+    "status": "ARCHITECTURE_FROZEN"
+  },
+  "next_gate": {
+    "gate": 2,
+    "implementation_permitted_after_gate_1_merge": true,
+    "title": "Multi-currency exposure and collateral"
+  },
+  "promotion_rule": "No downstream calculation may consume an invalid, incomplete, or partially mapped portfolio snapshot.",
+  "release_line": "v1.4",
+  "schema_version": "1.0",
+  "scope": {
+    "canonical_domain_model": true,
+    "data_quality_evidence": true,
+    "incremental_xva": false,
+    "independent_parser_challenger": true,
+    "kva": false,
+    "lineage_and_content_hashing": true,
+    "multi_currency_calculation": false,
+    "mva": false,
+    "portfolio_ingestion": true,
+    "production_approval": false,
+    "referential_integrity": true,
+    "regulatory_approval": false,
+    "release_tag_created": false,
+    "strict_schema_validation": true,
+    "synthetic_benchmarks": true
+  },
+  "status": "PORTFOLIO_CONTRACTS_VALIDATED",
+  "title": "Canonical Portfolio Ingestion and Lineage Gate 1",
+  "validation": {
+    "artifact_hash_policy": {
+      "algorithm": "sha256",
+      "encoding": "UTF-8",
+      "text_line_endings": "LF"
+    },
+    "collected_test_count": 412,
+    "human_squash_approval_required": true,
+    "new_gate_tests": 39,
+    "post_merge_ci_required": true,
+    "prior_gate_test_count": 373,
+    "pull_request_ci_required": true,
+    "required_check": "Python 3.12 validation"
+  }
+}

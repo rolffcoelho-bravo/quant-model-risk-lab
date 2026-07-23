@@ -1,0 +1,93 @@
+"""Canonical portfolio ingestion, validation, lineage, and challenge controls."""
+
+from .domain import (
+    AgreementTerms,
+    CollateralSet,
+    Counterparty,
+    CurrencyDefinition,
+    LegalEntity,
+    NettingSet,
+    PortfolioSnapshot,
+    TradeRecord,
+)
+from .validation import (
+    PortfolioValidationResult,
+    ValidationIssue,
+    build_data_quality_report,
+    validate_portfolio_snapshot,
+)
+from .ingestion import (
+    PortfolioIngestionError,
+    PortfolioIngestionResult,
+    PortfolioSchemaError,
+    ingest_portfolio_json,
+    ingest_portfolio_mapping,
+    load_portfolio_snapshot,
+    portfolio_from_json,
+    portfolio_from_mapping,
+    portfolio_to_json,
+    portfolio_to_mapping,
+)
+from .lineage import (
+    CalculationRun,
+    PortfolioLineageManifest,
+    build_lineage_manifest,
+    canonical_json_bytes,
+    canonical_mapping_hash,
+    canonical_portfolio_hash,
+    compare_lineage_manifests,
+    deterministic_run_id,
+    sha256_bytes,
+)
+from .challenger import (
+    ParserChallengerReport,
+    challenge_portfolio_parser,
+    independent_raw_counts,
+)
+from .benchmark import (
+    PortfolioBenchmarkResult,
+    evaluate_portfolio_benchmark,
+    load_portfolio_benchmark_contract,
+    run_portfolio_benchmark_suite,
+)
+
+__all__ = [
+    "AgreementTerms",
+    "CalculationRun",
+    "CollateralSet",
+    "Counterparty",
+    "CurrencyDefinition",
+    "LegalEntity",
+    "NettingSet",
+    "ParserChallengerReport",
+    "PortfolioBenchmarkResult",
+    "PortfolioIngestionError",
+    "PortfolioIngestionResult",
+    "PortfolioLineageManifest",
+    "PortfolioSchemaError",
+    "PortfolioSnapshot",
+    "PortfolioValidationResult",
+    "TradeRecord",
+    "ValidationIssue",
+    "build_data_quality_report",
+    "build_lineage_manifest",
+    "canonical_json_bytes",
+    "canonical_mapping_hash",
+    "canonical_portfolio_hash",
+    "challenge_portfolio_parser",
+    "compare_lineage_manifests",
+    "deterministic_run_id",
+    "evaluate_portfolio_benchmark",
+    "independent_raw_counts",
+    "ingest_portfolio_json",
+    "ingest_portfolio_mapping",
+    "load_portfolio_benchmark_contract",
+    "load_portfolio_snapshot",
+    "portfolio_from_json",
+    "portfolio_from_mapping",
+    "portfolio_to_json",
+    "portfolio_to_mapping",
+    "run_portfolio_benchmark_suite",
+    "sha256_bytes",
+    "validate_portfolio_snapshot",
+]
