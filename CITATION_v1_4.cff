@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "Please cite this software using the metadata below."
+title: "Quant Model Risk Lab v1.4.0"
+type: software
+version: "1.4.0"
+date-released: "2026-07-23"
+authors:
+  - family-names: "Pereira"
+    given-names: "Rodolfo"
+repository-code: "https://github.com/rolffcoelho-bravo/quant-model-risk-lab"
+url: "https://github.com/rolffcoelho-bravo/quant-model-risk-lab/releases/tag/v1.4.0"
+abstract: >-
+  Public quantitative model-risk laboratory covering portfolio ingestion,
+  multi-currency exposure, XVA, initial-margin and capital proxies, MVA,
+  KVA, incremental allocation, operational scale, independent challenge,
+  lifecycle governance, and advisory-only governed GenAI evidence review.
+keywords:
+  - model risk
+  - quantitative finance
+  - XVA
+  - MVA
+  - KVA
+  - counterparty credit risk
+  - multi-currency exposure
+  - lifecycle governance
+  - governed GenAI
+  - Python

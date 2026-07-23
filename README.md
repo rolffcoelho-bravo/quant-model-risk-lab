@@ -181,3 +181,44 @@ See [`CITATION.cff`](CITATION.cff) for machine-readable citation metadata.
 ## Disclaimer
 
 This project is for research, education, and professional portfolio demonstration. It does not provide investment advice, trading recommendations, regulatory validation, or production model approval.
+
+<!-- QMRL_V1_4_RELEASE_START -->
+## v1.4.0 — Portfolio-Scale Quantitative Model-Risk Laboratory
+
+**Latest governed release: v1.4.0**  
+**Release status:** `RELEASED_WITH_MONITORING`  
+**v1.4 validated test surface:** `708 collected tests`
+
+The v1.4.0 release extends the immutable v1.3.0 XVA platform with canonical portfolio ingestion and lineage, governed multi-currency exposure, transparent initial-margin and capital proxies, MVA and KVA, full-revaluation incremental analytics, allocation residual controls, dependency-aware recalculation, deterministic caching and recovery, scale evidence, unified challengers, stability and drift diagnostics, lifecycle governance, and advisory-only GenAI evidence challenge.
+
+```text
+Validated portfolio snapshot and lineage
+        |
+        v
+Multi-currency exposure and collateral
+        |
+        v
+CVA / DVA / FVA / MVA / KVA
+        |
+        v
+Incremental, marginal, and allocation analytics
+        |
+        v
+Dependency-aware recalculation and scale controls
+        |
+        v
+Independent challenge, stability, drift, lifecycle, and human release governance
+```
+
+Release evidence:
+
+- [`configs/release_manifest_v1_4_gate8.json`](configs/release_manifest_v1_4_gate8.json)
+- [`docs/v1_4_validation_matrix.md`](docs/v1_4_validation_matrix.md)
+- [`reports/v1_4_validation_dashboard.md`](reports/v1_4_validation_dashboard.md)
+- [`reports/v1_4_lifecycle_report.md`](reports/v1_4_lifecycle_report.md)
+- [`reports/v1_4_release_assurance.md`](reports/v1_4_release_assurance.md)
+- [`docs/releases/v1.4.0.md`](docs/releases/v1.4.0.md)
+- [`CITATION_v1_4.cff`](CITATION_v1_4.cff)
+
+The release remains public research software. Production approval and regulatory approval are false.
+<!-- QMRL_V1_4_RELEASE_END -->

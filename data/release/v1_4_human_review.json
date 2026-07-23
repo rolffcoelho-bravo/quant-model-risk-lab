@@ -1,0 +1,13 @@
+{
+  "genai_may_approve_release": false,
+  "production_approval": false,
+  "regulatory_approval": false,
+  "release_approval_mechanism": "interactive_exact_token",
+  "release_approval_required": true,
+  "release_candidate_status": "RELEASE_CANDIDATE_VALIDATED",
+  "required_release_token": "RELEASE",
+  "review_id": "qmrl-v1.4-release-candidate-human-review",
+  "reviewer_role": "human-model-risk-reviewer",
+  "schema_version": "1.0",
+  "squash_approval_required": true
+}
