@@ -1,0 +1,28 @@
+schema_version: "1.0"
+release_line: "v1.4"
+gate: 5
+status: "INCREMENTAL_ANALYTICS_CANDIDATE"
+objective: "Govern full-revaluation trade insertion, removal, and replacement analytics."
+components:
+  - cva
+  - dva
+  - fca
+  - fba
+  - fva
+  - mva
+  - kva
+  - wwr_uplift
+  - stress_adjustment
+  - total_adjustment
+primary_method: "full_revaluation"
+operations:
+  - insert
+  - remove
+  - replace
+  - leave_one_out
+required_controls:
+  - "base and changed portfolio valuations retained"
+  - "component increments reconcile to changed minus base"
+  - "invalid or partially mapped portfolios remain blocked"
+  - "full-revaluation evidence remains primary"
+boundary: "FULL_REVALUATION_PRIMARY_APPROXIMATION_DISCLOSED"

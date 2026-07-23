@@ -1,0 +1,134 @@
+{
+  "artifacts": [
+    {
+      "path": "configs/v1_4_allocation_benchmark_contract.yml",
+      "sha256": "bfa4107e0e9aaa8d85720485684c577cf09977556b2415c8fd740ae447d1a23b"
+    },
+    {
+      "path": "configs/v1_4_allocation_governance_contract.yml",
+      "sha256": "6920b371971163e9a1bf38ce92c90dfcbb66e44b8e9ea23be61be32239d5f4d7"
+    },
+    {
+      "path": "configs/v1_4_incremental_xva_contract.yml",
+      "sha256": "f8579047e2a21108832165a570d89e29f5cda67c4c9b84841b2581e23edd8f1e"
+    },
+    {
+      "path": "configs/v1_4_marginal_allocation_contract.yml",
+      "sha256": "4a37d4bd988fa5249ed23f691e3b4ee5a778f05618f31ddab572e758b69d4a89"
+    },
+    {
+      "path": "docs/v1_4_incremental_marginal_and_allocation.md",
+      "sha256": "6dba30cc3a833a69a879941c5cfae27f8cc1b8125f2bdc8aa1b518001128f7be"
+    },
+    {
+      "path": "src/qmrl/allocation/__init__.py",
+      "sha256": "ef1d907a33910be19ea7383e1f35b6b65704aa1707a5e1b7ec2236e356d78d87"
+    },
+    {
+      "path": "src/qmrl/allocation/attribution.py",
+      "sha256": "0fe695de6ae22c064911482eca515526437374d1900c2cbbea33ef13065c1c06"
+    },
+    {
+      "path": "src/qmrl/allocation/benchmark.py",
+      "sha256": "a349df6321270e36280d23005d767ca00e96452bc05b8e479d8b8790cd5e8c69"
+    },
+    {
+      "path": "src/qmrl/allocation/challenger.py",
+      "sha256": "a993b2362cea8c82c19a347787818270176251b6fffe1c2da7dc790f9415e82d"
+    },
+    {
+      "path": "src/qmrl/allocation/diagnostics.py",
+      "sha256": "a419e8e004d3e78b7acb80f366bb0a66fbd6b933a26eb7c75624da108548a94b"
+    },
+    {
+      "path": "src/qmrl/allocation/domain.py",
+      "sha256": "12cdeee625ea0bf11be82c2ac357821bf4fdea94aa5df6d314d3f68a6d57a9b0"
+    },
+    {
+      "path": "src/qmrl/allocation/euler.py",
+      "sha256": "2fdf401c652d970ae87b9962b0fc6694c188c58abdf3393e28be34c4c3e1a8eb"
+    },
+    {
+      "path": "src/qmrl/allocation/evaluator.py",
+      "sha256": "2ea3daf96afc04c907c92964f92c6b3049dc68b5e798de6a7139c9089caa5ffd"
+    },
+    {
+      "path": "src/qmrl/allocation/incremental.py",
+      "sha256": "c680b244676108def375f4f7c386c85cd0e068fba99d5b9003308c8a50831418"
+    },
+    {
+      "path": "src/qmrl/allocation/marginal.py",
+      "sha256": "5fb759534b68fe8bf4c81cd375f12cd0aa326ba5ca174aa14cd83385e19c42b8"
+    },
+    {
+      "path": "tests/test_v1_4_gate5_attribution_challenger.py",
+      "sha256": "07f84bf1437a70caeb5953c733b3ea952da83ea736b98a42ae1d4157fe476fdc"
+    },
+    {
+      "path": "tests/test_v1_4_gate5_benchmarks_contracts.py",
+      "sha256": "987af9f96351cc79c22e8910c2e54aee2f93d76428d87f89c542c823240b7e68"
+    },
+    {
+      "path": "tests/test_v1_4_gate5_domain.py",
+      "sha256": "ff31546859055f4743b889abfde4d65594b22236195f1e4139437307fa927943"
+    },
+    {
+      "path": "tests/test_v1_4_gate5_euler_diagnostics.py",
+      "sha256": "fc59ae04a2a13955f077f7b186fc9a4145e0a75b402c24c804e26f3f36c732db"
+    },
+    {
+      "path": "tests/test_v1_4_gate5_governance.py",
+      "sha256": "236e0b5e9463460933995d164f1c1048031983388ccaa4c3d2ea306956a85776"
+    },
+    {
+      "path": "tests/test_v1_4_gate5_incremental.py",
+      "sha256": "d6d4e540afcf349ab219f711f0827c2efe8ed2956fc59780af7c4a0dcfbdc036"
+    },
+    {
+      "path": "tests/test_v1_4_gate5_marginal.py",
+      "sha256": "2912014830b083613ad28b94360d9910f6279bd2db3c099085c0f8881a9a8d8c"
+    },
+    {
+      "path": "tests/v1_4_gate5_helpers.py",
+      "sha256": "e5a574200d5c0887d28ad626409accca7e5c08fec9f06912104e7bd5d5d5857f"
+    }
+  ],
+  "base_main_commit": "fe408f6",
+  "boundaries": {
+    "allocation_boundary": "FULL_REVALUATION_PRIMARY_APPROXIMATION_DISCLOSED",
+    "incremental_results_are_not_transfer_prices": true,
+    "mva_separate_from_fva": true,
+    "production_approval": false,
+    "regulatory_approval": false
+  },
+  "dependencies": [
+    3,
+    4
+  ],
+  "gate": 5,
+  "next_gate": "operational_recalculation_performance_and_scale",
+  "preserved_release_tag": "v1.3.0",
+  "promotion_rules": [
+    "full revaluation remains primary",
+    "approximation error is disclosed",
+    "Euler allocation is invalid when nonlinearity controls fail",
+    "allocation plus residual reconciles to the portfolio result",
+    "independent challenger passes"
+  ],
+  "release_line": "v1.4",
+  "schema_version": "1.0",
+  "status": "INCREMENTAL_ANALYTICS_CANDIDATE",
+  "target_status": "INCREMENTAL_ANALYTICS_VALIDATED",
+  "validation": {
+    "artifact_hash_policy": {
+      "algorithm": "sha256",
+      "encoding": "UTF-8",
+      "text_line_endings": "LF"
+    },
+    "collected_test_count": 582,
+    "human_squash_approval_required": true,
+    "new_test_count": 42,
+    "prior_collected_test_count": 540,
+    "required_check": "Python 3.12 validation"
+  }
+}

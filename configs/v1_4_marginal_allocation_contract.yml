@@ -1,0 +1,29 @@
+schema_version: "1.0"
+release_line: "v1.4"
+gate: 5
+status: "INCREMENTAL_ANALYTICS_CANDIDATE"
+marginal_method:
+  primary: "central_finite_difference"
+  refinement: "half_bump"
+  default_bump_fraction: 0.0001
+  required_disclosures:
+    - "bump size"
+    - "convergence error"
+    - "full-revaluation comparison"
+    - "approximation status"
+allocation_methods:
+  - "euler_where_valid"
+  - "leave_one_out"
+validity_controls:
+  - "positive homogeneity"
+  - "threshold detection"
+  - "minimum-transfer-amount detection"
+  - "concentration-add-on detection"
+  - "collateral-regime-switch detection"
+reconciliation:
+  identity: "sum(trade allocations) + residual = portfolio result"
+  tolerance: 1.0e-9
+prohibited:
+  - "silent replacement of full revaluation by approximation"
+  - "Euler allocation when nonlinearity controls fail"
+boundary: "FULL_REVALUATION_PRIMARY_APPROXIMATION_DISCLOSED"
