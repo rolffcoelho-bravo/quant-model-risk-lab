@@ -1,0 +1,170 @@
+{
+  "agreements": [
+    {
+      "agreement_id": "AGR_A",
+      "eligible_collateral_currencies": [
+        "EUR",
+        "USD"
+      ],
+      "margin_frequency_days": 1,
+      "margin_period_of_risk_days": 10,
+      "minimum_transfer_amount": 25000.0,
+      "threshold": 100000.0
+    },
+    {
+      "agreement_id": "AGR_B",
+      "eligible_collateral_currencies": [
+        "EUR",
+        "GBP"
+      ],
+      "margin_frequency_days": 1,
+      "margin_period_of_risk_days": 10,
+      "minimum_transfer_amount": 50000.0,
+      "threshold": 250000.0
+    }
+  ],
+  "collateral_sets": [
+    {
+      "agreement_id": "AGR_A",
+      "collateral_set_id": "CS_A",
+      "eligible_currencies": [
+        "EUR",
+        "USD"
+      ],
+      "netting_set_id": "NS_A"
+    },
+    {
+      "agreement_id": "AGR_B",
+      "collateral_set_id": "CS_B",
+      "eligible_currencies": [
+        "EUR",
+        "GBP"
+      ],
+      "netting_set_id": "NS_B"
+    }
+  ],
+  "counterparties": [
+    {
+      "counterparty_id": "CP_GROUP",
+      "name": "Reference Group"
+    },
+    {
+      "counterparty_id": "CP_BANK_A",
+      "credit_curve_id": "CC_BANK_A",
+      "name": "Reference Bank A",
+      "parent_counterparty_id": "CP_GROUP"
+    },
+    {
+      "counterparty_id": "CP_CORP_B",
+      "credit_curve_id": "CC_CORP_B",
+      "name": "Reference Corporate B",
+      "parent_counterparty_id": "CP_GROUP"
+    }
+  ],
+  "currencies": [
+    {
+      "code": "EUR",
+      "decimals": 2
+    },
+    {
+      "code": "USD",
+      "decimals": 2
+    },
+    {
+      "code": "GBP",
+      "decimals": 2
+    }
+  ],
+  "legal_entities": [
+    {
+      "legal_entity_id": "LE_EU",
+      "name": "Reference Bank Europe",
+      "reporting_currency": "EUR"
+    }
+  ],
+  "netting_sets": [
+    {
+      "agreement_id": "AGR_A",
+      "counterparty_id": "CP_BANK_A",
+      "legal_entity_id": "LE_EU",
+      "netting_set_id": "NS_A"
+    },
+    {
+      "agreement_id": "AGR_B",
+      "counterparty_id": "CP_CORP_B",
+      "legal_entity_id": "LE_EU",
+      "netting_set_id": "NS_B"
+    }
+  ],
+  "reporting_currency": "EUR",
+  "schema_version": "1.0",
+  "snapshot_id": "INVALID_MISSING_NETTING",
+  "trades": [
+    {
+      "attributes": {
+        "pair": "EURUSD",
+        "strike": 1.08
+      },
+      "collateral_set_id": "CS_A",
+      "counterparty_id": "CP_BANK_A",
+      "effective_date": "2026-01-02",
+      "legal_entity_id": "LE_EU",
+      "maturity_date": "2027-01-04",
+      "netting_set_id": "NS_MISSING",
+      "notional": 5000000.0,
+      "product_type": "FX_FORWARD",
+      "settlement_currency": "EUR",
+      "trade_currency": "USD",
+      "trade_id": "T001"
+    },
+    {
+      "attributes": {
+        "coupon": 0.0
+      },
+      "collateral_set_id": "CS_A",
+      "counterparty_id": "CP_BANK_A",
+      "effective_date": "2025-07-01",
+      "legal_entity_id": "LE_EU",
+      "maturity_date": "2028-07-01",
+      "netting_set_id": "NS_A",
+      "notional": 3000000.0,
+      "product_type": "ZERO_COUPON_BOND",
+      "settlement_currency": "EUR",
+      "trade_currency": "EUR",
+      "trade_id": "T002"
+    },
+    {
+      "attributes": {
+        "fixed_rate": 0.032
+      },
+      "collateral_set_id": "CS_B",
+      "counterparty_id": "CP_CORP_B",
+      "effective_date": "2026-03-15",
+      "legal_entity_id": "LE_EU",
+      "maturity_date": "2031-03-15",
+      "netting_set_id": "NS_B",
+      "notional": 4000000.0,
+      "product_type": "INTEREST_RATE_SWAP",
+      "settlement_currency": "GBP",
+      "trade_currency": "GBP",
+      "trade_id": "T003"
+    },
+    {
+      "attributes": {
+        "coupon": 0.0
+      },
+      "collateral_set_id": "CS_B",
+      "counterparty_id": "CP_CORP_B",
+      "effective_date": "2026-02-01",
+      "legal_entity_id": "LE_EU",
+      "maturity_date": "2029-02-01",
+      "netting_set_id": "NS_B",
+      "notional": -1250000.0,
+      "product_type": "ZERO_COUPON_BOND",
+      "settlement_currency": "EUR",
+      "trade_currency": "EUR",
+      "trade_id": "T004"
+    }
+  ],
+  "valuation_date": "2026-07-23"
+}

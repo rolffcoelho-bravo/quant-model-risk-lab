@@ -1,0 +1,41 @@
+schema_version: "1.0"
+release_line: "v1.4"
+gate: 1
+status: "PORTFOLIO_CONTRACTS_VALIDATED"
+title: "Portfolio Ingestion Benchmark Contract"
+cases:
+  - case_id: "valid_reference_portfolio"
+    fixture: "data/portfolio/fixtures/valid_reference_portfolio.json"
+    expected_valid: true
+    expected_codes: []
+    expected_counts:
+      currencies: 3
+      legal_entities: 1
+      counterparties: 3
+      agreements: 2
+      netting_sets: 2
+      collateral_sets: 2
+      trades: 4
+  - case_id: "missing_netting_set"
+    fixture: "data/portfolio/fixtures/invalid_missing_netting_set.json"
+    expected_valid: false
+    expected_codes:
+      - "MISSING_NETTING_SET"
+  - case_id: "duplicate_trade"
+    fixture: "data/portfolio/fixtures/invalid_duplicate_trade.json"
+    expected_valid: false
+    expected_codes:
+      - "DUPLICATE_IDENTIFIER"
+  - case_id: "counterparty_cycle"
+    fixture: "data/portfolio/fixtures/invalid_counterparty_cycle.json"
+    expected_valid: false
+    expected_codes:
+      - "COUNTERPARTY_HIERARCHY_CYCLE"
+  - case_id: "collateral_mapping"
+    fixture: "data/portfolio/fixtures/invalid_collateral_mapping.json"
+    expected_valid: false
+    expected_codes:
+      - "TRADE_COLLATERAL_MAPPING_MISMATCH"
+  - case_id: "unknown_field_schema_rejection"
+    fixture: "data/portfolio/fixtures/invalid_unknown_field.json"
+    expected_schema_error: true

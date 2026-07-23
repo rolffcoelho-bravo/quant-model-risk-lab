@@ -1,0 +1,41 @@
+schema_version: "1.0"
+release_line: "v1.4"
+gate: 1
+status: "PORTFOLIO_CONTRACTS_VALIDATED"
+title: "Portfolio Lineage and Calculation Identity Contract"
+hash_policy:
+  algorithm: "sha256"
+  canonical_encoding: "UTF-8"
+  object_key_order: "lexicographic"
+  collection_order: "canonical identifier order"
+  raw_source_hash_preserved: true
+required_run_fields:
+  - "run_id"
+  - "valuation_date"
+  - "portfolio_snapshot_id"
+  - "model_version"
+  - "configuration_hash"
+  - "input_hash"
+  - "source_hash"
+  - "random_seed"
+  - "created_at_utc"
+deterministic_run_identity_inputs:
+  - "input_hash"
+  - "configuration_hash"
+  - "model_version"
+  - "valuation_date"
+  - "random_seed"
+required_lineage_counts:
+  - "currencies"
+  - "legal_entities"
+  - "counterparties"
+  - "agreements"
+  - "netting_sets"
+  - "collateral_sets"
+  - "trades"
+invariants:
+  - "Equivalent canonical portfolios produce identical input hashes."
+  - "A portfolio content change changes the input hash."
+  - "A configuration change changes the calculation identity."
+  - "Creation timestamp does not change deterministic run identity."
+  - "Invalid validation status blocks downstream calculation."

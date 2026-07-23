@@ -1,0 +1,62 @@
+schema_version: "1.0"
+release_line: "v1.4"
+gate: 1
+status: "PORTFOLIO_CONTRACTS_VALIDATED"
+title: "Canonical Portfolio Schema Contract"
+purpose: >-
+  Define the authoritative public portfolio representation consumed by future
+  multi-currency, margin, capital, and incremental-XVA layers.
+root_entity: "PortfolioSnapshot"
+canonical_entities:
+  - "CurrencyDefinition"
+  - "LegalEntity"
+  - "Counterparty"
+  - "AgreementTerms"
+  - "NettingSet"
+  - "CollateralSet"
+  - "TradeRecord"
+  - "PortfolioSnapshot"
+required_snapshot_fields:
+  - "snapshot_id"
+  - "valuation_date"
+  - "reporting_currency"
+  - "currencies"
+  - "legal_entities"
+  - "counterparties"
+  - "agreements"
+  - "netting_sets"
+  - "collateral_sets"
+  - "trades"
+identity_fields:
+  CurrencyDefinition: "code"
+  LegalEntity: "legal_entity_id"
+  Counterparty: "counterparty_id"
+  AgreementTerms: "agreement_id"
+  NettingSet: "netting_set_id"
+  CollateralSet: "collateral_set_id"
+  TradeRecord: "trade_id"
+canonicalization:
+  encoding: "UTF-8"
+  object_key_order: "lexicographic"
+  entity_collection_order: "identifier"
+  json_nan_permitted: false
+  unknown_fields_permitted: false
+  duplicate_identifiers_permitted: false
+mapping_invariants:
+  - id: "trade_to_netting"
+    rule: "Every trade references exactly one existing netting set."
+  - id: "trade_to_counterparty"
+    rule: "Trade and netting-set counterparty identifiers must agree."
+  - id: "trade_to_legal_entity"
+    rule: "Trade and netting-set legal-entity identifiers must agree."
+  - id: "collateral_to_netting"
+    rule: "A trade collateral set must belong to the trade netting set."
+  - id: "agreement_consistency"
+    rule: "Collateral-set and netting-set agreement identifiers must agree."
+  - id: "currency_declaration"
+    rule: "All reporting, trade, settlement, and collateral currencies are declared."
+boundaries:
+  live_trade_capture: false
+  proprietary_trade_schema: false
+  legal_csa_interpretation: false
+  downstream_quantitative_calculation: false
