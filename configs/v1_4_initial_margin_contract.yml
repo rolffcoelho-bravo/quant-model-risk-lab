@@ -1,0 +1,17 @@
+schema_version: "1.0"
+historical_simulation:
+  loss_definition: max(current_value_minus_horizon_value, 0)
+  gain_definition: max(horizon_value_minus_current_value, 0)
+  quantile_interpolation: linear
+  margin_period_days: configurable_positive_integer
+  addon: visible_percentage_of_current_gross_value
+parametric:
+  formula: z_alpha_times_sqrt_s_transpose_covariance_s
+  margin_period_scaling: square_root_time
+  covariance: symmetric_and_dimensionally_aligned
+  directional_multipliers: explicit
+controls:
+  confidence_level_range: "(0.5, 1.0)"
+  minimum_margin_non_negative: true
+  maturity_margin_zero_for_historical_proxy: true
+  unknown_proxy_methods_blocked: true

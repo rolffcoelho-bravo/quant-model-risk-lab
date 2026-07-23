@@ -1,0 +1,27 @@
+schema_version: "1.0"
+gate: 3
+status: INITIAL_MARGIN_MVA_VALIDATED_CANDIDATE
+owner: Quant Model Risk Lab
+purpose: Govern public initial-margin proxy profiles and MVA integration.
+approved_methods:
+  - historical_simulation
+  - parametric
+proxy_label: PUBLIC_PROXY_NOT_SIMM_OR_CCP
+required_outputs:
+  - posted_margin
+  - received_margin
+  - posted_mva
+  - received_margin_benefit
+  - net_mva
+  - time_bucket_attribution
+  - policy_hash
+invariants:
+  - posted_margin_non_negative
+  - received_margin_non_negative
+  - net_mva_equals_posted_cost_minus_received_benefit
+  - mva_not_embedded_in_fva
+prohibited_claims:
+  - certified_SIMM
+  - certified_CCP_margin
+  - production_initial_margin_approval
+  - regulatory_approval
