@@ -1,0 +1,193 @@
+schema_version: '1.0'
+tolerance: 1.0e-10
+cases:
+- case_id: historical_zero
+  kind: historical_posted_sum
+  netting_set_id: NS-Z
+  currency: USD
+  times:
+  - 0.0
+  - 1.0
+  values:
+  - - 0.0
+    - 0.0
+  - - 0.0
+    - 0.0
+  policy:
+    confidence_level: 0.99
+    margin_period_days: 365
+  expected: 0.0
+- case_id: historical_deterministic
+  kind: historical_posted_sum
+  netting_set_id: NS-H
+  currency: USD
+  times:
+  - 0.0
+  - 1.0
+  values:
+  - - 100.0
+    - 60.0
+  - - 100.0
+    - 80.0
+  policy:
+    confidence_level: 0.75
+    margin_period_days: 365
+  expected: 35.0
+- case_id: parametric_analytic
+  kind: parametric_posted_sum
+  netting_set_id: NS-P
+  currency: USD
+  times:
+  - 0.0
+  - 1.0
+  sensitivities:
+  - - 3.0
+    - 4.0
+  - - 0.0
+    - 0.0
+  covariance:
+  - - 1.0
+    - 0.0
+  - - 0.0
+    - 1.0
+  policy:
+    confidence_level: 0.99
+    margin_period_days: 10
+    base_margin_days: 10
+  expected: 11.631739370204205
+- case_id: mva_zero_spread
+  kind: mva_net
+  netting_set_id: NS-M0
+  currency: USD
+  times:
+  - 0.0
+  - 1.0
+  posted_margin:
+  - 100.0
+  - 0.0
+  received_margin:
+  - 0.0
+  - 0.0
+  discount:
+  - 1.0
+  - 0.95
+  funding:
+  - 0.01
+  - 0.01
+  remuneration:
+  - 0.01
+  - 0.01
+  policy:
+    confidence_level: 0.99
+    margin_period_days: 10
+    survival_treatment: none
+  expected: 0.0
+- case_id: mva_posted_cost
+  kind: mva_net
+  netting_set_id: NS-M1
+  currency: USD
+  times:
+  - 0.0
+  - 1.0
+  posted_margin:
+  - 100.0
+  - 0.0
+  received_margin:
+  - 0.0
+  - 0.0
+  discount:
+  - 1.0
+  - 0.95
+  funding:
+  - 0.02
+  - 0.02
+  remuneration:
+  - 0.005
+  - 0.005
+  policy:
+    confidence_level: 0.99
+    margin_period_days: 10
+    survival_treatment: none
+  expected: 0.7124999999999999
+- case_id: received_nonreusable
+  kind: mva_net
+  netting_set_id: NS-M2
+  currency: USD
+  times:
+  - 0.0
+  - 1.0
+  posted_margin:
+  - 100.0
+  - 0.0
+  received_margin:
+  - 100.0
+  - 0.0
+  discount:
+  - 1.0
+  - 0.95
+  funding:
+  - 0.02
+  - 0.02
+  remuneration:
+  - 0.005
+  - 0.005
+  policy:
+    confidence_level: 0.99
+    margin_period_days: 10
+    survival_treatment: none
+    received_margin_reusable: false
+  expected: 0.7124999999999999
+- case_id: challenger_reconciliation
+  kind: challenger_difference
+  netting_set_id: NS-C
+  currency: USD
+  times:
+  - 0.0
+  - 1.0
+  posted_margin:
+  - 100.0
+  - 0.0
+  received_margin:
+  - 0.0
+  - 0.0
+  discount:
+  - 1.0
+  - 0.95
+  funding:
+  - 0.02
+  - 0.02
+  remuneration:
+  - 0.005
+  - 0.005
+  policy:
+    confidence_level: 0.99
+    margin_period_days: 10
+    survival_treatment: none
+  expected: 0.0
+- case_id: fva_separation
+  kind: fva_separation_flag
+  netting_set_id: NS-S
+  currency: USD
+  times:
+  - 0.0
+  - 1.0
+  posted_margin:
+  - 100.0
+  - 0.0
+  received_margin:
+  - 0.0
+  - 0.0
+  discount:
+  - 1.0
+  - 0.95
+  funding:
+  - 0.02
+  - 0.02
+  remuneration:
+  - 0.005
+  - 0.005
+  policy:
+    confidence_level: 0.99
+    margin_period_days: 10
+    survival_treatment: none
+  expected: 0.0

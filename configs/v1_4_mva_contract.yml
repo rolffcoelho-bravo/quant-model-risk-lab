@@ -1,0 +1,24 @@
+schema_version: "1.0"
+formula: discounted_survival_weighted_effective_funding_spread_times_posted_initial_margin
+effective_spread: max(funding_rate_minus_collateral_remuneration_rate, 0)
+integration_rules:
+  - trapezoid
+  - endpoint
+survival_treatments:
+  - joint
+  - own
+  - counterparty
+  - none
+received_margin:
+  benefit_allowed_only_when_reusable: true
+  reuse_status_explicit: true
+separation:
+  mva_separate_from_fva: true
+  mva_separate_from_cva_dva: true
+sensitivities:
+  - funding_spread
+  - collateral_remuneration
+  - margin_scale
+  - confidence_level
+  - margin_period_of_risk
+  - volatility_scale

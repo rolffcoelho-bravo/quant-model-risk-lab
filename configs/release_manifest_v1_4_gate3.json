@@ -1,0 +1,126 @@
+{
+  "artifacts": [
+    {
+      "path": "configs/v1_4_initial_margin_contract.yml",
+      "sha256": "0878a67fefc5ad80a40148b72fdf7c7d44b2c4017c55f57c08904875611bea7e"
+    },
+    {
+      "path": "configs/v1_4_margin_benchmark_contract.yml",
+      "sha256": "c174f5d6ff73e40efd8cd4a4240f6cb625c85473106ec06d6d86dd3a7176462d"
+    },
+    {
+      "path": "configs/v1_4_margin_contract.yml",
+      "sha256": "abb324699fe4db080e380127e29dd0a54ea384799bc91ad444dfebfb6f122a1c"
+    },
+    {
+      "path": "configs/v1_4_margin_governance_contract.yml",
+      "sha256": "3157a5c4aacec2cd2e96eb2bb45491176088f79ea7f5d1edcf876bf9491e8b5f"
+    },
+    {
+      "path": "configs/v1_4_mva_contract.yml",
+      "sha256": "2ba3ad9d5abe15e6e82048697d564a7f106cbc896495e4b0410ea4fc22e52393"
+    },
+    {
+      "path": "docs/v1_4_initial_margin_and_mva.md",
+      "sha256": "4f349ff1502028d1a39c336a3cb122c2e620f357407d164857f2b9f5d11f9db4"
+    },
+    {
+      "path": "src/qmrl/margin/__init__.py",
+      "sha256": "a9f211c51ed55fe57c3c943e3dfcea834d930495d22cbad803307fc4d9bf58a4"
+    },
+    {
+      "path": "src/qmrl/margin/attribution.py",
+      "sha256": "9bde74bb159a4c3f1dd865112c0b358fe65e6e6c19f8fbac329580e2ba569717"
+    },
+    {
+      "path": "src/qmrl/margin/benchmark.py",
+      "sha256": "5f2cf420ae72e4088a588f944f77cb03f4fa75232cb80d5c1a91a6799b19c034"
+    },
+    {
+      "path": "src/qmrl/margin/challenger.py",
+      "sha256": "cfd43735da67f4c9c07cafd0f029f9613c367330098c1e90e58f14fdd32f3f00"
+    },
+    {
+      "path": "src/qmrl/margin/domain.py",
+      "sha256": "11eab692561dbf98cc7531c64e93bdff662e5e4e3e5f58e75a0a89d724a22fbd"
+    },
+    {
+      "path": "src/qmrl/margin/initial_margin.py",
+      "sha256": "b796d440058c9aa19e1df1d793eddb0c533b68235927693d4c91e547b3d68ec8"
+    },
+    {
+      "path": "src/qmrl/margin/mva.py",
+      "sha256": "1c30857587bc63ff14b70f6cea121f45aaaf60c4ab9a5d923ee8f3c73a66fbbe"
+    },
+    {
+      "path": "src/qmrl/margin/sensitivity.py",
+      "sha256": "75dab8d11c4dd0420bea876c85bc1a42351861ee364a9182fa031d41fbaac6fc"
+    },
+    {
+      "path": "tests/test_v1_4_gate3_attribution_challenger.py",
+      "sha256": "82c3de9b7b49f8ea6ba1cd2e69bcec41486975bf03c084799023d470f6ffa901"
+    },
+    {
+      "path": "tests/test_v1_4_gate3_contracts_benchmarks.py",
+      "sha256": "f5a8cc6bbc7b36b22bf2a8206c8e0963cc9a464781c3c9e615585a48af12dabc"
+    },
+    {
+      "path": "tests/test_v1_4_gate3_domain.py",
+      "sha256": "a75c8869641a9997b812b14895c5bd736dbfc0235e13aab102be859eef26213f"
+    },
+    {
+      "path": "tests/test_v1_4_gate3_historical.py",
+      "sha256": "32633d055f4004f45c5ae6153cd64294ebf41d696a2b82b5e5a218d19a80ce48"
+    },
+    {
+      "path": "tests/test_v1_4_gate3_mva.py",
+      "sha256": "b72f59fccdd4bc983833713a8a338da3c4ea5d35e70d95f05261c5291e7d9a3f"
+    },
+    {
+      "path": "tests/test_v1_4_gate3_parametric.py",
+      "sha256": "7dd2e80ecc3b93b5abd55870decce3339edb5a75198797a061c8a443e43b16e0"
+    },
+    {
+      "path": "tests/v1_4_gate3_helpers.py",
+      "sha256": "d28af31275f6dd2b46e094a9b62f3b6337570fbe7f0ffa3cc65ebada715903a2"
+    }
+  ],
+  "base_release": "v1.3.0",
+  "gate": 3,
+  "gate0": "ARCHITECTURE_FROZEN",
+  "gate1": "PORTFOLIO_CONTRACTS_VALIDATED",
+  "gate2": "MULTICURRENCY_EXPOSURE_VALIDATED",
+  "next_gate": "capital_profiles_and_KVA",
+  "promotion_rule": "MVA remains separately attributable and public margin outputs remain governed uncertified proxies.",
+  "release_line": "v1.4",
+  "schema_version": "1.0",
+  "scope": {
+    "KVA": "not_introduced",
+    "SIMM_or_CCP_certification": false,
+    "currency_specific_MVA": "validated",
+    "historical_initial_margin_proxy": "validated",
+    "incremental_XVA": "not_introduced",
+    "independent_challenger": "validated",
+    "mva_separate_from_fva": true,
+    "parametric_initial_margin_proxy": "validated",
+    "posted_and_received_margin": "validated",
+    "production_approval": false,
+    "regulatory_approval": false
+  },
+  "status": "INITIAL_MARGIN_MVA_VALIDATED",
+  "title": "Initial Margin and Margin Valuation Adjustment",
+  "validation": {
+    "artifact_hash_policy": {
+      "algorithm": "sha256",
+      "encoding": "UTF-8",
+      "text_line_endings": "LF"
+    },
+    "collected_test_count": 498,
+    "human_squash_approval_required": true,
+    "new_gate_tests": 42,
+    "post_merge_ci_required": true,
+    "prior_gate_test_count": 456,
+    "pull_request_ci_required": true,
+    "required_check": "Python 3.12 validation"
+  }
+}

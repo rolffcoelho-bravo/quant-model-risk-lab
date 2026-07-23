@@ -1,0 +1,17 @@
+schema_version: "1.0"
+gate: 3
+promotion_rule: MVA remains separately attributable and public margin remains an uncertified proxy.
+required_challenge:
+  independent_loop_mva: true
+  tolerance: 1.0e-10
+required_diagnostics:
+  - netting_set_attribution
+  - currency_attribution
+  - time_bucket_attribution
+  - concentration_hhi
+  - maximum_share
+downstream_boundaries:
+  KVA: not_introduced
+  incremental_XVA: not_introduced
+  production_approval: false
+  regulatory_approval: false
