@@ -1,0 +1,25 @@
+schema_version: "1.0"
+release_line: "v1.4"
+gate: 6
+status: "OPERATIONAL_SCALE_CANDIDATE"
+objective: "Govern dependency-aware full and partial recalculation."
+required_nodes:
+  - portfolio_ingestion
+  - market_state
+  - policy_state
+  - fx_conversion
+  - exposure
+  - credit_funding_xva
+  - initial_margin
+  - mva
+  - capital_profile
+  - kva
+  - total_xva
+  - allocation
+required_controls:
+  - "acyclic graph"
+  - "deterministic topological order"
+  - "change impact propagated to all descendants"
+  - "unaffected nodes reused only from a validated baseline or cache"
+  - "graph changes force full recalculation"
+boundary: "QUANTITATIVE_EQUIVALENCE_REQUIRED"

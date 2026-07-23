@@ -1,0 +1,29 @@
+schema_version: "1.0"
+release_line: "v1.4"
+gate: 6
+cache:
+  key_inputs:
+    - node_id
+    - dependency_hashes
+    - external_input
+    - policy_hash
+    - engine_version
+    - seed
+    - scope
+  persistence: "atomic_content_addressed_json"
+  statuses: [HIT, MISS, STALE, CORRUPT]
+  required_controls:
+    - "output hash verification"
+    - "metadata hash verification"
+    - "explicit stale detection"
+    - "corrupt entries never reused"
+checkpoint:
+  persistence: "atomic_hash_verified_json"
+  node_states: [PENDING, COMPLETE, FAILED]
+  chunk_states: [PENDING, COMPLETE, FAILED]
+  required_controls:
+    - "restartable run identity"
+    - "completed node output hashes"
+    - "pending work discovery"
+    - "failure classification"
+    - "corrupt checkpoint rejection"
