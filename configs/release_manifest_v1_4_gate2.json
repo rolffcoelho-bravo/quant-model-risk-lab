@@ -1,0 +1,140 @@
+{
+  "artifacts": [
+    {
+      "path": "configs/v1_4_collateral_currency_contract.yml",
+      "sha256": "11285bd800ea62b18cca57f461dfb7ccd7b8c98bb9e306876016e83161fb2f18"
+    },
+    {
+      "path": "configs/v1_4_fx_contract.yml",
+      "sha256": "30183166100cd1b94119dfc21b6e0922d60664be55c991b9ee51de6c2cf261a0"
+    },
+    {
+      "path": "configs/v1_4_multicurrency_benchmark_contract.yml",
+      "sha256": "8754ee706812189d15ad515594ab004f0450786c9606a03f4e75944204109127"
+    },
+    {
+      "path": "configs/v1_4_multicurrency_contract.yml",
+      "sha256": "362711ce44c8a820d844edcff622e04b6af29aba7f638b57d98cd834d184c959"
+    },
+    {
+      "path": "docs/v1_4_multicurrency_exposure_and_collateral.md",
+      "sha256": "710987ea82e8171276dbefad99ea93f3e3306a9a291b0297457beabad6486d96"
+    },
+    {
+      "path": "src/qmrl/multicurrency/__init__.py",
+      "sha256": "dea26db49a8c3b13df43a81c8f196fffc25c6b9978a3095318653a8840498eb5"
+    },
+    {
+      "path": "src/qmrl/multicurrency/attribution.py",
+      "sha256": "bc95d2aaa7ca1240d1cea312cc06c6036bdc971a028f8bb876bc1f4326eda0d8"
+    },
+    {
+      "path": "src/qmrl/multicurrency/benchmark.py",
+      "sha256": "cdd519e261b554ddbe5293f532fe4989e856db5915a79c11db452e2186028a59"
+    },
+    {
+      "path": "src/qmrl/multicurrency/challenger.py",
+      "sha256": "40fa2225b7b5162b5ceebbf809a7eacaa2943c8bfb783bfc7f9ede39d50ca800"
+    },
+    {
+      "path": "src/qmrl/multicurrency/collateral.py",
+      "sha256": "978cae6865a4ab3bd1a03e19d60ef2c6e5ade2cf9c752845f48f14ccf669b859"
+    },
+    {
+      "path": "src/qmrl/multicurrency/curves.py",
+      "sha256": "37c168184fbae11a9a32c11f21b6b9d08cd922863f6079597e7415f7a24cddf0"
+    },
+    {
+      "path": "src/qmrl/multicurrency/domain.py",
+      "sha256": "9be5f7b3d3cb295259ba95eed942854de4be182e0c33ba9a3e26a5aac10e9a4b"
+    },
+    {
+      "path": "src/qmrl/multicurrency/exposure.py",
+      "sha256": "1a09bb203390ae33364ecf6536781d4a928754ae185c0ca3a597a22017de82e6"
+    },
+    {
+      "path": "src/qmrl/multicurrency/fx.py",
+      "sha256": "c67658e2306d2f260eafac8beb6dbf17b3fad4acce24cc02799807c3ff60e06a"
+    },
+    {
+      "path": "tests/test_v1_4_gate2_attribution_challenger.py",
+      "sha256": "51801b291af1dfbce4ff6bf9a4d0f060f1edfe56bbd5472ecf018c502e1c3fa1"
+    },
+    {
+      "path": "tests/test_v1_4_gate2_compatibility.py",
+      "sha256": "cb383d9a25c08631d7ce23433bbf00c9681fb0feff0063b227b98a31d8e367e8"
+    },
+    {
+      "path": "tests/test_v1_4_gate2_contracts_benchmarks.py",
+      "sha256": "a08de6453647137337dba7bc37451a757edccd540dd5dcb07651aedc3047c802"
+    },
+    {
+      "path": "tests/test_v1_4_gate2_curves_collateral.py",
+      "sha256": "3fbc420e1c373c5439c12e5babbb90895debb0e8a2e72800871c1450b7bab99c"
+    },
+    {
+      "path": "tests/test_v1_4_gate2_domain_fx.py",
+      "sha256": "3baa186f8443e81db27acd01fb5d94b1395f68c3a8f0a2d2533836ece6889a84"
+    },
+    {
+      "path": "tests/test_v1_4_gate2_exposure.py",
+      "sha256": "accbe66c828ec94849013151c4424a3c5531507e77438f862d8e9e8b4a2b9fda"
+    },
+    {
+      "path": "tests/v1_4_gate2_helpers.py",
+      "sha256": "a61d7eb3b24df561ce38593f499414531eb8e0f0a7688a96bfb027023923ecbd"
+    }
+  ],
+  "base_release": {
+    "immutable_historical_evidence": true,
+    "tag": "v1.3.0",
+    "version": "1.3.0"
+  },
+  "gate": 2,
+  "gate0": {
+    "status": "ARCHITECTURE_FROZEN"
+  },
+  "gate1": {
+    "main_commit_before_gate_2": "15940ae",
+    "status": "PORTFOLIO_CONTRACTS_VALIDATED"
+  },
+  "next_gate": {
+    "gate": 3,
+    "implementation_permitted_after_gate_2_merge": true,
+    "title": "Initial margin and MVA"
+  },
+  "promotion_rule": "The single-currency Gate 2 result must reproduce the validated v1.3 exposure result within governed tolerance.",
+  "release_line": "v1.4",
+  "schema_version": "1.0",
+  "scope": {
+    "collateral_currency": true,
+    "currency_attribution": true,
+    "currency_specific_curves": true,
+    "fx_triangulation": true,
+    "incremental_xva": false,
+    "independent_challenger": true,
+    "kva": false,
+    "multi_currency_exposure": true,
+    "mva": false,
+    "production_approval": false,
+    "regulatory_approval": false,
+    "release_tag_created": false,
+    "single_currency_backward_compatibility": true
+  },
+  "status": "MULTICURRENCY_EXPOSURE_VALIDATED",
+  "title": "Multi-Currency Exposure and Collateral Gate 2",
+  "validation": {
+    "artifact_hash_policy": {
+      "algorithm": "sha256",
+      "encoding": "UTF-8",
+      "text_line_endings": "LF"
+    },
+    "collected_test_count": 456,
+    "human_squash_approval_required": true,
+    "new_gate_tests": 44,
+    "post_merge_ci_required": true,
+    "prior_gate_test_count": 412,
+    "pull_request_ci_required": true,
+    "required_check": "Python 3.12 validation"
+  }
+}

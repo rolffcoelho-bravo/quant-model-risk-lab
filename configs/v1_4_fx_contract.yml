@@ -1,0 +1,27 @@
+schema_version: "1.0"
+release_line: "v1.4"
+gate: 2
+quote_convention: "target currency units per one source currency unit"
+approved_paths:
+  direct: true
+  inverse: true
+  triangulation: true
+triangulation:
+  pivot_must_be_explicit: true
+  direct_quote_challenge_required_when_available: true
+  tolerance: 1.0e-10
+scenario_controls:
+  positive_rates_only: true
+  shared_time_grid: true
+  shared_path_count: true
+  extrapolation: "forbidden"
+  missing_path_action: "BLOCK"
+attribution:
+  trade_value_effect: true
+  fx_conversion_effect: true
+  collateral_currency_effect: true
+  reporting_currency: true
+boundaries:
+  live_quotes: false
+  stochastic_basis_model: false
+  calibrated_fx_volatility_surface: false

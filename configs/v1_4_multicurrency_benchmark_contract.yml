@@ -1,0 +1,61 @@
+schema_version: '1.0'
+release_line: v1.4
+gate: 2
+title: Locked Multi-Currency Gate 2 Benchmarks
+cases:
+- case_id: identity-usd
+  kind: identity_fx
+  amount: 100.0
+  expected: 100.0
+- case_id: direct-eur-usd
+  kind: direct_fx
+  amount: 100.0
+  rate: 1.1
+  expected: 110.0
+- case_id: inverse-usd-eur
+  kind: inverse_fx
+  amount: 100.0
+  rate: 1.25
+  expected: 80.0
+- case_id: triangular-gbp-usd
+  kind: triangular_fx
+  amount: 100.0
+  first_rate: 1.2
+  second_rate: 1.1
+  expected: 132.0
+- case_id: collateral-net
+  kind: collateral_net
+  trade_value: 125.0
+  collateral_value: 25.0
+  expected: 100.0
+- case_id: discounted-exposure
+  kind: discount
+  exposure: 100.0
+  times:
+  - 0.0
+  - 1.0
+  values:
+  - 1.0
+  - 0.95
+  time: 1.0
+  expected: 95.0
+- case_id: zero-remuneration
+  kind: remuneration
+  initial_balance: 100.0
+  times:
+  - 0.0
+  - 1.0
+  rates:
+  - 0.0
+  - 0.0
+  expected: 100.0
+- case_id: triangulation-reconciliation
+  kind: triangulation_error
+  direct_rate: 1.32
+  first_rate: 1.2
+  second_rate: 1.1
+  expected: 0.0
+  tolerance: 1.0e-12
+promotion:
+  all_cases_must_pass: true
+  override_permitted: false
