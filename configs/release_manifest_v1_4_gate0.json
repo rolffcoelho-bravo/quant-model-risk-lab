@@ -1,0 +1,55 @@
+{
+  "artifacts": [
+    {
+      "path": "configs/v1_4_architecture_contract.yml",
+      "sha256": "affa6a614351b7745ead1fd7ad08b080baf61f1b8f7b89a04e43974d814f7d53"
+    },
+    {
+      "path": "configs/v1_4_gate_sequence.yml",
+      "sha256": "45c3180a3291aa0ae0b110477a885edca0104e59cdb27884f3618d6284dfd04d"
+    },
+    {
+      "path": "configs/v1_4_scope_contract.yml",
+      "sha256": "ab8faa862f96bbebaa3e03194dfd380e98edff0c9bb939208b1003a26067aac1"
+    },
+    {
+      "path": "docs/v1_4_architecture_and_execution_blueprint.md",
+      "sha256": "2534f5ae327b9bde678a324376c38db737313576caca3592a39032d88f1b434f"
+    },
+    {
+      "path": "tests/test_v1_4_gate0_contracts.py",
+      "sha256": "6f162ef499dd4b071fde3ba5444d17c23e89d4fa9bcdf076db957c1a5ad5eef0"
+    }
+  ],
+  "base_release": {
+    "immutable_historical_evidence": true,
+    "tag": "v1.3.0",
+    "version": "1.3.0"
+  },
+  "gate": 0,
+  "gate_title": "Architecture, scope, and contract freeze",
+  "next_gate": {
+    "gate": 1,
+    "implementation_permitted_after_gate_0_merge": true,
+    "title": "Canonical portfolio ingestion and lineage"
+  },
+  "release_line": "v1.4",
+  "schema_version": "1.0",
+  "scope": {
+    "architecture_only": true,
+    "future_release_tag": "v1.4.0",
+    "production_approval": false,
+    "quantitative_implementation": false,
+    "regulatory_approval": false,
+    "release_tag_created": false
+  },
+  "status": "ARCHITECTURE_FROZEN",
+  "validation": {
+    "collected_test_count": 373,
+    "human_squash_approval_required": true,
+    "post_merge_ci_required": true,
+    "prior_release_test_count": 350,
+    "pull_request_ci_required": true,
+    "required_check": "Python 3.12 validation"
+  }
+}
