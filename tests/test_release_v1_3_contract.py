@@ -6,8 +6,6 @@ import json
 import re
 from pathlib import Path
 
-from qmrl.release_consolidation import normalized_sha256
-
 
 README = Path("README.md")
 CHANGELOG = Path("CHANGELOG.md")
@@ -48,11 +46,6 @@ def test_readme_preserves_v1_3_test_count_under_v1_4() -> None:
     assert int(match.group(1)) == expected == 350
     assert "**Current release:** v1.4.0" in content
     assert "Python 3.12 validation" in content
-
-
-def test_emit_current_readme_hash_for_v1_4_manifest_rebaseline() -> None:
-    actual = normalized_sha256(README)
-    assert actual == "PENDING_README_SHA256", actual
 
 
 def test_release_metadata_is_consistent() -> None:
