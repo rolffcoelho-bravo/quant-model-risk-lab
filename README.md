@@ -14,6 +14,7 @@
 **Author:** Rodolfo Pereira  
 **Repository type:** Public quantitative model-risk evidence package  
 **Current release:** v1.4.0 Portfolio-Scale Quantitative Model-Risk Laboratory  
+**Latest governed release: v1.4.0**  
 **Release status:** `RELEASED_WITH_MONITORING`
 
 ---
