@@ -31,9 +31,9 @@ def test_v1_2_historical_release_artifacts_remain_available() -> None:
         assert path.exists(), path
 
 
-def test_readme_presents_v1_3_and_preserves_v1_2_history() -> None:
+def test_readme_presents_v1_4_and_preserves_v1_2_history() -> None:
     content = README.read_text(encoding="utf-8-sig")
-    assert "**Current release:** v1.3.0" in content
+    assert "**Current release:** v1.4.0" in content
     assert "v1.2.0" in content
     assert "Governed GenAI" in content
     assert "Python 3.12 validation" in content
