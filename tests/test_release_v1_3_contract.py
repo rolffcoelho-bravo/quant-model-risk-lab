@@ -1,4 +1,4 @@
-"""Release-contract tests for Quant Model Risk Lab v1.3.0."""
+"""Historical release-contract tests for Quant Model Risk Lab v1.3.0."""
 
 from __future__ import annotations
 
@@ -35,16 +35,16 @@ def test_v1_3_release_artifacts_exist() -> None:
         assert path.exists(), path
 
 
-def test_readme_and_manifest_test_count_are_consistent() -> None:
+def test_readme_preserves_v1_3_test_count_under_v1_4() -> None:
     expected = manifest()["validation"]["collected_test_count"]
     content = README.read_text(encoding="utf-8-sig")
     match = re.search(
-        r"Validated test surface:\*{0,2}\s*`(\d+) collected tests`",
+        r"v1\.3\.0 validated test surface remains `(\d+) collected tests`",
         content,
     )
     assert match is not None
-    assert int(match.group(1)) == expected
-    assert "**Current release:** v1.3.0" in content
+    assert int(match.group(1)) == expected == 350
+    assert "**Current release:** v1.4.0" in content
     assert "Python 3.12 validation" in content
 
 
