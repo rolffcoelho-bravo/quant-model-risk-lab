@@ -78,7 +78,7 @@
     },
     {
       "path": "src/qmrl/release_consolidation/__init__.py",
-      "sha256": "3f3274e627817cfbfaf61b63a781d1a9d137b3b6c97cbaf4d1cfce6d6d03f4a"
+      "sha256": "3f3274e627817cfbfaf61b63a781d1ea9d137b3b6c97cbaf4d1cfce6d6d03f4a"
     },
     {
       "path": "src/qmrl/release_consolidation/assurance.py",
@@ -110,7 +110,7 @@
     },
     {
       "path": "tests/test_v1_4_gate8_assurance.py",
-      "sha256": "94d9659e1c2878997961be41c2a8bdb26000283d88f0c43"
+      "sha256": "94d9659e1c2871a4acd0ccd24ea36ac30ab4988f6c2a8bdb26000283d88f0c43"
     },
     {
       "path": "tests/test_v1_4_gate8_benchmarks_release.py",
