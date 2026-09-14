@@ -192,29 +192,32 @@ Public thresholds and parameters are validation controls. Initial-margin and cap
 
 ## Commercial application boundary
 
-Quant Model Risk Lab is the public research and evidence foundation for ShockBridge Pulse quantitative model-risk work. It is not a free or community edition of a commercial product.
+Quant Model Risk Lab is the public research and evidence foundation for ShockBridge Pulse quantitative model-risk work. It is not a free or community edition of a commercial product and does not offer retail-style, fixed-price, or packaged analytical services through this repository.
 
-**ShockBridge XVA Portfolio Scan** is a separate paid diagnostic service priced at **$199 per portfolio scan**. The commercial service is not distributed through this repository and is governed by separate commercial terms.
+Commercial and institutional engagements begin with technical scoping. Depending on the problem, ShockBridge Pulse may work with organizations through:
+
+- research engagements
+- technology evaluation
+- independent model validation
+- algorithm development
+- joint research programs
+- institutional deployment
+- enterprise licensing
+- technology transfer
+
+Commercial scope, pricing, intellectual-property allocation, deployment terms, confidentiality requirements, validation responsibilities, and support obligations are established privately through a separate technical proposal and executed agreement.
 
 The public repository does not include:
 
-- the proprietary ShockBridge XVA Pressure Score methodology
+- proprietary ShockBridge scoring, diagnostic, or decision methodologies
 - commercial portfolio-intake and schema-mapping workflows
-- customer-specific thresholds and scenario configuration
-- commercial report generation and executive interpretation
-- client delivery, support, monitoring, or service-level commitments
-- private deployment, integration, or licensing assets
+- customer-specific thresholds, calibrations, or scenario configurations
+- proprietary transformations, aggregation rules, or weighting systems
+- institution-specific reporting and executive interpretation
+- client delivery, monitoring, integration, or service-level infrastructure
+- private deployment, enterprise integration, or licensing assets
 
-The proprietary ShockBridge XVA Pressure Score is defined across five controlled dimensions:
-
-- exposure pressure
-- valuation-adjustment burden
-- counterparty and trade concentration
-- wrong-way and stress sensitivity
-- model-risk and monitoring weakness
-
-Its weights, transformations, thresholds, aggregation rules, validation contract, and implementation are not part of this public repository.
-
+ShockBridge may develop reusable methodologies, algorithms, validation systems, computational engines, and generalized research infrastructure through institutional work. Unless explicitly released under this repository's license or otherwise agreed by contract, such proprietary or reusable ShockBridge technology is not part of this public repository.
 ## License boundary
 
 Code and documentation already published in this repository remain available under the repository's MIT License. Separate commercial software, proprietary methodologies, service workflows, client reports, and future private components are not licensed under the MIT License merely because they use or reference this public research foundation.
